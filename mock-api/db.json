@@ -1,0 +1,45 @@
+{
+  "form": [
+    {
+      "id": "transactionOnly",
+      "main": {
+        "contentIds": [
+          "introduction"
+        ],
+        "rules": []
+      },
+      "QuestionBlocks": {
+        "introduction": {
+          "id": "introduction",
+          "contentIds": [
+            "greeting",
+            "firstName"
+          ],
+          "rules": []
+        }
+      },
+      "Questions": {
+        "greeting": {
+          "id": "greeting",
+          "sentences": [
+            "%HelloComponent%",
+            "You are about to become an FNZC client",
+            "Whether you are an experimented trader or not, you can start investing with us",
+            "But first, let's begin with a simple login so that you can keep the info you give us secure"
+          ],
+          "type": "button",
+          "content": [
+            "Ok, let's start"
+          ]
+        },
+        "firstName": {
+          "id": "firstName",
+          "sentences": [
+            "So, what's your first name"
+          ],
+          "type": "text"
+        }
+      }
+    }
+  ]
+}
