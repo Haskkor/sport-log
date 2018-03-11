@@ -150,6 +150,7 @@ class ProgramExercises extends React.PureComponent<IProps, IState> {
         {(!isNaN(this.props.navigation.state.params.days[0])) &&
         <TouchableOpacity onPress={() => {
           console.log('test')
+          console.log('test')
         }}>
           <Icon name="airline-seat-individual-suite" size={20} color={colors.base} style={styles.iconHeaderSectionAdd}/>
         </TouchableOpacity>}

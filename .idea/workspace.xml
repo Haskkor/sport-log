@@ -2,48 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="66a039e0-276e-443b-ac7c-b7b873d54327" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/core/create.js" afterPath="$PROJECT_DIR$/compiled/core/create.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/core/create.js.map" afterPath="$PROJECT_DIR$/compiled/core/create.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/core/middlewares/NormalizrMiddleware.js" afterPath="$PROJECT_DIR$/compiled/core/middlewares/NormalizrMiddleware.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/core/middlewares/NormalizrMiddleware.js.map" afterPath="$PROJECT_DIR$/compiled/core/middlewares/NormalizrMiddleware.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/core/modules/entities/reducer.js" afterPath="$PROJECT_DIR$/compiled/core/modules/entities/reducer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/core/modules/entities/reducer.js.map" afterPath="$PROJECT_DIR$/compiled/core/modules/entities/reducer.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/core/saga/index.js" afterPath="$PROJECT_DIR$/compiled/core/saga/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/core/saga/index.js.map" afterPath="$PROJECT_DIR$/compiled/core/saga/index.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/index.js" afterPath="$PROJECT_DIR$/compiled/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/index.js.map" afterPath="$PROJECT_DIR$/compiled/index.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/utils/helper.js" afterPath="$PROJECT_DIR$/compiled/utils/helper.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/utils/helper.js.map" afterPath="$PROJECT_DIR$/compiled/utils/helper.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/Header.js.map" afterPath="$PROJECT_DIR$/compiled/view/components/Header.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/ModalListLog.js" afterPath="$PROJECT_DIR$/compiled/view/components/ModalListLog.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/ModalListLog.js.map" afterPath="$PROJECT_DIR$/compiled/view/components/ModalListLog.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/ModalRecovery.js" afterPath="$PROJECT_DIR$/compiled/view/components/ModalRecovery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/ModalRecovery.js.map" afterPath="$PROJECT_DIR$/compiled/view/components/ModalRecovery.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/ModalSearch.js" afterPath="$PROJECT_DIR$/compiled/view/components/ModalSearch.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/ModalSearch.js.map" afterPath="$PROJECT_DIR$/compiled/view/components/ModalSearch.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/ModalSets.js" afterPath="$PROJECT_DIR$/compiled/view/components/ModalSets.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/ModalSets.js.map" afterPath="$PROJECT_DIR$/compiled/view/components/ModalSets.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/ProgramExercises.js" afterPath="$PROJECT_DIR$/compiled/view/components/ProgramExercises.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/ProgramExercises.js.map" afterPath="$PROJECT_DIR$/compiled/view/components/ProgramExercises.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/ProgramNameDays.js" afterPath="$PROJECT_DIR$/compiled/view/components/ProgramNameDays.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/ProgramNameDays.js.map" afterPath="$PROJECT_DIR$/compiled/view/components/ProgramNameDays.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/Programs.js" afterPath="$PROJECT_DIR$/compiled/view/components/Programs.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/Programs.js.map" afterPath="$PROJECT_DIR$/compiled/view/components/Programs.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/QuickLog.js" afterPath="$PROJECT_DIR$/compiled/view/components/QuickLog.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/QuickLog.js.map" afterPath="$PROJECT_DIR$/compiled/view/components/QuickLog.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/StopWatch.js" afterPath="$PROJECT_DIR$/compiled/view/components/StopWatch.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/StopWatch.js.map" afterPath="$PROJECT_DIR$/compiled/view/components/StopWatch.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/Timer.js" afterPath="$PROJECT_DIR$/compiled/view/components/Timer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/Timer.js.map" afterPath="$PROJECT_DIR$/compiled/view/components/Timer.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/Toaster.js" afterPath="$PROJECT_DIR$/compiled/view/components/Toaster.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/Toaster.js.map" afterPath="$PROJECT_DIR$/compiled/view/components/Toaster.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/navigators/App.js" afterPath="$PROJECT_DIR$/compiled/view/navigators/App.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/navigators/App.js.map" afterPath="$PROJECT_DIR$/compiled/view/navigators/App.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/navigators/MainDrawerNav.js" afterPath="$PROJECT_DIR$/compiled/view/navigators/MainDrawerNav.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/navigators/MainDrawerNav.js.map" afterPath="$PROJECT_DIR$/compiled/view/navigators/MainDrawerNav.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/components/ProgramExercises.tsx" afterPath="$PROJECT_DIR$/src/view/components/ProgramExercises.tsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/components/ProgramNameDays.tsx" afterPath="$PROJECT_DIR$/src/view/components/ProgramNameDays.tsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/navigators/MainDrawerNav.tsx" afterPath="$PROJECT_DIR$/src/view/navigators/MainDrawerNav.tsx" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -70,8 +29,8 @@
       <file leaf-file-name="ProgramExercises.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view/components/ProgramExercises.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="151" column="26" lean-forward="false" selection-start-line="151" selection-start-column="26" selection-end-line="151" selection-end-column="26" />
+            <state relative-caret-position="609">
+              <caret line="152" column="26" lean-forward="false" selection-start-line="152" selection-start-column="26" selection-end-line="152" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -258,12 +217,12 @@
       <updated>1520644635148</updated>
       <workItem from="1520644636558" duration="10669000" />
       <workItem from="1520724086128" duration="7087000" />
-      <workItem from="1520796494604" duration="2539000" />
+      <workItem from="1520796494604" duration="2658000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20295000" />
+    <option name="totallyTimeSpent" value="20414000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="1417" extended-state="0" />
@@ -680,8 +639,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/ProgramExercises.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="151" column="26" lean-forward="false" selection-start-line="151" selection-start-column="26" selection-end-line="151" selection-end-column="26" />
+        <state relative-caret-position="609">
+          <caret line="152" column="26" lean-forward="false" selection-start-line="152" selection-start-column="26" selection-end-line="152" selection-end-column="26" />
           <folding />
         </state>
       </provider>
