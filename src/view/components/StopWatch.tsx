@@ -4,6 +4,7 @@ import Header from './Header'
 import {colors} from '../../utils/colors'
 import {grid} from '../../utils/grid'
 import {HeaderStatus} from '../../core/enums/index'
+import delay from "../../utils/delay";
 
 type IProps = {
   navigation: any
@@ -17,10 +18,11 @@ type IState = {
 class StopWatch extends React.PureComponent<IProps, IState> {
   interval: NodeJS.Timer
   startTimer: Date
+  oldDifference: number = 0
   isReset: boolean
 
-  constructor() {
-    super()
+  constructor(props: IProps) {
+    super(props)
     this.handleReset = this.handleReset.bind(this)
     this.handleStartStop = this.handleStartStop.bind(this)
     this.state = {
@@ -33,7 +35,7 @@ class StopWatch extends React.PureComponent<IProps, IState> {
     this.isReset = true
   }
 
-  handleStartStop = () => {
+  handleStartStop = async () => {
     const {isRunning} = this.state
     if (isRunning) {
       this.isReset = true
@@ -41,8 +43,9 @@ class StopWatch extends React.PureComponent<IProps, IState> {
       this.setState({isRunning: false})
     } else {
       this.isReset = false
-      if (!this.startTimer) this.startTimer = new Date()
-      this.setState({isRunning: true})
+      if (this.startTimer) this.oldDifference = +this.state.mainTimer - +this.startTimer + this.oldDifference
+      this.startTimer = new Date()
+      this.setState({mainTimer: new Date(), isRunning: true})
       this.interval = setInterval(() => {
         this.setState({
           mainTimer: new Date()
@@ -56,13 +59,14 @@ class StopWatch extends React.PureComponent<IProps, IState> {
     const {isRunning} = this.state
     if (!isRunning) {
       this.startTimer = null
+      this.oldDifference = 0
       this.setState({mainTimer: null})
     }
   }
 
   formatTime = (mainTimer: Date): string => {
     if (mainTimer) {
-      const diff = +mainTimer - +this.startTimer
+      const diff = +mainTimer - +this.startTimer + this.oldDifference
       const milliseconds = Math.floor((diff % 1000) / 10)
       const seconds = Math.floor(diff / 1000) % 60
       const minutes = Math.floor((diff / 1000) / 60)
