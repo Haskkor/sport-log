@@ -143,6 +143,20 @@ class ProgramExercises extends React.PureComponent<IProps, IState> {
     return (
       <View style={styles.containerHeaderSection}>
         <Text style={styles.textHeaderSection}>{day.day}</Text>
+
+
+
+
+        {(!isNaN(this.props.navigation.state.params.days[0])) &&
+        <TouchableOpacity onPress={() => {
+          console.log('test')
+        }}>
+          <Icon name="airline-seat-individual-suite" size={20} color={colors.base} style={styles.iconHeaderSectionAdd}/>
+        </TouchableOpacity>}
+
+
+
+
         <TouchableOpacity onPress={() => {
           this.daySelected = day
           this.indexDaySelected = index
@@ -287,9 +301,14 @@ const styles = StyleSheet.create({
     color: colors.base,
     flex: 3
   },
-  iconHeaderSectionAdd: {
+  iconHeaderSectionRest: {
     flex: 1,
     marginRight: grid.unit / 2
+  },
+  iconHeaderSectionAdd: {
+    flex: 1,
+    marginRight: grid.unit / 2,
+    marginLeft: grid.unit / 2
   },
   iconHeaderSectionCollapsed: {
     flex: 1,

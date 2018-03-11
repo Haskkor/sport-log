@@ -2,14 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const react_native_1 = require("react-native");
-const loDash = require("lodash");
+const _ = require("lodash");
 const Header_1 = require("./Header");
 const colors_1 = require("../../utils/colors");
 const grid_1 = require("../../utils/grid");
-const index_1 = require("../../core/enums/index");
+const _1 = require("../../core/enums/");
 class Timer extends React.PureComponent {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.handleStartStop = (endTimer) => {
             const { isRunning, selectedSecond, selectedMinute } = this.state;
             if (selectedMinute === 0 && selectedSecond === 0)
@@ -67,18 +67,18 @@ class Timer extends React.PureComponent {
         const isResetDisabled = !this.isReset;
         return (React.createElement(react_native_1.View, { style: styles.container },
             React.createElement(react_native_1.StatusBar, { barStyle: "light-content" }),
-            React.createElement(Header_1.default, { navigation: this.props.navigation, colorBorder: colors_1.colors.headerBorder, colorHeader: colors_1.colors.header, status: index_1.HeaderStatus.drawer, textColor: colors_1.colors.white, title: "Recovery Timer" }),
+            React.createElement(Header_1.default, { navigation: this.props.navigation, colorBorder: colors_1.colors.headerBorder, colorHeader: colors_1.colors.header, status: _1.HeaderStatus.drawer, textColor: colors_1.colors.white, title: "Recovery Timer" }),
             React.createElement(react_native_1.View, { style: styles.timer }, (isRunning || this.state.totalTime > 0) &&
                 React.createElement(react_native_1.View, { style: styles.timerWrapper },
                     React.createElement(react_native_1.Text, { style: styles.mainTimer }, this.formatTime(totalTime))) ||
                 React.createElement(react_native_1.View, { style: styles.pickerWrapper },
                     React.createElement(react_native_1.View, { style: styles.pickerMinutes },
-                        React.createElement(react_native_1.Picker, { style: styles.picker, selectedValue: selectedMinute, onValueChange: (itemValue) => this.setState({ selectedMinute: itemValue }) }, loDash.range(10).map((value) => {
+                        React.createElement(react_native_1.Picker, { style: styles.picker, selectedValue: selectedMinute, onValueChange: (itemValue) => this.setState({ selectedMinute: itemValue }) }, _.range(10).map((value) => {
                             return React.createElement(react_native_1.Picker.Item, { color: colors_1.colors.white, key: value, label: value.toString(), value: value });
                         })),
                         React.createElement(react_native_1.Text, { style: styles.resetButtonText }, "minutes")),
                     React.createElement(react_native_1.View, { style: styles.pickerSeconds },
-                        React.createElement(react_native_1.Picker, { style: styles.picker, selectedValue: selectedSecond, onValueChange: (itemValue) => this.setState({ selectedSecond: itemValue }) }, loDash.range(0, 60, 5).map((value) => {
+                        React.createElement(react_native_1.Picker, { style: styles.picker, selectedValue: selectedSecond, onValueChange: (itemValue) => this.setState({ selectedSecond: itemValue }) }, _.range(0, 60, 5).map((value) => {
                             return React.createElement(react_native_1.Picker.Item, { color: colors_1.colors.white, key: value, label: value.toString(), value: value });
                         })),
                         React.createElement(react_native_1.Text, { style: styles.resetButtonText }, "seconds")))),

@@ -5,7 +5,7 @@ const react_native_1 = require("react-native");
 const react_native_easy_grid_1 = require("react-native-easy-grid");
 const ModalListLog_1 = require("./ModalListLog");
 const MaterialIcons_1 = require("react-native-vector-icons/MaterialIcons");
-const loDash = require("lodash");
+const _ = require("lodash");
 const ModalSets_1 = require("./ModalSets");
 const exercises_1 = require("../../db/exercises");
 const Header_1 = require("./Header");
@@ -17,8 +17,8 @@ const ModalSearch_1 = require("./ModalSearch");
 const grid_1 = require("../../utils/grid");
 const colors_1 = require("../../utils/colors");
 class QuickLog extends React.PureComponent {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.addExerciseSet = () => {
             const newSet = this.buildNewSet();
             let dataLogCopy = this.state.dataLog.slice();
@@ -46,7 +46,7 @@ class QuickLog extends React.PureComponent {
         };
         this.backToOriginalState = (dataLogCopy, wasEditing) => {
             this.order = Object.keys(dataLogCopy);
-            this.exercises = loDash.sortBy(exercises_1.default.find((data) => data.muscle === this.muscles[0]).exercises, [(exercise) => {
+            this.exercises = _.sortBy(exercises_1.default.find((data) => data.muscle === this.muscles[0]).exercises, [(exercise) => {
                     return exercise.name;
                 }]);
             this.setState({
@@ -62,7 +62,7 @@ class QuickLog extends React.PureComponent {
         this.editExercise = (index) => {
             const exerciseToEdit = this.state.dataLog[index];
             this.setState({ currentMuscle: exerciseToEdit.muscleGroup });
-            this.exercises = loDash.sortBy(exercises_1.default.find((data) => data.muscle === exerciseToEdit.muscleGroup).exercises, [(exercise) => {
+            this.exercises = _.sortBy(exercises_1.default.find((data) => data.muscle === exerciseToEdit.muscleGroup).exercises, [(exercise) => {
                     return exercise.name;
                 }]);
             this.editedExerciseIndex = index;
@@ -83,13 +83,13 @@ class QuickLog extends React.PureComponent {
             });
         };
         this.selectExerciseModalSearch = (exercise, muscle) => {
-            this.exercises = loDash.sortBy(exercises_1.default.find((data) => data.muscle === muscle).exercises, [(e) => {
+            this.exercises = _.sortBy(exercises_1.default.find((data) => data.muscle === muscle).exercises, [(e) => {
                     return e.name;
                 }]);
             this.setState({ currentMuscle: muscle, currentExercise: exercise, showModalSearch: false });
         };
         this.muscles = exercises_1.default.map((data) => data.muscle).sort();
-        this.exercises = loDash.sortBy(exercises_1.default.find((data) => data.muscle === this.muscles[0]).exercises, [(exercise) => {
+        this.exercises = _.sortBy(exercises_1.default.find((data) => data.muscle === this.muscles[0]).exercises, [(exercise) => {
                 return exercise.name;
             }]);
         this.state = {
@@ -122,7 +122,7 @@ class QuickLog extends React.PureComponent {
         const { params } = this.props.navigation.state;
         if (params) {
             this.setState({ currentMuscle: params.exercise.muscleGroup });
-            this.exercises = loDash.sortBy(exercises_1.default.find((data) => data.muscle === params.exercise.muscleGroup).exercises, [(exercise) => {
+            this.exercises = _.sortBy(exercises_1.default.find((data) => data.muscle === params.exercise.muscleGroup).exercises, [(exercise) => {
                     return exercise.name;
                 }]);
             this.setState({
@@ -177,7 +177,7 @@ class QuickLog extends React.PureComponent {
                         React.createElement(react_native_1.Text, { style: styles.textTitle }, "Muscle:")),
                     React.createElement(react_native_easy_grid_1.Col, { size: 75, style: styles.columns },
                         React.createElement(react_native_1.Picker, { style: styles.picker, itemStyle: styles.pickerItem, selectedValue: currentMuscle, onValueChange: (itemValue) => {
-                                this.exercises = loDash.sortBy(exercises_1.default.find((data) => data.muscle === itemValue).exercises, [(exercise) => {
+                                this.exercises = _.sortBy(exercises_1.default.find((data) => data.muscle === itemValue).exercises, [(exercise) => {
                                         return exercise.name;
                                     }]);
                                 this.setState({ currentMuscle: itemValue, currentExercise: this.exercises[0].name });
@@ -207,7 +207,7 @@ class QuickLog extends React.PureComponent {
                         }),
                         React.createElement(react_native_1.TouchableOpacity, { onPress: () => {
                                 this.scrollToEndHorizontally();
-                                this.setState({ sets: [...this.state.sets, loDash.last(sets)] });
+                                this.setState({ sets: [...this.state.sets, _.last(sets)] });
                             } },
                             React.createElement(MaterialIcons_1.default, { name: "add-circle-outline", size: 30, color: "#445878" })))),
                 React.createElement(react_native_easy_grid_1.Row, { size: 10, style: styles.rows },

@@ -1,4 +1,12 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const react_native_1 = require("react-native");
@@ -7,9 +15,10 @@ const colors_1 = require("../../utils/colors");
 const grid_1 = require("../../utils/grid");
 const index_1 = require("../../core/enums/index");
 class StopWatch extends React.PureComponent {
-    constructor() {
-        super();
-        this.handleStartStop = () => {
+    constructor(props) {
+        super(props);
+        this.oldDifference = 0;
+        this.handleStartStop = () => __awaiter(this, void 0, void 0, function* () {
             const { isRunning } = this.state;
             if (isRunning) {
                 this.isReset = true;
@@ -18,27 +27,29 @@ class StopWatch extends React.PureComponent {
             }
             else {
                 this.isReset = false;
-                if (!this.startTimer)
-                    this.startTimer = new Date();
-                this.setState({ isRunning: true });
+                if (this.startTimer)
+                    this.oldDifference = +this.state.mainTimer - +this.startTimer + this.oldDifference;
+                this.startTimer = new Date();
+                this.setState({ mainTimer: new Date(), isRunning: true });
                 this.interval = setInterval(() => {
                     this.setState({
                         mainTimer: new Date()
                     });
                 }, 50);
             }
-        };
+        });
         this.handleReset = () => {
             this.isReset = false;
             const { isRunning } = this.state;
             if (!isRunning) {
                 this.startTimer = null;
+                this.oldDifference = 0;
                 this.setState({ mainTimer: null });
             }
         };
         this.formatTime = (mainTimer) => {
             if (mainTimer) {
-                const diff = +mainTimer - +this.startTimer;
+                const diff = +mainTimer - +this.startTimer + this.oldDifference;
                 const milliseconds = Math.floor((diff % 1000) / 10);
                 const seconds = Math.floor(diff / 1000) % 60;
                 const minutes = Math.floor((diff / 1000) / 60);

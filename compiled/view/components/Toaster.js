@@ -9,8 +9,8 @@ const d3_ease_1 = require("d3-ease");
 const grid_1 = require("../../utils/grid");
 const colors_1 = require("../../utils/colors");
 class Toaster extends React.PureComponent {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.feedbackTimer = () => {
             this.timer = setTimeout(() => {
                 this.setInactive();

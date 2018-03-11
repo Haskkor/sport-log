@@ -8,7 +8,7 @@ const create_1 = require("./core/create");
 const react_redux_1 = require("react-redux");
 const App_1 = require("./view/navigators/App");
 exports.store = create_1.default();
-console.disableYellowBox = true; // any is a hack
+console.disableYellowBox = true;
 class OnBoardingApp extends React.Component {
     render() {
         return (React.createElement(react_redux_1.Provider, { store: exports.store, key: "provider" },

@@ -6,8 +6,8 @@ const react_native_search_list_1 = require("@unpourtous/react-native-search-list
 const grid_1 = require("../../utils/grid");
 const colors_1 = require("../../utils/colors");
 class ModalSearch extends React.PureComponent {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = { dataSource: [] };
     }
     componentDidMount() {

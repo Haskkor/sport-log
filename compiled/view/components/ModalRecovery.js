@@ -6,8 +6,8 @@ const helper_1 = require("../../utils/helper");
 const grid_1 = require("../../utils/grid");
 const colors_1 = require("../../utils/colors");
 class ModalRecovery extends React.PureComponent {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = { currentRecovery: helper_1.buildRecoveryTimes()[0] };
     }
     render() {

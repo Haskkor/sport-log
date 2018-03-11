@@ -14,7 +14,7 @@ const redux_1 = require("redux");
 const ProgramsActions = require("../../core/modules/entities/programs");
 const RowSortableList_1 = require("./RowSortableList");
 const RowProgramsList_1 = require("./RowProgramsList");
-const loDash = require("lodash");
+const _ = require("lodash");
 const Animate_1 = require("react-move/Animate");
 const d3_ease_1 = require("d3-ease");
 class Programs extends React.PureComponent {
@@ -41,7 +41,7 @@ class Programs extends React.PureComponent {
                 destructiveButtonIndex: 2,
                 cancelButtonIndex: 3
             }, (buttonIndex) => {
-                const indexRow = loDash.findIndex(programs, (row) => {
+                const indexRow = _.findIndex(programs, (row) => {
                     return row === data;
                 });
                 if (buttonIndex === 0) {

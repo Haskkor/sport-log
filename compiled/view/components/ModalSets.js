@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = require("react");
 const react_native_1 = require("react-native");
 const react_native_easy_grid_1 = require("react-native-easy-grid");
-const loDash = require("lodash");
+const _ = require("lodash");
 const grid_1 = require("../../utils/grid");
 const colors_1 = require("../../utils/colors");
 class ModalSets extends React.PureComponent {
@@ -34,14 +34,14 @@ class ModalSets extends React.PureComponent {
                                 React.createElement(react_native_easy_grid_1.Row, { size: 10 },
                                     React.createElement(react_native_1.Text, { style: styles.textTitle }, "Reps:")),
                                 React.createElement(react_native_easy_grid_1.Row, { size: 90 },
-                                    React.createElement(react_native_1.Picker, { style: styles.picker, itemStyle: styles.pickerItem, selectedValue: currentReps, onValueChange: (itemValue) => this.setState({ currentReps: itemValue }) }, loDash.range(1, 30).map((value) => {
+                                    React.createElement(react_native_1.Picker, { style: styles.picker, itemStyle: styles.pickerItem, selectedValue: currentReps, onValueChange: (itemValue) => this.setState({ currentReps: itemValue }) }, _.range(1, 30).map((value) => {
                                         return React.createElement(react_native_1.Picker.Item, { key: value, label: value.toString(), value: value });
                                     })))),
                             React.createElement(react_native_easy_grid_1.Col, { style: { justifyContent: 'center', alignItems: 'center' } },
                                 React.createElement(react_native_easy_grid_1.Row, { size: 10 },
                                     React.createElement(react_native_1.Text, { style: styles.textTitle }, "Weight:")),
                                 React.createElement(react_native_easy_grid_1.Row, { size: 90 },
-                                    React.createElement(react_native_1.Picker, { style: styles.picker, itemStyle: styles.pickerItem, selectedValue: currentWeight, onValueChange: (itemValue) => this.setState({ currentWeight: itemValue }) }, loDash.range(1, 500).map((value) => {
+                                    React.createElement(react_native_1.Picker, { style: styles.picker, itemStyle: styles.pickerItem, selectedValue: currentWeight, onValueChange: (itemValue) => this.setState({ currentWeight: itemValue }) }, _.range(1, 500).map((value) => {
                                         return React.createElement(react_native_1.Picker.Item, { key: value, label: value.toString(), value: value });
                                     }))))))))));
     }

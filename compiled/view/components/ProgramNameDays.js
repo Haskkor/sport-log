@@ -9,8 +9,8 @@ const colors_1 = require("../../utils/colors");
 const enums_1 = require("../../core/enums");
 const Header_1 = require("./Header");
 class ProgramNameDays extends React.PureComponent {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.buttonNextEnabled = () => {
             const { name, numberOfDays, weekdays } = this.state;
             return name !== '' && (numberOfDays !== '' || weekdays.some((elem) => {
@@ -173,8 +173,9 @@ class ProgramNameDays extends React.PureComponent {
                         } },
                         React.createElement(react_native_1.Text, { style: styles.text }, day.name)));
                 })),
-                React.createElement(react_native_1.Text, { style: [styles.text, styles.elementsSeparator] }, "Or enter a number of days trained:"),
-                React.createElement(react_native_1.TextInput, { style: [styles.textInput, styles.sectionSeparator, { width: 100 }], onChangeText: (text) => this.setState({ numberOfDays: text }), placeholder: 'Type here', value: numberOfDays, keyboardType: 'numeric' }),
+                React.createElement(react_native_1.Text, { style: [styles.text, styles.elementsSeparator] }, "Or enter a number of days trained and days off:"),
+                React.createElement(react_native_1.View, { style: styles.wrapperTextInputsNumber },
+                    React.createElement(react_native_1.TextInput, { style: [styles.textInput, styles.sectionSeparator, { width: 100 }], onChangeText: (text) => this.setState({ numberOfDays: text }), placeholder: 'Type here', value: numberOfDays, keyboardType: 'numeric' })),
                 React.createElement(react_native_1.TouchableOpacity, { style: [styles.buttons, styles.shadow], disabled: !this.buttonNextEnabled(), onPress: () => {
                         if ((numberOfDays !== '' && weekdays.some((elem) => {
                             return elem.training;
@@ -205,6 +206,9 @@ const styles = react_native_1.StyleSheet.create({
     textDisabled: {
         color: colors_1.colors.textDisabled
     },
+    wrapperTextInputsNumber: {
+        flexDirection: 'row'
+    },
     textInput: {
         fontSize: grid_1.grid.body,
         padding: grid_1.grid.unit * 0.75,
@@ -212,7 +216,9 @@ const styles = react_native_1.StyleSheet.create({
         color: colors_1.colors.base,
         borderColor: colors_1.colors.base,
         borderWidth: grid_1.grid.heavyBorder,
-        borderRadius: grid_1.grid.radiusTextInput
+        borderRadius: grid_1.grid.radiusTextInput,
+        marginRight: 5,
+        marginLeft: 5
     },
     buttons: {
         justifyContent: 'center',

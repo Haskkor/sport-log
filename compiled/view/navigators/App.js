@@ -1,12 +1,11 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+/// <reference path='../../interfaces/index.d.ts'/>
 const React = require("react");
 const react_native_1 = require("react-native");
 const MainDrawerNav_1 = require("./MainDrawerNav");
-/// <reference path='../../interfaces/index.d.ts'/>
 require("regenerator-runtime/runtime");
 const expo_1 = require("expo");
-const react_native_2 = require("react-native");
 const create_1 = require("../../core/create");
 const react_redux_1 = require("react-redux");
 exports.store = create_1.default();
@@ -33,5 +32,5 @@ const styles = react_native_1.StyleSheet.create({
     }
 });
 exports.default = App;
-react_native_2.AppRegistry.registerComponent('OnBoardingApp', () => App);
+react_native_1.AppRegistry.registerComponent('OnBoardingApp', () => App);
 //# sourceMappingURL=App.js.map

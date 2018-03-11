@@ -2,7 +2,48 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="66a039e0-276e-443b-ac7c-b7b873d54327" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/view/components/StopWatch.tsx" afterPath="$PROJECT_DIR$/src/view/components/StopWatch.tsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/core/create.js" afterPath="$PROJECT_DIR$/compiled/core/create.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/core/create.js.map" afterPath="$PROJECT_DIR$/compiled/core/create.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/core/middlewares/NormalizrMiddleware.js" afterPath="$PROJECT_DIR$/compiled/core/middlewares/NormalizrMiddleware.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/core/middlewares/NormalizrMiddleware.js.map" afterPath="$PROJECT_DIR$/compiled/core/middlewares/NormalizrMiddleware.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/core/modules/entities/reducer.js" afterPath="$PROJECT_DIR$/compiled/core/modules/entities/reducer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/core/modules/entities/reducer.js.map" afterPath="$PROJECT_DIR$/compiled/core/modules/entities/reducer.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/core/saga/index.js" afterPath="$PROJECT_DIR$/compiled/core/saga/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/core/saga/index.js.map" afterPath="$PROJECT_DIR$/compiled/core/saga/index.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/index.js" afterPath="$PROJECT_DIR$/compiled/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/index.js.map" afterPath="$PROJECT_DIR$/compiled/index.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/utils/helper.js" afterPath="$PROJECT_DIR$/compiled/utils/helper.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/utils/helper.js.map" afterPath="$PROJECT_DIR$/compiled/utils/helper.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/Header.js.map" afterPath="$PROJECT_DIR$/compiled/view/components/Header.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/ModalListLog.js" afterPath="$PROJECT_DIR$/compiled/view/components/ModalListLog.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/ModalListLog.js.map" afterPath="$PROJECT_DIR$/compiled/view/components/ModalListLog.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/ModalRecovery.js" afterPath="$PROJECT_DIR$/compiled/view/components/ModalRecovery.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/ModalRecovery.js.map" afterPath="$PROJECT_DIR$/compiled/view/components/ModalRecovery.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/ModalSearch.js" afterPath="$PROJECT_DIR$/compiled/view/components/ModalSearch.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/ModalSearch.js.map" afterPath="$PROJECT_DIR$/compiled/view/components/ModalSearch.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/ModalSets.js" afterPath="$PROJECT_DIR$/compiled/view/components/ModalSets.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/ModalSets.js.map" afterPath="$PROJECT_DIR$/compiled/view/components/ModalSets.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/ProgramExercises.js" afterPath="$PROJECT_DIR$/compiled/view/components/ProgramExercises.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/ProgramExercises.js.map" afterPath="$PROJECT_DIR$/compiled/view/components/ProgramExercises.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/ProgramNameDays.js" afterPath="$PROJECT_DIR$/compiled/view/components/ProgramNameDays.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/ProgramNameDays.js.map" afterPath="$PROJECT_DIR$/compiled/view/components/ProgramNameDays.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/Programs.js" afterPath="$PROJECT_DIR$/compiled/view/components/Programs.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/Programs.js.map" afterPath="$PROJECT_DIR$/compiled/view/components/Programs.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/QuickLog.js" afterPath="$PROJECT_DIR$/compiled/view/components/QuickLog.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/QuickLog.js.map" afterPath="$PROJECT_DIR$/compiled/view/components/QuickLog.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/StopWatch.js" afterPath="$PROJECT_DIR$/compiled/view/components/StopWatch.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/StopWatch.js.map" afterPath="$PROJECT_DIR$/compiled/view/components/StopWatch.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/Timer.js" afterPath="$PROJECT_DIR$/compiled/view/components/Timer.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/Timer.js.map" afterPath="$PROJECT_DIR$/compiled/view/components/Timer.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/Toaster.js" afterPath="$PROJECT_DIR$/compiled/view/components/Toaster.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/components/Toaster.js.map" afterPath="$PROJECT_DIR$/compiled/view/components/Toaster.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/navigators/App.js" afterPath="$PROJECT_DIR$/compiled/view/navigators/App.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/navigators/App.js.map" afterPath="$PROJECT_DIR$/compiled/view/navigators/App.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/navigators/MainDrawerNav.js" afterPath="$PROJECT_DIR$/compiled/view/navigators/MainDrawerNav.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/compiled/view/navigators/MainDrawerNav.js.map" afterPath="$PROJECT_DIR$/compiled/view/navigators/MainDrawerNav.js.map" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/components/ProgramExercises.tsx" afterPath="$PROJECT_DIR$/src/view/components/ProgramExercises.tsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/components/ProgramNameDays.tsx" afterPath="$PROJECT_DIR$/src/view/components/ProgramNameDays.tsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/navigators/MainDrawerNav.tsx" afterPath="$PROJECT_DIR$/src/view/navigators/MainDrawerNav.tsx" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -15,34 +56,22 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="Calendar.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="ProgramNameDays.tsx" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/view/components/ProgramNameDays.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="47" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#30#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StopWatch.tsx" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/view/components/StopWatch.tsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
-              <caret line="61" column="28" lean-forward="false" selection-start-line="61" selection-start-column="28" selection-end-line="61" selection-end-column="28" />
+            <state relative-caret-position="2460">
+              <caret line="171" column="30" lean-forward="false" selection-start-line="171" selection-start-column="30" selection-end-line="171" selection-end-column="30" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Timer.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/components/Timer.tsx">
+      <file leaf-file-name="ProgramExercises.tsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/view/components/ProgramExercises.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3655">
-              <caret line="231" column="17" lean-forward="false" selection-start-line="231" selection-start-column="17" selection-end-line="231" selection-end-column="17" />
+            <state relative-caret-position="594">
+              <caret line="151" column="26" lean-forward="false" selection-start-line="151" selection-start-column="26" selection-end-line="151" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -57,6 +86,8 @@
       <find>interval</find>
       <find>mainTimer</find>
       <find>startTimer</find>
+      <find>numberOfDaysOff</find>
+      <find>isNan</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -80,8 +111,6 @@
         <option value="$PROJECT_DIR$/src/view/components/ModalRecovery.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/ModalSearch.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/ModalSets.tsx" />
-        <option value="$PROJECT_DIR$/src/view/components/ProgramExercises.tsx" />
-        <option value="$PROJECT_DIR$/src/view/components/ProgramNameDays.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/Programs.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/QuickLog.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/Timer.tsx" />
@@ -89,9 +118,11 @@
         <option value="$PROJECT_DIR$/src/index.tsx" />
         <option value="$PROJECT_DIR$/src/view/navigators/App.tsx" />
         <option value="$PROJECT_DIR$/src/view/navigators/HeaderStackNavigator.tsx" />
-        <option value="$PROJECT_DIR$/src/view/navigators/MainDrawerNav.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/Calendar.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/StopWatch.tsx" />
+        <option value="$PROJECT_DIR$/src/view/navigators/MainDrawerNav.tsx" />
+        <option value="$PROJECT_DIR$/src/view/components/ProgramNameDays.tsx" />
+        <option value="$PROJECT_DIR$/src/view/components/ProgramExercises.tsx" />
       </list>
     </option>
   </component>
@@ -104,10 +135,10 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="55" />
-    <option name="width" value="943" />
-    <option name="height" value="1087" />
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1280" />
+    <option name="height" value="1417" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -127,7 +158,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -139,17 +170,6 @@
               <item name="sport-log" type="b2602c69:ProjectViewProjectNode" />
               <item name="sport-log" type="462c0819:PsiDirectoryNode" />
               <item name=".expo" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sport-log" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sport-log" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="sport-log" type="b2602c69:ProjectViewProjectNode" />
-              <item name="sport-log" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="fonts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="sport-log" type="b2602c69:ProjectViewProjectNode" />
@@ -192,7 +212,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -201,6 +221,8 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="SearchEverywhereHistoryKey" value="create.ts&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/core/create.ts" />
+    <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
+    <property name="typescript-compiler-editor-notification" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -236,33 +258,34 @@
       <updated>1520644635148</updated>
       <workItem from="1520644636558" duration="10669000" />
       <workItem from="1520724086128" duration="7087000" />
+      <workItem from="1520796494604" duration="2539000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17756000" />
+    <option name="totallyTimeSpent" value="20295000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
+    <frame x="0" y="23" width="1280" height="1417" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16038752" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32327244" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960325" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295688" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -326,7 +349,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -355,9 +377,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" column="4" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -442,7 +461,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -458,7 +476,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="18" lean-forward="false" selection-start-line="3" selection-start-column="18" selection-end-line="3" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -480,23 +497,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="14" column="17" lean-forward="false" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/components/ProgramExercises.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="164" column="0" lean-forward="false" selection-start-line="164" selection-start-column="0" selection-end-line="164" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/components/ProgramNameDays.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2907">
-          <caret line="171" column="53" lean-forward="false" selection-start-line="171" selection-start-column="53" selection-end-line="171" selection-end-column="53" />
-          <folding>
-            <element signature="e#0#30#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -542,9 +542,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1666">
           <caret line="98" column="14" lean-forward="false" selection-start-line="98" selection-start-column="14" selection-end-line="98" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#30#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -619,19 +616,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="20" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/navigators/MainDrawerNav.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -647,14 +631,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
           <caret line="77" column="21" lean-forward="false" selection-start-line="77" selection-start-column="21" selection-end-line="77" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="47" column="0" lean-forward="true" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+        <state relative-caret-position="660">
+          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
@@ -663,7 +646,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/Timer.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3655">
+        <state relative-caret-position="3375">
           <caret line="231" column="17" lean-forward="false" selection-start-line="231" selection-start-column="17" selection-end-line="231" selection-end-column="17" />
           <folding />
         </state>
@@ -671,8 +654,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/StopWatch.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="61" column="28" lean-forward="false" selection-start-line="61" selection-start-column="28" selection-end-line="61" selection-end-column="28" />
+        <state relative-caret-position="794">
+          <caret line="59" column="20" lean-forward="false" selection-start-line="59" selection-start-column="20" selection-end-line="59" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/navigators/MainDrawerNav.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="28" lean-forward="false" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/components/ProgramNameDays.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2460">
+          <caret line="171" column="30" lean-forward="false" selection-start-line="171" selection-start-column="30" selection-end-line="171" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/components/ProgramExercises.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="594">
+          <caret line="151" column="26" lean-forward="false" selection-start-line="151" selection-start-column="26" selection-end-line="151" selection-end-column="26" />
           <folding />
         </state>
       </provider>

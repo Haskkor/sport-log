@@ -210,13 +210,15 @@ class ProgramNameDays extends React.PureComponent<IProps, IState> {
               )
             })}
           </View>
-          <Text style={[styles.text, styles.elementsSeparator]}>Or enter a number of days trained:</Text>
-          <TextInput
-            style={[styles.textInput, styles.sectionSeparator, {width: 100}]}
-            onChangeText={(text: string) => this.setState({numberOfDays: text})}
-            placeholder={'Type here'}
-            value={numberOfDays}
-            keyboardType={'numeric'}/>
+          <Text style={[styles.text, styles.elementsSeparator]}>Or enter a number of days trained and days off:</Text>
+          <View style={styles.wrapperTextInputsNumber}>
+            <TextInput
+              style={[styles.textInput, styles.sectionSeparator, {width: 100}]}
+              onChangeText={(text: string) => this.setState({numberOfDays: text})}
+              placeholder={'Type here'}
+              value={numberOfDays}
+              keyboardType={'numeric'}/>
+          </View>
           <TouchableOpacity
             style={[styles.buttons, styles.shadow]}
             disabled={!this.buttonNextEnabled()}
@@ -254,6 +256,9 @@ const styles = StyleSheet.create({
   textDisabled: {
     color: colors.textDisabled
   },
+  wrapperTextInputsNumber: {
+    flexDirection: 'row'
+  },
   textInput: {
     fontSize: grid.body,
     padding: grid.unit * 0.75,
@@ -261,7 +266,9 @@ const styles = StyleSheet.create({
     color: colors.base,
     borderColor: colors.base,
     borderWidth: grid.heavyBorder,
-    borderRadius: grid.radiusTextInput
+    borderRadius: grid.radiusTextInput,
+    marginRight: 5,
+    marginLeft: 5
   },
   buttons: {
     justifyContent: 'center',

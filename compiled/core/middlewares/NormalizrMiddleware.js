@@ -34,15 +34,16 @@ const baseSchemas = lodash.mapValues(schemaTypes, (type) => new normalizr_1.sche
 // * define all the schema details here - for schemas that are nested
 // *****
 // TODO remove the examples
-baseSchemas[schemaTypes.instrument] = new normalizr_1.schema.Entity(schemaTypes.instrument, {}, { idAttribute: 'symbol' });
-baseSchemas[schemaTypes.quotes] = new normalizr_1.schema.Entity(schemaTypes.quotes, {}, { idAttribute: 'symbol' });
-baseSchemas[schemaTypes.research] = new normalizr_1.schema.Entity(schemaTypes.research, {}, { idAttribute: 'filename' });
-baseSchemas[schemaTypes.parties].define({
-    contactInfo: [baseSchemas[schemaTypes.contactInfo]]
-});
-baseSchemas[schemaTypes.portfolio].define({
-    holdings: [baseSchemas[schemaTypes.holdings]]
-});
+// baseSchemas[schemaTypes.instrument] = new schema.Entity(schemaTypes.instrument, {}, { idAttribute: 'symbol' })
+// baseSchemas[schemaTypes.quotes] = new schema.Entity(schemaTypes.quotes, {}, { idAttribute: 'symbol' })
+// baseSchemas[schemaTypes.research] = new schema.Entity(schemaTypes.research, {}, { idAttribute: 'filename' })
+// baseSchemas[schemaTypes.parties].define({
+//   contactInfo: [baseSchemas[schemaTypes.contactInfo]]
+// })
+//
+// baseSchemas[schemaTypes.portfolio].define({
+//   holdings: [baseSchemas[schemaTypes.holdings]]
+// })
 // *****
 // * define all the schema to handle the response - ie. what the root of the response looks like
 // *****

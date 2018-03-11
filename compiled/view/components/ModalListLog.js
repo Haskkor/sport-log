@@ -4,13 +4,13 @@ const React = require("react");
 const react_native_1 = require("react-native");
 const SortableListView = require("react-native-sortable-listview");
 const RowListLog_1 = require("./RowListLog");
-const loDash = require("lodash");
+const _ = require("lodash");
 const colors_1 = require("../../utils/colors");
 const grid_1 = require("../../utils/grid");
 const RowSortableList_1 = require("./RowSortableList");
 class ModalListLog extends React.PureComponent {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.showActionSheet = this.showActionSheet.bind(this);
     }
     showActionSheet(data) {
@@ -21,7 +21,7 @@ class ModalListLog extends React.PureComponent {
             destructiveButtonIndex: 1,
             cancelButtonIndex: 2
         }, (buttonIndex) => {
-            const indexRow = loDash.findIndex(this.props.dataLog, (row) => {
+            const indexRow = _.findIndex(this.props.dataLog, (row) => {
                 return row === data;
             });
             if (buttonIndex === 0) {

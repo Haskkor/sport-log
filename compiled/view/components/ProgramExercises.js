@@ -7,14 +7,14 @@ const MaterialIcons_1 = require("react-native-vector-icons/MaterialIcons");
 const react_native_collapsible_1 = require("react-native-collapsible");
 const exercises_1 = require("../../db/exercises");
 const ModalSearch_1 = require("./ModalSearch");
-const loDash = require("lodash");
+const _ = require("lodash");
 const colors_1 = require("../../utils/colors");
 const grid_1 = require("../../utils/grid");
 const enums_1 = require("../../core/enums");
 const Header_1 = require("./Header");
 class ProgramExercises extends React.PureComponent {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.editExerciseFinished = (exercise) => {
             const exercisesDayCopy = this.state.exercisesDay.slice();
             const exerciseSetCopy = exercisesDayCopy[this.editedDayIndex].exercises.slice();
@@ -31,7 +31,7 @@ class ProgramExercises extends React.PureComponent {
             };
             let sortedExercises = this.daySelected.exercises.slice();
             sortedExercises.push(newExerciseSet);
-            sortedExercises = loDash.sortBy(sortedExercises, (e) => e.exercise.name);
+            sortedExercises = _.sortBy(sortedExercises, (e) => e.exercise.name);
             const copyCurrentDay = {
                 day: this.daySelected.day,
                 isCollapsed: this.daySelected.isCollapsed,
@@ -46,6 +46,11 @@ class ProgramExercises extends React.PureComponent {
         this.renderHeaderSection = (day, index) => {
             return (React.createElement(react_native_1.View, { style: styles.containerHeaderSection },
                 React.createElement(react_native_1.Text, { style: styles.textHeaderSection }, day.day),
+                (!isNaN(this.props.navigation.state.params.days[0])) &&
+                    React.createElement(react_native_1.TouchableOpacity, { onPress: () => {
+                            console.log('test');
+                        } },
+                        React.createElement(MaterialIcons_1.default, { name: "airline-seat-individual-suite", size: 20, color: colors_1.colors.base, style: styles.iconHeaderSectionAdd })),
                 React.createElement(react_native_1.TouchableOpacity, { onPress: () => {
                         this.daySelected = day;
                         this.indexDaySelected = index;
@@ -154,10 +159,10 @@ class ProgramExercises extends React.PureComponent {
             destructiveButtonIndex: 1,
             cancelButtonIndex: 2
         }, (buttonIndex) => {
-            const indexDay = loDash.findIndex(exercisesDay, (dayRow) => {
+            const indexDay = _.findIndex(exercisesDay, (dayRow) => {
                 return day === dayRow;
             });
-            const indexExercise = loDash.findIndex(exercisesDay[indexDay].exercises, (exerciseRow) => {
+            const indexExercise = _.findIndex(exercisesDay[indexDay].exercises, (exerciseRow) => {
                 return exercise === exerciseRow;
             });
             if (buttonIndex === 0) {
@@ -215,9 +220,14 @@ const styles = react_native_1.StyleSheet.create({
         color: colors_1.colors.base,
         flex: 3
     },
-    iconHeaderSectionAdd: {
+    iconHeaderSectionRest: {
         flex: 1,
         marginRight: grid_1.grid.unit / 2
+    },
+    iconHeaderSectionAdd: {
+        flex: 1,
+        marginRight: grid_1.grid.unit / 2,
+        marginLeft: grid_1.grid.unit / 2
     },
     iconHeaderSectionCollapsed: {
         flex: 1,
