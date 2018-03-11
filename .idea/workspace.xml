@@ -29,8 +29,8 @@
       <file leaf-file-name="ProgramExercises.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view/components/ProgramExercises.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="609">
-              <caret line="152" column="10" lean-forward="false" selection-start-line="152" selection-start-column="10" selection-end-line="152" selection-end-column="10" />
+            <state relative-caret-position="1254">
+              <caret line="195" column="32" lean-forward="false" selection-start-line="195" selection-start-column="32" selection-end-line="195" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -217,12 +217,12 @@
       <updated>1520644635148</updated>
       <workItem from="1520644636558" duration="10669000" />
       <workItem from="1520724086128" duration="7087000" />
-      <workItem from="1520796494604" duration="2787000" />
+      <workItem from="1520796494604" duration="2892000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20543000" />
+    <option name="totallyTimeSpent" value="20648000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="1417" extended-state="0" />
@@ -256,7 +256,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -639,8 +639,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/ProgramExercises.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="152" column="10" lean-forward="false" selection-start-line="152" selection-start-column="10" selection-end-line="152" selection-end-column="10" />
+        <state relative-caret-position="1254">
+          <caret line="195" column="32" lean-forward="false" selection-start-line="195" selection-start-column="32" selection-end-line="195" selection-end-column="32" />
           <folding />
         </state>
       </provider>
