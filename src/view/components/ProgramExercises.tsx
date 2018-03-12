@@ -30,13 +30,14 @@ class ProgramExercises extends React.PureComponent<IProps, IState> {
   constructor(props: IProps) {
     super(props)
     this.state = {
-      exercisesDay: [{day: '', exercises: [], isCollapsed: false}],
+      exercisesDay: [{day: '', exercises: [], isCollapsed: false, isDayOff: false}],
       showModalSearch: false,
       saveEnabled: false
     }
     this.showActionSheet = this.showActionSheet.bind(this)
     this.editExerciseFinished = this.editExerciseFinished.bind(this)
     this.saveProgram = this.saveProgram.bind(this)
+    this.editDayAttribute = this.editDayAttribute.bind(this)
   }
 
   componentWillMount() {
@@ -47,11 +48,12 @@ class ProgramExercises extends React.PureComponent<IProps, IState> {
 
   componentDidMount() {
     const {params} = this.props.navigation.state
-    const exercisesDayEmpty = params.days.map((day: string) => {
+    const exercisesDayEmpty: ServerEntity.ExercisesDay[] = params.days.map((day: string) => {
       return {
         day: day,
         exercises: [] as ServerEntity.ExerciseSet[],
-        isCollapsed: false
+        isCollapsed: false,
+        isDayOff: false
       }
     })
     this.setState({
@@ -62,7 +64,7 @@ class ProgramExercises extends React.PureComponent<IProps, IState> {
 
   componentDidUpdate() {
     const buttonDisabled = this.state.exercisesDay.map((ed: ServerEntity.ExercisesDay) => {
-      return ed.exercises.length > 0
+      return ed.exercises.length > 0 || ed.isDayOff
     }).some((val: boolean) => val === false)
     this.setState({saveEnabled: !buttonDisabled})
     if (this.props.navigation.state.params.rightButtonEnabled === buttonDisabled) {
@@ -130,7 +132,8 @@ class ProgramExercises extends React.PureComponent<IProps, IState> {
     const copyCurrentDay: ServerEntity.ExercisesDay = {
       day: this.daySelected.day,
       isCollapsed: this.daySelected.isCollapsed,
-      exercises: sortedExercises
+      exercises: sortedExercises,
+      isDayOff: this.daySelected.isDayOff
     }
     const copyExercisesDay = this.state.exercisesDay.slice()
     copyExercisesDay[this.indexDaySelected] = copyCurrentDay
@@ -139,41 +142,46 @@ class ProgramExercises extends React.PureComponent<IProps, IState> {
     this.indexDaySelected = null
   }
 
+  editDayAttribute = (day: ServerEntity.ExercisesDay, index: number) => {
+    const copyExercisesDay = this.state.exercisesDay.slice()
+    copyExercisesDay[index] = day
+    this.setState({exercisesDay: copyExercisesDay})
+  }
+
   renderHeaderSection = (day: ServerEntity.ExercisesDay, index: number) => {
     return (
       <View style={styles.containerHeaderSection}>
         <Text style={styles.textHeaderSection}>{day.day}</Text>
-
-
-
-
         {(!isNaN(this.props.navigation.state.params.days[0])) &&
         <TouchableOpacity onPress={() => {
-          console.log('test')
-          console.log('test')
+          const copyCurrentDay: ServerEntity.ExercisesDay = {
+            day: day.day,
+            isCollapsed: day.isCollapsed,
+            exercises: day.exercises.slice(),
+            isDayOff: !day.isDayOff
+          }
+          this.editDayAttribute(copyCurrentDay, index)
         }}>
           <Icon name="airline-seat-individual-suite" size={20} color={colors.base} style={styles.iconHeaderSectionAdd}/>
         </TouchableOpacity>}
-
-
-
-
-        <TouchableOpacity onPress={() => {
-          this.daySelected = day
-          this.indexDaySelected = index
-          this.setState({showModalSearch: true})
-        }}>
-          <Icon name="add-circle-outline" size={20} color={colors.base} style={styles.iconHeaderSectionAdd}/>
+        <TouchableOpacity
+          disabled={day.isDayOff}
+          onPress={() => {
+            this.daySelected = day
+            this.indexDaySelected = index
+            this.setState({showModalSearch: true})
+          }}>
+          <Icon name="add-circle-outline" size={20} color={colors.base}
+                style={[styles.iconHeaderSectionAdd, {opacity: day.isDayOff ? grid.lowOpacity : 1}]}/>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => {
           const copyCurrentDay: ServerEntity.ExercisesDay = {
             day: day.day,
             isCollapsed: !day.isCollapsed,
-            exercises: day.exercises.slice()
+            exercises: day.exercises.slice(),
+            isDayOff: day.isDayOff
           }
-          const copyExercisesDay = this.state.exercisesDay.slice()
-          copyExercisesDay[index] = copyCurrentDay
-          this.setState({exercisesDay: copyExercisesDay})
+          this.editDayAttribute(copyCurrentDay, index)
         }}>
           <Icon name={day.isCollapsed ? 'keyboard-arrow-down' : 'keyboard-arrow-up'} size={20} color={colors.base}
                 style={styles.iconHeaderSectionCollapsed}/>
@@ -185,8 +193,12 @@ class ProgramExercises extends React.PureComponent<IProps, IState> {
   renderExercisesSection = (day: ServerEntity.ExercisesDay) => {
     return (
       <Collapsible collapsed={day.isCollapsed} duration={500}>
-        {day.exercises.length === 0 &&
-        <View style={{padding: 10}}>
+        {day.isDayOff &&
+        <View style={{padding: grid.unit}}>
+          <Text style={styles.sectionDayOff}>Day Off</Text>
+        </View> ||
+        day.exercises.length === 0 &&
+        <View style={{padding: grid.unit}}>
           <Text style={styles.sectionNoContent}>No exercises yet</Text>
         </View> ||
         <View>
@@ -317,6 +329,11 @@ const styles = StyleSheet.create({
   },
   sectionNoContent: {
     fontFamily: grid.font,
+    fontSize: grid.caption,
+    color: colors.base
+  },
+  sectionDayOff: {
+    fontFamily: grid.fontBold,
     fontSize: grid.caption,
     color: colors.base
   },

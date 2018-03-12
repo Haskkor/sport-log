@@ -22,9 +22,10 @@ declare namespace ServerEntity {
   }
 
   type ExercisesDay = {
-    day: string,
+    day: string
     exercises: ExerciseSet[]
     isCollapsed: boolean
+    isDayOff: boolean
   }
 
   type Program = {

@@ -15,6 +15,8 @@ class RowProgramsList extends React.PureComponent<IProps, IState> {
   render() {
     const {days, name, active} = this.props.data
     const exercises = days.map((r: ServerEntity.ExercisesDay) => r.exercises.length).reduce((acc, cur) => acc + cur)
+    const daysOff = days.map((r: ServerEntity.ExercisesDay) => r.isDayOff).filter((e: boolean) => e ).length
+    console.warn(daysOff, days)
     return (
       <View style={styles.rowContainer}>
         <View style={styles.textContainer}>
@@ -22,9 +24,13 @@ class RowProgramsList extends React.PureComponent<IProps, IState> {
             <Text style={styles.programName}>{name}</Text>
             <Text style={styles.textDays}>{` - ${days.length} day${days.length > 1 ? 's' : ''} program`}</Text>
           </View>
-          <Text style={styles.textExercises}>
-            {`${exercises} exercise${exercises > 1 ? 's' : ''}`}
-          </Text>
+          <View style={styles.rowContainer}>
+            <Text style={styles.textExercises}>{`${exercises} exercise${exercises > 1 ? 's' : ''}`}</Text>
+            {daysOff > 0 &&
+            <Text style={styles.textExercises}>
+              {` - ${daysOff} day${exercises > 1 ? 's' : ''} off`}
+            </Text>}
+          </View>
         </View>
         <View style={styles.iconContainer}>
           {active && <Icon name="check-circle" size={20} color={colors.valid} style={styles.icon}/> ||

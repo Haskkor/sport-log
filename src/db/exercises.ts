@@ -460,10 +460,6 @@ const exercises = [
         equipment: 'Cable'
       },
       {
-        name: 'Barbell shoulder press',
-        equipment: 'Barbell'
-      },
-      {
         name: 'Face pull',
         equipment: 'Cable'
       }

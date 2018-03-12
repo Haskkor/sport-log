@@ -28,6 +28,7 @@ class ModalSearch extends React.PureComponent<IProps, IState> {
       m.exercises.map((e: ServerEntity.ExerciseMuscle) => {
         return {
           searchStr: `${e.name} (${e.equipment}) - ${m.muscle}`,
+          searchKey: m.exercises.length + m.muscle + e.equipment + e.name,
           exercise: e.name,
           muscle: m.muscle,
           equipment: e.equipment
@@ -39,7 +40,7 @@ class ModalSearch extends React.PureComponent<IProps, IState> {
 
   renderRow(item: ItemList, rowID: string) {
     return (
-      <View key={rowID} style={styles.row}>
+      <View key={rowID + item} style={styles.row}>
         <TouchableOpacity onPress={() => this.props.selectExercise(item.exercise, item.muscle, item.equipment)}>
           <Text style={styles.itemListText}>{item.searchStr}</Text>
         </TouchableOpacity>
@@ -53,7 +54,7 @@ class ModalSearch extends React.PureComponent<IProps, IState> {
         <View/>)
     } else {
       return (
-        <View key={sectionData} style={styles.sectionHeader}>
+        <View key={sectionData + sectionID} style={styles.sectionHeader}>
           <Text style={styles.sectionTitle}>{sectionID}</Text>
         </View>)
     }
