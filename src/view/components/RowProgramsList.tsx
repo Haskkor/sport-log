@@ -16,7 +16,6 @@ class RowProgramsList extends React.PureComponent<IProps, IState> {
     const {days, name, active} = this.props.data
     const exercises = days.map((r: ServerEntity.ExercisesDay) => r.exercises.length).reduce((acc, cur) => acc + cur)
     const daysOff = days.map((r: ServerEntity.ExercisesDay) => r.isDayOff).filter((e: boolean) => e ).length
-    console.warn(daysOff, days)
     return (
       <View style={styles.rowContainer}>
         <View style={styles.textContainer}>

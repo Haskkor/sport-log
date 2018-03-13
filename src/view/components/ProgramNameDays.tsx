@@ -119,7 +119,8 @@ class ProgramNameDays extends React.PureComponent<IProps, IState> {
                 exercisesDay.push({
                   day: d.name,
                   exercises: [] as ServerEntity.ExerciseSet[],
-                  isCollapsed: false
+                  isCollapsed: false,
+                  isDayOff: false
                 })
               }
             }
@@ -133,11 +134,13 @@ class ProgramNameDays extends React.PureComponent<IProps, IState> {
         } else {
           // If days were added push empty days, if days were removed destroy the difference
           if (+this.state.numberOfDays > editedProgram.days.length) {
+            editedProgram.days.map((d: ServerEntity.ExercisesDay) => {exercisesDay.push(d)})
             _.range(+this.state.numberOfDays - editedProgram.days.length).map((i: number) => {
               exercisesDay.push({
                 day: i.toString(),
                 exercises: [] as ServerEntity.ExerciseSet[],
-                isCollapsed: false
+                isCollapsed: false,
+                isDayOff: false
               })
             })
           } else {

@@ -213,8 +213,8 @@ class ProgramExercises extends React.PureComponent<IProps, IState> {
                 </View>
                 <View style={styles.sectionElementRow}>
                   <Text style={styles.textBoldSection}>{set.recoveryTime}</Text>
-                  {set.sets.map((s: ServerEntity.Set) => {
-                    return (<Text style={styles.textMediumSection}>{`${s.weight}x${s.reps}`}</Text>)
+                  {set.sets.map((s: ServerEntity.Set, index: number) => {
+                    return (<Text key={index} style={styles.textMediumSection}>{`${s.weight}x${s.reps}`}</Text>)
                   })}
                 </View>
               </TouchableOpacity>
@@ -228,7 +228,7 @@ class ProgramExercises extends React.PureComponent<IProps, IState> {
 
   renderSectionDay = (day: ServerEntity.ExercisesDay, index: number) => {
     return (
-      <View key={day.day}>
+      <View key={day.day + index}>
         {this.renderHeaderSection(day, index)}
         {this.renderExercisesSection(day)}
         {this.state.showModalSearch && <ModalSearch
