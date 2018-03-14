@@ -1,9 +1,13 @@
 import * as React from 'react'
-import {Text, View, StyleSheet} from 'react-native'
+import {Text, View, StyleSheet, StatusBar} from 'react-native'
 import {Agenda} from 'react-native-calendars'
-import {colors} from "../../utils/colors";
+import {colors} from '../../utils/colors'
+import {HeaderStatus} from '../../core/enums/index'
+import Header from './Header'
 
-type IProps = {}
+type IProps = {
+  navigation: any
+}
 
 type IState = {
   items: any
@@ -69,25 +73,36 @@ class Calendar extends React.PureComponent<IProps, IState> {
 
   render() {
     return (
-      <Agenda
-        items={this.state.items}
-        loadItemsForMonth={this.loadItems.bind(this)}
-        selected={'2017-05-16'} // todo use today date
-        renderItem={this.renderItem.bind(this)}
-        renderEmptyDate={this.renderEmptyDate.bind(this)}
-        rowHasChanged={this.rowHasChanged.bind(this)}
-        pastScrollRange={10}
-        futureScrollRange={10}
-        markingType={'period'}
-        monthFormat={'yyyy MM'}
-        theme={{
-          calendarBackground: colors.light,
-          agendaKnobColor: colors.orange,
-          agendaDayTextColor: colors.base,
-          agendaDayNumColor: colors.base
-        }}
-        renderDay={(day: any, item: any) => (<Text>{day ? day.day : 'item'}</Text>)}
-      />
+      <View style={styles.container}>
+        <StatusBar barStyle="dark-content"/>
+        <Header
+          navigation={this.props.navigation}
+          colorBorder={colors.headerBorderLight}
+          colorHeader={colors.headerLight}
+          textColor={colors.base}
+          status={HeaderStatus.drawer}
+          title="Calendar"
+        />
+        <Agenda
+          items={this.state.items}
+          loadItemsForMonth={this.loadItems.bind(this)}
+          selected={new Date()}
+          renderItem={this.renderItem.bind(this)}
+          renderEmptyDate={this.renderEmptyDate.bind(this)}
+          rowHasChanged={this.rowHasChanged.bind(this)}
+          pastScrollRange={10}
+          futureScrollRange={10}
+          markingType={'multi-dot'}
+          monthFormat={'MMMM yyyy'}
+          theme={{
+            calendarBackground: colors.light,
+            agendaKnobColor: colors.orange,
+            agendaDayTextColor: colors.base,
+            agendaDayNumColor: colors.base
+          }}
+          renderDay={(day: any, item: any) => (<Text>{day ? day.day : 'item'}</Text>)}
+        />
+      </View>
     )
   }
 }
@@ -95,6 +110,9 @@ class Calendar extends React.PureComponent<IProps, IState> {
 export default Calendar
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
   item: {
     backgroundColor: 'white',
     flex: 1,

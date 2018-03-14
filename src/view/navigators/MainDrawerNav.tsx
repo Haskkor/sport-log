@@ -7,7 +7,7 @@ import Calendar from '../components/Calendar'
 
 const MainDrawerNav = DrawerNavigator({
   Home: {
-    screen: ProgramsStackNav
+    screen: Calendar
   },
   Calendar: {
     screen: Calendar
