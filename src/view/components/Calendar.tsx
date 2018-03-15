@@ -1,16 +1,19 @@
 import * as React from 'react'
-import {Text, View, StyleSheet, StatusBar} from 'react-native'
+import {Text, View, StyleSheet, StatusBar, TouchableOpacity} from 'react-native'
 import {Agenda} from 'react-native-calendars'
 import {colors} from '../../utils/colors'
 import {HeaderStatus} from '../../core/enums/index'
 import Header from './Header'
+import {connect} from 'react-redux'
 
 type IProps = {
   navigation: any
+  programs: ServerEntity.Program[]
 }
 
 type IState = {
   items: any
+  activeProgram: ServerEntity.Program
 }
 
 class Calendar extends React.PureComponent<IProps, IState> {
@@ -18,52 +21,55 @@ class Calendar extends React.PureComponent<IProps, IState> {
   constructor(props: IProps) {
     super(props)
     this.state = {
-      items: {}
+      items: {},
+      activeProgram: this.props.programs.find((p: ServerEntity.Program) => p.active)
     }
   }
 
-  loadItems = (day: any) => {
-    setTimeout(() => {
-      for (let i = -15; i < 85; i++) {
-        const time = day.timestamp + i * 24 * 60 * 60 * 1000
-        const strTime = this.timeToString(time)
-        if (!this.state.items[strTime]) {
-          this.state.items[strTime] = []
-          const numItems = Math.floor(Math.random() * 5)
-          for (let j = 0; j < numItems; j++) {
-            this.state.items[strTime].push({
-              name: 'Item for ' + strTime,
-              height: Math.max(50, Math.floor(Math.random() * 150))
-            })
-          }
-        }
-      }
-      //console.log(this.state.items);
-      const newItems = {}
-      Object.keys(this.state.items).forEach(key => {
-        newItems[key] = this.state.items[key]
+  populateItems = (day: any) => {
+    for (let i = -15; i < 85; i++) {
+      const time = day.timestamp + i * 24 * 60 * 60 * 1000
+      const strTime = this.timeToString(time)
+      this.state.items[strTime] = []
+      this.state.items[strTime].push({
+        name: 'Test',
+        content: 'Exercise'
       })
-      this.setState({
-        items: newItems
-      })
-    }, 1000)
-    // console.log(`Load Items for ${day.year}-${day.month}`);
+    }
+    const newItems = {}
+    Object.keys(this.state.items).forEach(key => {
+      newItems[key] = this.state.items[key]
+    })
+  }
+
+  loadItems = async (day: any) => {
+    const itemsLoaded = await this.populateItems(day)
+    this.setState({
+      items: itemsLoaded
+    })
   }
 
   renderItem = (item: any) => {
     return (
-      <View style={[styles.item, {height: item.height}]}><Text>{item.name}</Text></View>
-    );
+      <View style={[styles.item, {height: item.height}]}>
+        <Text>{item.name}</Text>
+        <TouchableOpacity>
+          <Text>{item.content}</Text>
+        </TouchableOpacity>
+      </View>
+    )
   }
 
   renderEmptyDate = () => {
     return (
-      <View style={styles.emptyDate}><Text>This is empty date!</Text></View>
-    );
+      <View style={styles.emptyDate}>
+        <Text>Day off</Text>
+      </View>
+    )
   }
 
   rowHasChanged = (r1: any, r2: any) => {
-    return r1.name !== r2.name;
+    return r1.name !== r2.name
   }
 
   timeToString = (time: any) => {
@@ -107,7 +113,13 @@ class Calendar extends React.PureComponent<IProps, IState> {
   }
 }
 
-export default Calendar
+const mapStateToProps = (rootState: ReduxState.RootState) => {
+  return {
+    programs: rootState.entities.programs
+  }
+}
+
+export default connect(mapStateToProps, null)(Calendar)
 
 const styles = StyleSheet.create({
   container: {
@@ -126,4 +138,4 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 30
   }
-});
+})
