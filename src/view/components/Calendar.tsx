@@ -16,6 +16,8 @@ type IState = {
   activeProgram: ServerEntity.Program
 }
 
+type Item = { [key: string]: {} }
+
 class Calendar extends React.PureComponent<IProps, IState> {
 
   constructor(props: IProps) {
@@ -27,19 +29,46 @@ class Calendar extends React.PureComponent<IProps, IState> {
   }
 
   populateItems = (day: any) => {
-    for (let i = -15; i < 85; i++) {
+    for (let i = 0; i < 30; i++) {
       const time = day.timestamp + i * 24 * 60 * 60 * 1000
       const strTime = this.timeToString(time)
-      this.state.items[strTime] = []
-      this.state.items[strTime].push({
-        name: 'Test',
-        content: 'Exercise'
-      })
+      if (strTime >= this.timeToString(new Date())) {
+        // console.log(strTime, this.timeToString(new Date()))
+        this.state.items[strTime] = []
+
+
+        if (this.state.activeProgram && isNaN(+this.state.activeProgram.days[0].day)) {
+
+
+
+
+
+
+
+
+        } else if (this.state.activeProgram) {
+          const currentDayProgram = this.state.activeProgram.days[i % this.state.activeProgram.days.length]
+          if (currentDayProgram.isDayOff) {
+            this.state.items[strTime].push({
+              name: 'Day off',
+              content: 'Eat and sleep'
+            })
+          } else {
+            currentDayProgram.exercises.map((e: ServerEntity.ExerciseSet) => {
+              this.state.items[strTime].push({
+                name: `${e.exercise} - ${e.muscleGroup} - Recovery time: ${e.recoveryTime}`,
+                content: `${e.sets.map((s: ServerEntity.Set) => {`${s.reps} x ${s.weight} `})}`
+              })
+            })
+          }
+        }
+      }
     }
-    const newItems = {}
+    const newItems: Item = {}
     Object.keys(this.state.items).forEach(key => {
       newItems[key] = this.state.items[key]
     })
+    return newItems
   }
 
   loadItems = async (day: any) => {
@@ -63,7 +92,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
   renderEmptyDate = () => {
     return (
       <View style={styles.emptyDate}>
-        <Text>Day off</Text>
+        <Text>Empty day</Text>
       </View>
     )
   }
@@ -136,6 +165,6 @@ const styles = StyleSheet.create({
   emptyDate: {
     height: 15,
     flex: 1,
-    paddingTop: 30
+    padding: 15
   }
 })
