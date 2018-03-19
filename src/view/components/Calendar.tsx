@@ -12,11 +12,13 @@ type IProps = {
 }
 
 type IState = {
-  items: any
+  items: any // fixme any
   activeProgram: ServerEntity.Program
 }
 
 type Item = { [key: string]: {} }
+
+const daysName = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
 
 class Calendar extends React.PureComponent<IProps, IState> {
 
@@ -39,25 +41,21 @@ class Calendar extends React.PureComponent<IProps, IState> {
 
         if (this.state.activeProgram && isNaN(+this.state.activeProgram.days[0].day)) {
 
-
-
-
-
-
+          const tempdate = new Date()
+          tempdate.setTime(time)
+          console.log(daysName[tempdate.getDay()])
 
 
         } else if (this.state.activeProgram) {
           const currentDayProgram = this.state.activeProgram.days[i % this.state.activeProgram.days.length]
-          if (currentDayProgram.isDayOff) {
-            this.state.items[strTime].push({
-              name: 'Day off',
-              content: 'Eat and sleep'
-            })
-          } else {
+          if (!currentDayProgram.isDayOff) {
             currentDayProgram.exercises.map((e: ServerEntity.ExerciseSet) => {
               this.state.items[strTime].push({
-                name: `${e.exercise} - ${e.muscleGroup} - Recovery time: ${e.recoveryTime}`,
-                content: `${e.sets.map((s: ServerEntity.Set) => {`${s.reps} x ${s.weight} `})}`
+                name: `${e.exercise.name} - ${e.muscleGroup}`,
+                details: `${e.exercise.equipment} - Recovery time: ${e.recoveryTime}`,
+                content: `${e.sets.map((s: ServerEntity.Set) => {
+                  return `Sets: ${s.reps} x ${s.weight}`
+                })}`
               })
             })
           }
@@ -81,8 +79,9 @@ class Calendar extends React.PureComponent<IProps, IState> {
   renderItem = (item: any) => {
     return (
       <View style={[styles.item, {height: item.height}]}>
-        <Text>{item.name}</Text>
         <TouchableOpacity>
+          <Text>{item.name}</Text>
+          <Text>{item.details}</Text>
           <Text>{item.content}</Text>
         </TouchableOpacity>
       </View>
@@ -92,7 +91,8 @@ class Calendar extends React.PureComponent<IProps, IState> {
   renderEmptyDate = () => {
     return (
       <View style={styles.emptyDate}>
-        <Text>Empty day</Text>
+        <Text>Day off</Text>
+        <Text>Eat and sleep</Text>
       </View>
     )
   }
@@ -135,7 +135,9 @@ class Calendar extends React.PureComponent<IProps, IState> {
             agendaDayTextColor: colors.base,
             agendaDayNumColor: colors.base
           }}
-          renderDay={(day: any, item: any) => (<Text>{day ? day.day : 'item'}</Text>)}
+          renderDay={(day: any, item: any) => (
+            <Text>{day ? day.day : ''}</Text>
+          )}
         />
       </View>
     )
