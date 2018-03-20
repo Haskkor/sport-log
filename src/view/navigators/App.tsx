@@ -3,21 +3,27 @@ import * as React from 'react'
 import {StatusBar, StyleSheet, AppRegistry, View} from 'react-native'
 import MainDrawerNav from './MainDrawerNav'
 import 'regenerator-runtime/runtime'
-import {Font} from 'expo'
-
-type IProps = {}
-
-type IState = {}
-
+import {AppLoading, Font} from 'expo'
 import createStore from '../../core/create'
 import {Provider} from 'react-redux'
 
-export const store = createStore();
+type IProps = {}
+
+type IState = {
+  isReady: boolean
+}
+
+export const store = createStore()
 
 class App extends React.PureComponent<IProps, IState> {
 
-  componentDidMount() {
-    Font.loadAsync({
+  constructor(props: IProps) {
+    super(props)
+    this.state = {isReady: false}
+  }
+
+  async loadFonts() {
+    await Font.loadAsync({
       'Montserrat-Regular': require('../../../assets/fonts/Montserrat-Regular.ttf'),
       'Montserrat-Bold': require('../../../assets/fonts/Montserrat-Bold.ttf'),
       'Montserrat-Light': require('../../../assets/fonts/Montserrat-Light.ttf'),
@@ -31,7 +37,11 @@ class App extends React.PureComponent<IProps, IState> {
       <Provider store={store} key="provider">
         <View style={styles.container}>
           <StatusBar barStyle="light-content"/>
-          <MainDrawerNav/>
+          {!this.state.isReady && <AppLoading
+            startAsync={this.loadFonts}
+            onFinish={() => this.setState({ isReady: true })}
+          /> ||
+          <MainDrawerNav/>}
         </View>
       </Provider>
     )

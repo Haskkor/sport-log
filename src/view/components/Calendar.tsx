@@ -5,6 +5,7 @@ import {colors} from '../../utils/colors'
 import {HeaderStatus} from '../../core/enums/index'
 import Header from './Header'
 import {connect} from 'react-redux'
+import {grid} from '../../utils/grid'
 
 type IProps = {
   navigation: any
@@ -18,7 +19,7 @@ type IState = {
 
 type Item = { [key: string]: {} }
 
-const daysName = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+const daysName = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
 class Calendar extends React.PureComponent<IProps, IState> {
 
@@ -35,17 +36,22 @@ class Calendar extends React.PureComponent<IProps, IState> {
       const time = day.timestamp + i * 24 * 60 * 60 * 1000
       const strTime = this.timeToString(time)
       if (strTime >= this.timeToString(new Date())) {
-        // console.log(strTime, this.timeToString(new Date()))
         this.state.items[strTime] = []
-
-
         if (this.state.activeProgram && isNaN(+this.state.activeProgram.days[0].day)) {
-
-          const tempdate = new Date()
-          tempdate.setTime(time)
-          console.log(daysName[tempdate.getDay()])
-
-
+          const tempDate = new Date()
+          tempDate.setTime(time)
+          const day = this.state.activeProgram.days.find((d: ServerEntity.ExercisesDay) => d.day === daysName[tempDate.getDay()])
+          if (day) {
+            day.exercises.map((e: ServerEntity.ExerciseSet) => {
+              this.state.items[strTime].push({
+                name: `${e.exercise.name} - ${e.muscleGroup}`,
+                details: `${e.exercise.equipment} - Recovery time: ${e.recoveryTime}`,
+                content: `${e.sets.map((s: ServerEntity.Set) => {
+                  return `Sets: ${s.reps} x ${s.weight}`
+                })}`
+              })
+            })
+          }
         } else if (this.state.activeProgram) {
           const currentDayProgram = this.state.activeProgram.days[i % this.state.activeProgram.days.length]
           if (!currentDayProgram.isDayOff) {
@@ -136,7 +142,9 @@ class Calendar extends React.PureComponent<IProps, IState> {
             agendaDayNumColor: colors.base
           }}
           renderDay={(day: any, item: any) => (
-            <Text>{day ? day.day : ''}</Text>
+            <View style={styles.day}>
+            <Text style={styles.dayText}>{day ? day.day : ''}</Text>
+            </View>
           )}
         />
       </View>
@@ -165,8 +173,18 @@ const styles = StyleSheet.create({
     marginTop: 17
   },
   emptyDate: {
-    height: 15,
+    height: grid.unit * 4,
     flex: 1,
     padding: 15
+  },
+  day: {
+    backgroundColor: colors.lightAlternative,
+    width: grid.unit * 3,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  dayText: {
+    fontFamily: grid.fontMedium,
+    fontSize: grid.unit
   }
 })
