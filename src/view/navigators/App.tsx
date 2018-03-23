@@ -28,6 +28,11 @@ class App extends React.PureComponent<IProps, IState> {
       'Montserrat-Bold': require('../../../assets/fonts/Montserrat-Bold.ttf'),
       'Montserrat-Light': require('../../../assets/fonts/Montserrat-Light.ttf'),
       'Montserrat-Medium': require('../../../assets/fonts/Montserrat-Medium.ttf'),
+      'Roboto-Bold': require('../../../assets/fonts/Roboto-Bold.ttf'),
+      'Roboto-Light': require('../../../assets/fonts/Roboto-Light.ttf'),
+      'Roboto-Medium': require('../../../assets/fonts/Roboto-Medium.ttf'),
+      'Roboto-Regular': require('../../../assets/fonts/Roboto-Regular.ttf'),
+      'RobotoMono-Medium': require('../../../assets/fonts/RobotoMono-Medium.ttf'),
       'courier': require('../../../assets/fonts/courier.ttf')
     })
   }

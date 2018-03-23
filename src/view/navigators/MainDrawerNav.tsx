@@ -4,6 +4,7 @@ import TabNavRecovery from './TabNavRecovery'
 import QuickLog from '../components/QuickLog'
 import ProgramsStackNav from './ProgramsStackNav'
 import Calendar from '../components/Calendar'
+import PinCode from '../components/PinCode'
 
 const MainDrawerNav = DrawerNavigator({
   Home: {
@@ -20,6 +21,9 @@ const MainDrawerNav = DrawerNavigator({
   },
   Recovery: {
     screen: TabNavRecovery
+  },
+  Pin: {
+    screen: PinCode
   }
 })
 
