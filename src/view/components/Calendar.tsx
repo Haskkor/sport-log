@@ -1,11 +1,13 @@
 import * as React from 'react'
-import {Text, View, StyleSheet, StatusBar, TouchableOpacity} from 'react-native'
+import {Text, View, StyleSheet, StatusBar, TouchableOpacity, ActionSheetIOS} from 'react-native'
 import {Agenda} from 'react-native-calendars'
 import {colors} from '../../utils/colors'
-import {HeaderStatus} from '../../core/enums/index'
+import {HeaderStatus} from '../../core/enums'
 import Header from './Header'
 import {connect} from 'react-redux'
 import {grid} from '../../utils/grid'
+import config from '../../utils/config'
+import {fakeActiveProgram} from '../../utils/constants'
 
 type IProps = {
   navigation: any
@@ -13,7 +15,7 @@ type IProps = {
 }
 
 type IState = {
-  items: any // fixme any
+  items: any
   activeProgram: ServerEntity.Program
 }
 
@@ -27,12 +29,32 @@ class Calendar extends React.PureComponent<IProps, IState> {
     super(props)
     this.state = {
       items: {},
-      activeProgram: this.props.programs.find((p: ServerEntity.Program) => p.active)
+      activeProgram: config.shouldUseFakeActiveProgram ? fakeActiveProgram :
+        this.props.programs.find((p: ServerEntity.Program) => p.active)
     }
+    this.showActionSheet = this.showActionSheet.bind(this)
   }
 
-  populateItems = (day: any) => {
-    for (let i = 0; i < 30; i++) {
+  showActionSheet = () => {
+    // ActionSheetIOS.showActionSheetWithOptions({
+    //     title: data.exercise.name,
+    //     options: [data.done ? 'Set not done' : 'Set done', 'Edit', 'Delete', 'Cancel'],
+    //     destructiveButtonIndex: 2,
+    //     cancelButtonIndex: 3
+    //   },
+    //   (buttonIndex) => {
+    //     if (buttonIndex === 0) {
+    //     } else if (buttonIndex === 1) {
+    //     } else if (buttonIndex === 2) {
+    //     }
+    //   })
+  }
+
+  populateItems = async (day: any) => {
+
+    // CALL LOAD HISTORY
+
+    for (let i = -30; i < 30; i++) {
       const time = day.timestamp + i * 24 * 60 * 60 * 1000
       const strTime = this.timeToString(time)
       if (strTime >= this.timeToString(new Date())) {
@@ -46,8 +68,8 @@ class Calendar extends React.PureComponent<IProps, IState> {
               this.state.items[strTime].push({
                 name: `${e.exercise.name} - ${e.muscleGroup}`,
                 details: `${e.exercise.equipment} - Recovery time: ${e.recoveryTime}`,
-                content: `${e.sets.map((s: ServerEntity.Set) => {
-                  return `Sets: ${s.reps} x ${s.weight}`
+                content: `Sets:${e.sets.map((s: ServerEntity.Set) => {
+                  return ` ${s.reps} x ${s.weight}`
                 })}`
               })
             })
@@ -59,13 +81,15 @@ class Calendar extends React.PureComponent<IProps, IState> {
               this.state.items[strTime].push({
                 name: `${e.exercise.name} - ${e.muscleGroup}`,
                 details: `${e.exercise.equipment} - Recovery time: ${e.recoveryTime}`,
-                content: `${e.sets.map((s: ServerEntity.Set) => {
-                  return `Sets: ${s.reps} x ${s.weight}`
+                content: `Sets:${e.sets.map((s: ServerEntity.Set) => {
+                  return ` ${s.reps} x ${s.weight}`
                 })}`
               })
             })
           }
         }
+      } else {
+        this.state.items[strTime] = {}
       }
     }
     const newItems: Item = {}
@@ -85,10 +109,10 @@ class Calendar extends React.PureComponent<IProps, IState> {
   renderItem = (item: any) => {
     return (
       <View style={[styles.item, {height: item.height}]}>
-        <TouchableOpacity>
-          <Text>{item.name}</Text>
-          <Text>{item.details}</Text>
-          <Text>{item.content}</Text>
+        <TouchableOpacity onPress={() => this.showActionSheet()}>
+          <Text style={styles.textBold}>{item.name}</Text>
+          <Text style={styles.text}>{item.details}</Text>
+          <Text style={styles.text}>{item.content}</Text>
         </TouchableOpacity>
       </View>
     )
@@ -97,8 +121,8 @@ class Calendar extends React.PureComponent<IProps, IState> {
   renderEmptyDate = () => {
     return (
       <View style={styles.emptyDate}>
-        <Text>Day off</Text>
-        <Text>Eat and sleep</Text>
+        <Text style={styles.textBold}>Day off</Text>
+        <Text style={styles.text}>Eat and sleep</Text>
       </View>
     )
   }
@@ -143,7 +167,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
           }}
           renderDay={(day: any, item: any) => (
             <View style={styles.day}>
-            <Text style={styles.dayText}>{day ? day.day : ''}</Text>
+              <Text style={styles.dayText}>{day ? day.day : ''}</Text>
             </View>
           )}
         />
@@ -181,10 +205,19 @@ const styles = StyleSheet.create({
     backgroundColor: colors.lightAlternative,
     width: grid.unit * 3,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginRight: 10
   },
   dayText: {
     fontFamily: grid.fontMedium,
     fontSize: grid.unit
+  },
+  text: {
+    fontFamily: grid.font,
+    color: colors.base
+  },
+  textBold: {
+    fontFamily: grid.fontBold,
+    color: colors.base
   }
 })

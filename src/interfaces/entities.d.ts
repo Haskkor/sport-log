@@ -33,4 +33,6 @@ declare namespace ServerEntity {
     active: boolean
     days: ExercisesDay[]
   }
+
+  type History = { [key: number]: ExerciseSet[] }
 }

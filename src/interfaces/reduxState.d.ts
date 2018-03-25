@@ -1,6 +1,6 @@
 declare namespace ReduxState {
   type RootState = {
-    session: Session,
+    session: Session
     container: {
       App: AppContainer
     }
@@ -13,7 +13,13 @@ declare namespace ReduxState {
 
   type Entities = {
     programs: Programs
+    history: History
   }
 
   type Programs = ServerEntity.Program[]
+
+  type History = {
+    dataLoaded: boolean
+    data: ServerEntity.History
+  }
 }

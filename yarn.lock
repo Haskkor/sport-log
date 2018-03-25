@@ -9,9 +9,9 @@
     lodash "^4.17.4"
     react-native-vector-icons "4.5.0"
 
-"@haskkor/react-native-pincode@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@haskkor/react-native-pincode/-/react-native-pincode-1.0.0.tgz#5c02214d73ba92921830ef597b3acc3105bfc557"
+"@haskkor/react-native-pincode@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@haskkor/react-native-pincode/-/react-native-pincode-1.0.1.tgz#e2eb93b318e78ab2720519773fa147599a57bb96"
   dependencies:
     d3-ease "^1.0.3"
     lodash "^4.17.5"

@@ -24,7 +24,7 @@
     "json-server": "json-server ./mock-api/db.json"
   },
   "dependencies": {
-    "@haskkor/react-native-pincode": "^1.0.0",
+    "@haskkor/react-native-pincode": "^1.0.1",
     "@types/d3-ease": "^1.0.7",
     "@types/expo": "^25.0.0",
     "@types/moment": "^2.13.0",
