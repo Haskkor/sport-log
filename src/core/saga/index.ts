@@ -21,8 +21,18 @@ function* loadData (action: Action<appDuck.LoadDataStartPayload>) {
 
 function* loadHistory (action: Action<history.LoadHistoryStartPayload>) {
   try {
-    const data = constants.fakeHistory
-    yield put(history.loadHistorySuccess({data: data}))
+    console.log('saga')
+    const data: ServerEntity.History = constants.fakeHistory
+
+    console.log(data)
+    console.log(action.payload.currentTimestamp)
+
+    const result: ServerEntity.History = data.filter((d: ServerEntity.HistoryDate) => {
+      return d.timestamp
+    })
+
+
+    yield put(history.loadHistorySuccess({data: result}))
   } catch (err) {
     console.warn('loadHistory failed', err)
     yield put(history.loadHistoryFail(err))
