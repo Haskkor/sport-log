@@ -6,7 +6,8 @@ import {colors} from '../../utils/colors'
 import {HeaderStatus} from '../../core/enums'
 
 type IProps = {
-  navigation: any
+  primaryIconDisabled?: boolean
+  navigation?: any
   textColor: string
   colorHeader: string
   colorBorder: string
@@ -23,15 +24,15 @@ type IState = {}
 class Header extends React.PureComponent<IProps, IState> {
   render() {
     const {navigation, textColor, colorBorder, colorHeader, title, secondaryFunction, secondaryIcon, status,
-      secondaryText, secondaryEnabled} = this.props
+      secondaryText, secondaryEnabled, primaryIconDisabled} = this.props
     return (
       <View style={[styles.header, {borderColor: colorBorder, backgroundColor: colorHeader}]}>
-        <View style={[styles.viewSemiFlex, styles.primaryIconView]}>
+        <View style={[styles.viewSemiFlex, styles.primaryIconView, {opacity: primaryIconDisabled ? 0.5 : 1}]}>
           {status === HeaderStatus.drawer &&
-          <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')}>
+          <TouchableOpacity disabled={primaryIconDisabled} onPress={() => navigation.navigate('DrawerOpen')}>
             <Icon name="fitness-center" size={grid.navIcon} color={textColor}/>
           </TouchableOpacity> || status === HeaderStatus.stack &&
-          <TouchableOpacity style={styles.containerButtonBack} onPress={() => navigation.goBack()}>
+          <TouchableOpacity disabled={primaryIconDisabled} style={styles.containerButtonBack} onPress={() => navigation.goBack()}>
             <Icon name="arrow-back" size={grid.navIcon} color={colors.base} style={styles.icon}/>
             <Text style={styles.text}>Back</Text></TouchableOpacity>}
         </View>

@@ -47,6 +47,9 @@ class Calendar extends React.PureComponent<IProps, IState> {
   }
 
   showActionSheet = () => {
+
+    // todo FINISH THIS
+
     // ActionSheetIOS.showActionSheetWithOptions({
     //     title: data.exercise.name,
     //     options: [data.done ? 'Set not done' : 'Set done', 'Edit', 'Delete', 'Cancel'],

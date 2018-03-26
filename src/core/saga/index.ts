@@ -21,6 +21,9 @@ function* loadData (action: Action<appDuck.LoadDataStartPayload>) {
 
 function* loadHistory (action: Action<history.LoadHistoryStartPayload>) {
   try {
+
+    // todo FINISH THIS
+
     console.log('saga')
     const data: ServerEntity.History = constants.fakeHistory
 

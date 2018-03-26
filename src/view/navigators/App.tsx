@@ -6,20 +6,29 @@ import 'regenerator-runtime/runtime'
 import {AppLoading, Font} from 'expo'
 import createStore from '../../core/create'
 import {Provider} from 'react-redux'
+import {ApolloClient, HttpLink, InMemoryCache} from 'apollo-client-preset'
+import {ApolloProvider} from 'react-apollo'
+import Login from '../components/Login'
 
 type IProps = {}
 
 type IState = {
   isReady: boolean
+  isLoggedIn: boolean
 }
 
 export const store = createStore()
+
+const client = new ApolloClient({
+  link: new HttpLink({uri: 'https://r948m3339n.lp.gql.zone/graphql'}),
+  cache: new InMemoryCache()
+})
 
 class App extends React.PureComponent<IProps, IState> {
 
   constructor(props: IProps) {
     super(props)
-    this.state = {isReady: false}
+    this.state = {isReady: false, isLoggedIn: false}
   }
 
   async loadFonts() {
@@ -39,16 +48,18 @@ class App extends React.PureComponent<IProps, IState> {
 
   render() {
     return (
-      <Provider store={store} key="provider">
-        <View style={styles.container}>
-          <StatusBar barStyle="light-content"/>
-          {!this.state.isReady && <AppLoading
-            startAsync={this.loadFonts}
-            onFinish={() => this.setState({ isReady: true })}
-          /> ||
-          <MainDrawerNav/>}
-        </View>
-      </Provider>
+      <ApolloProvider client={client}>
+        <Provider store={store} key="provider">
+          <View style={styles.container}>
+            <StatusBar barStyle="light-content"/>
+            {!this.state.isReady ?
+              <AppLoading
+                startAsync={this.loadFonts}
+                onFinish={() => this.setState({isReady: true})}/> :
+              (this.state.isLoggedIn ? <MainDrawerNav/> : <Login />)}
+          </View>
+        </Provider>
+      </ApolloProvider>
     )
   }
 }
