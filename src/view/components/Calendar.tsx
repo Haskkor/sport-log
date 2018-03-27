@@ -4,14 +4,17 @@ import {Agenda} from 'react-native-calendars'
 import {colors} from '../../utils/colors'
 import {HeaderStatus} from '../../core/enums'
 import Header from './Header'
-import {connect} from 'react-redux'
+import {connect, Dispatch} from 'react-redux'
 import {grid} from '../../utils/grid'
 import config from '../../utils/config'
 import {fakeActiveProgram} from '../../utils/constants'
+import {bindActionCreators} from 'redux'
+import * as HistoryActions from '../../core/modules/entities/history'
 
 type IProps = {
   navigation: any
   programs: ServerEntity.Program[]
+  loadHistory: typeof HistoryActions.loadHistoryStart
 }
 
 type IState = {
@@ -20,6 +23,14 @@ type IState = {
 }
 
 type Item = { [key: string]: {} }
+
+type DayCalendar = {
+  dateString: string
+  day: number
+  month: number
+  timestamp: number
+  year: number
+}
 
 const daysName = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
@@ -36,6 +47,9 @@ class Calendar extends React.PureComponent<IProps, IState> {
   }
 
   showActionSheet = () => {
+
+    // todo FINISH THIS
+
     // ActionSheetIOS.showActionSheetWithOptions({
     //     title: data.exercise.name,
     //     options: [data.done ? 'Set not done' : 'Set done', 'Edit', 'Delete', 'Cancel'],
@@ -50,10 +64,8 @@ class Calendar extends React.PureComponent<IProps, IState> {
     //   })
   }
 
-  populateItems = async (day: any) => {
-
-    // CALL LOAD HISTORY
-
+  populateItems = async (day: DayCalendar) => {
+    await this.props.loadHistory({currentTimestamp: day.timestamp})
     for (let i = -30; i < 30; i++) {
       const time = day.timestamp + i * 24 * 60 * 60 * 1000
       const strTime = this.timeToString(time)
@@ -182,7 +194,12 @@ const mapStateToProps = (rootState: ReduxState.RootState) => {
   }
 }
 
-export default connect(mapStateToProps, null)(Calendar)
+const mapDispatchToProps =
+  (dispatch: Dispatch<any>) => bindActionCreators({
+    loadHistory: HistoryActions.loadHistoryStart
+  }, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Calendar)
 
 const styles = StyleSheet.create({
   container: {

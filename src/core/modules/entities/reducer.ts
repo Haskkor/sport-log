@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux'
 import * as _ from 'lodash'
 import programs from './programs'
+import history from './history'
 
 const initialState = {}
 
 const subReducers = combineReducers({
-  programs
+  programs,
+  history
 })
 
 export default function reducer (state = initialState, action: any) { // fixme any

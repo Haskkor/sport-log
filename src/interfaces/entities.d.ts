@@ -34,5 +34,7 @@ declare namespace ServerEntity {
     days: ExercisesDay[]
   }
 
-  type History = { [key: number]: ExerciseSet[] }
+  type History = HistoryDate[]
+
+  type HistoryDate = { timestamp: number, exercises: ExerciseSet[] }
 }

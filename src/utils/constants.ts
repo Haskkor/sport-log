@@ -1,53 +1,59 @@
-export const fakeHistory = {
-  1521933904: [
-    {
-      "exercise": {
-        "equipment": "Dumbbell",
-        "name": "Alternate incline dumbbell curl",
-      },
-      "muscleGroup": "Biceps",
-      "recoveryTime": "00:00",
-      "sets": [
-        {
-          "reps": 8,
-          "weight": 75,
+export const fakeHistory = [
+  {
+    timestamp: 1521933904,
+    exercises: [
+      {
+        "exercise": {
+          "equipment": "Dumbbell",
+          "name": "Alternate incline dumbbell curl",
         },
-        {
-          "reps": 8,
-          "weight": 75,
+        "muscleGroup": "Biceps",
+        "recoveryTime": "00:00",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 75,
+          },
+          {
+            "reps": 8,
+            "weight": 75,
+          },
+          {
+            "reps": 8,
+            "weight": 75,
+          }
+        ]
+      }
+    ]
+  },
+  {
+    timestamp: 1522022400,
+    exercises: [
+      {
+        "exercise": {
+          "equipment": "Body",
+          "name": "Decline crunch",
         },
-        {
-          "reps": 8,
-          "weight": 75,
-        },
-      ],
-    }
-  ],
-  1522022400: [
-    {
-      "exercise": {
-        "equipment": "Body",
-        "name": "Decline crunch",
-      },
-      "muscleGroup": "Abdominals",
-      "recoveryTime": "00:00",
-      "sets": [
-        {
-          "reps": 8,
-          "weight": 75,
-        },
-        {
-          "reps": 8,
-          "weight": 75,
-        },
-        {
-          "reps": 8,
-          "weight": 75,
-        },
-      ],
-    },
-  ]
-}
+        "muscleGroup": "Abdominals",
+        "recoveryTime": "00:00",
+        "sets": [
+          {
+            "reps": 8,
+            "weight": 75,
+          },
+          {
+            "reps": 8,
+            "weight": 75,
+          },
+          {
+            "reps": 8,
+            "weight": 75,
+          }
+        ]
+      }
+    ]
+  }
+]
 
 export const fakeActiveProgram = {
   "active": true,
