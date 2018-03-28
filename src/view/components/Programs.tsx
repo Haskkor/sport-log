@@ -33,8 +33,8 @@ class Programs extends React.PureComponent<IProps, IState> {
   order: string[]
   animation: any
 
-  constructor() {
-    super()
+  constructor(props: IProps) {
+    super(props)
     this.state = {progressAnimation: new Animated.Value(0), showNoActiveProgramAlert: false}
     this.saveProgram = this.saveProgram.bind(this)
     this.showActionSheet = this.showActionSheet.bind(this)
@@ -68,6 +68,7 @@ class Programs extends React.PureComponent<IProps, IState> {
       active: false,
       name: name
     }
+    console.log(newProgram)
     this.props.setPrograms({program: newProgram})
   }
 
@@ -132,7 +133,7 @@ class Programs extends React.PureComponent<IProps, IState> {
             opacityView: [0],
             timing: {duration: 400, ease: easeQuadOut}
           }}>
-          {(state: { opacityView: number, height: number }) => {
+          {(state: any) => {
             return (
               <View style={{
                 flexDirection: 'row',

@@ -1,24 +1,9 @@
 declare namespace ServerEntity {
-  type Set = {
-    reps: number
-    weight: number
-  }
 
-  type ExerciseSet = {
-    muscleGroup: string
-    exercise: ExerciseMuscle
-    sets: Set[]
-    recoveryTime: string
-  }
-
-  type MuscleGroups = {
-    muscle: string
-    exercises: ExerciseMuscle[]
-  }
-
-  type ExerciseMuscle = {
+  type Program = {
     name: string
-    equipment: string
+    active: boolean
+    days: ExercisesDay[]
   }
 
   type ExercisesDay = {
@@ -28,10 +13,26 @@ declare namespace ServerEntity {
     isDayOff: boolean
   }
 
-  type Program = {
+  type ExerciseSet = {
+    muscleGroup: string
+    exercise: ExerciseMuscle
+    sets: Set[]
+    recoveryTime: string
+  }
+
+  type Set = {
+    reps: number
+    weight: number
+  }
+
+  type ExerciseMuscle = {
     name: string
-    active: boolean
-    days: ExercisesDay[]
+    equipment: string
+  }
+
+  type MuscleGroups = {
+    muscle: string
+    exercises: ExerciseMuscle[]
   }
 
   type History = HistoryDate[]

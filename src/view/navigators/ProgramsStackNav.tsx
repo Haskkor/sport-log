@@ -7,7 +7,7 @@ import {colors} from '../../utils/colors'
 import QuickLog from '../components/QuickLog'
 
 const ProgramsStackNav = StackNavigator({
-  Home: {
+  Programs: {
     screen: Programs,
     navigationOptions: ({navigation}: any): any => ({header: null})
   },

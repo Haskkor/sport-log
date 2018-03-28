@@ -1,14 +1,17 @@
 /// <reference path='../../interfaces/index.d.ts'/>
 import * as React from 'react'
-import {StatusBar, StyleSheet, AppRegistry, View} from 'react-native'
+import {StatusBar, StyleSheet, AppRegistry, View, AsyncStorage} from 'react-native'
 import MainDrawerNav from './MainDrawerNav'
 import 'regenerator-runtime/runtime'
 import {AppLoading, Font} from 'expo'
 import createStore from '../../core/create'
 import {Provider} from 'react-redux'
-import {ApolloClient, HttpLink, InMemoryCache} from 'apollo-client-preset'
+import {ApolloClient, InMemoryCache} from 'apollo-client-preset'
 import {ApolloProvider} from 'react-apollo'
-import Login from '../components/Login'
+import LoginRegister from '../components/LoginRegister'
+import config from '../../utils/config'
+import {createHttpLink} from 'apollo-link-http'
+import {setContext} from 'apollo-link-context'
 
 type IProps = {}
 
@@ -19,8 +22,25 @@ type IState = {
 
 export const store = createStore()
 
+const httpLink = createHttpLink({
+  uri: 'https://r948m3339n.lp.gql.zone/graphql'
+})
+
+const authLink = setContext(async (_, { headers }) => {
+  let token
+  await AsyncStorage.getItem(config.jwtToken).then((val) => {
+    token = val
+  })
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : ""
+    }
+  }
+})
+
 const client = new ApolloClient({
-  link: new HttpLink({uri: 'https://r948m3339n.lp.gql.zone/graphql'}),
+  link: authLink.concat(httpLink),
   cache: new InMemoryCache()
 })
 
@@ -29,6 +49,19 @@ class App extends React.PureComponent<IProps, IState> {
   constructor(props: IProps) {
     super(props)
     this.state = {isReady: false, isLoggedIn: false}
+    this.changeLoginState = this.changeLoginState.bind(this)
+  }
+
+  async componentWillMount() {
+    if (!config.shouldShowLoginScreen) {
+      let token
+      await AsyncStorage.getItem(config.jwtToken).then((val) => {
+        token = val
+      })
+      if (token) {
+        this.setState({isLoggedIn: true})
+      }
+    }
   }
 
   async loadFonts() {
@@ -46,6 +79,16 @@ class App extends React.PureComponent<IProps, IState> {
     })
   }
 
+  changeLoginState = async (state: boolean, token?: string) => {
+    if (state) {
+      await AsyncStorage.setItem(config.jwtToken, token)
+    } else {
+      await AsyncStorage.removeItem(config.jwtToken)
+      await client.resetStore()
+    }
+    this.setState({isLoggedIn: state})
+  }
+
   render() {
     return (
       <ApolloProvider client={client}>
@@ -56,7 +99,8 @@ class App extends React.PureComponent<IProps, IState> {
               <AppLoading
                 startAsync={this.loadFonts}
                 onFinish={() => this.setState({isReady: true})}/> :
-              (this.state.isLoggedIn ? <MainDrawerNav/> : <Login />)}
+              (this.state.isLoggedIn ? <MainDrawerNav changeLoginState={this.changeLoginState}/> :
+                <LoginRegister changeLoginState={this.changeLoginState}/>)}
           </View>
         </Provider>
       </ApolloProvider>

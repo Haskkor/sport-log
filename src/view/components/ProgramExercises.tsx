@@ -255,7 +255,7 @@ class ProgramExercises extends React.PureComponent<IProps, IState> {
     }
     this.props.navigation.dispatch(NavigationActions.reset({
       index: 0,
-      actions: [NavigationActions.navigate({routeName: 'Home'})]
+      actions: [NavigationActions.navigate({routeName: 'Programs'})]
     }))
   }
 
