@@ -193,7 +193,8 @@ class Home extends React.PureComponent<IProps, IState> {
                   </View>
                   <View style={[styles.viewElement, styles.shadow]}>
                     <View style={[styles.viewTextInput, {borderColor: state.colorFirstName}]}>
-                      <Icon name="person" size={grid.subHeader} color={state.colorFirstName} style={styles.iconTextInput}/>
+                      <Icon name="person" size={grid.subHeader} color={state.colorFirstName}
+                            style={styles.iconTextInput}/>
                       <TextInput
                         style={{color: state.colorFirstName, width: '80%', fontFamily: grid.font}}
                         value={this.state.firstName}
@@ -207,7 +208,8 @@ class Home extends React.PureComponent<IProps, IState> {
                   </View>
                   <View style={[styles.viewElement, styles.shadow]}>
                     <View style={[styles.viewTextInput, {borderColor: state.colorLastName}]}>
-                      <Icon name="person" size={grid.subHeader} color={state.colorLastName} style={styles.iconTextInput}/>
+                      <Icon name="person" size={grid.subHeader} color={state.colorLastName}
+                            style={styles.iconTextInput}/>
                       <TextInput
                         style={{color: state.colorLastName, width: '80%', fontFamily: grid.font}}
                         value={this.state.lastName}
@@ -221,7 +223,8 @@ class Home extends React.PureComponent<IProps, IState> {
                   </View>
                   <View style={[styles.viewElement, styles.shadow]}>
                     <View style={[styles.viewTextInput, {borderColor: state.colorUserName}]}>
-                      <Icon name="person-pin" size={grid.subHeader} color={state.colorUserName} style={styles.iconTextInput}/>
+                      <Icon name="person-pin" size={grid.subHeader} color={state.colorUserName}
+                            style={styles.iconTextInput}/>
                       <TextInput
                         style={{color: state.colorUserName, width: '80%', fontFamily: grid.font}}
                         value={this.state.userName}
@@ -325,7 +328,7 @@ export default compose(graphql(
 ), graphql(
   gql`
     mutation UpdateUser($email: String, $firstName: String, $lastName: String, $userName: String, $dob: String, $height: Int, $trainingYears: Int) {
-      updateUser(email: $email, firstName: $firstName, lastName: $lastName, userName: $userName, dob: $dob, height: $height, trainingYears: $trainingYears) {
+      updateUser(input: {email: $email, firstName: $firstName, lastName: $lastName, userName: $userName, dob: $dob, height: $height, trainingYears: $trainingYears}) {
         email
       }
     }

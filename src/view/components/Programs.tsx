@@ -68,7 +68,6 @@ class Programs extends React.PureComponent<IProps, IState> {
       active: false,
       name: name
     }
-    console.log(newProgram)
     this.props.setPrograms({program: newProgram})
   }
 

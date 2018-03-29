@@ -84,6 +84,7 @@ class LoginRegister extends React.PureComponent<IProps, IState> {
         this.props.login(email, password).then(({data}: any) => {
           this.props.changeLoginState(true, data.login.jwt)
         }).catch((e) => {
+          console.log(e)
           this.setState({showLoadingScreen: false})
           if (/email/i.test(e.message)) this.setState({emailError: true})
           if (/password/i.test(e.message)) this.setState({passwordError: true})
@@ -97,7 +98,6 @@ class LoginRegister extends React.PureComponent<IProps, IState> {
       (this.state.status === LoginRegisterStatus.register && this.state.confirmPassword.length === 0) ||
       this.state.emailError || this.state.passwordError || this.state.confirmError
     const {status} = this.state
-    console.log(this.state.showLoadingScreen)
     return (
       <KeyboardAwareScrollView contentContainerStyle={styles.container} scrollEnabled={false} extraHeight={90}>
         <StatusBar barStyle="light-content"/>
@@ -204,7 +204,7 @@ class LoginRegister extends React.PureComponent<IProps, IState> {
 export default compose(graphql(
   gql`
     mutation SignUp($email: String!, $password: String!) {
-      signup(email: $email, password: $password) {
+      signup(input: {email: $email, password: $password}) {
         _id
         email
         jwt
@@ -218,10 +218,8 @@ export default compose(graphql(
   }
 ), graphql(
   gql`
-    mutation LogIn($email: String!, $password: String!) {
-      login(email: $email, password: $password) {
-        _id
-        email
+    mutation Login($email: String!, $password: String!) {
+      login(input: {email: $email, password: $password}) {
         jwt
       }
     }
