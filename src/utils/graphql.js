@@ -181,7 +181,6 @@ const MutationType = new GraphQLObjectType({
         input: { type: new GraphQLNonNull(UserLoginType) }
       },
       resolve: async (root, {input}, { mongo }) => {
-        console.log('LOGIN')
         const email = input.email;
         const password = input.password;
         const Users = mongo.collection('users');
@@ -250,7 +249,16 @@ const MutationType = new GraphQLObjectType({
         input: { type: new GraphQLNonNull(ProgramCreateType) }
       },
       resolve: async (root, {input}, context) => {
-        console.log(input)
+        const programs = input.programs;
+        const Programs = mongo.collection('programs');
+        const currentUser = context.user;
+        if (!currentUser) {
+          throw new Error('No current user to assign the program');
+        }
+	program._userId = currentUser._id;
+        await Programs.insert(program);
+	// get id of created program ?
+        return user;
       }
     }
   }
