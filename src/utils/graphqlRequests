@@ -7,6 +7,26 @@ query currentuser {
 query programsUser {
   programsUser {
     name
+    _id
+    _userId
+    active
+    days {
+      day
+      isCollapsed
+      isDayOff
+      exercises {
+        muscleGroup
+	recoveryTime
+	exercise {
+	  name
+	  equipment
+	}
+	sets {
+	  reps
+	  weight
+	}
+      }
+    }
   }
 }
 
