@@ -1,103 +1,169 @@
 query currentuser {
-    currentUser {
-        email
-    }
+  currentUser {
+    email
+  }
+}
+
+query programsUser {
+  programsUser {
+    name
+  }
 }
 
 mutation login {
-    login(input: {email: "test@test.test", password: "test"}) {
-        _id
-        email
-        jwt
-    }
+  login(input: {email: "test@test.test", password: "test"}) {
+    _id
+    email
+    jwt
+  }
 }
 
 mutation signup {
-    signup(input: {email: "test@test.test", password: "test"}) {
-        _id
-        email
-        jwt
-    }
+  signup(input: {email: "test@test.test", password: "test"}) {
+    _id
+    email
+    jwt
+  }
 }
 
 mutation update {
-    updateUser(input: {firstName: "jean", lastName: "claude"}) {
-        _id
-        email
-        jwt
-    }
+  updateUser(input: {firstName: "jean", lastName: "claude"}) {
+    _id
+    email
+    jwt
+  }
 }
 
 mutation createProgram {
-    createProgram(input: {
-        active: false,
-            days: [{
-            day: "Tuesday",
-            exercises: [{
-                exercise: {
-                    equipment: "Cable",
-                    name: "Cable one arm tricep extension"
-                },
-                muscleGroup: "Triceps",
-                recoveryTime: "00:45",
-                sets: [{
-                    reps: 8,
-                    weight: 80
-                }, {
-                    reps: 9,
-                    weight: 85
-                }, {
-                    reps: 10,
-                    weight: 90
-                }, {
-                    reps: 15,
-                    weight: 95
-                }],
-            }, {
-                exercise: {
-                    equipment: "Machine",
-                    name: "Calf-machine shoulder shrug"
-                },
-                muscleGroup: "Traps",
-                recoveryTime: "00:00",
-                sets: [{
-                    reps: 8,
-                    weight: 75
-                }, {
-                    reps: 8,
-                    weight: 75
-                }, {
-                    reps: 8,
-                    weight: 75,
-                }],
-            }],
-            isCollapsed: false,
-            isDayOff: false,
+  createProgram(input: {
+  	active: false,
+    days: [{
+      day: "Tuesday",
+      exercises: [{
+        exercise: {
+          equipment: "Cable",
+          name: "Cable one arm tricep extension"
+        },
+        muscleGroup: "Triceps",
+        recoveryTime: "00:45",
+        sets: [{
+          reps: 8,
+          weight: 80
         }, {
-            day: "Thursday",
-            exercises: [{
-                exercise: {
-                    equipment: "Barbell",
-                    name: "Barbell shrug behind the back"
-                },
-                muscleGroup: "Traps",
-                recoveryTime: "00:00",
-                sets: [{
-                    reps: 8,
-                    weight: 75,
-                }, {
-                    reps: 8,
-                    weight: 75,
-                }, {
-                    reps: 8,
-                    weight: 75,
-                }],
-            }],
-            isCollapsed: false,
-            isDayOff: false,
+          reps: 9,
+          weight: 85
+        }, {
+          reps: 10,
+          weight: 90
+        }, {
+          reps: 15,
+          weight: 95
         }],
-            name: "Test",
-    }) {
-        name
-    }
+      }, {
+        exercise: {
+          equipment: "Machine",
+          name: "Calf-machine shoulder shrug"
+        },
+        muscleGroup: "Traps",
+        recoveryTime: "00:00",
+        sets: [{
+          reps: 8,
+          weight: 75
+        }, {
+          reps: 8,
+          weight: 75
+        }, {
+          reps: 8,
+          weight: 75,
+        }],
+      }],
+        isCollapsed: false,
+        isDayOff: false,
+    }, {
+      day: "Thursday",
+      exercises: [{
+        exercise: {
+          equipment: "Barbell",
+          name: "Barbell shrug behind the back"
+        },
+        muscleGroup: "Traps",
+        recoveryTime: "00:00",
+        sets: [{
+          reps: 8,
+          weight: 75,
+        }, {
+          reps: 8,
+          weight: 75,
+        }, {
+          reps: 8,
+          weight: 75,
+        }],
+      }],
+      isCollapsed: false,
+      isDayOff: false,
+    }],
+    name: "Test",
+  }) {
+    _id
+  }
+}
+
+mutation updateProgram {
+  updateProgram(input: {
+    _id: "5abedfcda715c30008a37dbb",
+  	active: true,
+    days: [{
+      day: "Tuesday",
+      exercises: [{
+        exercise: {
+          equipment: "Machine",
+          name: "Calf-machine shoulder shrug"
+        },
+        muscleGroup: "Traps",
+        recoveryTime: "00:00",
+        sets: [{
+          reps: 8,
+          weight: 75
+        }, {
+          reps: 8,
+          weight: 75
+        }, {
+          reps: 8,
+          weight: 75,
+        }],
+      }],
+        isCollapsed: false,
+        isDayOff: false,
+    }, {
+      day: "Thursday",
+      exercises: [{
+        exercise: {
+          equipment: "Barbell",
+          name: "Barbell shrug behind the back"
+        },
+        muscleGroup: "Traps",
+        recoveryTime: "00:00",
+        sets: [{
+          reps: 8,
+          weight: 75,
+        }, {
+          reps: 8,
+          weight: 75,
+        }, {
+          reps: 8,
+          weight: 75,
+        }],
+      }],
+      isCollapsed: false,
+      isDayOff: false,
+    }],
+    name: "Test Update",
+  }) {
+    _id
+    name
+  }
+}
+
+mutation deleteProgram {
+  deleteProgram(input: {_id: "5abee0363fb1830008f25a1e"})
 }

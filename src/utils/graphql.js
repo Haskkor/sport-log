@@ -63,34 +63,44 @@ const typeDefs = `
     height: Int
     trainingYears: Int
   }
-  input SetCreateType {
+  input SetInputType {
     reps: Int!
     weight: Int!
   }
-  input ExerciseMuscleCreateType {
+  input ExerciseMuscleInputType {
     name: String!
     equipment: String!
   }
-  input ExercisesSetCreateType {
+  input ExercisesSetInputType {
     muscleGroup: String!
     recoveryTime: String!
-    exercise: ExerciseMuscleCreateType!
-    sets: [SetCreateType]!
+    exercise: ExerciseMuscleInputType!
+    sets: [SetInputType]!
   }
-  input ExercisesDayCreateType {
+  input ExercisesDayInputType {
     day: String!
     isDayOff: Boolean!
 		isCollapsed: Boolean
-    exercises: [ExercisesSetCreateType]!
+    exercises: [ExercisesSetInputType]!
   }
   input ProgramCreateType {
     name: String!
     active: Boolean!
-    days: [ExercisesDayCreateType]!
+    days: [ExercisesDayInputType]!
+  }
+	input ProgramUpdateType {
+		_id: String!
+    name: String!
+    active: Boolean!
+    days: [ExercisesDayInputType]!
+  }
+	input ProgramDeleteType {
+		_id: String!
   }
 
   type Query {
     currentUser: UserType
+		programsUser: [ProgramType]
   }
 
   type Mutation {
@@ -98,6 +108,9 @@ const typeDefs = `
 		signup (input: UserSignUpType): UserType
 		updateUser (input: UserUpdateType): UserType
 		createProgram (input: ProgramCreateType): ProgramType
+		updateProgram (input: ProgramUpdateType): ProgramType
+		deleteProgram (input: ProgramDeleteType): Boolean
+
   }
 `;
 
@@ -105,7 +118,11 @@ const typeDefs = `
 
 const resolvers = {
     Query: {
-        currentUser: (root, args, context) => context.user
+        currentUser: (root, args, context) => context.user,
+        programsUser: async (root, args, context) => {
+            const programs = await context.mongo.collection('programs').find( { _userId: ObjectId(context.user._id) }).toArray()
+            return programs
+        }
     },
     Mutation: {
         login: async (root, { input }, { mongo }) => {
@@ -163,9 +180,23 @@ const resolvers = {
             }
             program._userId = currentUser._id;
             const result = await Programs.insert(program);
-
             const programResult = await Programs.findOne(result.ops._id);
             return programResult
+        },
+        updateProgram: async (root, {input}, context) => {
+            const program = input;
+            const Programs = context.mongo.collection('programs');
+            const programId = program._id;
+            delete program._id;
+            await Programs.update({ _id: ObjectId(programId) }, {$set: program});
+            const modifiedProgram = await Programs.findOne({ _id: ObjectId(programId) });
+            return modifiedProgram;
+        },
+        deleteProgram: async (root, {input}, context) => {
+            const programId = input._id;
+            const Programs = context.mongo.collection('programs');
+            await Programs.deleteOne( { "_id" : ObjectId(programId) } );
+            return true;
         }
     }
 };

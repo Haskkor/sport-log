@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39597ee5-2bd9-42b2-a212-3554592f4c8d" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/utils/graphqlRequests" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/utils/graphql.js" afterPath="$PROJECT_DIR$/src/utils/graphql.js" />
+      <change beforePath="$PROJECT_DIR$/src/utils/graphqlRequests" afterPath="$PROJECT_DIR$/src/utils/graphqlRequests" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,7 +21,7 @@
       <file leaf-file-name="config.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/utils/config.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
+            <state relative-caret-position="153">
               <caret line="9" column="21" lean-forward="false" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
               <folding />
             </state>
@@ -43,18 +43,9 @@
       <file leaf-file-name="Calendar.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
+            <state relative-caret-position="102">
               <caret line="17" column="1" lean-forward="false" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-              <folding>
-                <element signature="e#0#30#0" expanded="true" />
-                <marker date="1522128169045" expanded="true" signature="6465:7085" ph="{...}" />
-                <marker date="1522128169045" expanded="true" signature="6480:6497" ph="{...}" />
-                <marker date="1522128169045" expanded="true" signature="6507:6632" ph="{&quot;backgroundColor&quot;: 'white'...}" />
-                <marker date="1522128169045" expanded="true" signature="6647:6708" ph="{...}" />
-                <marker date="1522128169045" expanded="true" signature="6717:6870" ph="{&quot;backgroundColor&quot;: colors.lightAlternative...}" />
-                <marker date="1522128169045" expanded="true" signature="6883:6945" ph="{&quot;fontFamily&quot;: grid.fontMedium...}" />
-                <marker date="1522128169045" expanded="true" signature="7024:7083" ph="{&quot;fontFamily&quot;: grid.fontBold...}" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -69,20 +60,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="735">
-              <caret line="49" column="15" lean-forward="false" selection-start-line="49" selection-start-column="15" selection-end-line="49" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Programs.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/components/Programs.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
+            <state relative-caret-position="578">
               <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
@@ -94,8 +75,8 @@
       <file leaf-file-name="graphql.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/utils/graphql.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+            <state relative-caret-position="2380">
+              <caret line="253" column="0" lean-forward="true" selection-start-line="253" selection-start-column="0" selection-end-line="253" selection-end-column="0" />
               <folding>
                 <element signature="e#0#48#0" expanded="true" />
               </folding>
@@ -106,8 +87,8 @@
       <file leaf-file-name="graphqlRequests" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/utils/graphqlRequests">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+            <state relative-caret-position="2856">
+              <caret line="168" column="1" lean-forward="false" selection-start-line="168" selection-start-column="1" selection-end-line="168" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -164,8 +145,9 @@
         <option value="$PROJECT_DIR$/src/view/components/LoginRegister.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/Home.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/Programs.tsx" />
-        <option value="$PROJECT_DIR$/src/utils/graphql.js" />
         <option value="$PROJECT_DIR$/src/utils/graphqlRequests.js" />
+        <option value="$PROJECT_DIR$/src/utils/graphql.js" />
+        <option value="$PROJECT_DIR$/src/utils/graphqlRequests" />
       </list>
     </option>
   </component>
@@ -178,7 +160,7 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
     <option name="width" value="1280" />
     <option name="height" value="1417" />
@@ -201,7 +183,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -302,6 +283,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -359,18 +341,18 @@
       <workItem from="1521766437056" duration="6661000" />
       <workItem from="1521925982729" duration="9448000" />
       <workItem from="1521935744493" duration="230000" />
-      <workItem from="1522441249981" duration="6835000" />
+      <workItem from="1522441249981" duration="6933000" />
+      <workItem from="1522476475472" duration="56000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="124446000" />
+    <option name="totallyTimeSpent" value="124600000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="-8" width="1874" height="1096" extended-state="7" />
+    <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15877287" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -386,6 +368,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -450,7 +433,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="22" lean-forward="false" selection-start-line="0" selection-start-column="22" selection-end-line="0" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -493,7 +475,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="29" lean-forward="false" selection-start-line="3" selection-start-column="29" selection-end-line="3" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -501,7 +482,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="495">
           <caret line="134" column="6" lean-forward="false" selection-start-line="134" selection-start-column="6" selection-end-line="134" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -509,7 +489,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="27" lean-forward="false" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -517,7 +496,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" column="13" lean-forward="false" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -539,7 +517,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
           <caret line="22" column="29" lean-forward="false" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -587,7 +564,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/config.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state relative-caret-position="153">
           <caret line="9" column="21" lean-forward="false" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
           <folding />
         </state>
@@ -605,7 +582,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="11" column="34" lean-forward="false" selection-start-line="11" selection-start-column="34" selection-end-line="11" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -613,7 +589,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="473">
           <caret line="257" column="63" lean-forward="false" selection-start-line="257" selection-start-column="63" selection-end-line="257" selection-end-column="63" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -621,24 +596,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="18" column="2" lean-forward="false" selection-start-line="18" selection-start-column="2" selection-end-line="18" selection-end-column="2" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
+        <state relative-caret-position="102">
           <caret line="17" column="1" lean-forward="false" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-            <marker date="1522128169045" expanded="true" signature="6465:7085" ph="{...}" />
-            <marker date="1522128169045" expanded="true" signature="6480:6497" ph="{...}" />
-            <marker date="1522128169045" expanded="true" signature="6507:6632" ph="{&quot;backgroundColor&quot;: 'white'...}" />
-            <marker date="1522128169045" expanded="true" signature="6647:6708" ph="{...}" />
-            <marker date="1522128169045" expanded="true" signature="6717:6870" ph="{&quot;backgroundColor&quot;: colors.lightAlternative...}" />
-            <marker date="1522128169045" expanded="true" signature="6883:6945" ph="{&quot;fontFamily&quot;: grid.fontMedium...}" />
-            <marker date="1522128169045" expanded="true" signature="7024:7083" ph="{&quot;fontFamily&quot;: grid.fontBold...}" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -653,7 +618,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="6" lean-forward="false" selection-start-line="0" selection-start-column="6" selection-end-line="0" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -661,9 +625,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#30#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -671,9 +632,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
           <caret line="51" column="8" lean-forward="false" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -699,7 +657,6 @@
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="85">
             <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="51" />
-            <folding />
           </first_editor>
           <second_editor />
         </state>
@@ -731,7 +688,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/Programs.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
+        <state relative-caret-position="578">
           <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
@@ -741,8 +698,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/graphql.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="21" lean-forward="true" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
+        <state relative-caret-position="2380">
+          <caret line="253" column="0" lean-forward="true" selection-start-line="253" selection-start-column="0" selection-end-line="253" selection-end-column="0" />
           <folding>
             <element signature="e#0#48#0" expanded="true" />
           </folding>
@@ -751,8 +708,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/graphqlRequests">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+        <state relative-caret-position="2856">
+          <caret line="168" column="1" lean-forward="false" selection-start-line="168" selection-start-column="1" selection-end-line="168" selection-end-column="1" />
           <folding />
         </state>
       </provider>
