@@ -1,0 +1,103 @@
+query currentuser {
+    currentUser {
+        email
+    }
+}
+
+mutation login {
+    login(input: {email: "test@test.test", password: "test"}) {
+        _id
+        email
+        jwt
+    }
+}
+
+mutation signup {
+    signup(input: {email: "test@test.test", password: "test"}) {
+        _id
+        email
+        jwt
+    }
+}
+
+mutation update {
+    updateUser(input: {firstName: "jean", lastName: "claude"}) {
+        _id
+        email
+        jwt
+    }
+}
+
+mutation createProgram {
+    createProgram(input: {
+        active: false,
+            days: [{
+            day: "Tuesday",
+            exercises: [{
+                exercise: {
+                    equipment: "Cable",
+                    name: "Cable one arm tricep extension"
+                },
+                muscleGroup: "Triceps",
+                recoveryTime: "00:45",
+                sets: [{
+                    reps: 8,
+                    weight: 80
+                }, {
+                    reps: 9,
+                    weight: 85
+                }, {
+                    reps: 10,
+                    weight: 90
+                }, {
+                    reps: 15,
+                    weight: 95
+                }],
+            }, {
+                exercise: {
+                    equipment: "Machine",
+                    name: "Calf-machine shoulder shrug"
+                },
+                muscleGroup: "Traps",
+                recoveryTime: "00:00",
+                sets: [{
+                    reps: 8,
+                    weight: 75
+                }, {
+                    reps: 8,
+                    weight: 75
+                }, {
+                    reps: 8,
+                    weight: 75,
+                }],
+            }],
+            isCollapsed: false,
+            isDayOff: false,
+        }, {
+            day: "Thursday",
+            exercises: [{
+                exercise: {
+                    equipment: "Barbell",
+                    name: "Barbell shrug behind the back"
+                },
+                muscleGroup: "Traps",
+                recoveryTime: "00:00",
+                sets: [{
+                    reps: 8,
+                    weight: 75,
+                }, {
+                    reps: 8,
+                    weight: 75,
+                }, {
+                    reps: 8,
+                    weight: 75,
+                }],
+            }],
+            isCollapsed: false,
+            isDayOff: false,
+        }],
+            name: "Test",
+    }) {
+        name
+    }
+}
