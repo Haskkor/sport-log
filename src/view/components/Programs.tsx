@@ -25,9 +25,10 @@ type IProps = {
   programs: ServerEntity.Program[]
   setPrograms: typeof ProgramsActions.setPrograms
   editProgram: typeof ProgramsActions.editProgram
-  deleteProgram: typeof ProgramsActions.deleteProgram
+  deleteProgramRdx: typeof ProgramsActions.deleteProgram
   data: any
   createProgram: (program: ServerEntity.Program) => Promise<ApolloQueryResult<{}>>
+  deleteProgram: (_id: {_id: string}) => Promise<ApolloQueryResult<{}>>
 }
 
 type IState = {
@@ -100,7 +101,7 @@ class Programs extends React.PureComponent<IProps, IState> {
   }
 
   showActionSheet = (data: ServerEntity.Program) => {
-    const {programs, editProgram, deleteProgram} = this.props
+    const {programs, editProgram, deleteProgramRdx, deleteProgram} = this.props
     ActionSheetIOS.showActionSheetWithOptions({
         title: data.name,
         options: [data.active ? 'Set inactive' : 'Set active', 'Edit', 'Delete', 'Cancel'],
@@ -122,7 +123,10 @@ class Programs extends React.PureComponent<IProps, IState> {
             editedIndex: indexRow
           })
         } else if (buttonIndex === 2) {
-          deleteProgram({index: indexRow})
+          deleteProgram({_id: data._id}).then(({data}: any) => {}).catch((e: any) => {
+            console.log('Delete program failed', e)
+          })
+          deleteProgramRdx({index: indexRow})
         }
       })
   }
@@ -260,6 +264,19 @@ const ProgramsGraphQl = compose(graphql(
       })
     }),
   },
+), graphql(
+  gql`
+    mutation DeleteProgram($_id: ProgramDeleteType) {
+      deleteProgram(input: $_id)
+    }
+  `,
+  {
+    props: ({mutate}) => ({
+      deleteProgram: (_id: {_id: string}) => mutate({
+        variables: {_id}
+      })
+    }),
+  },
 ))(Programs)
 
 const mapStateToProps = (rootState: ReduxState.RootState) => {
@@ -272,7 +289,7 @@ const mapDispatchToProps =
   (dispatch: Dispatch<any>) => bindActionCreators({
     setPrograms: ProgramsActions.setPrograms,
     editProgram: ProgramsActions.editProgram,
-    deleteProgram: ProgramsActions.deleteProgram
+    deleteProgramRdx: ProgramsActions.deleteProgram
   }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProgramsGraphQl)

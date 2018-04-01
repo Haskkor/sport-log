@@ -110,7 +110,6 @@ const typeDefs = `
 		createProgram (input: ProgramCreateType): ProgramType
 		updateProgram (input: ProgramUpdateType): ProgramType
 		deleteProgram (input: ProgramDeleteType): Boolean
-
   }
 `;
 
@@ -196,7 +195,7 @@ const resolvers = {
         deleteProgram: async (root, {input}, context) => {
             const programId = input._id;
             const Programs = context.mongo.collection('programs');
-            await Programs.deleteOne( { "_id" : ObjectId(programId) } );
+            await Programs.deleteOne( { _id : ObjectId(programId) } );
             return true;
         }
     }

@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39597ee5-2bd9-42b2-a212-3554592f4c8d" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/view/components/LoadingScreen.tsx" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/core/modules/entities/programs.ts" afterPath="$PROJECT_DIR$/src/core/modules/entities/programs.ts" />
       <change beforePath="$PROJECT_DIR$/src/utils/graphql.js" afterPath="$PROJECT_DIR$/src/utils/graphql.js" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/Home.tsx" afterPath="$PROJECT_DIR$/src/view/components/Home.tsx" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/ProgramExercises.tsx" afterPath="$PROJECT_DIR$/src/view/components/ProgramExercises.tsx" />
       <change beforePath="$PROJECT_DIR$/src/view/components/Programs.tsx" afterPath="$PROJECT_DIR$/src/view/components/Programs.tsx" />
-      <change beforePath="$PROJECT_DIR$/src/view/navigators/App.tsx" afterPath="$PROJECT_DIR$/src/view/navigators/App.tsx" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,7 +21,7 @@
       <file leaf-file-name="Calendar.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
+            <state relative-caret-position="0">
               <caret line="17" column="1" lean-forward="false" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
               <folding />
             </state>
@@ -45,22 +40,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Home.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Home.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/components/Home.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5049">
+            <state relative-caret-position="-1343">
               <caret line="1" column="37" lean-forward="false" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Programs.tsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Programs.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view/components/Programs.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="34" lean-forward="false" selection-start-line="1" selection-start-column="34" selection-end-line="1" selection-end-column="34" />
-              <folding />
+            <state relative-caret-position="2125">
+              <caret line="125" column="39" lean-forward="false" selection-start-line="125" selection-start-column="39" selection-end-line="125" selection-end-column="39" />
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -80,6 +77,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17">
               <caret line="1" column="8" lean-forward="false" selection-start-line="1" selection-start-column="8" selection-end-line="1" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="graphqlRequests" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/utils/graphqlRequests">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="805">
+              <caret line="186" column="0" lean-forward="false" selection-start-line="186" selection-start-column="0" selection-end-line="188" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -139,11 +146,11 @@
         <option value="$PROJECT_DIR$/src/utils/graphqlRequests" />
         <option value="$PROJECT_DIR$/src/view/navigators/App.tsx" />
         <option value="$PROJECT_DIR$/src/core/modules/entities/programs.ts" />
-        <option value="$PROJECT_DIR$/src/utils/graphql.js" />
         <option value="$PROJECT_DIR$/src/view/components/LoadingScreen.tsx" />
-        <option value="$PROJECT_DIR$/src/view/components/Programs.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/ProgramExercises.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/Home.tsx" />
+        <option value="$PROJECT_DIR$/src/view/components/Programs.tsx" />
+        <option value="$PROJECT_DIR$/src/utils/graphql.js" />
       </list>
     </option>
   </component>
@@ -156,7 +163,7 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="55" />
     <option name="width" value="943" />
     <option name="height" value="1087" />
@@ -346,15 +353,15 @@
       <workItem from="1522441249981" duration="6933000" />
       <workItem from="1522476475472" duration="751000" />
       <workItem from="1522557562631" duration="8178000" />
-      <workItem from="1522613335202" duration="4453000" />
+      <workItem from="1522613335202" duration="7045000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="137926000" />
+    <option name="totallyTimeSpent" value="140518000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
+    <frame x="54" y="-8" width="1874" height="1096" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -623,7 +630,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
+        <state relative-caret-position="0">
           <caret line="17" column="1" lean-forward="false" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
           <folding />
         </state>
@@ -633,14 +640,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="8" lean-forward="false" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/graphqlRequests">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -687,24 +686,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/graphql.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="161" column="38" lean-forward="true" selection-start-line="161" selection-start-column="38" selection-end-line="161" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/components/Programs.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="34" lean-forward="false" selection-start-line="1" selection-start-column="34" selection-end-line="1" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/ProgramExercises.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -723,9 +704,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/Home.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5049">
+        <state relative-caret-position="-1343">
           <caret line="1" column="37" lean-forward="false" selection-start-line="1" selection-start-column="37" selection-end-line="1" selection-end-column="37" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/graphqlRequests">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="805">
+          <caret line="186" column="0" lean-forward="false" selection-start-line="186" selection-start-column="0" selection-end-line="188" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/graphql.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="901">
+          <caret line="253" column="0" lean-forward="true" selection-start-line="253" selection-start-column="0" selection-end-line="253" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/components/Programs.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2125">
+          <caret line="125" column="39" lean-forward="false" selection-start-line="125" selection-start-column="39" selection-end-line="125" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
