@@ -180,8 +180,9 @@ const resolvers = {
             }
             program._userId = currentUser._id;
             const result = await Programs.insert(program);
-            const programResult = await Programs.findOne(result.ops._id);
-            return programResult
+            const _id = result.ops[0]._id;
+            const programResult = await Programs.findOne(_id);
+            return programResult;
         },
         updateProgram: async (root, {input}, context) => {
             const program = input;

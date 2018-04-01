@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {View, StyleSheet, StatusBar, Image, TextInput, TouchableOpacity, Text} from 'react-native'
+import {View, StyleSheet, StatusBar, TextInput, TouchableOpacity, Text} from 'react-native'
 import {colors} from '../../utils/colors'
 import {HeaderStatus} from '../../core/enums'
 import Header from './Header'
@@ -13,6 +13,7 @@ import * as tinyTime from 'tinytime'
 import {ApolloQueryResult} from 'apollo-client'
 import Animate from 'react-move/Animate'
 import {easeLinear} from 'd3-ease'
+import LoadingScreen from './LoadingScreen'
 
 type IProps = {
   navigation: any
@@ -309,9 +310,7 @@ class Home extends React.PureComponent<IProps, IState> {
           </View>
         </KeyboardAwareScrollView>
         {this.state.showLoadingScreen &&
-        <View style={styles.viewLoader}>
-          <Image source={require('../../../assets/images/loader.gif')} style={styles.imageLoader}/>
-        </View>}
+        <LoadingScreen/>}
       </View>
     )
   }
@@ -353,21 +352,6 @@ export default compose(graphql(
 const styles = StyleSheet.create({
   container: {
     flex: 1
-  },
-  imageLoader: {
-    width: 50,
-    height: 50
-  },
-  viewLoader: {
-    position: 'absolute',
-    top: 70,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: colors.black,
-    opacity: grid.highOpacity
   },
   viewElements: {
     backgroundColor: colors.lightAlternative,

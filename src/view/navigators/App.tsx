@@ -3,7 +3,7 @@ import * as React from 'react'
 import {StatusBar, StyleSheet, AppRegistry, View, AsyncStorage} from 'react-native'
 import MainDrawerNav from './MainDrawerNav'
 import 'regenerator-runtime/runtime'
-import {AppLoading, Font} from 'expo'
+import {AppLoading, Asset, Font} from 'expo'
 import createStore from '../../core/create'
 import {Provider} from 'react-redux'
 import {ApolloClient, InMemoryCache} from 'apollo-client-preset'
@@ -64,7 +64,7 @@ class App extends React.PureComponent<IProps, IState> {
     }
   }
 
-  async loadFonts() {
+  async loadAssets() {
     await Font.loadAsync({
       'Montserrat-Regular': require('../../../assets/fonts/Montserrat-Regular.ttf'),
       'Montserrat-Bold': require('../../../assets/fonts/Montserrat-Bold.ttf'),
@@ -77,6 +77,9 @@ class App extends React.PureComponent<IProps, IState> {
       'RobotoMono-Medium': require('../../../assets/fonts/RobotoMono-Medium.ttf'),
       'courier': require('../../../assets/fonts/courier.ttf')
     })
+    await Asset.loadAsync([
+      require('../../../assets/images/loader.gif')
+    ])
   }
 
   changeLoginState = async (state: boolean, token?: string) => {
@@ -97,7 +100,7 @@ class App extends React.PureComponent<IProps, IState> {
             <StatusBar barStyle="light-content"/>
             {!this.state.isReady ?
               <AppLoading
-                startAsync={this.loadFonts}
+                startAsync={this.loadAssets}
                 onFinish={() => this.setState({isReady: true})}/> :
               (this.state.isLoggedIn ? <MainDrawerNav changeLoginState={this.changeLoginState}/> :
                 <LoginRegister changeLoginState={this.changeLoginState}/>)}

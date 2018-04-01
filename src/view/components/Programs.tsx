@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {ActionSheetIOS, Animated, Image, StatusBar, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {ActionSheetIOS, Animated, StatusBar, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import Header from './Header'
 import * as SortableListView from 'react-native-sortable-listview'
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -18,6 +18,7 @@ import Animate from 'react-move/Animate'
 import {easeQuadOut} from 'd3-ease'
 import {compose, graphql} from 'react-apollo'
 import gql from 'graphql-tag'
+import LoadingScreen from './LoadingScreen'
 
 type IProps = {
   navigation: any
@@ -91,12 +92,11 @@ class Programs extends React.PureComponent<IProps, IState> {
     this.setState({showLoadingScreen: true})
     await this.props.createProgram(newProgram).then(({data}: any) => {
       newProgram._id = data.createProgram._id
-      this.setState({showLoadingScreen: false})
     }).catch((e: any) => {
-      this.setState({showLoadingScreen: false})
       console.log('Create program failed', e)
     })
     this.props.setPrograms({programs: [newProgram]})
+    this.setState({showLoadingScreen: false})
   }
 
   showActionSheet = (data: ServerEntity.Program) => {
@@ -211,9 +211,7 @@ class Programs extends React.PureComponent<IProps, IState> {
           </View>
         </View>}
         {this.state.showLoadingScreen &&
-        <View style={styles.viewLoader}>
-          <Image source={require('../../../assets/images/loader.gif')} style={styles.imageLoader}/>
-        </View>}
+        <LoadingScreen/>}
       </View>
     )
   }
@@ -317,20 +315,5 @@ const styles = StyleSheet.create({
   animation: {
     width: grid.unit * 3,
     height: grid.unit * 3
-  },
-  imageLoader: {
-    width: 50,
-    height: 50
-  },
-  viewLoader: {
-    position: 'absolute',
-    top: 70,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: colors.black,
-    opacity: grid.highOpacity
   }
 })

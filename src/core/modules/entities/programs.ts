@@ -33,7 +33,7 @@ export default handleActions({
   [SET]: (state: ReduxState.Programs, action: Action<SetProgramsPayload>) => {
     let programsCopy = state.slice()
     action.payload.programs.map((p: ServerEntity.Program) => {
-      programsCopy.push(p)
+      if (!programsCopy.find((pg: ServerEntity.Program) => pg._id === p._id)) programsCopy.push(p)
     })
     return programsCopy
   }

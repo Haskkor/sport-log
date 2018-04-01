@@ -1,8 +1,5 @@
 import * as React from 'react'
-import {
-  ActionSheetIOS, Dimensions, Image, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity,
-  View
-} from 'react-native'
+import {ActionSheetIOS, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import Collapsible from 'react-native-collapsible'
 import exercises from '../../db/exercises'
@@ -12,6 +9,8 @@ import {colors} from '../../utils/colors'
 import {grid} from '../../utils/grid'
 import {HeaderStatus} from '../../core/enums'
 import Header from './Header'
+import {NavigationActions} from 'react-navigation'
+import LoadingScreen from './LoadingScreen'
 
 type IProps = {
   navigation: any
@@ -259,11 +258,10 @@ class ProgramExercises extends React.PureComponent<IProps, IState> {
       await params.saveProgram(this.state.exercisesDay, params.name)
     }
     this.setState({showLoadingScreen: false})
-    this.props.navigation.navigate('Programs')
-    // this.props.navigation.dispatch(NavigationActions.reset({
-    //   index: 0,
-    //   actions: [NavigationActions.navigate({routeName: 'Programs'})]
-    // }))
+    this.props.navigation.dispatch(NavigationActions.reset({
+      index: 0,
+      actions: [NavigationActions.navigate({routeName: 'Programs'})]
+    }))
   }
 
   render() {
@@ -294,9 +292,7 @@ class ProgramExercises extends React.PureComponent<IProps, IState> {
           </TouchableOpacity>
         </View>
         {this.state.showLoadingScreen &&
-        <View style={styles.viewLoader}>
-          <Image source={require('../../../assets/images/loader.gif')} style={styles.imageLoader}/>
-        </View>}
+        <LoadingScreen/>}
       </ScrollView>
     )
   }
@@ -394,21 +390,6 @@ const styles = StyleSheet.create({
   },
   textDisabled: {
     color: colors.textDisabled
-  },
-  imageLoader: {
-    width: 50,
-    height: 50
-  },
-  viewLoader: {
-    position: 'absolute',
-    top: 70,
-    left: 0,
-    width: '100%',
-    height: Dimensions.get('window').height,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: colors.black,
-    opacity: grid.highOpacity
   }
 })
 
