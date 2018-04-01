@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {ActionSheetIOS, Animated, StatusBar, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {ActionSheetIOS, Animated, Image, StatusBar, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import Header from './Header'
 import * as SortableListView from 'react-native-sortable-listview'
 import Icon from 'react-native-vector-icons/MaterialIcons'
@@ -13,8 +13,11 @@ import * as ProgramsActions from '../../core/modules/entities/programs'
 import RowSortableList from './RowSortableList'
 import RowProgramsList from './RowProgramsList'
 import * as _ from 'lodash'
+import {ApolloQueryResult} from 'apollo-client'
 import Animate from 'react-move/Animate'
 import {easeQuadOut} from 'd3-ease'
+import {compose, graphql} from 'react-apollo'
+import gql from 'graphql-tag'
 
 type IProps = {
   navigation: any
@@ -22,27 +25,44 @@ type IProps = {
   setPrograms: typeof ProgramsActions.setPrograms
   editProgram: typeof ProgramsActions.editProgram
   deleteProgram: typeof ProgramsActions.deleteProgram
+  data: any
+  createProgram: (program: ServerEntity.Program) => Promise<ApolloQueryResult<{}>>
 }
 
 type IState = {
   progressAnimation: Animated.Value
   showNoActiveProgramAlert: boolean
+  showLoadingScreen: boolean
 }
 
 class Programs extends React.PureComponent<IProps, IState> {
   order: string[]
   animation: any
+  programsLoaded: boolean = false
 
   constructor(props: IProps) {
     super(props)
-    this.state = {progressAnimation: new Animated.Value(0), showNoActiveProgramAlert: false}
+    this.state = {
+      progressAnimation: new Animated.Value(0),
+      showNoActiveProgramAlert: false,
+      showLoadingScreen: true
+    }
     this.saveProgram = this.saveProgram.bind(this)
     this.showActionSheet = this.showActionSheet.bind(this)
     this.showAlertNoActiveProgram = this.showAlertNoActiveProgram.bind(this)
   }
 
+  async componentWillReceiveProps(props: IProps) {
+    if (!this.programsLoaded && props.data.programsUser) {
+      this.programsLoaded = true
+      const {programsUser} = props.data
+      await this.props.setPrograms({programs: programsUser})
+      this.order = Object.keys(this.props.programs)
+      this.setState({showLoadingScreen: false})
+    }
+  }
+
   componentDidMount() {
-    this.order = Object.keys(this.props.programs)
     if (this.props.programs.length === 0) this.animation.play()
     this.showAlertNoActiveProgram(this.props)
   }
@@ -62,13 +82,21 @@ class Programs extends React.PureComponent<IProps, IState> {
     this.setState({showNoActiveProgramAlert: !programActive})
   }
 
-  saveProgram = (program: ServerEntity.ExercisesDay[], name: string) => {
-    const newProgram: ServerEntity.Program = {
+  saveProgram = async (program: ServerEntity.ExercisesDay[], name: string) => {
+    let newProgram: ServerEntity.Program = {
       days: program,
       active: false,
       name: name
     }
-    this.props.setPrograms({program: newProgram})
+    this.setState({showLoadingScreen: true})
+    await this.props.createProgram(newProgram).then(({data}: any) => {
+      newProgram._id = data.createProgram._id
+      this.setState({showLoadingScreen: false})
+    }).catch((e: any) => {
+      this.setState({showLoadingScreen: false})
+      console.log('Create program failed', e)
+    })
+    this.props.setPrograms({programs: [newProgram]})
   }
 
   showActionSheet = (data: ServerEntity.Program) => {
@@ -182,10 +210,59 @@ class Programs extends React.PureComponent<IProps, IState> {
             </TouchableOpacity>
           </View>
         </View>}
+        {this.state.showLoadingScreen &&
+        <View style={styles.viewLoader}>
+          <Image source={require('../../../assets/images/loader.gif')} style={styles.imageLoader}/>
+        </View>}
       </View>
     )
   }
 }
+
+const ProgramsGraphQl = compose(graphql(
+  gql`
+    query ProgramsUser {
+      programsUser {
+        name
+        _id
+        _userId
+        active
+        days {
+          day
+          isCollapsed
+          isDayOff
+          exercises {
+            muscleGroup
+      recoveryTime
+      exercise {
+        name
+        equipment
+      }
+      sets {
+        reps
+        weight
+      }
+          }
+        }
+      }
+    }
+  `
+), graphql(
+  gql`
+    mutation CreateProgram($program: ProgramCreateType) {
+      createProgram(input: $program) {
+        _id
+      }
+    }
+  `,
+  {
+    props: ({mutate}) => ({
+      createProgram: (program: ServerEntity.Program) => mutate({
+        variables: {program}
+      })
+    }),
+  },
+))(Programs)
 
 const mapStateToProps = (rootState: ReduxState.RootState) => {
   return {
@@ -200,7 +277,7 @@ const mapDispatchToProps =
     deleteProgram: ProgramsActions.deleteProgram
   }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(Programs)
+export default connect(mapStateToProps, mapDispatchToProps)(ProgramsGraphQl)
 
 const styles = StyleSheet.create({
   container: {
@@ -240,5 +317,20 @@ const styles = StyleSheet.create({
   animation: {
     width: grid.unit * 3,
     height: grid.unit * 3
+  },
+  imageLoader: {
+    width: 50,
+    height: 50
+  },
+  viewLoader: {
+    position: 'absolute',
+    top: 70,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.black,
+    opacity: grid.highOpacity
   }
 })

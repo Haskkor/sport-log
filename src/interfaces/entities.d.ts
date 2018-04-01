@@ -3,6 +3,7 @@ declare namespace ServerEntity {
   type Program = {
     name: string
     active: boolean
+    _id?: string
     days: ExercisesDay[]
   }
 

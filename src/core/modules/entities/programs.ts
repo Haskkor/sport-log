@@ -5,7 +5,7 @@ export const DELETE = 'PL/PROGRAMS/DELETE'
 export const EDIT = 'PL/PROGRAMS/EDIT'
 
 export type SetProgramsPayload = {
-  program: ServerEntity.Program
+  programs: ServerEntity.Program[]
 }
 
 export type DeleteProgramPayload = {
@@ -32,7 +32,9 @@ export default handleActions({
   },
   [SET]: (state: ReduxState.Programs, action: Action<SetProgramsPayload>) => {
     let programsCopy = state.slice()
-    programsCopy.push(action.payload.program)
+    action.payload.programs.map((p: ServerEntity.Program) => {
+      programsCopy.push(p)
+    })
     return programsCopy
   }
 }, initialState)
