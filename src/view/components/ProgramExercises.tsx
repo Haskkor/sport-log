@@ -246,14 +246,15 @@ class ProgramExercises extends React.PureComponent<IProps, IState> {
     this.setState({showLoadingScreen: true})
     const {params} = this.props.navigation.state
     if (params.editedProgram) {
-      await params.saveProgram({
-        index: params.editedIndex,
-        program: {
+      await params.saveProgram(
+        params.editedIndex,
+        {
           name: params.name,
           active: params.editedProgram.active,
-          days: this.state.exercisesDay
+          days: this.state.exercisesDay,
+          _id: params.editedProgram._id
         }
-      })
+      )
     } else {
       await params.saveProgram(this.state.exercisesDay, params.name)
     }

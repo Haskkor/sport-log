@@ -19,6 +19,7 @@ import {easeQuadOut} from 'd3-ease'
 import {compose, graphql} from 'react-apollo'
 import gql from 'graphql-tag'
 import LoadingScreen from './LoadingScreen'
+import {createOmitTypenameLink} from '../../utils/graphQlHelper'
 
 type IProps = {
   navigation: any
@@ -28,7 +29,8 @@ type IProps = {
   deleteProgramRdx: typeof ProgramsActions.deleteProgram
   data: any
   createProgram: (program: ServerEntity.Program) => Promise<ApolloQueryResult<{}>>
-  deleteProgram: (_id: {_id: string}) => Promise<ApolloQueryResult<{}>>
+  deleteProgram: (_id: { _id: string }) => Promise<ApolloQueryResult<{}>>
+  updateProgram: (program: ServerEntity.Program) => Promise<ApolloQueryResult<{}>>
 }
 
 type IState = {
@@ -50,6 +52,7 @@ class Programs extends React.PureComponent<IProps, IState> {
       showLoadingScreen: true
     }
     this.saveProgram = this.saveProgram.bind(this)
+    this.editProgram = this.editProgram.bind(this)
     this.showActionSheet = this.showActionSheet.bind(this)
     this.showAlertNoActiveProgram = this.showAlertNoActiveProgram.bind(this)
   }
@@ -70,7 +73,6 @@ class Programs extends React.PureComponent<IProps, IState> {
   }
 
   componentDidUpdate() {
-    this.order = Object.keys(this.props.programs)
     if (this.props.programs.length === 0) this.animation.play()
   }
 
@@ -100,8 +102,23 @@ class Programs extends React.PureComponent<IProps, IState> {
     this.setState({showLoadingScreen: false})
   }
 
+  editProgram = async (index: number, program: ServerEntity.Program) => {
+    this.props.editProgram({index, program})
+    const editedProgram: ServerEntity.Program = {
+      days: createOmitTypenameLink(program.days),
+      _id: program._id,
+      active: program.active,
+      name: program.name
+    }
+    this.props.updateProgram(editedProgram)
+      .then(({data}: any) => {
+      }).catch((e: any) => {
+      console.log('Update program failed', e)
+    })
+  }
+
   showActionSheet = (data: ServerEntity.Program) => {
-    const {programs, editProgram, deleteProgramRdx, deleteProgram} = this.props
+    const {programs, editProgram, deleteProgramRdx, deleteProgram, updateProgram} = this.props
     ActionSheetIOS.showActionSheetWithOptions({
         title: data.name,
         options: [data.active ? 'Set inactive' : 'Set active', 'Edit', 'Delete', 'Cancel'],
@@ -113,17 +130,35 @@ class Programs extends React.PureComponent<IProps, IState> {
           return row === data
         })
         if (buttonIndex === 0) {
+          const indexRowAct = _.findIndex(programs, (row: ServerEntity.Program) => {
+            return row.active
+          })
           const pgAct = programs.find((pg: ServerEntity.Program) => pg.active)
-          if (pgAct) editProgram({index: indexRow, program: {active: false, days: pgAct.days, name: pgAct.name}})
-          editProgram({index: indexRow, program: {active: !data.active, days: data.days, name: data.name}})
+          if (pgAct) {
+            console.log(pgAct)
+            editProgram({index: indexRowAct, program: {active: false, days: pgAct.days, name: pgAct.name, _id: pgAct._id}})
+            updateProgram({active: false, days: createOmitTypenameLink(pgAct.days), name: pgAct.name, _id: pgAct._id})
+              .then(({data}: any) => {
+              }).catch((e: any) => {
+              console.log('Update program failed', e)
+            })
+          }
+          editProgram({index: indexRow, program: {active: !data.active, days: data.days, name: data.name, _id: data._id}})
+          console.log(data)
+          updateProgram({active: !data.active, days: createOmitTypenameLink(data.days), name: data.name, _id: data._id})
+            .then(({data}: any) => {
+            }).catch((e: any) => {
+            console.log('Update program failed', e)
+          })
         } else if (buttonIndex === 1) {
           this.props.navigation.navigate('ProgramNameDays', {
-            saveProgram: editProgram,
+            saveProgram: this.editProgram,
             editedProgram: data,
             editedIndex: indexRow
           })
         } else if (buttonIndex === 2) {
-          deleteProgram({_id: data._id}).then(({data}: any) => {}).catch((e: any) => {
+          deleteProgram({_id: data._id}).then(({data}: any) => {
+          }).catch((e: any) => {
             console.log('Delete program failed', e)
           })
           deleteProgramRdx({index: indexRow})
@@ -188,12 +223,14 @@ class Programs extends React.PureComponent<IProps, IState> {
           data={programs}
           order={this.order}
           onRowMoved={(e: any) => {
+            console.log(this.order, e.to, e.from)
             this.order.splice(e.to, 0, this.order.splice(e.from, 1)[0])
+            console.log(this.order)
             this.forceUpdate()
           }}
           renderRow={(row: ServerEntity.Program) => row &&
-            <RowSortableList data={row} action={this.showActionSheet} component={<RowProgramsList data={row}/>}/> ||
-            <View/>}
+              <RowSortableList data={row} action={this.showActionSheet} component={<RowProgramsList data={row}/>}/> ||
+              <View/>}
         /> ||
         <View style={styles.viewNoPrograms}>
           <View style={styles.viewTextNoProgram}>
@@ -272,8 +309,23 @@ const ProgramsGraphQl = compose(graphql(
   `,
   {
     props: ({mutate}) => ({
-      deleteProgram: (_id: {_id: string}) => mutate({
+      deleteProgram: (_id: { _id: string }) => mutate({
         variables: {_id}
+      })
+    }),
+  },
+), graphql(
+  gql`
+    mutation UpdateProgram($program: ProgramUpdateType) {
+      updateProgram(input: $program) {
+        _id
+      }
+    }
+  `,
+  {
+    props: ({mutate}) => ({
+      updateProgram: (program: ServerEntity.Program) => mutate({
+        variables: {program}
       })
     }),
   },
