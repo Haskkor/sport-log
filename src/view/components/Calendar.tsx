@@ -9,17 +9,21 @@ import {grid} from '../../utils/grid'
 import config from '../../utils/config'
 import {fakeActiveProgram} from '../../utils/constants'
 import {bindActionCreators} from 'redux'
-import * as HistoryActions from '../../core/modules/entities/history'
+import {compose, graphql} from 'react-apollo'
+import gql from 'graphql-tag'
+import LoadingScreen from './LoadingScreen'
+import delay from "../../utils/delay";
 
 type IProps = {
   navigation: any
-  programs: ServerEntity.Program[]
-  loadHistory: typeof HistoryActions.loadHistoryStart
+  programsUser: ServerEntity.Program[]
+  historyDateUser: ServerEntity.HistoryDate[]
 }
 
 type IState = {
   items: any
   activeProgram: ServerEntity.Program
+  showLoadingScreen: boolean
 }
 
 type Item = { [key: string]: {} }
@@ -40,16 +44,26 @@ class Calendar extends React.PureComponent<IProps, IState> {
     super(props)
     this.state = {
       items: {},
-      activeProgram: config.shouldUseFakeActiveProgram ? fakeActiveProgram :
-        this.props.programs.find((p: ServerEntity.Program) => p.active)
+      activeProgram: null,
+      showLoadingScreen: true
     }
     this.showActionSheet = this.showActionSheet.bind(this)
   }
 
+  componentWillReceiveProps(props: IProps) {
+    // TODO FIX
+    if (props.programsUser && props.historyDateUser) {
+      console.log('PROGRAMS', props.programsUser)
+      console.log('HISTORY', props.historyDateUser)
+      this.setState({
+        showLoadingScreen: false,
+        activeProgram: config.shouldUseFakeActiveProgram ? fakeActiveProgram :
+          props.programsUser.find((p: ServerEntity.Program) => p.active),
+      })
+    }
+  }
+
   showActionSheet = () => {
-
-    // todo FINISH THIS
-
     // ActionSheetIOS.showActionSheetWithOptions({
     //     title: data.exercise.name,
     //     options: [data.done ? 'Set not done' : 'Set done', 'Edit', 'Delete', 'Cancel'],
@@ -65,7 +79,6 @@ class Calendar extends React.PureComponent<IProps, IState> {
   }
 
   populateItems = async (day: DayCalendar) => {
-    await this.props.loadHistory({currentTimestamp: day.timestamp})
     for (let i = -30; i < 30; i++) {
       const time = day.timestamp + i * 24 * 60 * 60 * 1000
       const strTime = this.timeToString(time)
@@ -112,6 +125,9 @@ class Calendar extends React.PureComponent<IProps, IState> {
   }
 
   loadItems = async (day: any) => {
+    while (!this.state.activeProgram) {
+      await delay(100)
+    }
     const itemsLoaded = await this.populateItems(day)
     this.setState({
       items: itemsLoaded
@@ -183,23 +199,75 @@ class Calendar extends React.PureComponent<IProps, IState> {
             </View>
           )}
         />
+        {this.state.showLoadingScreen &&
+        <LoadingScreen/>}
       </View>
     )
   }
 }
 
+const CalendarGraphQl = compose(graphql(
+  gql`
+    query ProgramsUser {
+      programsUser {
+        name
+        _id
+        _userId
+        active
+        days {
+          day
+          isCollapsed
+          isDayOff
+          exercises {
+            muscleGroup
+      recoveryTime
+      exercise {
+        name
+        equipment
+      }
+      sets {
+        reps
+        weight
+      }
+          }
+        }
+      }
+    }
+  `
+, {name: 'programsUser'}), graphql(
+  gql`
+    query ProgramsUser {
+      historyDateUser {
+        _id
+        _userId
+        timestamp
+        exercises {
+          muscleGroup
+          recoveryTime
+          exercise {
+            name
+            equipment
+          }
+          sets {
+            reps
+            weight
+          }
+        }
+      }
+    }
+  `
+, {name: 'historyDateUser'}))(Calendar)
+
 const mapStateToProps = (rootState: ReduxState.RootState) => {
   return {
-    programs: rootState.entities.programs
   }
 }
 
 const mapDispatchToProps =
   (dispatch: Dispatch<any>) => bindActionCreators({
-    loadHistory: HistoryActions.loadHistoryStart
   }, dispatch)
 
-export default connect(mapStateToProps, mapDispatchToProps)(Calendar)
+export default connect(mapStateToProps, mapDispatchToProps)(CalendarGraphQl)
 
 const styles = StyleSheet.create({
   container: {

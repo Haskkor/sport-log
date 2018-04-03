@@ -16,10 +16,6 @@ type IState = {}
 
 class MainDrawerNav extends React.PureComponent<IProps, IState> {
 
-  componentWillUnmount( ) {
-    console.log('unmount')
-  }
-
   render() {
     const MainDrawerNav = DrawerNavigator({
       Home: {

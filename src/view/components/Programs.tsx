@@ -135,7 +135,6 @@ class Programs extends React.PureComponent<IProps, IState> {
           })
           const pgAct = programs.find((pg: ServerEntity.Program) => pg.active)
           if (pgAct) {
-            console.log(pgAct)
             editProgram({index: indexRowAct, program: {active: false, days: pgAct.days, name: pgAct.name, _id: pgAct._id}})
             updateProgram({active: false, days: createOmitTypenameLink(pgAct.days), name: pgAct.name, _id: pgAct._id})
               .then(({data}: any) => {
@@ -144,7 +143,6 @@ class Programs extends React.PureComponent<IProps, IState> {
             })
           }
           editProgram({index: indexRow, program: {active: !data.active, days: data.days, name: data.name, _id: data._id}})
-          console.log(data)
           updateProgram({active: !data.active, days: createOmitTypenameLink(data.days), name: data.name, _id: data._id})
             .then(({data}: any) => {
             }).catch((e: any) => {
@@ -223,9 +221,7 @@ class Programs extends React.PureComponent<IProps, IState> {
           data={programs}
           order={this.order}
           onRowMoved={(e: any) => {
-            console.log(this.order, e.to, e.from)
             this.order.splice(e.to, 0, this.order.splice(e.from, 1)[0])
-            console.log(this.order)
             this.forceUpdate()
           }}
           renderRow={(row: ServerEntity.Program) => row &&

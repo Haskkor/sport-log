@@ -39,12 +39,18 @@ const typeDefs = `
     exercises: [ExerciseSetType]
   }
   type ProgramType {
-    _id: String
-    _userId: String
-    name: String
-    active: Boolean
-    days: [ExercisesDayType]
+    _id: String!
+    _userId: String!
+    name: String!
+    active: Boolean!
+    days: [ExercisesDayType]!
   }
+	type HistoryDateType {
+		_id: String!
+		_userId: String!
+		timestamp: String!
+		exercises: [ExerciseSetType]!
+	}
 
 	input UserLoginType {
     email: String!
@@ -97,10 +103,23 @@ const typeDefs = `
 	input ProgramDeleteType {
 		_id: String!
   }
+	input HistoryDateCreateType {
+		timestamp: String!
+		exercises: [ExercisesSetInputType]!
+  }
+	input HistoryDateUpdateType {
+		_id: String!
+		timestamp: String!
+		exercises: [ExercisesSetInputType]!
+  }
+	input HistoryDateDeleteType {
+		_id: String!
+  }
 
   type Query {
     currentUser: UserType
 		programsUser: [ProgramType]
+		historyDateUser: [HistoryDateType]
   }
 
   type Mutation {
@@ -110,6 +129,9 @@ const typeDefs = `
 		createProgram (input: ProgramCreateType): ProgramType
 		updateProgram (input: ProgramUpdateType): ProgramType
 		deleteProgram (input: ProgramDeleteType): Boolean
+		createHistoryDate (input: HistoryDateCreateType): HistoryDateType
+		updateHistoryDate (input: HistoryDateUpdateType): HistoryDateType
+		deleteHistoryDate (input: HistoryDateDeleteType): Boolean
   }
 `;
 
@@ -118,10 +140,8 @@ const typeDefs = `
 const resolvers = {
     Query: {
         currentUser: (root, args, context) => context.user,
-        programsUser: async (root, args, context) => {
-            const programs = await context.mongo.collection('programs').find( { _userId: ObjectId(context.user._id) }).toArray()
-            return programs
-        }
+        programsUser: (root, args, context) => context.mongo.collection('programs').find( { _userId: ObjectId(context.user._id) }).toArray(),
+        historyDateUser: (root, args, context) => context.mongo.collection('historyDate').find( { _userId: ObjectId(context.user._id) }).toArray()
     },
     Mutation: {
         login: async (root, { input }, { mongo }) => {
@@ -197,6 +217,34 @@ const resolvers = {
             const Programs = context.mongo.collection('programs');
             await Programs.deleteOne( { _id : ObjectId(programId) } );
             return true;
+        },
+        createHistoryDate: async (root, {input}, context) => {
+          const historyDate = input;
+          const HistoryDate = context.mongo.collection('historyDate');
+          const currentUser = context.user;
+          if (!currentUser) {
+            throw new Error('No current user to assign the history date');
+          }
+          historyDate._userId = currentUser._id;
+          const result = await HistoryDate.insert(historyDate);
+          const _id = result.ops[0]._id;
+          const historyDateResult = await HistoryDate.findOne(_id);
+          return historyDateResult;
+        },
+        updateHistoryDate: async (root, {input}, context) => {
+          const historyDate = input;
+          const HistoryDate = context.mongo.collection('historyDate');
+          const historyDateId = historyDate._id;
+          delete historyDate._id;
+          await HistoryDate.update({ _id: ObjectId(historyDateId) }, {$set: historyDate});
+          const modifiedHistoryDate = await HistoryDate.findOne({ _id: ObjectId(historyDateId) });
+          return modifiedHistoryDate;
+        },
+        deleteHistoryDate: async (root, {input}, context) => {
+          const historyDateId = input._id;
+          const HistoryDate = context.mongo.collection('historyDate');
+          await HistoryDate.deleteOne( { _id : ObjectId(historyDateId) } );
+          return true;
         }
     }
 };
