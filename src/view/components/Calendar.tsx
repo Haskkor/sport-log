@@ -16,8 +16,8 @@ import delay from "../../utils/delay";
 
 type IProps = {
   navigation: any
-  programsUser: ServerEntity.Program[]
-  historyDateUser: ServerEntity.HistoryDate[]
+  pgUser: {programsUser: ServerEntity.Program[]}
+  hdUser: {historyDateUser: ServerEntity.HistoryDate[]}
 }
 
 type IState = {
@@ -51,14 +51,11 @@ class Calendar extends React.PureComponent<IProps, IState> {
   }
 
   componentWillReceiveProps(props: IProps) {
-    // TODO FIX
-    if (props.programsUser && props.historyDateUser) {
-      console.log('PROGRAMS', props.programsUser)
-      console.log('HISTORY', props.historyDateUser)
+    if (props.pgUser.programsUser && props.hdUser.historyDateUser) {
       this.setState({
         showLoadingScreen: false,
         activeProgram: config.shouldUseFakeActiveProgram ? fakeActiveProgram :
-          props.programsUser.find((p: ServerEntity.Program) => p.active),
+          props.pgUser.programsUser.find((p: ServerEntity.Program) => p.active),
       })
     }
   }
@@ -234,7 +231,7 @@ const CalendarGraphQl = compose(graphql(
       }
     }
   `
-, {name: 'programsUser'}), graphql(
+, {name: 'pgUser'}), graphql(
   gql`
     query ProgramsUser {
       historyDateUser {
@@ -256,7 +253,7 @@ const CalendarGraphQl = compose(graphql(
       }
     }
   `
-, {name: 'historyDateUser'}))(Calendar)
+, {name: 'hdUser'}))(Calendar)
 
 const mapStateToProps = (rootState: ReduxState.RootState) => {
   return {

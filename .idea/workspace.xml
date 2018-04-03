@@ -2,14 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39597ee5-2bd9-42b2-a212-3554592f4c8d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/core/saga/index.ts" afterPath="$PROJECT_DIR$/src/core/saga/index.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/utils/config.ts" afterPath="$PROJECT_DIR$/src/utils/config.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/utils/graphql.js" afterPath="$PROJECT_DIR$/src/utils/graphql.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/utils/graphqlRequests" afterPath="$PROJECT_DIR$/src/utils/graphqlRequests" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/components/Calendar.tsx" afterPath="$PROJECT_DIR$/src/view/components/Calendar.tsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/components/Programs.tsx" afterPath="$PROJECT_DIR$/src/view/components/Programs.tsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/navigators/MainDrawerNav.tsx" afterPath="$PROJECT_DIR$/src/view/navigators/MainDrawerNav.tsx" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -26,8 +20,8 @@
       <file leaf-file-name="Calendar.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1260">
-              <caret line="118" column="4" lean-forward="false" selection-start-line="118" selection-start-column="4" selection-end-line="118" selection-end-column="4" />
+            <state relative-caret-position="516">
+              <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -38,8 +32,8 @@
       <file leaf-file-name="graphql.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/utils/graphql.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="705">
-              <caret line="244" column="54" lean-forward="false" selection-start-line="244" selection-start-column="54" selection-end-line="244" selection-end-column="54" />
+            <state relative-caret-position="4590">
+              <caret line="309" column="0" lean-forward="false" selection-start-line="309" selection-start-column="0" selection-end-line="309" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -114,11 +108,11 @@
         <option value="$PROJECT_DIR$/src/utils/graphQlHelper.ts" />
         <option value="$PROJECT_DIR$/src/view/components/Programs.tsx" />
         <option value="$PROJECT_DIR$/src/core/saga/index.ts" />
-        <option value="$PROJECT_DIR$/src/utils/graphql.js" />
         <option value="$PROJECT_DIR$/src/utils/graphqlRequests" />
         <option value="$PROJECT_DIR$/src/utils/config.ts" />
         <option value="$PROJECT_DIR$/src/view/navigators/MainDrawerNav.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/Calendar.tsx" />
+        <option value="$PROJECT_DIR$/src/utils/graphql.js" />
       </list>
     </option>
   </component>
@@ -326,7 +320,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="153826000" />
+    <option name="totallyTimeSpent" value="156426000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="1417" extended-state="0" />
@@ -646,14 +640,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/graphql.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="244" column="54" lean-forward="false" selection-start-line="244" selection-start-column="54" selection-end-line="244" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/graphqlRequests">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1192">
@@ -675,7 +661,7 @@
         <state relative-caret-position="345">
           <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding>
-            <element signature="e#0#37#0" expanded="true" />
+            <element signature="e#0#37#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -685,7 +671,7 @@
         <state relative-caret-position="505">
           <caret line="249" column="0" lean-forward="false" selection-start-line="249" selection-start-column="0" selection-end-line="249" selection-end-column="0" />
           <folding>
-            <element signature="e#0#30#0" expanded="true" />
+            <element signature="e#0#30#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -706,10 +692,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/graphql.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4590">
+          <caret line="309" column="0" lean-forward="false" selection-start-line="309" selection-start-column="0" selection-end-line="309" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
-          <caret line="118" column="4" lean-forward="false" selection-start-line="118" selection-start-column="4" selection-end-line="118" selection-end-column="4" />
+        <state relative-caret-position="516">
+          <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
