@@ -12,12 +12,12 @@ import {bindActionCreators} from 'redux'
 import {compose, graphql} from 'react-apollo'
 import gql from 'graphql-tag'
 import LoadingScreen from './LoadingScreen'
-import delay from "../../utils/delay";
+import delay from '../../utils/delay'
 
 type IProps = {
   navigation: any
-  pgUser: {programsUser: ServerEntity.Program[]}
-  hdUser: {historyDateUser: ServerEntity.HistoryDate[]}
+  pgUser: { programsUser: ServerEntity.Program[] }
+  hdUser: { historyDateUser: ServerEntity.HistoryDate[] }
 }
 
 type IState = {
@@ -26,7 +26,12 @@ type IState = {
   showLoadingScreen: boolean
 }
 
-type Item = { [key: string]: {} }
+type Item = { [key: string]: {
+  name: string,
+  details: string,
+  content: string,
+  done: boolean
+}}
 
 type DayCalendar = {
   dateString: string
@@ -81,33 +86,50 @@ class Calendar extends React.PureComponent<IProps, IState> {
       const strTime = this.timeToString(time)
       if (strTime >= this.timeToString(new Date())) {
         this.state.items[strTime] = []
-        if (this.state.activeProgram && isNaN(+this.state.activeProgram.days[0].day)) {
-          const tempDate = new Date()
-          tempDate.setTime(time)
-          const day = this.state.activeProgram.days.find((d: ServerEntity.ExercisesDay) => d.day === daysName[tempDate.getDay()])
-          if (day) {
-            day.exercises.map((e: ServerEntity.ExerciseSet) => {
-              this.state.items[strTime].push({
-                name: `${e.exercise.name} - ${e.muscleGroup}`,
-                details: `${e.exercise.equipment} - Recovery time: ${e.recoveryTime}`,
-                content: `Sets:${e.sets.map((s: ServerEntity.Set) => {
-                  return ` ${s.reps} x ${s.weight}`
-                })}`
-              })
+        const historyOnDate = this.props.hdUser.historyDateUser.find((h: ServerEntity.HistoryDate) => +h.timestamp === time)
+        if (historyOnDate) {
+          historyOnDate.exercises.map((e: ServerEntity.ExerciseSet) => {
+            this.state.items[strTime].push({
+              name: `${e.exercise.name} - ${e.muscleGroup}`,
+              details: `${e.exercise.equipment} - Recovery time: ${e.recoveryTime}`,
+              content: `Sets:${e.sets.map((s: ServerEntity.Set) => {
+                return ` ${s.reps} x ${s.weight}`
+              })}`,
+              done: true
             })
-          }
-        } else if (this.state.activeProgram) {
-          const currentDayProgram = this.state.activeProgram.days[i % this.state.activeProgram.days.length]
-          if (!currentDayProgram.isDayOff) {
-            currentDayProgram.exercises.map((e: ServerEntity.ExerciseSet) => {
-              this.state.items[strTime].push({
-                name: `${e.exercise.name} - ${e.muscleGroup}`,
-                details: `${e.exercise.equipment} - Recovery time: ${e.recoveryTime}`,
-                content: `Sets:${e.sets.map((s: ServerEntity.Set) => {
-                  return ` ${s.reps} x ${s.weight}`
-                })}`
+          })
+
+        } else {
+          if (this.state.activeProgram && isNaN(+this.state.activeProgram.days[0].day)) {
+            const tempDate = new Date()
+            tempDate.setTime(time)
+            const day = this.state.activeProgram.days.find((d: ServerEntity.ExercisesDay) => d.day === daysName[tempDate.getDay()])
+            if (day) {
+              day.exercises.map((e: ServerEntity.ExerciseSet) => {
+                this.state.items[strTime].push({
+                  name: `${e.exercise.name} - ${e.muscleGroup}`,
+                  details: `${e.exercise.equipment} - Recovery time: ${e.recoveryTime}`,
+                  content: `Sets:${e.sets.map((s: ServerEntity.Set) => {
+                    return ` ${s.reps} x ${s.weight}`
+                  })}`,
+                  done: false
+                })
               })
-            })
+            }
+          } else if (this.state.activeProgram) {
+            const currentDayProgram = this.state.activeProgram.days[i % this.state.activeProgram.days.length]
+            if (!currentDayProgram.isDayOff) {
+              currentDayProgram.exercises.map((e: ServerEntity.ExerciseSet) => {
+                this.state.items[strTime].push({
+                  name: `${e.exercise.name} - ${e.muscleGroup}`,
+                  details: `${e.exercise.equipment} - Recovery time: ${e.recoveryTime}`,
+                  content: `Sets:${e.sets.map((s: ServerEntity.Set) => {
+                    return ` ${s.reps} x ${s.weight}`
+                  })}`,
+                  done: false
+                })
+              })
+            }
           }
         }
       } else {
@@ -133,7 +155,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
 
   renderItem = (item: any) => {
     return (
-      <View style={[styles.item, {height: item.height}]}>
+      <View style={[styles.item, {height: item.height, backgroundColor: item.done ? colors.lightValid : colors.white}]}>
         <TouchableOpacity onPress={() => this.showActionSheet()}>
           <Text style={styles.textBold}>{item.name}</Text>
           <Text style={styles.text}>{item.details}</Text>
@@ -231,7 +253,7 @@ const CalendarGraphQl = compose(graphql(
       }
     }
   `
-, {name: 'pgUser'}), graphql(
+  , {name: 'pgUser'}), graphql(
   gql`
     query ProgramsUser {
       historyDateUser {
@@ -253,16 +275,14 @@ const CalendarGraphQl = compose(graphql(
       }
     }
   `
-, {name: 'hdUser'}))(Calendar)
+  , {name: 'hdUser'}))(Calendar)
 
 const mapStateToProps = (rootState: ReduxState.RootState) => {
-  return {
-  }
+  return {}
 }
 
 const mapDispatchToProps =
-  (dispatch: Dispatch<any>) => bindActionCreators({
-  }, dispatch)
+  (dispatch: Dispatch<any>) => bindActionCreators({}, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(CalendarGraphQl)
 
@@ -271,7 +291,6 @@ const styles = StyleSheet.create({
     flex: 1
   },
   item: {
-    backgroundColor: 'white',
     flex: 1,
     borderRadius: 5,
     padding: 10,

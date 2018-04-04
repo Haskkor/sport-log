@@ -40,6 +40,7 @@ type IState = {
   dobError: boolean
   heightError: boolean
   trainingYearsError: boolean
+  primaryIconDisabled: boolean
 }
 
 export enum EditSaveStatus {
@@ -71,7 +72,8 @@ class Home extends React.PureComponent<IProps, IState> {
       heightError: false,
       lastNameError: false,
       trainingYearsError: false,
-      userNameError: false
+      userNameError: false,
+      primaryIconDisabled: true
     }
     this.editSave = this.editSave.bind(this)
     this.fieldsVerified = this.fieldsVerified.bind(this)
@@ -140,10 +142,16 @@ class Home extends React.PureComponent<IProps, IState> {
   }
 
   render() {
+    const {
+      primaryIconDisabled, editSaveStatus, emailError, firstNameError, lastNameError, userNameError, dobError,
+      heightError, trainingYearsError, email, editing, firstName, lastName, userName, dob, height, trainingYears,
+      showLoadingScreen
+    } = this.state
     return (
       <View style={styles.container}>
         <StatusBar barStyle="dark-content"/>
         <Header
+          primaryIconDisabled={primaryIconDisabled}
           navigation={this.props.navigation}
           colorBorder={colors.headerBorderLight}
           colorHeader={colors.headerLight}
@@ -165,14 +173,14 @@ class Home extends React.PureComponent<IProps, IState> {
               colorTrainingYears: colors.base
             }}
             update={{
-              opacityView: this.state.editSaveStatus === EditSaveStatus.edit ? [grid.mediumOpacity] : [1],
-              colorEmail: this.state.emailError ? [colors.alert] : [colors.base],
-              colorFirstName: this.state.firstNameError ? [colors.alert] : [colors.base],
-              colorLastName: this.state.lastNameError ? [colors.alert] : [colors.base],
-              colorUserName: this.state.userNameError ? [colors.alert] : [colors.base],
-              colorDob: this.state.dobError ? [colors.alert] : [colors.base],
-              colorHeight: this.state.heightError ? [colors.alert] : [colors.base],
-              colorTrainingYears: this.state.trainingYearsError ? [colors.alert] : [colors.base],
+              opacityView: editSaveStatus === EditSaveStatus.edit ? [grid.mediumOpacity] : [1],
+              colorEmail: emailError ? [colors.alert] : [colors.base],
+              colorFirstName: firstNameError ? [colors.alert] : [colors.base],
+              colorLastName: lastNameError ? [colors.alert] : [colors.base],
+              colorUserName: userNameError ? [colors.alert] : [colors.base],
+              colorDob: dobError ? [colors.alert] : [colors.base],
+              colorHeight: heightError ? [colors.alert] : [colors.base],
+              colorTrainingYears: trainingYearsError ? [colors.alert] : [colors.base],
               timing: {duration: 300, ease: easeLinear}
             }}>
             {(state: any) => {
@@ -183,8 +191,8 @@ class Home extends React.PureComponent<IProps, IState> {
                       <Icon name="email" size={grid.subHeader} color={state.colorEmail} style={styles.iconTextInput}/>
                       <TextInput
                         style={{color: state.colorEmail, width: '80%', fontFamily: grid.font}}
-                        value={this.state.email}
-                        editable={this.state.editing}
+                        value={email}
+                        editable={editing}
                         onChangeText={(text) => this.setState({email: text, emailError: false})}
                         placeholder='Email...'
                         placeholderTextColor={colors.lightAlternative}
@@ -198,8 +206,8 @@ class Home extends React.PureComponent<IProps, IState> {
                             style={styles.iconTextInput}/>
                       <TextInput
                         style={{color: state.colorFirstName, width: '80%', fontFamily: grid.font}}
-                        value={this.state.firstName}
-                        editable={this.state.editing}
+                        value={firstName}
+                        editable={editing}
                         onChangeText={(text) => this.setState({firstName: text, firstNameError: false})}
                         placeholder='First name...'
                         placeholderTextColor={colors.lightAlternative}
@@ -213,8 +221,8 @@ class Home extends React.PureComponent<IProps, IState> {
                             style={styles.iconTextInput}/>
                       <TextInput
                         style={{color: state.colorLastName, width: '80%', fontFamily: grid.font}}
-                        value={this.state.lastName}
-                        editable={this.state.editing}
+                        value={lastName}
+                        editable={editing}
                         onChangeText={(text) => this.setState({lastName: text, lastNameError: false})}
                         placeholder='Last name...'
                         placeholderTextColor={colors.lightAlternative}
@@ -228,8 +236,8 @@ class Home extends React.PureComponent<IProps, IState> {
                             style={styles.iconTextInput}/>
                       <TextInput
                         style={{color: state.colorUserName, width: '80%', fontFamily: grid.font}}
-                        value={this.state.userName}
-                        editable={this.state.editing}
+                        value={userName}
+                        editable={editing}
                         onChangeText={(text) => this.setState({userName: text, userNameError: false})}
                         placeholder='User name...'
                         placeholderTextColor={colors.lightAlternative}
@@ -240,10 +248,10 @@ class Home extends React.PureComponent<IProps, IState> {
                   <View style={[styles.viewElement, styles.shadow]}>
                     <View style={[styles.viewTextInput, {borderColor: state.colorDob}]}>
                       <DatePicker
-                        date={this.state.dob}
+                        date={dob}
                         style={{width: 40}}
                         format="DD/MM/YYYY"
-                        disabled={!this.state.editing}
+                        disabled={!editing}
                         confirmBtnText="Confirm"
                         cancelBtnText="Cancel"
                         placeholder="Date of birth"
@@ -260,10 +268,10 @@ class Home extends React.PureComponent<IProps, IState> {
                         onDateChange={(date: string) => this.setState({dob: date, dobError: false})}
                       />
                       <Text style={{
-                        color: this.state.dob.length > 0 ? state.colorDob : colors.lightAlternative,
+                        color: dob.length > 0 ? state.colorDob : colors.lightAlternative,
                         fontFamily: grid.font
                       }}>
-                        {`${this.state.dob.length > 0 ? this.state.dob : 'Date of birth...'}`}
+                        {`${this.state.dob.length > 0 ? dob : 'Date of birth...'}`}
                       </Text>
                     </View>
                   </View>
@@ -273,8 +281,8 @@ class Home extends React.PureComponent<IProps, IState> {
                             style={styles.iconTextInput}/>
                       <TextInput
                         style={{color: state.colorHeight, width: '80%', fontFamily: grid.font}}
-                        value={this.state.height}
-                        editable={this.state.editing}
+                        value={height}
+                        editable={editing}
                         onChangeText={(text) => this.setState({height: text, heightError: false})}
                         placeholder='Height...'
                         placeholderTextColor={colors.lightAlternative}
@@ -288,8 +296,8 @@ class Home extends React.PureComponent<IProps, IState> {
                             style={styles.iconTextInput}/>
                       <TextInput
                         style={{color: state.colorTrainingYears, width: '80%', fontFamily: grid.font}}
-                        value={this.state.trainingYears}
-                        editable={this.state.editing}
+                        value={trainingYears}
+                        editable={editing}
                         onChangeText={(text) => this.setState({trainingYears: text, trainingYearsError: false})}
                         placeholder='Years of training...'
                         placeholderTextColor={colors.lightAlternative}
@@ -303,13 +311,13 @@ class Home extends React.PureComponent<IProps, IState> {
           </Animate>
           <View>
             <TouchableOpacity
-              style={[styles.button, {backgroundColor: this.state.editSaveStatus === EditSaveStatus.edit ? colors.orange : colors.valid}]}
+              style={[styles.button, {backgroundColor: editSaveStatus === EditSaveStatus.edit ? colors.orange : colors.valid}]}
               onPress={() => this.editSave()}>
-              <Text style={styles.text}>{this.state.editSaveStatus}</Text>
+              <Text style={styles.text}>{editSaveStatus}</Text>
             </TouchableOpacity>
           </View>
         </KeyboardAwareScrollView>
-        {this.state.showLoadingScreen &&
+        {showLoadingScreen &&
         <LoadingScreen/>}
       </View>
     )
