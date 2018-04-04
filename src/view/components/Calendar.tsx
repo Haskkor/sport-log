@@ -16,7 +16,7 @@ import delay from '../../utils/delay'
 
 type IProps = {
   navigation: any
-  pgUser: { programsUser: ServerEntity.Program[] }
+  programs: ServerEntity.Program[]
   hdUser: { historyDateUser: ServerEntity.HistoryDate[] }
 }
 
@@ -26,12 +26,14 @@ type IState = {
   showLoadingScreen: boolean
 }
 
-type Item = { [key: string]: {
-  name: string,
-  details: string,
-  content: string,
-  done: boolean
-}}
+type Item = {
+  [key: string]: {
+    name: string,
+    details: string,
+    content: string,
+    done: boolean
+  }
+}
 
 type DayCalendar = {
   dateString: string
@@ -49,18 +51,17 @@ class Calendar extends React.PureComponent<IProps, IState> {
     super(props)
     this.state = {
       items: {},
-      activeProgram: null,
+      activeProgram: config.shouldUseFakeActiveProgram ? fakeActiveProgram :
+        this.props.programs.find((p: ServerEntity.Program) => p.active),
       showLoadingScreen: true
     }
     this.showActionSheet = this.showActionSheet.bind(this)
   }
 
   componentWillReceiveProps(props: IProps) {
-    if (props.pgUser.programsUser && props.hdUser.historyDateUser) {
+    if (props.hdUser.historyDateUser) {
       this.setState({
-        showLoadingScreen: false,
-        activeProgram: config.shouldUseFakeActiveProgram ? fakeActiveProgram :
-          props.pgUser.programsUser.find((p: ServerEntity.Program) => p.active),
+        showLoadingScreen: false
       })
     }
   }
@@ -84,22 +85,25 @@ class Calendar extends React.PureComponent<IProps, IState> {
     for (let i = -30; i < 30; i++) {
       const time = day.timestamp + i * 24 * 60 * 60 * 1000
       const strTime = this.timeToString(time)
-      if (strTime >= this.timeToString(new Date())) {
-        this.state.items[strTime] = []
-        const historyOnDate = this.props.hdUser.historyDateUser.find((h: ServerEntity.HistoryDate) => +h.timestamp === time)
-        if (historyOnDate) {
-          historyOnDate.exercises.map((e: ServerEntity.ExerciseSet) => {
-            this.state.items[strTime].push({
-              name: `${e.exercise.name} - ${e.muscleGroup}`,
-              details: `${e.exercise.equipment} - Recovery time: ${e.recoveryTime}`,
-              content: `Sets:${e.sets.map((s: ServerEntity.Set) => {
-                return ` ${s.reps} x ${s.weight}`
-              })}`,
-              done: true
-            })
+      this.state.items[strTime] = []
+      const historyOnDate = this.props.hdUser.historyDateUser.find((h: ServerEntity.HistoryDate) => {
+        console.log(h.timestamp, time)
+        return +h.timestamp === time
+      })
+      if (historyOnDate) {
+        historyOnDate.exercises.map((e: ServerEntity.ExerciseSet) => {
+          this.state.items[strTime].push({
+            name: `${e.exercise.name} - ${e.muscleGroup}`,
+            details: `${e.exercise.equipment} - Recovery time: ${e.recoveryTime}`,
+            content: `Sets:${e.sets.map((s: ServerEntity.Set) => {
+              return ` ${s.reps} x ${s.weight}`
+            })}`,
+            done: true
           })
+        })
 
-        } else {
+      } else {
+        if (strTime >= this.timeToString(new Date())) {
           if (this.state.activeProgram && isNaN(+this.state.activeProgram.days[0].day)) {
             const tempDate = new Date()
             tempDate.setTime(time)
@@ -131,9 +135,9 @@ class Calendar extends React.PureComponent<IProps, IState> {
               })
             }
           }
+        } else {
+          this.state.items[strTime] = {}
         }
-      } else {
-        this.state.items[strTime] = {}
       }
     }
     const newItems: Item = {}
@@ -144,7 +148,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
   }
 
   loadItems = async (day: any) => {
-    while (!this.state.activeProgram) {
+    while (this.state.showLoadingScreen) {
       await delay(100)
     }
     const itemsLoaded = await this.populateItems(day)
@@ -228,34 +232,6 @@ class Calendar extends React.PureComponent<IProps, IState> {
 const CalendarGraphQl = compose(graphql(
   gql`
     query ProgramsUser {
-      programsUser {
-        name
-        _id
-        _userId
-        active
-        days {
-          day
-          isCollapsed
-          isDayOff
-          exercises {
-            muscleGroup
-      recoveryTime
-      exercise {
-        name
-        equipment
-      }
-      sets {
-        reps
-        weight
-      }
-          }
-        }
-      }
-    }
-  `
-  , {name: 'pgUser'}), graphql(
-  gql`
-    query ProgramsUser {
       historyDateUser {
         _id
         _userId
@@ -274,11 +250,12 @@ const CalendarGraphQl = compose(graphql(
         }
       }
     }
-  `
-  , {name: 'hdUser'}))(Calendar)
+  `, {name: 'hdUser'}))(Calendar)
 
 const mapStateToProps = (rootState: ReduxState.RootState) => {
-  return {}
+  return {
+    programs: rootState.entities.programs
+  }
 }
 
 const mapDispatchToProps =

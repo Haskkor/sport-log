@@ -27,7 +27,6 @@ type IProps = {
   setPrograms: typeof ProgramsActions.setPrograms
   editProgram: typeof ProgramsActions.editProgram
   deleteProgramRdx: typeof ProgramsActions.deleteProgram
-  data: any
   createProgram: (program: ServerEntity.Program) => Promise<ApolloQueryResult<{}>>
   deleteProgram: (_id: { _id: string }) => Promise<ApolloQueryResult<{}>>
   updateProgram: (program: ServerEntity.Program) => Promise<ApolloQueryResult<{}>>
@@ -42,29 +41,19 @@ type IState = {
 class Programs extends React.PureComponent<IProps, IState> {
   order: string[]
   animation: any
-  programsLoaded: boolean = false
 
   constructor(props: IProps) {
     super(props)
     this.state = {
       progressAnimation: new Animated.Value(0),
       showNoActiveProgramAlert: false,
-      showLoadingScreen: true
+      showLoadingScreen: false
     }
+    this.order = Object.keys(this.props.programs)
     this.saveProgram = this.saveProgram.bind(this)
     this.editProgram = this.editProgram.bind(this)
     this.showActionSheet = this.showActionSheet.bind(this)
     this.showAlertNoActiveProgram = this.showAlertNoActiveProgram.bind(this)
-  }
-
-  async componentWillReceiveProps(props: IProps) {
-    if (!this.programsLoaded && props.data.programsUser) {
-      this.programsLoaded = true
-      const {programsUser} = props.data
-      await this.props.setPrograms({programs: programsUser})
-      this.order = Object.keys(this.props.programs)
-      this.setState({showLoadingScreen: false})
-    }
   }
 
   componentDidMount() {
@@ -255,34 +244,6 @@ class Programs extends React.PureComponent<IProps, IState> {
 }
 
 const ProgramsGraphQl = compose(graphql(
-  gql`
-    query ProgramsUser {
-      programsUser {
-        name
-        _id
-        _userId
-        active
-        days {
-          day
-          isCollapsed
-          isDayOff
-          exercises {
-            muscleGroup
-      recoveryTime
-      exercise {
-        name
-        equipment
-      }
-      sets {
-        reps
-        weight
-      }
-          }
-        }
-      }
-    }
-  `
-), graphql(
   gql`
     mutation CreateProgram($program: ProgramCreateType) {
       createProgram(input: $program) {

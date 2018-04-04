@@ -14,10 +14,15 @@ import {ApolloQueryResult} from 'apollo-client'
 import Animate from 'react-move/Animate'
 import {easeLinear} from 'd3-ease'
 import LoadingScreen from './LoadingScreen'
+import {connect, Dispatch} from 'react-redux'
+import * as ProgramsActions from '../../core/modules/entities/programs'
+import {bindActionCreators} from "redux";
 
 type IProps = {
   navigation: any
-  data: any
+  pgUser: { programsUser: ServerEntity.Program[] }
+  setPrograms: typeof ProgramsActions.setPrograms
+  user: { currentUser: ServerEntity.User }
   updateUser: (email?: string, firstName?: string, lastName?: string, userName?: string, dob?: string, height?: number,
                trainingYears?: number) => Promise<ApolloQueryResult<{}>>
 }
@@ -79,9 +84,9 @@ class Home extends React.PureComponent<IProps, IState> {
     this.fieldsVerified = this.fieldsVerified.bind(this)
   }
 
-  componentWillReceiveProps(props: IProps) {
-    if (props.data.currentUser) {
-      const {currentUser} = props.data
+  async componentWillReceiveProps(props: IProps) {
+    if (props.user.currentUser) {
+      const {currentUser} = props.user
       this.setState({
         showLoadingScreen: false,
         email: currentUser.email ? currentUser.email : '',
@@ -92,6 +97,10 @@ class Home extends React.PureComponent<IProps, IState> {
         height: currentUser.height ? currentUser.height.toString() : '',
         trainingYears: currentUser.trainingYears ? currentUser.trainingYears.toString() : ''
       })
+    }
+    if (props.pgUser.programsUser) {
+      await this.props.setPrograms({programs: props.pgUser.programsUser})
+      this.setState({primaryIconDisabled: false})
     }
   }
 
@@ -324,14 +333,42 @@ class Home extends React.PureComponent<IProps, IState> {
   }
 }
 
-export default compose(graphql(
+const HomeGraphQl = compose(graphql(
+  gql`
+    query ProgramsUser {
+      programsUser {
+        name
+        _id
+        _userId
+        active
+        days {
+          day
+          isCollapsed
+          isDayOff
+          exercises {
+            muscleGroup
+      recoveryTime
+      exercise {
+        name
+        equipment
+      }
+      sets {
+        reps
+        weight
+      }
+          }
+        }
+      }
+    }
+  `, {name: 'pgUser'}
+), graphql(
   gql`
     query User {
       currentUser {
         email, firstName, lastName, userName, dob, height, trainingYears
       }
     }
-  `
+  `, {name: 'user'}
 ), graphql(
   gql`
     mutation UpdateUser($email: String, $firstName: String, $lastName: String, $userName: String, $dob: String, $height: Int, $trainingYears: Int) {
@@ -356,6 +393,13 @@ export default compose(graphql(
     }),
   },
 ))(Home)
+
+const mapDispatchToProps =
+  (dispatch: Dispatch<any>) => bindActionCreators({
+    setPrograms: ProgramsActions.setPrograms
+  }, dispatch)
+
+export default connect(null, mapDispatchToProps)(HomeGraphQl)
 
 const styles = StyleSheet.create({
   container: {

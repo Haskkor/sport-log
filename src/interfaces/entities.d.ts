@@ -39,4 +39,17 @@ declare namespace ServerEntity {
   type History = HistoryDate[]
 
   type HistoryDate = { timestamp: number, exercises: ExerciseSet[] }
+
+  type User = {
+    _id: string
+    email: string
+    password: string
+    jwt?: string
+    firstName?: string
+    lastName?: string
+    userName?: string
+    dob?: string
+    height?: number
+    trainingYears?: number
+  }
 }
