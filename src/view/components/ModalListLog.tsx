@@ -6,6 +6,8 @@ import * as _ from 'lodash'
 import {colors} from '../../utils/colors'
 import {grid} from '../../utils/grid'
 import RowSortableList from './RowSortableList'
+import {graphql} from 'react-apollo'
+import gql from 'graphql-tag'
 
 type IProps = {
   dataLog: ServerEntity.ExerciseSet[]
@@ -56,6 +58,11 @@ class ModalListLog extends React.PureComponent<IProps, IState> {
           animationType="slide">
           <View style={styles.viewButtons}>
             <TouchableOpacity
+              style={styles.buttonSave}
+              onPress={() => closeModal()}>
+              <Text style={styles.textButton}>Save the training</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
               style={styles.buttonDismiss}
               onPress={() => closeModal()}>
               <Text style={styles.textButton}>Dismiss</Text>
@@ -79,17 +86,40 @@ class ModalListLog extends React.PureComponent<IProps, IState> {
   }
 }
 
+export default graphql(
+  gql`
+    mutation CreateProgram($program: ProgramCreateType) {
+      createProgram(input: $program) {
+        _id
+      }
+    }
+  `,
+  {
+    props: ({mutate}) => ({
+      createProgram: (program: ServerEntity.Program) => mutate({
+        variables: {program}
+      })
+    }),
+  },
+))(ModalListLog)
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.lightAlternative
   },
   viewButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     borderBottomWidth: grid.smallBorder,
     borderColor: colors.base,
     paddingTop: grid.unit * 2,
     paddingBottom: grid.unit * 1.25,
     backgroundColor: colors.headerLight
+  },
+  buttonSave: {
+    alignSelf: 'flex-start',
+    marginLeft: grid.unit * 1.25
   },
   buttonDismiss: {
     alignSelf: 'flex-end',

@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39597ee5-2bd9-42b2-a212-3554592f4c8d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/interfaces/entities.d.ts" afterPath="$PROJECT_DIR$/src/interfaces/entities.d.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/components/Calendar.tsx" afterPath="$PROJECT_DIR$/src/view/components/Calendar.tsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/components/Home.tsx" afterPath="$PROJECT_DIR$/src/view/components/Home.tsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/components/Programs.tsx" afterPath="$PROJECT_DIR$/src/view/components/Programs.tsx" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/components/ModalListLog.tsx" afterPath="$PROJECT_DIR$/src/view/components/ModalListLog.tsx" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -19,15 +16,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Calendar.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Calendar.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="633">
-              <caret line="108" column="33" lean-forward="false" selection-start-line="108" selection-start-column="33" selection-end-line="108" selection-end-column="33" />
+            <state relative-caret-position="165">
+              <caret line="11" column="24" lean-forward="true" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
               <folding>
-                <element signature="e#0#30#0" expanded="true" />
                 <marker date="1522875373940" expanded="true" signature="7976:8718" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ModalListLog.tsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/view/components/ModalListLog.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-750">
+              <caret line="8" column="7" lean-forward="false" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -97,6 +103,7 @@
         <option value="$PROJECT_DIR$/src/view/components/Home.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/Programs.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/Calendar.tsx" />
+        <option value="$PROJECT_DIR$/src/view/components/ModalListLog.tsx" />
       </list>
     </option>
   </component>
@@ -109,10 +116,10 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="55" />
-    <option name="width" value="943" />
-    <option name="height" value="1087" />
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1280" />
+    <option name="height" value="1417" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -304,7 +311,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="161702000" />
+    <option name="totallyTimeSpent" value="163076000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="1417" extended-state="0" />
@@ -348,18 +355,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="6" />
+      <option name="time" value="7" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/view/components/ModalSearch.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="356">
-          <caret line="29" column="59" lean-forward="false" selection-start-line="29" selection-start-column="59" selection-end-line="29" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/RowProgramsList.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
@@ -500,13 +500,6 @@
         <state relative-caret-position="270">
           <caret line="18" column="2" lean-forward="false" selection-start-line="18" selection-start-column="2" selection-end-line="18" selection-end-column="2" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/components/QuickLog.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="51" column="8" lean-forward="false" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -672,29 +665,42 @@
         <state relative-caret-position="-498">
           <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
           <folding>
-            <element signature="e#0#30#0" expanded="true" />
+            <element signature="e#0#30#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/components/QuickLog.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-964">
+          <caret line="51" column="8" lean-forward="false" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="24" lean-forward="true" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
+          <folding>
+            <marker date="1522875373940" expanded="true" signature="7976:8718" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/Programs.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="25" column="8" lean-forward="true" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-2665">
+          <caret line="19" column="28" lean-forward="false" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
+    <entry file="file://$PROJECT_DIR$/src/view/components/ModalListLog.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="633">
-          <caret line="108" column="33" lean-forward="false" selection-start-line="108" selection-start-column="33" selection-end-line="108" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-            <marker date="1522875373940" expanded="true" signature="7976:8718" ph="..." />
-          </folding>
+        <state relative-caret-position="-750">
+          <caret line="8" column="7" lean-forward="false" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
+          <folding />
         </state>
       </provider>
     </entry>
