@@ -87,7 +87,6 @@ class Calendar extends React.PureComponent<IProps, IState> {
       const strTime = this.timeToString(time)
       this.state.items[strTime] = []
       const historyOnDate = this.props.hdUser.historyDateUser.find((h: ServerEntity.HistoryDate) => {
-        console.log(h.timestamp, time)
         return +h.timestamp === time
       })
       if (historyOnDate) {
