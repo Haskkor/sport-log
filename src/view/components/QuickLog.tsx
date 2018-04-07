@@ -14,9 +14,14 @@ import {buildRecoveryTimes} from '../../utils/helper'
 import ModalSearch from './ModalSearch'
 import {grid} from '../../utils/grid'
 import {colors} from '../../utils/colors'
+import {graphql} from 'react-apollo'
+import gql from 'graphql-tag'
+import {ApolloQueryResult} from 'apollo-client'
+import LoadingScreen from './LoadingScreen'
 
 type IProps = {
   navigation: any
+  createHistoryDate: (historyDate: ServerEntity.HistoryDate) => Promise<ApolloQueryResult<{}>>
 }
 
 type IState = {
@@ -29,9 +34,11 @@ type IState = {
   showModalRecovery: boolean
   showToasterInfo: boolean
   showToasterWarning: boolean
+  showToasterError: boolean
   showModalSearch: boolean
   dataLog: ServerEntity.ExerciseSet[]
   editing: boolean
+  showLoadingScreen: boolean
 }
 
 class QuickLog extends React.PureComponent<IProps, IState> {
@@ -60,7 +67,9 @@ class QuickLog extends React.PureComponent<IProps, IState> {
       showModalRecovery: false,
       showToasterInfo: false,
       showToasterWarning: false,
+      showToasterError: false,
       showModalSearch: false,
+      showLoadingScreen: false,
       dataLog: [],
       editing: false
     }
@@ -75,6 +84,7 @@ class QuickLog extends React.PureComponent<IProps, IState> {
     this.stopToaster = this.stopToaster.bind(this)
     this.backToOriginalState = this.backToOriginalState.bind(this)
     this.selectExerciseModalSearch = this.selectExerciseModalSearch.bind(this)
+    this.saveHistoryDate = this.saveHistoryDate.bind(this)
   }
 
   componentWillMount() {
@@ -200,7 +210,8 @@ class QuickLog extends React.PureComponent<IProps, IState> {
   stopToaster = (status: ToasterInfo) => {
     this.setState({
       showToasterInfo: status === ToasterInfo.info ? false : this.state.showToasterInfo,
-      showToasterWarning: status === ToasterInfo.warning ? false : this.state.showToasterWarning
+      showToasterWarning: status === ToasterInfo.warning ? false : this.state.showToasterWarning,
+      showToasterError: status === ToasterInfo.error ? false : this.state.showToasterError
     })
   }
 
@@ -212,11 +223,20 @@ class QuickLog extends React.PureComponent<IProps, IState> {
     this.setState({currentMuscle: muscle, currentExercise: exercise, showModalSearch: false})
   }
 
+  saveHistoryDate = (historyDate: ServerEntity.HistoryDate) => {
+    this.setState({showModal: false, showLoadingScreen: true})
+    this.props.createHistoryDate(historyDate).then(({data}: any) => {
+      this.setState({showToasterInfo: true, showLoadingScreen: false})
+    }).catch((e: any) => {
+      console.log('Create history date failed', e)
+      this.setState({showToasterError: true, showLoadingScreen: false})
+    })
+  }
+
   render() {
     const {
       sets, editing, currentExercise, currentMuscle, showModal, showModalSets, dataLog, showToasterInfo,
-      showToasterWarning, showModalRecovery, currentRecoveryTime, showModalSearch
-    } = this.state
+      showToasterWarning, showModalRecovery, currentRecoveryTime, showModalSearch, showToasterError} = this.state
     const navigationParams = this.props.navigation.state.params
     return (
       <View style={styles.container}>
@@ -344,9 +364,11 @@ class QuickLog extends React.PureComponent<IProps, IState> {
           </Row>
         </Grid>
         {showToasterInfo &&
-        <Toaster text="Exercise logged" status={ToasterInfo.info} stopToaster={this.stopToaster}/>}
+        <Toaster text="Data saved" status={ToasterInfo.info} stopToaster={this.stopToaster}/>}
         {showToasterWarning &&
         <Toaster text="Changes saved" status={ToasterInfo.warning} stopToaster={this.stopToaster}/>}
+        {showToasterError &&
+        <Toaster text="Save failed" status={ToasterInfo.error} stopToaster={this.stopToaster}/>}
         {showModalSets && <ModalSets
           updateDeleteSet={(reps?, weight?) => this.updateDeleteSet(reps, weight)}
           deleteEnabled={sets.length > 1}
@@ -358,6 +380,7 @@ class QuickLog extends React.PureComponent<IProps, IState> {
           dataLog={dataLog}
           deleteExercise={this.deleteExercise}
           editExercise={this.editExercise}
+          saveHistoryDate={this.saveHistoryDate}
           order={this.order}
           closeModal={this.closeModalListLog}
         />}
@@ -368,10 +391,29 @@ class QuickLog extends React.PureComponent<IProps, IState> {
           exercises={exercises}
           closeModal={this.handleModalSearch}
           selectExercise={this.selectExerciseModalSearch}/>}
+        {this.state.showLoadingScreen &&
+        <LoadingScreen/>}
       </View>
     )
   }
 }
+
+export default graphql(
+  gql`
+    mutation CreateHistoryDate($historyDate: HistoryDateCreateType) {
+      createHistoryDate(input: $historyDate) {
+        _id
+      }
+    }
+  `,
+  {
+    props: ({mutate}) => ({
+      createHistoryDate: (historyDate: ServerEntity.HistoryDate) =>
+        mutate({
+          variables: {historyDate}
+        })
+    })}
+)(QuickLog)
 
 const styles = StyleSheet.create({
   container: {
@@ -476,5 +518,3 @@ const styles = StyleSheet.create({
     color: colors.base
   }
 })
-
-export default QuickLog

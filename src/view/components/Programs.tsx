@@ -256,8 +256,7 @@ const ProgramsGraphQl = compose(graphql(
       createProgram: (program: ServerEntity.Program) => mutate({
         variables: {program}
       })
-    }),
-  },
+    })}
 ), graphql(
   gql`
     mutation DeleteProgram($_id: ProgramDeleteType) {
@@ -284,8 +283,8 @@ const ProgramsGraphQl = compose(graphql(
       updateProgram: (program: ServerEntity.Program) => mutate({
         variables: {program}
       })
-    }),
-  },
+    })
+  }
 ))(Programs)
 
 const mapStateToProps = (rootState: ReduxState.RootState) => {

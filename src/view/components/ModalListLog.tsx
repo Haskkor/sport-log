@@ -6,8 +6,6 @@ import * as _ from 'lodash'
 import {colors} from '../../utils/colors'
 import {grid} from '../../utils/grid'
 import RowSortableList from './RowSortableList'
-import {graphql} from 'react-apollo'
-import gql from 'graphql-tag'
 
 type IProps = {
   dataLog: ServerEntity.ExerciseSet[]
@@ -15,6 +13,7 @@ type IProps = {
   editExercise: (index: number) => void
   order: string[]
   closeModal: () => void
+  saveHistoryDate: (historyDate: ServerEntity.HistoryDate) => void
 }
 
 type IState = {}
@@ -45,11 +44,12 @@ class ModalListLog extends React.PureComponent<IProps, IState> {
           dataLogCopy.splice(indexRow, 1)
           this.props.deleteExercise(dataLogCopy)
         }
-      })
+      }
+    )
   }
 
   render() {
-    const {order, closeModal, dataLog} = this.props
+    const {order, closeModal, dataLog, saveHistoryDate} = this.props
     return (
       <View style={styles.container}>
         <Modal
@@ -58,9 +58,10 @@ class ModalListLog extends React.PureComponent<IProps, IState> {
           animationType="slide">
           <View style={styles.viewButtons}>
             <TouchableOpacity
+              disabled={dataLog.length < 1}
               style={styles.buttonSave}
-              onPress={() => closeModal()}>
-              <Text style={styles.textButton}>Save the training</Text>
+              onPress={() => saveHistoryDate({exercises: dataLog, timestamp: new Date().getTime()})}>
+              <Text style={dataLog.length < 1 ? styles.textButtonDisabled : styles.textButton}>Save the training</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.buttonDismiss}
@@ -86,22 +87,7 @@ class ModalListLog extends React.PureComponent<IProps, IState> {
   }
 }
 
-export default graphql(
-  gql`
-    mutation CreateProgram($program: ProgramCreateType) {
-      createProgram(input: $program) {
-        _id
-      }
-    }
-  `,
-  {
-    props: ({mutate}) => ({
-      createProgram: (program: ServerEntity.Program) => mutate({
-        variables: {program}
-      })
-    }),
-  },
-))(ModalListLog)
+export default ModalListLog
 
 const styles = StyleSheet.create({
   container: {
@@ -131,7 +117,9 @@ const styles = StyleSheet.create({
   },
   sortableList: {
     flex: 1
+  },
+  textButtonDisabled: {
+    fontFamily: grid.fontBold,
+    color: colors.inactiveTintColorTabNav
   }
 })
-
-export default ModalListLog
