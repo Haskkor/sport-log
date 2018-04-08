@@ -14,9 +14,12 @@ declare namespace ReduxState {
   type Entities = {
     programs: Programs
     history: History
+    quicklog: QuickLog
   }
 
   type Programs = ServerEntity.Program[]
+
+  type QuickLog = ServerEntity.ExerciseSet[]
 
   type History = {
     dataLoaded: boolean

@@ -2,10 +2,12 @@ import { combineReducers } from 'redux'
 import * as _ from 'lodash'
 import programs from './programs'
 import history from './history'
+import quicklog from './quicklog'
 
 const initialState = {}
 
 const subReducers = combineReducers({
+  quicklog,
   programs,
   history
 })

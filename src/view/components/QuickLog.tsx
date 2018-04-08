@@ -18,10 +18,18 @@ import {graphql} from 'react-apollo'
 import gql from 'graphql-tag'
 import {ApolloQueryResult} from 'apollo-client'
 import LoadingScreen from './LoadingScreen'
+import {bindActionCreators} from 'redux'
+import {connect, Dispatch} from 'react-redux'
+import * as QuickLogActions from '../../core/modules/entities/quicklog'
 
 type IProps = {
   navigation: any
   createHistoryDate: (historyDate: ServerEntity.HistoryDate) => Promise<ApolloQueryResult<{}>>
+  quickLog: ServerEntity.ExerciseSet[]
+  setQuickLog: typeof QuickLogActions.setQuickLog
+  editQuickLog: typeof QuickLogActions.editQuickLog
+  deleteQuickLog: typeof QuickLogActions.deleteQuickLog
+  resetQuickLog: typeof QuickLogActions.resetQuickLog
 }
 
 type IState = {
@@ -236,7 +244,8 @@ class QuickLog extends React.PureComponent<IProps, IState> {
   render() {
     const {
       sets, editing, currentExercise, currentMuscle, showModal, showModalSets, dataLog, showToasterInfo,
-      showToasterWarning, showModalRecovery, currentRecoveryTime, showModalSearch, showToasterError} = this.state
+      showToasterWarning, showModalRecovery, currentRecoveryTime, showModalSearch, showToasterError
+    } = this.state
     const navigationParams = this.props.navigation.state.params
     return (
       <View style={styles.container}>
@@ -398,7 +407,7 @@ class QuickLog extends React.PureComponent<IProps, IState> {
   }
 }
 
-export default graphql(
+const QuickLogGraphQl = graphql(
   gql`
     mutation CreateHistoryDate($historyDate: HistoryDateCreateType) {
       createHistoryDate(input: $historyDate) {
@@ -412,8 +421,23 @@ export default graphql(
         mutate({
           variables: {historyDate}
         })
-    })}
-)(QuickLog)
+    })
+  })(QuickLog)
+
+const mapStateToProps = (rootState: ReduxState.RootState) => {
+  return {
+    quickLog: rootState.entities.quicklog
+  }
+}
+
+const mapDispatchToProps = (dispatch: Dispatch<any>) => bindActionCreators({
+  setQuickLog: QuickLogActions.setQuickLog,
+  editQuickLog: QuickLogActions.editQuickLog,
+  deleteQuickLog: QuickLogActions.deleteQuickLog,
+  resetQuickLog: QuickLogActions.resetQuickLog
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(QuickLogGraphQl)
 
 const styles = StyleSheet.create({
   container: {
