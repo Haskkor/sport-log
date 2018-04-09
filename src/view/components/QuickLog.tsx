@@ -44,7 +44,6 @@ type IState = {
   showToasterWarning: boolean
   showToasterError: boolean
   showModalSearch: boolean
-  dataLog: ServerEntity.ExerciseSet[]
   editing: boolean
   showLoadingScreen: boolean
 }
@@ -78,7 +77,6 @@ class QuickLog extends React.PureComponent<IProps, IState> {
       showToasterError: false,
       showModalSearch: false,
       showLoadingScreen: false,
-      dataLog: [],
       editing: false
     }
     this.closeModalListLog = this.closeModalListLog.bind(this)
@@ -113,7 +111,7 @@ class QuickLog extends React.PureComponent<IProps, IState> {
   }
 
   componentDidMount() {
-    this.order = Object.keys(this.state.dataLog)
+    this.order = Object.keys(this.props.quickLog)
   }
 
   closeModalListLog() {
@@ -151,14 +149,16 @@ class QuickLog extends React.PureComponent<IProps, IState> {
 
   addExerciseSet = () => {
     const newSet = this.buildNewSet()
-    let dataLogCopy = this.state.dataLog.slice()
+    this.props.setQuickLog({set: newSet})
+    let dataLogCopy = this.props.quickLog.slice()
     dataLogCopy.push(newSet)
     this.backToOriginalState(dataLogCopy, false)
   }
 
   saveEditedExercise = () => {
     const newSet = this.buildNewSet()
-    let dataLogCopy = this.state.dataLog.slice()
+    this.props.editQuickLog({index: this.editedExerciseIndex, set: newSet})
+    let dataLogCopy = this.props.quickLog.slice()
     dataLogCopy[this.editedExerciseIndex] = newSet
     this.backToOriginalState(dataLogCopy, true)
   }
@@ -188,7 +188,6 @@ class QuickLog extends React.PureComponent<IProps, IState> {
       sets: [{reps: 8, weight: 75}, {reps: 8, weight: 80}, {reps: 8, weight: 85}],
       currentExercise: this.exercises[0].name,
       currentMuscle: this.muscles[0],
-      dataLog: dataLogCopy,
       editing: false,
       showToasterInfo: !wasEditing,
       showToasterWarning: wasEditing
@@ -196,7 +195,7 @@ class QuickLog extends React.PureComponent<IProps, IState> {
   }
 
   editExercise = (index: number) => {
-    const exerciseToEdit = this.state.dataLog[index]
+    const exerciseToEdit = this.props.quickLog[index]
     this.setState({currentMuscle: exerciseToEdit.muscleGroup})
     this.exercises = _.sortBy(exercises.find((data: ServerEntity.MuscleGroups) => data.muscle === exerciseToEdit.muscleGroup).exercises,
       [(exercise: ServerEntity.ExerciseMuscle) => {
@@ -211,8 +210,8 @@ class QuickLog extends React.PureComponent<IProps, IState> {
     })
   }
 
-  deleteExercise = (newDataLog: ServerEntity.ExerciseSet[]) => {
-    this.setState({dataLog: newDataLog})
+  deleteExercise = (index: number) => {
+    this.props.deleteQuickLog({index: index})
   }
 
   stopToaster = (status: ToasterInfo) => {
@@ -234,6 +233,7 @@ class QuickLog extends React.PureComponent<IProps, IState> {
   saveHistoryDate = (historyDate: ServerEntity.HistoryDate) => {
     this.setState({showModal: false, showLoadingScreen: true})
     this.props.createHistoryDate(historyDate).then(({data}: any) => {
+      this.props.resetQuickLog({})
       this.setState({showToasterInfo: true, showLoadingScreen: false})
     }).catch((e: any) => {
       console.log('Create history date failed', e)

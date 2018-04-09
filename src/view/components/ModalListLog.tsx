@@ -9,7 +9,7 @@ import RowSortableList from './RowSortableList'
 
 type IProps = {
   dataLog: ServerEntity.ExerciseSet[]
-  deleteExercise: (newDataLog: ServerEntity.ExerciseSet[]) => void
+  deleteExercise: (deleteIndex: number) => void
   editExercise: (index: number) => void
   order: string[]
   closeModal: () => void
@@ -40,9 +40,7 @@ class ModalListLog extends React.PureComponent<IProps, IState> {
         if (buttonIndex === 0) {
           this.props.editExercise(indexRow)
         } else if (buttonIndex === 1) {
-          let dataLogCopy = this.props.dataLog.slice()
-          dataLogCopy.splice(indexRow, 1)
-          this.props.deleteExercise(dataLogCopy)
+          this.props.deleteExercise(indexRow)
         }
       }
     )
