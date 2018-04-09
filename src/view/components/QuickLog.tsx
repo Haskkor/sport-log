@@ -243,7 +243,7 @@ class QuickLog extends React.PureComponent<IProps, IState> {
 
   render() {
     const {
-      sets, editing, currentExercise, currentMuscle, showModal, showModalSets, dataLog, showToasterInfo,
+      sets, editing, currentExercise, currentMuscle, showModal, showModalSets, showToasterInfo,
       showToasterWarning, showModalRecovery, currentRecoveryTime, showModalSearch, showToasterError
     } = this.state
     const navigationParams = this.props.navigation.state.params
@@ -348,7 +348,7 @@ class QuickLog extends React.PureComponent<IProps, IState> {
               </Row>
               <Row>
                 <TouchableOpacity
-                  style={[styles.buttonBottom, styles.shadow, {marginTop: -7}]}
+                  style={[styles.buttonBottom, styles.shadow, {marginTop: -3}]}
                   onPress={() => this.setState({
                     showModalRecovery: true
                   })}>
@@ -386,7 +386,7 @@ class QuickLog extends React.PureComponent<IProps, IState> {
           closeModal={this.closeModalSets}
         />}
         {showModal && <ModalListLog
-          dataLog={dataLog}
+          dataLog={this.props.quickLog}
           deleteExercise={this.deleteExercise}
           editExercise={this.editExercise}
           saveHistoryDate={this.saveHistoryDate}

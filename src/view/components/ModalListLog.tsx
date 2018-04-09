@@ -58,7 +58,10 @@ class ModalListLog extends React.PureComponent<IProps, IState> {
             <TouchableOpacity
               disabled={dataLog.length < 1}
               style={styles.buttonSave}
-              onPress={() => saveHistoryDate({exercises: dataLog, timestamp: new Date().getTime()})}>
+              onPress={() => {
+                const date = new Date()
+                saveHistoryDate({exercises: dataLog, timestamp: Date.UTC(date.getFullYear(), date.getMonth(), date.getDay())})
+              }}>
               <Text style={dataLog.length < 1 ? styles.textButtonDisabled : styles.textButton}>Save the training</Text>
             </TouchableOpacity>
             <TouchableOpacity
