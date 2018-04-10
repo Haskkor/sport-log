@@ -26,12 +26,19 @@ type IState = {
   showLoadingScreen: boolean
 }
 
-type Item = {
+// todo SET EXERCISE DONE
+// todo SET EXERCISE NOT DONE
+// todo DELETE EXERCISE
+// todo EDIT EXERCISE
+// todo ADD EXERCISE TO THE DAY
+
+type Item = { // todo FIND OUT WHY ITS NOT USED IN ACTION SHEET ETC
   [key: string]: {
     name: string,
     details: string,
     content: string,
-    done: boolean
+    done: boolean,
+    timestamp: string
   }
 }
 
@@ -66,19 +73,22 @@ class Calendar extends React.PureComponent<IProps, IState> {
     }
   }
 
-  showActionSheet = () => {
-    // ActionSheetIOS.showActionSheetWithOptions({
-    //     title: data.exercise.name,
-    //     options: [data.done ? 'Set not done' : 'Set done', 'Edit', 'Delete', 'Cancel'],
-    //     destructiveButtonIndex: 2,
-    //     cancelButtonIndex: 3
-    //   },
-    //   (buttonIndex) => {
-    //     if (buttonIndex === 0) {
-    //     } else if (buttonIndex === 1) {
-    //     } else if (buttonIndex === 2) {
-    //     }
-    //   })
+  showActionSheet = (item: any) => {
+    ActionSheetIOS.showActionSheetWithOptions({
+        title: item.name,
+        options: [item.done ? 'Set not done' : 'Set done', 'Edit', 'Delete', 'Cancel'],
+        destructiveButtonIndex: 2,
+        cancelButtonIndex: 3
+      },
+      (buttonIndex) => {
+        if (buttonIndex === 0) {
+          console.log(item)
+          // todo SAVE HISTORY IN DB
+          // todo SET SELECTED TO DONE
+        } else if (buttonIndex === 1) {
+        } else if (buttonIndex === 2) {
+        }
+      })
   }
 
   populateItems = async (day: DayCalendar) => {
@@ -97,11 +107,13 @@ class Calendar extends React.PureComponent<IProps, IState> {
             content: `Sets:${e.sets.map((s: ServerEntity.Set) => {
               return ` ${s.reps} x ${s.weight}`
             })}`,
-            done: true
+            done: true,
+            exerciseSet: e,
+            timestamp: time
           })
         })
 
-      } else {
+      } else { // todo CHECK IF THERE WILL BE ISSUES WHEN SETTING PART ON THE DAY AS DONE AND SWITCHING SCREENS
         if (strTime >= this.timeToString(new Date())) {
           if (this.state.activeProgram && isNaN(+this.state.activeProgram.days[0].day)) {
             const tempDate = new Date()
@@ -115,7 +127,9 @@ class Calendar extends React.PureComponent<IProps, IState> {
                   content: `Sets:${e.sets.map((s: ServerEntity.Set) => {
                     return ` ${s.reps} x ${s.weight}`
                   })}`,
-                  done: false
+                  done: false,
+                  exerciseSet: e,
+                  timestamp: time
                 })
               })
             }
@@ -129,7 +143,9 @@ class Calendar extends React.PureComponent<IProps, IState> {
                   content: `Sets:${e.sets.map((s: ServerEntity.Set) => {
                     return ` ${s.reps} x ${s.weight}`
                   })}`,
-                  done: false
+                  done: false,
+                  exerciseSet: e,
+                  timestamp: time
                 })
               })
             }
@@ -158,13 +174,14 @@ class Calendar extends React.PureComponent<IProps, IState> {
 
   renderItem = (item: any) => {
     return (
-      <View style={[styles.item, {height: item.height, backgroundColor: item.done ? colors.lightValid : colors.white}]}>
-        <TouchableOpacity onPress={() => this.showActionSheet()}>
-          <Text style={styles.textBold}>{item.name}</Text>
-          <Text style={styles.text}>{item.details}</Text>
-          <Text style={styles.text}>{item.content}</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity onPress={() => this.showActionSheet(item)} style={[styles.item, {
+        height: item.height,
+        backgroundColor: item.done ? colors.lightValid : colors.white
+      }]}>
+        <Text style={styles.textBold}>{item.name}</Text>
+        <Text style={styles.text}>{item.details}</Text>
+        <Text style={styles.text}>{item.content}</Text>
+      </TouchableOpacity>
     )
   }
 
