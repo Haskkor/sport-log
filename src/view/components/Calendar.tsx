@@ -13,11 +13,15 @@ import {compose, graphql} from 'react-apollo'
 import gql from 'graphql-tag'
 import LoadingScreen from './LoadingScreen'
 import delay from '../../utils/delay'
+import {ApolloQueryResult} from 'apollo-client'
+import {createOmitTypenameLink} from '../../utils/graphQlHelper'
+import * as _ from 'lodash'
 
 type IProps = {
   navigation: any
   programs: ServerEntity.Program[]
   hdUser: { historyDateUser: ServerEntity.HistoryDate[] }
+  createHistoryDate: (historyDate: ServerEntity.HistoryDate) => Promise<ApolloQueryResult<{}>>
 }
 
 type IState = {
@@ -39,6 +43,7 @@ type Item = { // todo FIND OUT WHY ITS NOT USED IN ACTION SHEET ETC
     content: string,
     done: boolean,
     timestamp: string
+    exerciseSet: ServerEntity.ExerciseSet
   }
 }
 
@@ -81,10 +86,33 @@ class Calendar extends React.PureComponent<IProps, IState> {
         cancelButtonIndex: 3
       },
       (buttonIndex) => {
+        const indexRow = _.findIndex(this.state.items[this.timeToString(item.timestamp)], (i: any) => {
+          return i === item
+        })
         if (buttonIndex === 0) {
-          console.log(item)
-          // todo SAVE HISTORY IN DB
+          // const newHistoryDate: ServerEntity.HistoryDate = {
+          //   timestamp: item.timestamp,
+          //   exercises: [createOmitTypenameLink(item.exerciseSet)]
+          // }
+          // this.props.createHistoryDate(newHistoryDate).then(({data}: any) => {
+          // }).catch((e: any) => {
+          //   console.log('Create history date failed', e)
+          // })
           // todo SET SELECTED TO DONE
+          const currentItem = this.state.items[this.timeToString(item.timestamp)][indexRow]
+          const newItem: any = {
+            name: currentItem.name,
+            details: currentItem.details,
+            content: currentItem.content,
+            done: true,
+            timestamp: currentItem.timestamp,
+            exerciseSet: currentItem.exerciseSet
+          }
+          this.state.items[this.timeToString(item.timestamp)].splice(indexRow, 1, newItem)
+          console.log(this.state.items[this.timeToString(item.timestamp)])
+          // todo how to force refresh??
+
+          this.state.items[this.timeToString(item.timestamp)][indexRow].done = true
         } else if (buttonIndex === 1) {
         } else if (buttonIndex === 2) {
         }
@@ -174,10 +202,11 @@ class Calendar extends React.PureComponent<IProps, IState> {
 
   renderItem = (item: any) => {
     return (
-      <TouchableOpacity onPress={() => this.showActionSheet(item)} style={[styles.item, {
-        height: item.height,
-        backgroundColor: item.done ? colors.lightValid : colors.white
-      }]}>
+      <TouchableOpacity onPress={() => this.showActionSheet(item)}
+                        style={[styles.item, {
+                          height: item.height,
+                          backgroundColor: item.done ? colors.lightValid : colors.white
+                        }]}>
         <Text style={styles.textBold}>{item.name}</Text>
         <Text style={styles.text}>{item.details}</Text>
         <Text style={styles.text}>{item.content}</Text>
@@ -266,7 +295,23 @@ const CalendarGraphQl = compose(graphql(
         }
       }
     }
-  `, {name: 'hdUser'}))(Calendar)
+  `, {name: 'hdUser'}),
+  graphql(
+    gql`
+    mutation CreateHistoryDate($historyDate: HistoryDateCreateType) {
+      createHistoryDate(input: $historyDate) {
+        _id
+      }
+    }
+  `,
+    {
+      props: ({mutate}) => ({
+        createHistoryDate: (historyDate: ServerEntity.HistoryDate) =>
+          mutate({
+            variables: {historyDate}
+          })
+      })
+    }))(Calendar)
 
 const mapStateToProps = (rootState: ReduxState.RootState) => {
   return {
