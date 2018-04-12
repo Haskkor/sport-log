@@ -44,6 +44,7 @@ type Item = { // todo FIND OUT WHY ITS NOT USED IN ACTION SHEET ETC
     done: boolean,
     timestamp: string
     exerciseSet: ServerEntity.ExerciseSet
+    _id?: string
   }
 }
 
@@ -90,29 +91,28 @@ class Calendar extends React.PureComponent<IProps, IState> {
           return i === item
         })
         if (buttonIndex === 0) {
-          // const newHistoryDate: ServerEntity.HistoryDate = {
-          //   timestamp: item.timestamp,
-          //   exercises: [createOmitTypenameLink(item.exerciseSet)]
-          // }
-          // this.props.createHistoryDate(newHistoryDate).then(({data}: any) => {
-          // }).catch((e: any) => {
-          //   console.log('Create history date failed', e)
-          // })
-          // todo SET SELECTED TO DONE
-          const currentItem = this.state.items[this.timeToString(item.timestamp)][indexRow]
-          const newItem: any = {
-            name: currentItem.name,
-            details: currentItem.details,
-            content: currentItem.content,
-            done: true,
-            timestamp: currentItem.timestamp,
-            exerciseSet: currentItem.exerciseSet
+          const newHistoryDate: ServerEntity.HistoryDate = {
+            timestamp: item.timestamp,
+            exercises: [createOmitTypenameLink(item.exerciseSet)]
           }
-          this.state.items[this.timeToString(item.timestamp)].splice(indexRow, 1, newItem)
-          console.log(this.state.items[this.timeToString(item.timestamp)])
-          // todo how to force refresh??
-
-          this.state.items[this.timeToString(item.timestamp)][indexRow].done = true
+          this.props.createHistoryDate(newHistoryDate).then(({data}: { createHistoryDate: { __typename: string, _id: string } }) => {
+            const currentItem = this.state.items[this.timeToString(item.timestamp)][indexRow]
+            const newItem: any = {
+              _id: data.createHistoryDate._id,
+              name: currentItem.name,
+              details: currentItem.details,
+              content: currentItem.content,
+              done: true,
+              timestamp: currentItem.timestamp,
+              exerciseSet: currentItem.exerciseSet
+            }
+            const newItems = Object.assign({}, this.state.items)
+            newItems[this.timeToString(item.timestamp)].splice(indexRow, 1, newItem)
+            newItems[this.timeToString(item.timestamp)][indexRow].done = true
+            this.setState({items: newItems})
+          }).catch((e: any) => {
+            console.log('Create history date failed', e)
+          })
         } else if (buttonIndex === 1) {
         } else if (buttonIndex === 2) {
         }
@@ -224,7 +224,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
   }
 
   rowHasChanged = (r1: any, r2: any) => {
-    return r1.name !== r2.name
+    return r1 !== r2
   }
 
   timeToString = (time: any) => {
