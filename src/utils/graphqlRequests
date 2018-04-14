@@ -227,6 +227,23 @@ mutation CreateHistoryDate {
         }, {
           reps: 8,
           weight: 75,
+        }]
+    },{
+        exercise: {
+          equipment: "Curl test",
+          name: "Test"
+        },
+        muscleGroup: "Test",
+        recoveryTime: "00:00",
+        sets: [{
+          reps: 8,
+          weight: 75,
+        }, {
+          reps: 8,
+          weight: 75,
+        }, {
+          reps: 8,
+          weight: 75,
         }],
       }]
   }) {
@@ -262,5 +279,29 @@ mutation UpdateHistoryDate {
 }
 
 mutation DeleteHistoryDate {
-  deleteHistoryDate(input: {_id: "5ac2d587b6ab5300074ee90e"})
+  deleteHistoryDate(input: {
+    _id: "5acbd2980e635d000676ddb3",
+    exercise: {
+      muscleGroup: "Abdominals",
+      recoveryTime: "00:00",
+      exercise: {
+        name: "Ab crunch machine",
+        equipment: "Machine"
+      },
+      sets: [
+        {
+        	reps: 8,
+          weight: 75
+        },
+        {
+          reps: 8,
+          weight: 80
+        },
+        {
+        	reps: 8,
+          weight: 85
+        }
+      ]
+    }
+  })
 }

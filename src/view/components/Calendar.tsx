@@ -95,24 +95,28 @@ class Calendar extends React.PureComponent<IProps, IState> {
             timestamp: item.timestamp,
             exercises: [createOmitTypenameLink(item.exerciseSet)]
           }
-          this.props.createHistoryDate(newHistoryDate).then(({data}: { createHistoryDate: { __typename: string, _id: string } }) => {
-            const currentItem = this.state.items[this.timeToString(item.timestamp)][indexRow]
-            const newItem: any = {
-              _id: data.createHistoryDate._id,
-              name: currentItem.name,
-              details: currentItem.details,
-              content: currentItem.content,
-              done: true,
-              timestamp: currentItem.timestamp,
-              exerciseSet: currentItem.exerciseSet
-            }
-            const newItems = Object.assign({}, this.state.items)
-            newItems[this.timeToString(item.timestamp)].splice(indexRow, 1, newItem)
-            newItems[this.timeToString(item.timestamp)][indexRow].done = true
-            this.setState({items: newItems})
-          }).catch((e: any) => {
-            console.log('Create history date failed', e)
-          })
+          if (item.done) {
+
+          } else {
+            this.props.createHistoryDate(newHistoryDate).then(({data}: { createHistoryDate: { __typename: string, _id: string } }) => {
+              const currentItem = this.state.items[this.timeToString(item.timestamp)][indexRow]
+              const newItem: any = {
+                _id: data.createHistoryDate._id,
+                name: currentItem.name,
+                details: currentItem.details,
+                content: currentItem.content,
+                done: true,
+                timestamp: currentItem.timestamp,
+                exerciseSet: currentItem.exerciseSet
+              }
+              const newItems = Object.assign({}, this.state.items)
+              newItems[this.timeToString(item.timestamp)].splice(indexRow, 1, newItem)
+              newItems[this.timeToString(item.timestamp)][indexRow].done = true
+              this.setState({items: newItems})
+            }).catch((e: any) => {
+              console.log('Create history date failed', e)
+            })
+          }
         } else if (buttonIndex === 1) {
         } else if (buttonIndex === 2) {
         }

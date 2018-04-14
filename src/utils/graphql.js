@@ -2,6 +2,7 @@ import { MongoClient, ObjectId } from 'mongodb';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { makeExecutableSchema } from 'graphql-tools';
+import * as _ from 'lodash';
 
 // TYPES
 
@@ -114,6 +115,7 @@ const typeDefs = `
   }
 	input HistoryDateDeleteType {
 		_id: String!
+		exercise: ExercisesSetInputType!
   }
 
   type Query {
@@ -263,7 +265,16 @@ const resolvers = {
         deleteHistoryDate: async (root, {input}, context) => {
             const historyDateId = input._id;
             const HistoryDate = context.mongo.collection('historyDate');
-            await HistoryDate.deleteOne( { _id : ObjectId(historyDateId) } );
+            const currentHistoryDate = await HistoryDate.findOne({ _id: ObjectId(historyDateId) });
+            if (currentHistoryDate.exercises.length === 1) {
+                await HistoryDate.deleteOne( { _id : ObjectId(historyDateId) } );
+            } else {
+                const indexRow = _.findIndex(currentHistoryDate.exercises, (i) => {
+                    return i === input.exercise;
+                })
+                currentHistoryDate.exercises.splice(indexRow, 1);
+                await HistoryDate.update({ _id: ObjectId(historyDateId) }, {$set: currentHistoryDate});
+            }
             return true;
         }
     }
