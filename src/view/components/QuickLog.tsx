@@ -329,11 +329,14 @@ class QuickLog extends React.PureComponent<IProps, IState> {
               </TouchableOpacity>
             </ScrollView>
           </Row>
-          <Row size={10} style={styles.rows}>
+          <Row size={2} style={styles.rowTextRecovery}>
+            <Text style={styles.textRecovery}>{currentRecoveryTime}</Text>
+          </Row>
+          <Row size={8} style={styles.rows}>
             <Col style={styles.columnsButtons}>
               {!editing &&
               <TouchableOpacity
-                style={[styles.buttonCurrentLog, styles.buttonBottom, styles.shadow]}
+                style={[styles.buttonBottom, styles.shadow]}
                 onPress={() => this.setState({
                   showModal: true,
                   showToasterInfo: false,
@@ -343,18 +346,13 @@ class QuickLog extends React.PureComponent<IProps, IState> {
               </TouchableOpacity>}
             </Col>
             <Col style={styles.columnsButtons}>
-              <Row>
-                <Text style={styles.textRecovery}>{currentRecoveryTime}</Text>
-              </Row>
-              <Row>
-                <TouchableOpacity
-                  style={[styles.buttonBottom, styles.shadow, {marginTop: -3}]}
-                  onPress={() => this.setState({
-                    showModalRecovery: true
-                  })}>
-                  <Text style={styles.buttonsText}>Rec. time</Text>
-                </TouchableOpacity>
-              </Row>
+              <TouchableOpacity
+                style={[styles.buttonBottom, styles.shadow]}
+                onPress={() => this.setState({
+                  showModalRecovery: true
+                })}>
+                <Text style={styles.buttonsText}>Rec. time</Text>
+              </TouchableOpacity>
             </Col>
             <Col style={styles.columnsButtons}>
               <TouchableOpacity
@@ -366,7 +364,7 @@ class QuickLog extends React.PureComponent<IProps, IState> {
                     (editing ? this.saveEditedExercise() : this.addExerciseSet())
                   }
                 }}
-                style={[styles.buttonAdd, styles.buttonBottom, styles.shadow]}>
+                style={[styles.buttonBottom, styles.shadow]}>
                 <Text style={styles.buttonsText}>{editing ? 'Save' : 'Add'}</Text>
               </TouchableOpacity>
             </Col>
@@ -474,6 +472,10 @@ const styles = StyleSheet.create({
   rows: {
     margin: grid.unit * 0.75
   },
+  rowTextRecovery: {
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   picker: {
     width: 250,
     height: 'auto'
@@ -485,21 +487,11 @@ const styles = StyleSheet.create({
   },
   textPickers: {
     justifyContent: 'center',
-    alignItems: 'flex-start',
-    color: colors.base,
-    fontFamily: grid.font
+    alignItems: 'flex-start'
   },
   scroll: {
     justifyContent: 'center',
     alignItems: 'center'
-  },
-  buttonCurrentLog: {
-    position: 'absolute',
-    left: 0
-  },
-  buttonAdd: {
-    position: 'absolute',
-    right: 0
   },
   shadow: {
     backgroundColor: colors.white,
@@ -538,7 +530,7 @@ const styles = StyleSheet.create({
   },
   textRecovery: {
     fontFamily: grid.fontLight,
-    fontSize: grid.caption,
+    fontSize: grid.body,
     color: colors.base
   }
 })

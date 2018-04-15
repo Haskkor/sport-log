@@ -1,10 +1,10 @@
-"# sport-log" 
 
-#Short term
+##Short term
 
-- BUG: Timestamp KO on QuickLog create (see 31 march)
-- BUG: Done not green on Calendar after creation with QuickLog (see 31 march)
-- BUG: Buttons bottom of QuickLog page messed up
+- ~~BUG: Timestamp KO on QuickLog create (see 31 march)~~
+- ~~BUG: Done not green on Calendar after creation with QuickLog (see 31 march)~~
+- ~~BUG: Buttons bottom of QuickLog page messed up~~
+- ~~WARNING: Color passed to view in QuickLog~~
 - Redo historyDate done/not done saving the all day at once
     - Edit or Create based on presence of Id and not on done status
 - Find out what to call on each action
@@ -21,7 +21,7 @@
 - Put a loader on item? Day?
 - Debounce/Throttle graphql methods
 
-#Long term
+##Long term
 
 - User details (add charts, drawer with weight etc)
 - Healthcheck function for db and graphql

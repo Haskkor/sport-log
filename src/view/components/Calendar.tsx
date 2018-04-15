@@ -308,6 +308,7 @@ const CalendarGraphQl = compose(graphql(
         timestamp
         exercises {
           muscleGroup
+          done
           recoveryTime
           exercise {
             name

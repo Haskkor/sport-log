@@ -38,6 +38,7 @@ query HistoryDateUser {
     exercises {
       muscleGroup
       recoveryTime
+      done
       exercise {
         name
         equipment
