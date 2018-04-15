@@ -16,6 +16,7 @@ declare namespace ServerEntity {
 
   type ExerciseSet = {
     muscleGroup: string
+    done?: boolean
     exercise: ExerciseMuscle
     sets: Set[]
     recoveryTime: string
@@ -38,7 +39,11 @@ declare namespace ServerEntity {
 
   type History = HistoryDate[]
 
-  type HistoryDate = { timestamp: number, exercises: ExerciseSet[] }
+  type HistoryDate = {
+    _id?: string,
+    timestamp: number,
+    exercises: ExerciseSet[]
+  }
 
   type User = {
     _id: string

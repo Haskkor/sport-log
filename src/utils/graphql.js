@@ -31,6 +31,7 @@ const typeDefs = `
     muscleGroup: String
     recoveryTime: String
     exercise: ExerciseMuscleType
+		done: Boolean
     sets: [SetType]
   }
   type ExercisesDayType {
@@ -82,6 +83,7 @@ const typeDefs = `
     muscleGroup: String!
     recoveryTime: String!
     exercise: ExerciseMuscleInputType!
+		done: Boolean
     sets: [SetInputType]!
   }
   input ExercisesDayInputType {

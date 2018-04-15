@@ -22,6 +22,7 @@ type IProps = {
   programs: ServerEntity.Program[]
   hdUser: { historyDateUser: ServerEntity.HistoryDate[] }
   createHistoryDate: (historyDate: ServerEntity.HistoryDate) => Promise<ApolloQueryResult<{}>>
+  updateHistoryDate: (historyDate: ServerEntity.HistoryDate) => Promise<ApolloQueryResult<{}>>
 }
 
 type IState = {
@@ -30,13 +31,7 @@ type IState = {
   showLoadingScreen: boolean
 }
 
-// todo SET EXERCISE DONE
-// todo SET EXERCISE NOT DONE
-// todo DELETE EXERCISE
-// todo EDIT EXERCISE
-// todo ADD EXERCISE TO THE DAY
-
-type Item = { // todo FIND OUT WHY ITS NOT USED IN ACTION SHEET ETC
+type Item = {
   [key: string]: {
     name: string,
     details: string,
@@ -91,14 +86,40 @@ class Calendar extends React.PureComponent<IProps, IState> {
           return i === item
         })
         if (buttonIndex === 0) {
-          const newHistoryDate: ServerEntity.HistoryDate = {
-            timestamp: item.timestamp,
-            exercises: [createOmitTypenameLink(item.exerciseSet)]
-          }
           if (item.done) {
-
+            const exerciseSet = createOmitTypenameLink(item.exerciseSet)
+            exerciseSet.done = false
+            const newHistoryDate: ServerEntity.HistoryDate = {
+              _id: item._id,
+              timestamp: item.timestamp,
+              exercises: [exerciseSet]
+            }
+            this.props.updateHistoryDate(newHistoryDate).then(({data}) => {
+              const currentItem = this.state.items[this.timeToString(item.timestamp)][indexRow]
+              const newItem: any = {
+                _id: data.updateHistoryDate._id,
+                name: currentItem.name,
+                details: currentItem.details,
+                content: currentItem.content,
+                done: false,
+                timestamp: currentItem.timestamp,
+                exerciseSet: currentItem.exerciseSet
+              }
+              const newItems = Object.assign({}, this.state.items)
+              newItems[this.timeToString(item.timestamp)].splice(indexRow, 1, newItem)
+              newItems[this.timeToString(item.timestamp)][indexRow].done = false
+              this.setState({items: newItems})
+            }).catch((e: any) => {
+              console.log('Update history date failed', e)
+            })
           } else {
-            this.props.createHistoryDate(newHistoryDate).then(({data}: { createHistoryDate: { __typename: string, _id: string } }) => {
+            const exerciseSet = createOmitTypenameLink(item.exerciseSet)
+            exerciseSet.done = true
+            const newHistoryDate: ServerEntity.HistoryDate = {
+              timestamp: item.timestamp,
+              exercises: [exerciseSet]
+            }
+            this.props.createHistoryDate(newHistoryDate).then(({data}) => {
               const currentItem = this.state.items[this.timeToString(item.timestamp)][indexRow]
               const newItem: any = {
                 _id: data.createHistoryDate._id,
@@ -134,18 +155,18 @@ class Calendar extends React.PureComponent<IProps, IState> {
       if (historyOnDate) {
         historyOnDate.exercises.map((e: ServerEntity.ExerciseSet) => {
           this.state.items[strTime].push({
+            _id: historyOnDate._id,
             name: `${e.exercise.name} - ${e.muscleGroup}`,
             details: `${e.exercise.equipment} - Recovery time: ${e.recoveryTime}`,
             content: `Sets:${e.sets.map((s: ServerEntity.Set) => {
               return ` ${s.reps} x ${s.weight}`
             })}`,
-            done: true,
+            done: e.done,
             exerciseSet: e,
             timestamp: time
           })
         })
-
-      } else { // todo CHECK IF THERE WILL BE ISSUES WHEN SETTING PART ON THE DAY AS DONE AND SWITCHING SCREENS
+      } else {
         if (strTime >= this.timeToString(new Date())) {
           if (this.state.activeProgram && isNaN(+this.state.activeProgram.days[0].day)) {
             const tempDate = new Date()
@@ -311,6 +332,22 @@ const CalendarGraphQl = compose(graphql(
     {
       props: ({mutate}) => ({
         createHistoryDate: (historyDate: ServerEntity.HistoryDate) =>
+          mutate({
+            variables: {historyDate}
+          })
+      })
+    }),
+  graphql(
+    gql`
+    mutation UpdateHistoryDate($historyDate: HistoryDateUpdateType) {
+      updateHistoryDate(input: $historyDate) {
+        _id
+      }
+    }
+  `,
+    {
+      props: ({mutate}) => ({
+        updateHistoryDate: (historyDate: ServerEntity.HistoryDate) =>
           mutate({
             variables: {historyDate}
           })

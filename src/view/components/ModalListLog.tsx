@@ -60,6 +60,7 @@ class ModalListLog extends React.PureComponent<IProps, IState> {
               style={styles.buttonSave}
               onPress={() => {
                 const date = new Date()
+                dataLog.map((d: ServerEntity.ExerciseSet) => d.done = true)
                 saveHistoryDate({exercises: dataLog, timestamp: Date.UTC(date.getFullYear(), date.getMonth(), date.getDay())})
               }}>
               <Text style={dataLog.length < 1 ? styles.textButtonDisabled : styles.textButton}>Save the training</Text>
