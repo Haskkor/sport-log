@@ -86,35 +86,51 @@ class Calendar extends React.PureComponent<IProps, IState> {
           return i === item
         })
         if (buttonIndex === 0) {
-          if (item.done) {
-            const exerciseSet = createOmitTypenameLink(item.exerciseSet)
-            exerciseSet.done = false
-            const newHistoryDate: ServerEntity.HistoryDate = {
-              _id: item._id,
-              timestamp: item.timestamp,
-              exercises: [exerciseSet]
+
+
+
+
+          console.log('item', item)
+          if (item._id) {
+
+
+            const currentItem = this.state.items[this.timeToString(item.timestamp)][indexRow]
+            const newItem: any = {
+              _id: item.id,
+              name: currentItem.name,
+              details: currentItem.details,
+              content: currentItem.content,
+              done: !item.done,
+              timestamp: currentItem.timestamp,
+              exerciseSet: currentItem.exerciseSet
             }
+            const newItems = Object.assign({}, this.state.items)
+            newItems[this.timeToString(item.timestamp)].splice(indexRow, 1, newItem)
+            newItems[this.timeToString(item.timestamp)][indexRow].done = false
+
+            console.log('newItems', newItems)
+
+            const newHistoryDate: ServerEntity.HistoryDate = {
+              _id: newItems[this.timeToString(item.timestamp)].id,
+              timestamp: newItems[this.timeToString(item.timestamp)].timestamp,
+              exercises: createOmitTypenameLink(newItems[this.timeToString(item.timestamp)].exercises)
+            }
+
+            console.log('newHistoryDate', newHistoryDate)
+
+
+
             this.props.updateHistoryDate(newHistoryDate).then(({data}) => {
-              const currentItem = this.state.items[this.timeToString(item.timestamp)][indexRow]
-              const newItem: any = {
-                _id: data.updateHistoryDate._id,
-                name: currentItem.name,
-                details: currentItem.details,
-                content: currentItem.content,
-                done: false,
-                timestamp: currentItem.timestamp,
-                exerciseSet: currentItem.exerciseSet
-              }
-              const newItems = Object.assign({}, this.state.items)
-              newItems[this.timeToString(item.timestamp)].splice(indexRow, 1, newItem)
-              newItems[this.timeToString(item.timestamp)][indexRow].done = false
               this.setState({items: newItems})
             }).catch((e: any) => {
               console.log('Update history date failed', e)
             })
+
+
+
           } else {
             const exerciseSet = createOmitTypenameLink(item.exerciseSet)
-            exerciseSet.done = true
+            exerciseSet.done = !item.done
             const newHistoryDate: ServerEntity.HistoryDate = {
               timestamp: item.timestamp,
               exercises: [exerciseSet]
@@ -126,7 +142,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
                 name: currentItem.name,
                 details: currentItem.details,
                 content: currentItem.content,
-                done: true,
+                done: !item.done,
                 timestamp: currentItem.timestamp,
                 exerciseSet: currentItem.exerciseSet
               }
@@ -138,6 +154,9 @@ class Calendar extends React.PureComponent<IProps, IState> {
               console.log('Create history date failed', e)
             })
           }
+
+
+
         } else if (buttonIndex === 1) {
         } else if (buttonIndex === 2) {
         }
