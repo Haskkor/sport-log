@@ -39,7 +39,7 @@ type Item = {
     done: boolean,
     timestamp: string
     exerciseSet: ServerEntity.ExerciseSet
-    _id?: string
+    _idHistoryDate?: string
   }
 }
 
@@ -88,15 +88,13 @@ class Calendar extends React.PureComponent<IProps, IState> {
         if (buttonIndex === 0) {
 
 
-
-
           console.log('item', item)
-          if (item._id) {
+          if (item._idHistoryDate) {
 
 
             const currentItem = this.state.items[this.timeToString(item.timestamp)][indexRow]
             const newItem: any = {
-              _id: item.id,
+              _idHistoryDate: item._idHistoryDate,
               name: currentItem.name,
               details: currentItem.details,
               content: currentItem.content,
@@ -105,19 +103,20 @@ class Calendar extends React.PureComponent<IProps, IState> {
               exerciseSet: currentItem.exerciseSet
             }
             const newItems = Object.assign({}, this.state.items)
+            console.log('newItem', newItem)
             newItems[this.timeToString(item.timestamp)].splice(indexRow, 1, newItem)
             newItems[this.timeToString(item.timestamp)][indexRow].done = false
 
             console.log('newItems', newItems)
+            console.log('item', newItems[this.timeToString(item.timestamp)])
 
             const newHistoryDate: ServerEntity.HistoryDate = {
-              _id: newItems[this.timeToString(item.timestamp)].id,
-              timestamp: newItems[this.timeToString(item.timestamp)].timestamp,
-              exercises: createOmitTypenameLink(newItems[this.timeToString(item.timestamp)].exercises)
+              _id: item._idHistoryDate,
+              timestamp: item.timestamp,
+              exercises: createOmitTypenameLink(newItems[this.timeToString(item.timestamp)].exerciseSet) // todo all the exercises
             }
 
             console.log('newHistoryDate', newHistoryDate)
-
 
 
             this.props.updateHistoryDate(newHistoryDate).then(({data}) => {
@@ -125,7 +124,6 @@ class Calendar extends React.PureComponent<IProps, IState> {
             }).catch((e: any) => {
               console.log('Update history date failed', e)
             })
-
 
 
           } else {
@@ -138,7 +136,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
             this.props.createHistoryDate(newHistoryDate).then(({data}) => {
               const currentItem = this.state.items[this.timeToString(item.timestamp)][indexRow]
               const newItem: any = {
-                _id: data.createHistoryDate._id,
+                _idHistoryDate: data.createHistoryDate._id,
                 name: currentItem.name,
                 details: currentItem.details,
                 content: currentItem.content,
@@ -154,7 +152,6 @@ class Calendar extends React.PureComponent<IProps, IState> {
               console.log('Create history date failed', e)
             })
           }
-
 
 
         } else if (buttonIndex === 1) {
@@ -174,7 +171,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
       if (historyOnDate) {
         historyOnDate.exercises.map((e: ServerEntity.ExerciseSet) => {
           this.state.items[strTime].push({
-            _id: historyOnDate._id,
+            _idHistoryDate: historyOnDate._id,
             name: `${e.exercise.name} - ${e.muscleGroup}`,
             details: `${e.exercise.equipment} - Recovery time: ${e.recoveryTime}`,
             content: `Sets:${e.sets.map((s: ServerEntity.Set) => {

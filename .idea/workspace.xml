@@ -32,9 +32,21 @@
       <file leaf-file-name="Calendar.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="118" column="41" lean-forward="false" selection-start-line="118" selection-start-column="41" selection-end-line="118" selection-end-column="41" />
+            <state relative-caret-position="639">
+              <caret line="115" column="129" lean-forward="false" selection-start-line="115" selection-start-column="129" selection-end-line="115" selection-end-column="129" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="entities.d.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/interfaces/entities.d.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="615">
+              <caret line="41" column="7" lean-forward="false" selection-start-line="41" selection-start-column="7" selection-end-line="41" selection-end-column="7" />
+              <folding>
+                <marker date="1523823985236" expanded="true" signature="279:309" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -42,9 +54,11 @@
       <file leaf-file-name="graphql.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/utils/graphql.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="934">
-              <caret line="282" column="0" lean-forward="false" selection-start-line="282" selection-start-column="0" selection-end-line="282" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="992">
+              <caret line="115" column="13" lean-forward="false" selection-start-line="115" selection-start-column="13" selection-end-line="115" selection-end-column="13" />
+              <folding>
+                <element signature="e#0#47#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -116,7 +130,6 @@
         <option value="$PROJECT_DIR$/src/core/modules/entities/reducer.ts" />
         <option value="$PROJECT_DIR$/src/core/modules/entities/quicklog.ts" />
         <option value="$PROJECT_DIR$/src/interfaces/entities.d.ts" />
-        <option value="$PROJECT_DIR$/src/utils/graphql.js" />
         <option value="$PROJECT_DIR$/src/utils/graphqlRequests" />
         <option value="$PROJECT_DIR$/src/view/components/Toaster.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/ModalSearch.tsx" />
@@ -125,6 +138,7 @@
         <option value="$PROJECT_DIR$/src/view/components/ModalListLog.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/QuickLog.tsx" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/utils/graphql.js" />
         <option value="$PROJECT_DIR$/src/view/components/Calendar.tsx" />
       </list>
     </option>
@@ -139,10 +153,9 @@
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
   <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="-1" />
     <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="1168" />
+    <option name="height" value="1417" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -276,7 +289,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="SearchEverywhereHistoryKey" value="Calen&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/Calendar.tsx&#10;Cald&#9;null&#9;null&#10;modalse&#9;null&#9;null&#10;readme&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/README.md&#10;config&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/utils/config.ts&#10;lo&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/view/components/LoginRegister.tsx&#10;rea&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/README.md&#10;packa&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/package.json&#10;read&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/node_modules/@haskkor/react-native-pincode/README.md&#10;const&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/utils/constants.ts&#10;confi&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/utils/config.ts&#10;draw&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/navigators/MainDrawerNav.tsx&#10;index&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/index.tsx&#10;create.ts&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/core/create.ts" />
+    <property name="SearchEverywhereHistoryKey" value="enti&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/interfaces/entities.d.ts&#10;Calen&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/Calendar.tsx&#10;Cald&#9;null&#9;null&#10;modalse&#9;null&#9;null&#10;readme&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/README.md&#10;config&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/utils/config.ts&#10;lo&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/view/components/LoginRegister.tsx&#10;rea&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/README.md&#10;packa&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/package.json&#10;read&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/node_modules/@haskkor/react-native-pincode/README.md&#10;const&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/utils/constants.ts&#10;confi&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/utils/config.ts&#10;draw&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/navigators/MainDrawerNav.tsx&#10;index&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/index.tsx&#10;create.ts&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/core/create.ts" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="typescript-compiler-editor-notification" value="false" />
   </component>
@@ -338,10 +351,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="197487000" />
+    <option name="totallyTimeSpent" value="199564000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="23" width="1280" height="1168" extended-state="1" />
+    <frame x="0" y="23" width="1280" height="1417" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -654,16 +667,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/interfaces/entities.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
-          <caret line="41" column="7" lean-forward="false" selection-start-line="41" selection-start-column="7" selection-end-line="41" selection-end-column="7" />
-          <folding>
-            <marker date="1523823985236" expanded="true" signature="279:309" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/graphqlRequests">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1018">
@@ -741,7 +744,7 @@
         <state relative-caret-position="381">
           <caret line="495" column="10" lean-forward="false" selection-start-line="495" selection-start-column="10" selection-end-line="495" selection-end-column="10" />
           <folding>
-            <element signature="e#0#30#0" expanded="true" />
+            <element signature="e#0#30#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -767,16 +770,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/graphql.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="934">
-          <caret line="282" column="0" lean-forward="false" selection-start-line="282" selection-start-column="0" selection-end-line="282" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="992">
+          <caret line="115" column="13" lean-forward="false" selection-start-line="115" selection-start-column="13" selection-end-line="115" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/interfaces/entities.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="41" column="7" lean-forward="false" selection-start-line="41" selection-start-column="7" selection-end-line="41" selection-end-column="7" />
+          <folding>
+            <marker date="1523823985236" expanded="true" signature="279:309" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="118" column="41" lean-forward="false" selection-start-line="118" selection-start-column="41" selection-end-line="118" selection-end-column="41" />
+        <state relative-caret-position="639">
+          <caret line="115" column="129" lean-forward="false" selection-start-line="115" selection-start-column="129" selection-end-line="115" selection-end-column="129" />
           <folding />
         </state>
       </provider>
