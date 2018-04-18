@@ -5,8 +5,8 @@
 - ~~BUG: Done not green on Calendar after creation with QuickLog (see 31 march)~~
 - ~~BUG: Buttons bottom of QuickLog page messed up~~
 - ~~WARNING: Color passed to view in QuickLog~~
-- Redo historyDate done/not done saving the all day at once
-    - Edit or Create based on presence of Id and not on done status
+- ~~Redo historyDate done/not done saving the all day at once~~
+    - ~~Edit or Create based on presence of Id and not on done status~~
 - Find out what to call on each action
     - ModalListLog: create
     - Done/Not done: create or edit based on Id presence
@@ -16,6 +16,7 @@
 - Use the Item type on Calendar file
 - Remove all the any types
 - Edit historyDate
+- Simplify show action sheet function
 - Add exercises to the day
 - Select all on a day to set done/not done or delete
 - Put a loader on item? Day?

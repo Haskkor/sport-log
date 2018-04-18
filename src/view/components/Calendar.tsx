@@ -36,7 +36,6 @@ type Item = {
     name: string,
     details: string,
     content: string,
-    done: boolean,
     timestamp: string
     exerciseSet: ServerEntity.ExerciseSet
     _idHistoryDate?: string
@@ -77,7 +76,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
   showActionSheet = (item: any) => {
     ActionSheetIOS.showActionSheetWithOptions({
         title: item.name,
-        options: [item.done ? 'Set not done' : 'Set done', 'Edit', 'Delete', 'Cancel'],
+        options: [item.exerciseSet.done ? 'Set not done' : 'Set done', 'Edit', 'Delete', 'Cancel'],
         destructiveButtonIndex: 2,
         cancelButtonIndex: 3
       },
@@ -86,46 +85,37 @@ class Calendar extends React.PureComponent<IProps, IState> {
           return i === item
         })
         if (buttonIndex === 0) {
-
-
-          console.log('item', item)
           if (item._idHistoryDate) {
-
-
             const currentItem = this.state.items[this.timeToString(item.timestamp)][indexRow]
+            console.log(currentItem)
+            const newExerciseSet: ServerEntity.ExerciseSet = {
+              done: !currentItem.exerciseSet.done,
+              exercise: currentItem.exerciseSet.exercise,
+              recoveryTime: currentItem.exerciseSet.recoveryTime,
+              sets: currentItem.exerciseSet.sets,
+              muscleGroup: currentItem.exerciseSet.muscleGroup
+            }
             const newItem: any = {
               _idHistoryDate: item._idHistoryDate,
               name: currentItem.name,
               details: currentItem.details,
               content: currentItem.content,
-              done: !item.done,
               timestamp: currentItem.timestamp,
-              exerciseSet: currentItem.exerciseSet
+              exerciseSet: newExerciseSet
             }
             const newItems = Object.assign({}, this.state.items)
-            console.log('newItem', newItem)
             newItems[this.timeToString(item.timestamp)].splice(indexRow, 1, newItem)
-            newItems[this.timeToString(item.timestamp)][indexRow].done = false
-
-            console.log('newItems', newItems)
-            console.log('item', newItems[this.timeToString(item.timestamp)])
-
+            const newExercises = newItems[this.timeToString(item.timestamp)].map((i: any) => createOmitTypenameLink(i.exerciseSet))
             const newHistoryDate: ServerEntity.HistoryDate = {
               _id: item._idHistoryDate,
               timestamp: item.timestamp,
-              exercises: createOmitTypenameLink(newItems[this.timeToString(item.timestamp)].exerciseSet) // todo all the exercises
+              exercises: newExercises
             }
-
-            console.log('newHistoryDate', newHistoryDate)
-
-
             this.props.updateHistoryDate(newHistoryDate).then(({data}) => {
               this.setState({items: newItems})
             }).catch((e: any) => {
               console.log('Update history date failed', e)
             })
-
-
           } else {
             const exerciseSet = createOmitTypenameLink(item.exerciseSet)
             exerciseSet.done = !item.done
@@ -135,25 +125,28 @@ class Calendar extends React.PureComponent<IProps, IState> {
             }
             this.props.createHistoryDate(newHistoryDate).then(({data}) => {
               const currentItem = this.state.items[this.timeToString(item.timestamp)][indexRow]
+              const newExerciseSet = {
+                done: !currentItem.exerciseSet.done,
+                exercise: currentItem.exerciseSet.exercise,
+                recoveryTime: currentItem.exerciseSet.recoveryTime,
+                sets: currentItem.exerciseSet.sets,
+                muscleGroup: currentItem.exerciseSet.muscleGroup
+              }
               const newItem: any = {
                 _idHistoryDate: data.createHistoryDate._id,
                 name: currentItem.name,
                 details: currentItem.details,
                 content: currentItem.content,
-                done: !item.done,
                 timestamp: currentItem.timestamp,
-                exerciseSet: currentItem.exerciseSet
+                exerciseSet: newExerciseSet
               }
               const newItems = Object.assign({}, this.state.items)
               newItems[this.timeToString(item.timestamp)].splice(indexRow, 1, newItem)
-              newItems[this.timeToString(item.timestamp)][indexRow].done = true
               this.setState({items: newItems})
             }).catch((e: any) => {
               console.log('Create history date failed', e)
             })
           }
-
-
         } else if (buttonIndex === 1) {
         } else if (buttonIndex === 2) {
         }
@@ -177,7 +170,6 @@ class Calendar extends React.PureComponent<IProps, IState> {
             content: `Sets:${e.sets.map((s: ServerEntity.Set) => {
               return ` ${s.reps} x ${s.weight}`
             })}`,
-            done: e.done,
             exerciseSet: e,
             timestamp: time
           })
@@ -196,7 +188,6 @@ class Calendar extends React.PureComponent<IProps, IState> {
                   content: `Sets:${e.sets.map((s: ServerEntity.Set) => {
                     return ` ${s.reps} x ${s.weight}`
                   })}`,
-                  done: false,
                   exerciseSet: e,
                   timestamp: time
                 })
@@ -212,7 +203,6 @@ class Calendar extends React.PureComponent<IProps, IState> {
                   content: `Sets:${e.sets.map((s: ServerEntity.Set) => {
                     return ` ${s.reps} x ${s.weight}`
                   })}`,
-                  done: false,
                   exerciseSet: e,
                   timestamp: time
                 })
@@ -246,7 +236,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
       <TouchableOpacity onPress={() => this.showActionSheet(item)}
                         style={[styles.item, {
                           height: item.height,
-                          backgroundColor: item.done ? colors.lightValid : colors.white
+                          backgroundColor: item.exerciseSet.done ? colors.lightValid : colors.white
                         }]}>
         <Text style={styles.textBold}>{item.name}</Text>
         <Text style={styles.text}>{item.details}</Text>
