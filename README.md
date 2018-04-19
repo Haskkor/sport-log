@@ -7,16 +7,17 @@
 - ~~WARNING: Color passed to view in QuickLog~~
 - ~~Redo historyDate done/not done saving the all day at once~~
     - ~~Edit or Create based on presence of Id and not on done status~~
-- Find out what to call on each action
-    - ModalListLog: create
-    - Done/Not done: create or edit based on Id presence
-    - Edit: create or edit based on Id presence
-    - Delete: create, edit or delete based on Id presence and number of items on the list
-- Delete historyDate
+- ~~Find out what to call on each action~~
+    - ~~ModalListLog: create~~
+    - ~~Done/Not done: create or edit based on Id presence~~
+    - ~~Edit: create or edit based on Id presence~~
+    - ~~Delete: create, edit based on Id presence~~
+- ~~Delete historyDate~~
+- When QuickLog creates a item, refresh the calendar => see work on calendar edit
 - Use the Item type on Calendar file
 - Remove all the any types
 - Edit historyDate
-- Simplify show action sheet function
+- Simplify/Clean show action sheet function
 - Add exercises to the day
 - Select all on a day to set done/not done or delete
 - Put a loader on item? Day?

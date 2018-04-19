@@ -108,12 +108,12 @@ const typeDefs = `
   }
 	input HistoryDateCreateType {
 		timestamp: String!
-		exercises: [ExercisesSetInputType]!
+		exercises: [ExercisesSetInputType]
   }
 	input HistoryDateUpdateType {
 		_id: String!
 		timestamp: String!
-		exercises: [ExercisesSetInputType]!
+		exercises: [ExercisesSetInputType]
   }
 	input HistoryDateDeleteType {
 		_id: String!
