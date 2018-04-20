@@ -31,15 +31,17 @@ type IState = {
   showLoadingScreen: boolean
 }
 
+type Items = {
+  [key: string]: Item
+}
+
 type Item = {
-  [key: string]: {
-    name: string,
-    details: string,
-    content: string,
-    timestamp: string
-    exerciseSet: ServerEntity.ExerciseSet
-    _idHistoryDate?: string
-  }
+  name: string,
+  details: string,
+  content: string,
+  timestamp: string
+  exerciseSet: ServerEntity.ExerciseSet
+  _idHistoryDate?: string
 }
 
 type DayCalendar = {
@@ -73,7 +75,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
     }
   }
 
-  showActionSheet = (item: any) => {
+  showActionSheet = (item: Item) => {
     ActionSheetIOS.showActionSheetWithOptions({
         title: item.name,
         options: [item.exerciseSet.done ? 'Set not done' : 'Set done', 'Edit', 'Delete', 'Cancel'],
@@ -81,7 +83,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
         cancelButtonIndex: 3
       },
       (buttonIndex) => {
-        const indexRow = _.findIndex(this.state.items[this.timeToString(item.timestamp)], (i: any) => {
+        const indexRow = _.findIndex(this.state.items[this.timeToString(item.timestamp)], (i: Item) => {
           return i === item
         })
         if (buttonIndex === 0) {
@@ -94,7 +96,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
               sets: currentItem.exerciseSet.sets,
               muscleGroup: currentItem.exerciseSet.muscleGroup
             }
-            const newItem: any = {
+            const newItem: Item = {
               _idHistoryDate: item._idHistoryDate,
               name: currentItem.name,
               details: currentItem.details,
@@ -104,10 +106,10 @@ class Calendar extends React.PureComponent<IProps, IState> {
             }
             const newItems = Object.assign({}, this.state.items)
             newItems[this.timeToString(item.timestamp)].splice(indexRow, 1, newItem)
-            const newExercises = newItems[this.timeToString(item.timestamp)].map((i: any) => createOmitTypenameLink(i.exerciseSet))
+            const newExercises = newItems[this.timeToString(item.timestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
             const newHistoryDate: ServerEntity.HistoryDate = {
               _id: item._idHistoryDate,
-              timestamp: item.timestamp,
+              timestamp: +item.timestamp,
               exercises: newExercises
             }
             this.props.updateHistoryDate(newHistoryDate).then(({data}) => {
@@ -116,10 +118,11 @@ class Calendar extends React.PureComponent<IProps, IState> {
               console.log('Update history date failed', e)
             })
           } else {
+            const currentItem = this.state.items[this.timeToString(item.timestamp)][indexRow]
             const exerciseSet = createOmitTypenameLink(item.exerciseSet)
-            exerciseSet.done = !item.done
+            exerciseSet.done = !currentItem.exerciseSet.done
             const newHistoryDate: ServerEntity.HistoryDate = {
-              timestamp: item.timestamp,
+              timestamp: +item.timestamp,
               exercises: [exerciseSet]
             }
             this.props.createHistoryDate(newHistoryDate).then(({data}) => {
@@ -155,15 +158,14 @@ class Calendar extends React.PureComponent<IProps, IState> {
           })
 
 
-
         } else if (buttonIndex === 2) {
           const newItems = Object.assign({}, this.state.items)
           newItems[this.timeToString(item.timestamp)].splice(indexRow, 1)
-          const newExercises = newItems[this.timeToString(item.timestamp)].map((i: any) => createOmitTypenameLink(i.exerciseSet))
+          const newExercises = newItems[this.timeToString(item.timestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
           if (item._idHistoryDate) {
             const newHistoryDate: ServerEntity.HistoryDate = {
               _id: item._idHistoryDate,
-              timestamp: item.timestamp,
+              timestamp: +item.timestamp,
               exercises: newExercises
             }
             this.props.updateHistoryDate(newHistoryDate).then(({data}) => {
@@ -173,7 +175,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
             })
           } else {
             const newHistoryDate: ServerEntity.HistoryDate = {
-              timestamp: item.timestamp,
+              timestamp: +item.timestamp,
               exercises: newExercises
             }
             this.props.createHistoryDate(newHistoryDate).then(({data}) => {
@@ -247,14 +249,14 @@ class Calendar extends React.PureComponent<IProps, IState> {
         }
       }
     }
-    const newItems: Item = {}
+    const newItems: Items = {} as Items
     Object.keys(this.state.items).forEach(key => {
       newItems[key] = this.state.items[key]
     })
     return newItems
   }
 
-  loadItems = async (day: any) => {
+  loadItems = async (day: DayCalendar) => {
     while (this.state.showLoadingScreen) {
       await delay(100)
     }
@@ -264,11 +266,10 @@ class Calendar extends React.PureComponent<IProps, IState> {
     })
   }
 
-  renderItem = (item: any) => {
+  renderItem = (item: Item) => {
     return (
       <TouchableOpacity onPress={() => this.showActionSheet(item)}
                         style={[styles.item, {
-                          height: item.height,
                           backgroundColor: item.exerciseSet.done ? colors.lightValid : colors.white
                         }]}>
         <Text style={styles.textBold}>{item.name}</Text>
@@ -325,7 +326,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
             agendaDayTextColor: colors.base,
             agendaDayNumColor: colors.base
           }}
-          renderDay={(day: any, item: any) => (
+          renderDay={(day: DayCalendar, item: Item) => (
             <View style={styles.day}>
               <Text style={styles.dayText}>{day ? day.day : ''}</Text>
             </View>
