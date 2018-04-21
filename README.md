@@ -14,7 +14,7 @@
     - ~~Delete: create, edit based on Id presence~~
 - ~~Delete historyDate~~
 - When QuickLog creates a item, refresh the calendar => see work on calendar edit
-- Use the Item type on Calendar file
+- ~~Use the Item type on Calendar file~~
 - Remove all the any types
 - Edit historyDate
 - Simplify/Clean show action sheet function
