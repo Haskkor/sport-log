@@ -249,6 +249,21 @@ mutation CreateHistoryDate {
       }]
   }) {
     _id
+    _userId
+    timestamp
+    exercises {
+      muscleGroup
+      recoveryTime
+      exercise {
+        name
+        equipment
+      }
+      done
+      sets {
+        reps
+        weight
+      }
+    }
   }
 }
 

@@ -14,13 +14,13 @@
     - ~~Delete: create, edit based on Id presence~~
 - ~~Delete historyDate~~
 - ~~Use the Item type on Calendar file~~
-- When QuickLog creates a item, refresh the calendar => see work on calendar edit
-    - Save new history date ID in redux
-        - Subscribe to it in calendar
-        - Componentwillreceiveprops, refetch data from GraphQL
-    - OR Save all new history date in redux
-        - Subscribe in calendar
-        - Change internal state with new elem based on timestamp
+- ~~When QuickLog creates a item, refresh the calendar => see work on calendar edit~~
+    - ~~Save new history date ID in redux~~
+        - ~~Subscribe to it in calendar~~
+        - ~~Componentwillreceiveprops, refetch data from GraphQL~~a
+    - ~~OR Save all new history date in redux~~
+        - ~~Subscribe in calendar~~
+        - ~~Change internal state with new elem based on timestamp~~
 - Remove all the any types
 - Edit historyDate
 - Simplify/Clean show action sheet function
@@ -28,6 +28,7 @@
 - Select all on a day to set done/not done or delete
 - Put a loader on item? Day?
 - Debounce/Throttle graphql methods
+- Reorganize exercise list in a day
 
 ##Long term
 

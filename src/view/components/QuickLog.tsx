@@ -238,9 +238,9 @@ class QuickLog extends React.PureComponent<IProps, IState> {
       this.props.resetQuickLog({})
       this.props.saveQuickLogHistory({
         quickLogHistory: {
-          exercises: data.exercises,
-          timestamp: data.timestamp,
-          _id: data._id
+          exercises: data.createHistoryDate.exercises.slice(),
+          timestamp: data.createHistoryDate.timestamp,
+          _id: data.createHistoryDate._id
         }
       })
       this.setState({showToasterInfo: true, showLoadingScreen: false})
@@ -419,8 +419,21 @@ const QuickLogGraphQl = graphql(
     mutation CreateHistoryDate($historyDate: HistoryDateCreateType) {
       createHistoryDate(input: $historyDate) {
         _id
-        exercises
+        _userId
         timestamp
+        exercises {
+          muscleGroup
+          recoveryTime
+          exercise {
+            name
+            equipment
+          }
+          done
+          sets {
+            reps
+            weight
+          }
+        }
       }
     }
   `,

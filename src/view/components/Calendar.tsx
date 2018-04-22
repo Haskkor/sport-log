@@ -74,9 +74,6 @@ class Calendar extends React.PureComponent<IProps, IState> {
         showLoadingScreen: false
       })
     }
-    if (this.props.historyDateQuickLog !== props.historyDateQuickLog) {
-      // todo replace current data in timestamp if no ID else add to current data
-    }
   }
 
   showActionSheet = (item: Item) => {
