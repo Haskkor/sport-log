@@ -23,6 +23,7 @@ type IProps = {
   hdUser: { historyDateUser: ServerEntity.HistoryDate[] }
   createHistoryDate: (historyDate: ServerEntity.HistoryDate) => Promise<ApolloQueryResult<{}>>
   updateHistoryDate: (historyDate: ServerEntity.HistoryDate) => Promise<ApolloQueryResult<{}>>
+  historyDateQuickLog: ServerEntity.HistoryDate
 }
 
 type IState = {
@@ -72,6 +73,9 @@ class Calendar extends React.PureComponent<IProps, IState> {
       this.setState({
         showLoadingScreen: false
       })
+    }
+    if (this.props.historyDateQuickLog !== props.historyDateQuickLog) {
+      // todo replace current data in timestamp if no ID else add to current data
     }
   }
 
@@ -150,14 +154,6 @@ class Calendar extends React.PureComponent<IProps, IState> {
             })
           }
         } else if (buttonIndex === 1) {
-
-
-          this.props.hdUser.refetch().then(({data}) => {
-            console.log(data)
-            this.forceUpdate()
-          })
-
-
         } else if (buttonIndex === 2) {
           const newItems = Object.assign({}, this.state.items)
           newItems[this.timeToString(item.timestamp)].splice(indexRow, 1)
@@ -397,7 +393,8 @@ const CalendarGraphQl = compose(graphql(
 
 const mapStateToProps = (rootState: ReduxState.RootState) => {
   return {
-    programs: rootState.entities.programs
+    programs: rootState.entities.programs,
+    historyDateQuickLog: rootState.entities.history.quickLogHistory
   }
 }
 

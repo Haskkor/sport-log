@@ -25,5 +25,6 @@ declare namespace ReduxState {
     dataLoaded: boolean
     data: ServerEntity.History
     currentTimestamp: number
+    quickLogHistory: ServerEntity.HistoryDate
   }
 }

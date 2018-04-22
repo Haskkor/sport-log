@@ -21,6 +21,7 @@ import LoadingScreen from './LoadingScreen'
 import {bindActionCreators} from 'redux'
 import {connect, Dispatch} from 'react-redux'
 import * as QuickLogActions from '../../core/modules/entities/quicklog'
+import * as HistoryActions from '../../core/modules/entities/history'
 
 type IProps = {
   navigation: any
@@ -30,6 +31,7 @@ type IProps = {
   editQuickLog: typeof QuickLogActions.editQuickLog
   deleteQuickLog: typeof QuickLogActions.deleteQuickLog
   resetQuickLog: typeof QuickLogActions.resetQuickLog
+  saveQuickLogHistory: typeof HistoryActions.saveQuickLogHistory
 }
 
 type IState = {
@@ -234,6 +236,13 @@ class QuickLog extends React.PureComponent<IProps, IState> {
     this.setState({showModal: false, showLoadingScreen: true})
     this.props.createHistoryDate(historyDate).then(({data}: any) => {
       this.props.resetQuickLog({})
+      this.props.saveQuickLogHistory({
+        quickLogHistory: {
+          exercises: data.exercises,
+          timestamp: data.timestamp,
+          _id: data._id
+        }
+      })
       this.setState({showToasterInfo: true, showLoadingScreen: false})
     }).catch((e: any) => {
       console.log('Create history date failed', e)
@@ -410,6 +419,8 @@ const QuickLogGraphQl = graphql(
     mutation CreateHistoryDate($historyDate: HistoryDateCreateType) {
       createHistoryDate(input: $historyDate) {
         _id
+        exercises
+        timestamp
       }
     }
   `,
@@ -432,7 +443,8 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => bindActionCreators({
   setQuickLog: QuickLogActions.setQuickLog,
   editQuickLog: QuickLogActions.editQuickLog,
   deleteQuickLog: QuickLogActions.deleteQuickLog,
-  resetQuickLog: QuickLogActions.resetQuickLog
+  resetQuickLog: QuickLogActions.resetQuickLog,
+  saveQuickLogHistory: HistoryActions.saveQuickLogHistory
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuickLogGraphQl)
