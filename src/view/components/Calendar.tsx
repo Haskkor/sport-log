@@ -16,6 +16,7 @@ import delay from '../../utils/delay'
 import {ApolloQueryResult} from 'apollo-client'
 import {createOmitTypenameLink} from '../../utils/graphQlHelper'
 import * as _ from 'lodash'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 type IProps = {
   navigation: any
@@ -322,6 +323,10 @@ class Calendar extends React.PureComponent<IProps, IState> {
           renderDay={(day: DayCalendar, item: Item) => (
             <View style={styles.day}>
               <Text style={styles.dayText}>{day ? day.day : ''}</Text>
+              {day && item &&
+              <TouchableOpacity>
+                <Icon name="select-all" style={styles.selectAllIcon}/>
+              </TouchableOpacity>}
             </View>
           )}
         />
@@ -409,7 +414,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     marginRight: 10,
-    marginTop: 17
+    marginTop: 10
   },
   emptyDate: {
     height: grid.unit * 4,
@@ -434,5 +439,10 @@ const styles = StyleSheet.create({
   textBold: {
     fontFamily: grid.fontBold,
     color: colors.base
+  },
+  selectAllIcon: {
+    fontFamily: grid.fontMedium,
+    fontSize: grid.navIcon,
+    marginTop: 10
   }
 })

@@ -22,10 +22,12 @@
         - ~~Subscribe in calendar~~
         - ~~Change internal state with new elem based on timestamp~~
 - Remove all the any types
+- Select all on a day to set done/not done or delete
+    - https://docs.nativebase.io/Components.html#Components
+        - https://docs.nativebase.io/Components.html#fabs-def-headref
 - Edit historyDate
 - Simplify/Clean show action sheet function
 - Add exercises to the day
-- Select all on a day to set done/not done or delete
 - Put a loader on item? Day?
 - Debounce/Throttle graphql methods
 - Reorganize exercise list in a day

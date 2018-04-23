@@ -75,7 +75,9 @@ class App extends React.PureComponent<IProps, IState> {
       'Roboto-Medium': require('../../../assets/fonts/Roboto-Medium.ttf'),
       'Roboto-Regular': require('../../../assets/fonts/Roboto-Regular.ttf'),
       'RobotoMono-Medium': require('../../../assets/fonts/RobotoMono-Medium.ttf'),
-      'courier': require('../../../assets/fonts/courier.ttf')
+      'courier': require('../../../assets/fonts/courier.ttf'),
+      'Roboto': require('native-base/Fonts/Roboto.ttf'),
+      'Ionicons': require('@expo/vector-icons/fonts/Ionicons.ttf')
     })
     await Asset.loadAsync([
       require('../../../assets/images/loader.gif')

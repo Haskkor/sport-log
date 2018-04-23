@@ -24,6 +24,7 @@
     "json-server": "json-server ./mock-api/db.json"
   },
   "dependencies": {
+    "@expo/vector-icons": "^6.3.1",
     "@haskkor/react-native-pincode": "^1.0.1",
     "@types/d3-ease": "^1.0.7",
     "@types/expo": "^25.0.0",
@@ -46,6 +47,7 @@
     "lodash": "^4.17.4",
     "lottie-react-native": "^2.3.2",
     "moment": "^2.20.1",
+    "native-base": "^2.4.2",
     "node": "^9.4.0",
     "normalizr": "3.2.3",
     "react": "16.2.0",
