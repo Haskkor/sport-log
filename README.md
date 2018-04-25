@@ -23,8 +23,9 @@
         - ~~Change internal state with new elem based on timestamp~~
 - Remove all the any types
 - Select all on a day to set done/not done or delete
-    - https://docs.nativebase.io/Components.html#Components
-        - https://docs.nativebase.io/Components.html#fabs-def-headref
+    - Done
+    - Not done
+    - ~~Delete~~
 - Edit historyDate
 - Simplify/Clean show action sheet function
 - Add exercises to the day

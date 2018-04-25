@@ -31,6 +31,7 @@ type IState = {
   items: any
   activeProgram: ServerEntity.Program
   showLoadingScreen: boolean
+  fabActive: boolean
 }
 
 type Items = {
@@ -64,7 +65,8 @@ class Calendar extends React.PureComponent<IProps, IState> {
       items: {},
       activeProgram: config.shouldUseFakeActiveProgram ? fakeActiveProgram :
         this.props.programs.find((p: ServerEntity.Program) => p.active),
-      showLoadingScreen: true
+      showLoadingScreen: true,
+      fabActive: false
     }
     this.showActionSheet = this.showActionSheet.bind(this)
   }
@@ -179,7 +181,50 @@ class Calendar extends React.PureComponent<IProps, IState> {
             })
           }
         }
-      })
+      }
+    )
+  }
+
+  showActionSheetFullDay = (item: Item, day: DayCalendar) => {
+    const notDone = _.some(this.state.items[this.timeToString(item.timestamp)].map((i: Item) => {
+      return !i.exerciseSet.done})
+    )
+    ActionSheetIOS.showActionSheetWithOptions({
+        title: new Date(day.timestamp).toLocaleDateString(),
+        options: [notDone ? 'Set all day done' : 'Set all day not done', 'Delete all day', 'Cancel'],
+        destructiveButtonIndex: 2,
+        cancelButtonIndex: 3
+      },
+      (buttonIndex) => {
+        if (buttonIndex === 0) {
+        } else if (buttonIndex === 1) {
+          const newItems = Object.assign({}, this.state.items)
+          newItems[this.timeToString(item.timestamp)] = {}
+          if (item._idHistoryDate) {
+            const newHistoryDate: ServerEntity.HistoryDate = {
+              _id: item._idHistoryDate,
+              timestamp: +item.timestamp,
+              exercises: []
+            }
+            this.props.updateHistoryDate(newHistoryDate).then(({data}) => {
+              this.setState({items: newItems})
+            }).catch((e: any) => {
+              console.log('Update history date failed', e)
+            })
+          } else {
+            const newHistoryDate: ServerEntity.HistoryDate = {
+              timestamp: +item.timestamp,
+              exercises: []
+            }
+            this.props.createHistoryDate(newHistoryDate).then(({data}) => {
+              this.setState({items: newItems})
+            }).catch((e: any) => {
+              console.log('Create history date failed', e)
+            })
+          }
+        }
+      }
+    )
   }
 
   populateItems = async (day: DayCalendar) => {
@@ -324,7 +369,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
             <View style={styles.day}>
               <Text style={styles.dayText}>{day ? day.day : ''}</Text>
               {day && item &&
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => this.showActionSheetFullDay(item, day)}>
                 <Icon name="select-all" style={styles.selectAllIcon}/>
               </TouchableOpacity>}
             </View>
