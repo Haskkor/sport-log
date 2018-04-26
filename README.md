@@ -21,13 +21,14 @@
     - ~~OR Save all new history date in redux~~
         - ~~Subscribe in calendar~~
         - ~~Change internal state with new elem based on timestamp~~
-- Remove all the any types
-- Select all on a day to set done/not done or delete
-    - Done
-    - Not done
+- ~~Select all on a day to set done/not done or delete~~~
+    - ~~Done~~
+    - ~~Not done~~
     - ~~Delete~~
+- BUG: QuickLog does not refresh calendar anymore
+- Remove all the any types
 - Edit historyDate
-- Simplify/Clean show action sheet function
+- Simplify/Clean ~~action sheet all~~ and action sheet one
 - Add exercises to the day
 - Put a loader on item? Day?
 - Debounce/Throttle graphql methods

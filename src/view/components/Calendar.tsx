@@ -196,9 +196,50 @@ class Calendar extends React.PureComponent<IProps, IState> {
         cancelButtonIndex: 3
       },
       (buttonIndex) => {
+        const newItems = Object.assign({}, this.state.items)
+        const newItemsDay: Item[] = []
         if (buttonIndex === 0) {
+          newItems[this.timeToString(item.timestamp)].map((i: Item) => {
+            newItemsDay.push({
+              exerciseSet: {
+                done: notDone,
+                exercise: i.exerciseSet.exercise,
+                muscleGroup: i.exerciseSet.muscleGroup,
+                recoveryTime: i.exerciseSet.recoveryTime,
+                sets: i.exerciseSet.sets
+              },
+              timestamp: i.timestamp,
+              _idHistoryDate: i._idHistoryDate,
+              content: i.content,
+              details: i.details,
+              name: i.name
+            })
+          })
+          newItems[this.timeToString(item.timestamp)] = newItemsDay
+          const newExercises = newItems[this.timeToString(item.timestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
+          if (item._idHistoryDate) {
+            const newHistoryDate: ServerEntity.HistoryDate = {
+              _id: item._idHistoryDate,
+              timestamp: +item.timestamp,
+              exercises: newExercises
+            }
+            this.props.updateHistoryDate(newHistoryDate).then(({data}) => {
+              this.setState({items: newItems})
+            }).catch((e: any) => {
+              console.log('Update history date failed', e)
+            })
+          } else {
+            const newHistoryDate: ServerEntity.HistoryDate = {
+              timestamp: +item.timestamp,
+              exercises: newExercises
+            }
+            this.props.createHistoryDate(newHistoryDate).then(({data}) => {
+              this.setState({items: newItems})
+            }).catch((e: any) => {
+              console.log('Create history date failed', e)
+            })
+          }
         } else if (buttonIndex === 1) {
-          const newItems = Object.assign({}, this.state.items)
           newItems[this.timeToString(item.timestamp)] = {}
           if (item._idHistoryDate) {
             const newHistoryDate: ServerEntity.HistoryDate = {
