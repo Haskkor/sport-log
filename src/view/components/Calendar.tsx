@@ -78,13 +78,22 @@ class Calendar extends React.PureComponent<IProps, IState> {
       })
     }
 
+
+
+    console.log('props', props.historyDateQuickLog)
+    console.log('this.props', this.props.historyDateQuickLog)
+
     // todo FIND OUT HOW TO PREVENT ADDING MULTIPLE TIMES THE SAME ITEM
     if (props.historyDateQuickLog.exercises) {
       console.log('test', props.historyDateQuickLog)
       // todo FIND OUT WHY EXERCISES ARE EMPTY
+      console.log('item', this.state.items)
       const newItems = Object.assign({}, this.state.items)
+      console.log('newItems', newItems)
       props.historyDateQuickLog.exercises.map((e: ServerEntity.ExerciseSet) => {
         console.log('e', e)
+        console.log('date', this.timeToString(props.historyDateQuickLog.timestamp))
+        console.log('item', newItems[this.timeToString(props.historyDateQuickLog.timestamp)])
         newItems[this.timeToString(props.historyDateQuickLog.timestamp)].push({
           name: `${e.exercise.name} - ${e.muscleGroup}`,
           details: `${e.exercise.equipment} - Recovery time: ${e.recoveryTime}`,
@@ -98,6 +107,8 @@ class Calendar extends React.PureComponent<IProps, IState> {
       console.log(newItems)
       this.setState({items: newItems})
     }
+
+
 
 
   }

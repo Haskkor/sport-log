@@ -238,8 +238,8 @@ class QuickLog extends React.PureComponent<IProps, IState> {
       this.props.resetQuickLog({})
       this.props.saveQuickLogHistory({
         quickLogHistory: {
-          exercises: data.createHistoryDate.exercises.slice(),
-          timestamp: data.createHistoryDate.timestamp,
+          exercises: historyDate.exercises.slice(),
+          timestamp: historyDate.timestamp,
           _id: data.createHistoryDate._id
         }
       })
