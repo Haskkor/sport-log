@@ -77,6 +77,29 @@ class Calendar extends React.PureComponent<IProps, IState> {
         showLoadingScreen: false
       })
     }
+
+    // todo FIND OUT HOW TO PREVENT ADDING MULTIPLE TIMES THE SAME ITEM
+    if (props.historyDateQuickLog.exercises) {
+      console.log('test', props.historyDateQuickLog)
+      // todo FIND OUT WHY EXERCISES ARE EMPTY
+      const newItems = Object.assign({}, this.state.items)
+      props.historyDateQuickLog.exercises.map((e: ServerEntity.ExerciseSet) => {
+        console.log('e', e)
+        newItems[this.timeToString(props.historyDateQuickLog.timestamp)].push({
+          name: `${e.exercise.name} - ${e.muscleGroup}`,
+          details: `${e.exercise.equipment} - Recovery time: ${e.recoveryTime}`,
+          content: `Sets:${e.sets.map((s: ServerEntity.Set) => {
+            return ` ${s.reps} x ${s.weight}`
+          })}`,
+          exerciseSet: e,
+          timestamp: props.historyDateQuickLog.timestamp
+        })
+      })
+      console.log(newItems)
+      this.setState({items: newItems})
+    }
+
+
   }
 
   showActionSheet = (item: Item) => {
