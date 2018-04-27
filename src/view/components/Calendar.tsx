@@ -17,6 +17,7 @@ import {ApolloQueryResult} from 'apollo-client'
 import {createOmitTypenameLink} from '../../utils/graphQlHelper'
 import * as _ from 'lodash'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+import * as QuickLogActions from '../../core/modules/entities/quicklog'
 
 type IProps = {
   navigation: any
@@ -25,6 +26,7 @@ type IProps = {
   createHistoryDate: (historyDate: ServerEntity.HistoryDate) => Promise<ApolloQueryResult<{}>>
   updateHistoryDate: (historyDate: ServerEntity.HistoryDate) => Promise<ApolloQueryResult<{}>>
   historyDateQuickLog: ServerEntity.HistoryDate
+  resetQuickLog: typeof QuickLogActions.resetQuickLog
 }
 
 type IState = {
@@ -71,7 +73,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
     this.showActionSheet = this.showActionSheet.bind(this)
   }
 
-  componentWillReceiveProps(props: IProps) {
+  async componentWillReceiveProps(props: IProps) {
     if (props.hdUser.historyDateUser) {
       this.setState({
         showLoadingScreen: false
@@ -80,20 +82,16 @@ class Calendar extends React.PureComponent<IProps, IState> {
 
 
 
-    console.log('props', props.historyDateQuickLog)
-    console.log('this.props', this.props.historyDateQuickLog)
 
-    // todo FIND OUT HOW TO PREVENT ADDING MULTIPLE TIMES THE SAME ITEM
     if (props.historyDateQuickLog.exercises) {
-      console.log('test', props.historyDateQuickLog)
-      // todo FIND OUT WHY EXERCISES ARE EMPTY
-      console.log('item', this.state.items)
+      console.log(props.historyDateQuickLog)
+      while (!this.state.items[this.timeToString(props.historyDateQuickLog.timestamp)]) {
+        await delay(50)
+        console.log('wait')
+      }
+      console.log('ok')
       const newItems = Object.assign({}, this.state.items)
-      console.log('newItems', newItems)
       props.historyDateQuickLog.exercises.map((e: ServerEntity.ExerciseSet) => {
-        console.log('e', e)
-        console.log('date', this.timeToString(props.historyDateQuickLog.timestamp))
-        console.log('item', newItems[this.timeToString(props.historyDateQuickLog.timestamp)])
         newItems[this.timeToString(props.historyDateQuickLog.timestamp)].push({
           name: `${e.exercise.name} - ${e.muscleGroup}`,
           details: `${e.exercise.equipment} - Recovery time: ${e.recoveryTime}`,
@@ -106,6 +104,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
       })
       console.log(newItems)
       this.setState({items: newItems})
+      this.props.resetQuickLog({})
     }
 
 
@@ -521,7 +520,9 @@ const mapStateToProps = (rootState: ReduxState.RootState) => {
 }
 
 const mapDispatchToProps =
-  (dispatch: Dispatch<any>) => bindActionCreators({}, dispatch)
+  (dispatch: Dispatch<any>) => bindActionCreators({
+    resetQuickLog: QuickLogActions.resetQuickLog
+  }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(CalendarGraphQl)
 
