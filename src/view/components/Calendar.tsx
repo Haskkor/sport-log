@@ -22,7 +22,8 @@ import * as QuickLogActions from '../../core/modules/entities/quicklog'
 type IProps = {
   navigation: any
   programs: ServerEntity.Program[]
-  hdUser: { historyDateUser: ServerEntity.HistoryDate[] }
+  data: any,
+  // hdUser: { historyDateUser: ServerEntity.HistoryDate[] }
   createHistoryDate: (historyDate: ServerEntity.HistoryDate) => Promise<ApolloQueryResult<{}>>
   updateHistoryDate: (historyDate: ServerEntity.HistoryDate) => Promise<ApolloQueryResult<{}>>
   historyDateQuickLog: ServerEntity.HistoryDate
@@ -73,43 +74,38 @@ class Calendar extends React.PureComponent<IProps, IState> {
     this.showActionSheet = this.showActionSheet.bind(this)
   }
 
+  async componentWillMount() {
+    this.setState({showLoadingScreen: true})
+    await this.props.data.refetch()
+  }
+
   async componentWillReceiveProps(props: IProps) {
-    if (props.hdUser.historyDateUser) {
-      this.setState({
-        showLoadingScreen: false
-      })
+    if (props.data.historyDateUser) {
+      this.setState({showLoadingScreen: false})
     }
-
-
-
-
-    if (props.historyDateQuickLog.exercises) {
-      console.log(props.historyDateQuickLog)
-      while (!this.state.items[this.timeToString(props.historyDateQuickLog.timestamp)]) {
-        await delay(50)
-        console.log('wait')
-      }
-      console.log('ok')
-      const newItems = Object.assign({}, this.state.items)
-      props.historyDateQuickLog.exercises.map((e: ServerEntity.ExerciseSet) => {
-        newItems[this.timeToString(props.historyDateQuickLog.timestamp)].push({
-          name: `${e.exercise.name} - ${e.muscleGroup}`,
-          details: `${e.exercise.equipment} - Recovery time: ${e.recoveryTime}`,
-          content: `Sets:${e.sets.map((s: ServerEntity.Set) => {
-            return ` ${s.reps} x ${s.weight}`
-          })}`,
-          exerciseSet: e,
-          timestamp: props.historyDateQuickLog.timestamp
-        })
-      })
-      console.log(newItems)
-      this.setState({items: newItems})
-      this.props.resetQuickLog({})
-    }
-
-
-
-
+    // if (props.historyDateQuickLog.exercises) {
+    //   console.log(props.historyDateQuickLog)
+    //   while (!this.state.items[this.timeToString(props.historyDateQuickLog.timestamp)]) {
+    //     await delay(50)
+    //     console.log('wait')
+    //   }
+    //   console.log('ok')
+    //   const newItems = Object.assign({}, this.state.items)
+    //   props.historyDateQuickLog.exercises.map((e: ServerEntity.ExerciseSet) => {
+    //     newItems[this.timeToString(props.historyDateQuickLog.timestamp)].push({
+    //       name: `${e.exercise.name} - ${e.muscleGroup}`,
+    //       details: `${e.exercise.equipment} - Recovery time: ${e.recoveryTime}`,
+    //       content: `Sets:${e.sets.map((s: ServerEntity.Set) => {
+    //         return ` ${s.reps} x ${s.weight}`
+    //       })}`,
+    //       exerciseSet: e,
+    //       timestamp: props.historyDateQuickLog.timestamp
+    //     })
+    //   })
+    //   console.log(newItems)
+    //   this.setState({items: newItems})
+    //   this.props.resetQuickLog({})
+    // }
   }
 
   showActionSheet = (item: Item) => {
@@ -306,7 +302,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
       const time = day.timestamp + i * 24 * 60 * 60 * 1000
       const strTime = this.timeToString(time)
       this.state.items[strTime] = []
-      const historyOnDate = this.props.hdUser.historyDateUser.find((h: ServerEntity.HistoryDate) => {
+      const historyOnDate = this.props.data.historyDateUser.find((h: ServerEntity.HistoryDate) => {
         return +h.timestamp === time
       })
       if (historyOnDate) {
@@ -478,7 +474,7 @@ const CalendarGraphQl = compose(graphql(
         }
       }
     }
-  `, {name: 'hdUser'}),
+  `),
   graphql(
     gql`
     mutation CreateHistoryDate($historyDate: HistoryDateCreateType) {

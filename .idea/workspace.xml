@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39597ee5-2bd9-42b2-a212-3554592f4c8d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/components/Calendar.tsx" afterPath="$PROJECT_DIR$/src/view/components/Calendar.tsx" />
+      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/Calendar.tsx" afterPath="$PROJECT_DIR$/src/view/components/Calendar.tsx" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,12 +17,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="405">
-                <caret line="27" column="83" lean-forward="false" selection-start-line="27" selection-start-column="83" selection-end-line="27" selection-end-column="83" />
+              <first_editor relative-caret-position="361">
+                <caret line="23" column="24" lean-forward="true" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -31,75 +30,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ModalListLog.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/components/ModalListLog.tsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="872">
-              <caret line="103" column="7" lean-forward="false" selection-start-line="103" selection-start-column="5" selection-end-line="103" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="QuickLog.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/components/QuickLog.tsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-48">
-              <caret line="22" column="25" lean-forward="false" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="quicklog.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/core/modules/entities/quicklog.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="615">
-              <caret line="41" column="11" lean-forward="false" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="reduxState.d.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/interfaces/reduxState.d.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="7" lean-forward="false" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="programs.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/core/modules/entities/programs.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="history.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/core/modules/entities/history.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Calendar.tsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Calendar.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="64" column="13" lean-forward="false" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
+            <state relative-caret-position="408">
+              <caret line="76" column="8" lean-forward="false" selection-start-line="76" selection-start-column="8" selection-end-line="76" selection-end-column="8" />
               <folding>
-                <element signature="e#0#30#0" expanded="true" />
-                <marker date="1524801699413" expanded="true" signature="1380:1462" ph="..." />
+                <marker date="1524893911496" expanded="true" signature="18706:19603" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="331">
+              <caret line="53" column="16" lean-forward="false" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="16" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -108,8 +56,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>deleteExercise</find>
-      <find>flexDirection</find>
       <find>colors.base</find>
       <find>scroll</find>
       <find>position</find>
@@ -138,6 +84,8 @@
       <find>setQuickLog</find>
       <find>addExerciseSet</find>
       <find>showLoadingScreen</find>
+      <find>apoll</find>
+      <find>hdUser</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -180,8 +128,8 @@
         <option value="$PROJECT_DIR$/src/view/navigators/App.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/QuickLog.tsx" />
         <option value="$PROJECT_DIR$/src/core/modules/entities/quicklog.ts" />
-        <option value="$PROJECT_DIR$/src/view/components/Calendar.tsx" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/view/components/Calendar.tsx" />
       </list>
     </option>
   </component>
@@ -194,10 +142,10 @@
   <component name="NodeModulesDirectoryManager">
     <handled-path value="$PROJECT_DIR$/node_modules" />
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="1168" />
+    <option name="height" value="1100" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -322,8 +270,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -331,7 +279,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="SearchEverywhereHistoryKey" value="quicklo&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/QuickLog.tsx&#10;qui&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/QuickLog.tsx&#10;enti&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/interfaces/entities.d.ts&#10;Calen&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/Calendar.tsx&#10;Cald&#9;null&#9;null&#10;modalse&#9;null&#9;null&#10;readme&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/README.md&#10;config&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/utils/config.ts&#10;lo&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/view/components/LoginRegister.tsx&#10;rea&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/README.md&#10;packa&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/package.json&#10;read&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/node_modules/@haskkor/react-native-pincode/README.md&#10;const&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/utils/constants.ts&#10;confi&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/utils/config.ts&#10;draw&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/navigators/MainDrawerNav.tsx&#10;index&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/index.tsx&#10;create.ts&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/core/create.ts" />
+    <property name="SearchEverywhereHistoryKey" value="packa&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/package.json&#10;quicklo&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/QuickLog.tsx&#10;qui&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/QuickLog.tsx&#10;enti&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/interfaces/entities.d.ts&#10;Calen&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/Calendar.tsx&#10;Cald&#9;null&#9;null&#10;modalse&#9;null&#9;null&#10;readme&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/README.md&#10;config&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/utils/config.ts&#10;lo&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/view/components/LoginRegister.tsx&#10;rea&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/README.md&#10;read&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/node_modules/@haskkor/react-native-pincode/README.md&#10;const&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/utils/constants.ts&#10;confi&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/utils/config.ts&#10;draw&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/navigators/MainDrawerNav.tsx&#10;index&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/index.tsx&#10;create.ts&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/core/create.ts" />
     <property name="nodejs_interpreter_path" value="node" />
     <property name="typescript-compiler-editor-notification" value="false" />
   </component>
@@ -392,21 +340,22 @@
       <workItem from="1524267571969" duration="1753000" />
       <workItem from="1524340562687" duration="84000" />
       <workItem from="1524345308491" duration="2397000" />
+      <workItem from="1524892496048" duration="1424000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="218964000" />
+    <option name="totallyTimeSpent" value="220388000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="1168" extended-state="0" />
+    <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15806195" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12163617" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960325" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -414,24 +363,13 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960325" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295688" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17922497" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -583,14 +521,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="49" column="15" lean-forward="false" selection-start-line="49" selection-start-column="15" selection-end-line="49" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/LoadingScreen.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -717,7 +647,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="927">
           <caret line="265" column="3" lean-forward="false" selection-start-line="265" selection-start-column="3" selection-end-line="265" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -725,9 +654,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="615">
           <caret line="41" column="7" lean-forward="false" selection-start-line="41" selection-start-column="7" selection-end-line="41" selection-end-column="7" />
-          <folding>
-            <marker date="1523823985236" expanded="true" signature="279:309" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -743,7 +669,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="687">
           <caret line="173" column="11" lean-forward="false" selection-start-line="173" selection-start-column="11" selection-end-line="173" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -759,9 +684,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="450">
           <caret line="136" column="56" lean-forward="false" selection-start-line="136" selection-start-column="56" selection-end-line="136" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#30#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -783,7 +705,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/core/modules/entities/programs.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
+        <state relative-caret-position="680">
           <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding />
         </state>
@@ -791,7 +713,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/interfaces/reduxState.d.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
+        <state relative-caret-position="357">
           <caret line="21" column="7" lean-forward="false" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
           <folding />
         </state>
@@ -799,7 +721,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/core/modules/entities/history.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
+        <state relative-caret-position="544">
           <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding />
         </state>
@@ -807,7 +729,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/core/modules/entities/quicklog.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="615">
+        <state relative-caret-position="697">
           <caret line="41" column="11" lean-forward="false" selection-start-line="41" selection-start-column="11" selection-end-line="41" selection-end-column="11" />
           <folding />
         </state>
@@ -815,7 +737,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/QuickLog.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-48">
+        <state relative-caret-position="374">
           <caret line="22" column="25" lean-forward="false" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
           <folding />
         </state>
@@ -823,31 +745,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/ModalListLog.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="872">
+        <state relative-caret-position="425">
           <caret line="103" column="7" lean-forward="false" selection-start-line="103" selection-start-column="5" selection-end-line="103" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="64" column="13" lean-forward="false" selection-start-line="64" selection-start-column="13" selection-end-line="64" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-            <marker date="1524801699413" expanded="true" signature="1380:1462" ph="..." />
-          </folding>
+        <state relative-caret-position="331">
+          <caret line="53" column="16" lean-forward="false" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="405">
-            <caret line="27" column="83" lean-forward="false" selection-start-line="27" selection-start-column="83" selection-end-line="27" selection-end-column="83" />
+          <first_editor relative-caret-position="361">
+            <caret line="23" column="24" lean-forward="true" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
             <folding />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="76" column="8" lean-forward="false" selection-start-line="76" selection-start-column="8" selection-end-line="76" selection-end-column="8" />
+          <folding>
+            <marker date="1524893911496" expanded="true" signature="18706:19603" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
