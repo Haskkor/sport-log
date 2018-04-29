@@ -24,11 +24,9 @@
 - ~~Select all on a day to set done/not done or delete~~~
     - ~~Done~~
     - ~~Not done~~
-    - ~~Delete~~
-    
-- BUG: QuickLog does not refresh calendar anymore. Ok but ResetQuickLog not working.
-- BUG: Cached data in the calendar if problematic if you edit or remove something, change page and go back. (caused by toaster still being here when opening the modal)
-
+    - ~~Delete~~  
+- ~~BUG: QuickLog does not refresh calendar anymore. Ok but ResetQuickLog not working~~
+- ~~BUG: Cached data in the calendar if problematic if you edit or remove something, change page and go back. (caused by toaster still being here when opening the modal)~~
 - WARNING: Toaster on QuickLog page
 - Remove all the any types
 - Edit historyDate

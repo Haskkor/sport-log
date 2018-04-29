@@ -23,11 +23,8 @@ type IProps = {
   navigation: any
   programs: ServerEntity.Program[]
   data: any,
-  // hdUser: { historyDateUser: ServerEntity.HistoryDate[] }
   createHistoryDate: (historyDate: ServerEntity.HistoryDate) => Promise<ApolloQueryResult<{}>>
   updateHistoryDate: (historyDate: ServerEntity.HistoryDate) => Promise<ApolloQueryResult<{}>>
-  historyDateQuickLog: ServerEntity.HistoryDate
-  resetQuickLog: typeof QuickLogActions.resetQuickLog
 }
 
 type IState = {
@@ -77,35 +74,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
   async componentWillMount() {
     this.setState({showLoadingScreen: true})
     await this.props.data.refetch()
-  }
-
-  async componentWillReceiveProps(props: IProps) {
-    if (props.data.historyDateUser) {
-      this.setState({showLoadingScreen: false})
-    }
-    // if (props.historyDateQuickLog.exercises) {
-    //   console.log(props.historyDateQuickLog)
-    //   while (!this.state.items[this.timeToString(props.historyDateQuickLog.timestamp)]) {
-    //     await delay(50)
-    //     console.log('wait')
-    //   }
-    //   console.log('ok')
-    //   const newItems = Object.assign({}, this.state.items)
-    //   props.historyDateQuickLog.exercises.map((e: ServerEntity.ExerciseSet) => {
-    //     newItems[this.timeToString(props.historyDateQuickLog.timestamp)].push({
-    //       name: `${e.exercise.name} - ${e.muscleGroup}`,
-    //       details: `${e.exercise.equipment} - Recovery time: ${e.recoveryTime}`,
-    //       content: `Sets:${e.sets.map((s: ServerEntity.Set) => {
-    //         return ` ${s.reps} x ${s.weight}`
-    //       })}`,
-    //       exerciseSet: e,
-    //       timestamp: props.historyDateQuickLog.timestamp
-    //     })
-    //   })
-    //   console.log(newItems)
-    //   this.setState({items: newItems})
-    //   this.props.resetQuickLog({})
-    // }
+    this.setState({showLoadingScreen: false})
   }
 
   showActionSheet = (item: Item) => {
@@ -510,15 +479,12 @@ const CalendarGraphQl = compose(graphql(
 
 const mapStateToProps = (rootState: ReduxState.RootState) => {
   return {
-    programs: rootState.entities.programs,
-    historyDateQuickLog: rootState.entities.history.quickLogHistory
+    programs: rootState.entities.programs
   }
 }
 
 const mapDispatchToProps =
-  (dispatch: Dispatch<any>) => bindActionCreators({
-    resetQuickLog: QuickLogActions.resetQuickLog
-  }, dispatch)
+  (dispatch: Dispatch<any>) => bindActionCreators({}, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(CalendarGraphQl)
 

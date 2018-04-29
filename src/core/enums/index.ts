@@ -1,7 +1,8 @@
 export enum ToasterInfo {
   info,
   warning,
-  error
+  error,
+  none
 }
 
 export enum HeaderStatus {

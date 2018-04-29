@@ -116,6 +116,10 @@ class QuickLog extends React.PureComponent<IProps, IState> {
     this.order = Object.keys(this.props.quickLog)
   }
 
+  componentWillUnmount() {
+    this.stopToaster(ToasterInfo.none)
+  }
+
   closeModalListLog() {
     this.setState({showModal: false})
   }
@@ -217,11 +221,18 @@ class QuickLog extends React.PureComponent<IProps, IState> {
   }
 
   stopToaster = (status: ToasterInfo) => {
-    this.setState({
-      showToasterInfo: status === ToasterInfo.info ? false : this.state.showToasterInfo,
-      showToasterWarning: status === ToasterInfo.warning ? false : this.state.showToasterWarning,
-      showToasterError: status === ToasterInfo.error ? false : this.state.showToasterError
-    })
+    if (status === ToasterInfo.none) {
+      console.log('test')
+      this.setState({showToasterError: false, showToasterWarning: false, showToasterInfo: false})
+      console.log(this.state.showToasterWarning, this.state.showToasterInfo, this.state.showToasterError)
+    } else {
+      this.setState({
+        showToasterInfo: status === ToasterInfo.info ? false : this.state.showToasterInfo,
+        showToasterWarning: status === ToasterInfo.warning ? false : this.state.showToasterWarning,
+        showToasterError: status === ToasterInfo.error ? false : this.state.showToasterError
+      })
+    }
+    console.log(this.state.showToasterWarning, this.state.showToasterInfo, this.state.showToasterError)
   }
 
   selectExerciseModalSearch = (exercise: string, muscle: string) => {
@@ -233,7 +244,13 @@ class QuickLog extends React.PureComponent<IProps, IState> {
   }
 
   saveHistoryDate = (historyDate: ServerEntity.HistoryDate) => {
-    this.setState({showModal: false, showLoadingScreen: true})
+    this.setState({
+      showModal: false,
+      showLoadingScreen: true,
+      showToasterError: false,
+      showToasterInfo: false,
+      showToasterWarning: false
+    })
     this.props.createHistoryDate(historyDate).then(({data}: any) => {
       this.props.resetQuickLog({})
       this.props.saveQuickLogHistory({
@@ -346,11 +363,10 @@ class QuickLog extends React.PureComponent<IProps, IState> {
               {!editing &&
               <TouchableOpacity
                 style={[styles.buttonBottom, styles.shadow]}
-                onPress={() => this.setState({
-                  showModal: true,
-                  showToasterInfo: false,
-                  showToasterWarning: false
-                })}>
+                onPress={() => {
+                  this.stopToaster(ToasterInfo.none)
+                  this.setState({showModal: true})
+                }}>
                 <Text style={styles.buttonsText}>See log</Text>
               </TouchableOpacity>}
             </Col>
