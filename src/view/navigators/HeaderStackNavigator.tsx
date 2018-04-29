@@ -3,16 +3,17 @@ import {Text, StyleSheet, TouchableOpacity, TouchableHighlight} from 'react-nati
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import {grid} from '../../utils/grid'
 import {colors} from '../../utils/colors'
+import {NavigationAction, NavigationRoute, NavigationScreenProp} from 'react-navigation'
 
 type IProps = {
-  navigation: any
+  navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
 }
 
 type IState = {}
 
 class HeaderStackNavigator extends React.PureComponent<IProps, IState> {
 
-  static navigationOptions = ({navigation}: any) => {
+  static navigationOptions = ({navigation}: NavigationScreenProp<NavigationRoute<>, NavigationAction>) => {
     return {
       title: navigation.state.params.title,
       headerLeft: <TouchableOpacity style={styles.container} onPress={() => {

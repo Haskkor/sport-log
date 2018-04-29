@@ -75,7 +75,7 @@ class ModalListLog extends React.PureComponent<IProps, IState> {
             style={styles.sortableList}
             data={dataLog}
             order={order}
-            onRowMoved={(e: any) => {
+            onRowMoved={(e: {from: number, to: number, row: {data: ServerEntity.ExerciseSet, index: string, section: string}}) => {
               order.splice(e.to, 0, order.splice(e.from, 1)[0])
               this.forceUpdate()
             }}

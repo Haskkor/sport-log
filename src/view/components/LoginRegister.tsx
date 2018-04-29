@@ -72,8 +72,8 @@ class LoginRegister extends React.PureComponent<IProps, IState> {
     if (!emailError && !passwordError && !confirmError) {
       if (this.state.status === LoginRegisterStatus.register) {
         this.setState({showLoadingScreen: true})
-        this.props.signUp(email, password).then(({data}: any) => {
-          this.props.changeLoginState(true, data.signup.jwt)
+        this.props.signUp(email, password).then((d: { data: { signup: { __typename: string, _id: string, email: string, jwt: string } } }) => {
+          this.props.changeLoginState(true, d.data.signup.jwt)
         }).catch((e) => {
           this.setState({showLoadingScreen: false})
           if (/email/i.test(e.message)) this.setState({emailError: true})
@@ -81,8 +81,8 @@ class LoginRegister extends React.PureComponent<IProps, IState> {
         })
       } else {
         this.setState({showLoadingScreen: true})
-        this.props.login(email, password).then(({data}: any) => {
-          this.props.changeLoginState(true, data.login.jwt)
+        this.props.login(email, password).then((d: { data: { login: { __typename: string, jwt: string } } }) => {
+          this.props.changeLoginState(true, d.data.login.jwt)
         }).catch((e) => {
           console.log(e)
           this.setState({showLoadingScreen: false})
@@ -129,7 +129,15 @@ class LoginRegister extends React.PureComponent<IProps, IState> {
               opacityButton: buttonDisabled ? [0.4] : [1],
               timing: {duration: 300, ease: easeLinear}
             }}>
-            {(state: any) => {
+            {(state: {
+              colorBorderConfirm: string,
+              colorBorderEmail: string,
+              colorBorderPassword: string,
+              colorTextConfirm: string,
+              colorTextEmail: string,
+              colorTextPassword: string,
+              opacityButton: number
+            }) => {
               return (
                 <View style={styles.viewElements}>
                   <View style={[styles.viewTextInput, {borderColor: state.colorBorderEmail}]}>

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {StackNavigator} from 'react-navigation'
+import {NavigationAction, NavigationRoute, NavigationScreenProp, StackNavigator} from 'react-navigation'
 import Programs from '../components/Programs'
 import ProgramNameDays from '../components/ProgramNameDays'
 import ProgramExercises from '../components/ProgramExercises'
@@ -9,19 +9,19 @@ import QuickLog from '../components/QuickLog'
 const ProgramsStackNav = StackNavigator({
   Programs: {
     screen: Programs,
-    navigationOptions: ({navigation}: any): any => ({header: null})
+    navigationOptions: ({navigation}: NavigationScreenProp<NavigationRoute<>, NavigationAction>) => ({header: null})
   },
   ProgramNameDays: {
     screen: ProgramNameDays,
-    navigationOptions: ({navigation}: any): any => ({header: null})
+    navigationOptions: ({navigation}: NavigationScreenProp<NavigationRoute<>, NavigationAction>) => ({header: null})
   },
   ProgramExercises: {
     screen: ProgramExercises,
-    navigationOptions: ({navigation}: any): any => ({header: null})
+    navigationOptions: ({navigation}: NavigationScreenProp<NavigationRoute<>, NavigationAction>) => ({header: null})
   },
   ProgramEditExercise: {
     screen: QuickLog,
-    navigationOptions: ({navigation}: any): any => ({header: null})
+    navigationOptions: ({navigation}: NavigationScreenProp<NavigationRoute<>, NavigationAction>) => ({header: null})
   }
 }, {
   cardStyle: {
