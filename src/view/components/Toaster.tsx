@@ -27,6 +27,10 @@ class Toaster extends React.PureComponent<IProps, IState> {
     this.state = {active: true}
   }
 
+  componentWillUnmount() {
+    clearTimeout(this.timer)
+  }
+
   componentDidMount() {
     this.feedbackTimer()
   }

@@ -220,19 +220,12 @@ class QuickLog extends React.PureComponent<IProps, IState> {
     this.props.deleteQuickLog({index: index})
   }
 
-  stopToaster = (status: ToasterInfo) => {
-    if (status === ToasterInfo.none) {
-      console.log('test')
-      this.setState({showToasterError: false, showToasterWarning: false, showToasterInfo: false})
-      console.log(this.state.showToasterWarning, this.state.showToasterInfo, this.state.showToasterError)
-    } else {
-      this.setState({
-        showToasterInfo: status === ToasterInfo.info ? false : this.state.showToasterInfo,
-        showToasterWarning: status === ToasterInfo.warning ? false : this.state.showToasterWarning,
-        showToasterError: status === ToasterInfo.error ? false : this.state.showToasterError
-      })
-    }
-    console.log(this.state.showToasterWarning, this.state.showToasterInfo, this.state.showToasterError)
+  stopToaster = async (status: ToasterInfo) => {
+    this.setState({
+      showToasterInfo: status === ToasterInfo.info || status === ToasterInfo.none ? false : this.state.showToasterInfo,
+      showToasterWarning: status === ToasterInfo.warning || status === ToasterInfo.none ? false : this.state.showToasterWarning,
+      showToasterError: status === ToasterInfo.error || status === ToasterInfo.none ? false : this.state.showToasterError
+    })
   }
 
   selectExerciseModalSearch = (exercise: string, muscle: string) => {
