@@ -17,18 +17,19 @@ import {ApolloQueryResult} from 'apollo-client'
 import {createOmitTypenameLink} from '../../utils/graphQlHelper'
 import * as _ from 'lodash'
 import Icon from 'react-native-vector-icons/MaterialIcons'
-import * as QuickLogActions from '../../core/modules/entities/quicklog'
+import {NavigationAction, NavigationRoute, NavigationScreenProp} from 'react-navigation'
+import {dataHistoryDateUser} from '../../utils/gaphqlData'
 
 type IProps = {
-  navigation: any
+  navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
   programs: ServerEntity.Program[]
-  data: any,
+  data: dataHistoryDateUser
   createHistoryDate: (historyDate: ServerEntity.HistoryDate) => Promise<ApolloQueryResult<{}>>
   updateHistoryDate: (historyDate: ServerEntity.HistoryDate) => Promise<ApolloQueryResult<{}>>
 }
 
 type IState = {
-  items: any
+  items: Items
   activeProgram: ServerEntity.Program
   showLoadingScreen: boolean
   fabActive: boolean
@@ -116,7 +117,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
             }
             this.props.updateHistoryDate(newHistoryDate).then(({data}) => {
               this.setState({items: newItems})
-            }).catch((e: any) => {
+            }).catch((e) => {
               console.log('Update history date failed', e)
             })
           } else {
@@ -136,7 +137,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
                 sets: currentItem.exerciseSet.sets,
                 muscleGroup: currentItem.exerciseSet.muscleGroup
               }
-              const newItem: any = {
+              const newItem: Item = {
                 _idHistoryDate: data.createHistoryDate._id,
                 name: currentItem.name,
                 details: currentItem.details,
@@ -147,7 +148,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
               const newItems = Object.assign({}, this.state.items)
               newItems[this.timeToString(item.timestamp)].splice(indexRow, 1, newItem)
               this.setState({items: newItems})
-            }).catch((e: any) => {
+            }).catch((e) => {
               console.log('Create history date failed', e)
             })
           }
@@ -164,7 +165,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
             }
             this.props.updateHistoryDate(newHistoryDate).then(({data}) => {
               this.setState({items: newItems})
-            }).catch((e: any) => {
+            }).catch((e) => {
               console.log('Update history date failed', e)
             })
           } else {
@@ -172,9 +173,9 @@ class Calendar extends React.PureComponent<IProps, IState> {
               timestamp: +item.timestamp,
               exercises: newExercises
             }
-            this.props.createHistoryDate(newHistoryDate).then(({data}) => {
+            this.props.createHistoryDate(newHistoryDate).then(() => {
               this.setState({items: newItems})
-            }).catch((e: any) => {
+            }).catch((e) => {
               console.log('Create history date failed', e)
             })
           }
@@ -223,7 +224,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
             }
             this.props.updateHistoryDate(newHistoryDate).then(({data}) => {
               this.setState({items: newItems})
-            }).catch((e: any) => {
+            }).catch((e) => {
               console.log('Update history date failed', e)
             })
           } else {
@@ -233,7 +234,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
             }
             this.props.createHistoryDate(newHistoryDate).then(({data}) => {
               this.setState({items: newItems})
-            }).catch((e: any) => {
+            }).catch((e) => {
               console.log('Create history date failed', e)
             })
           }
@@ -247,7 +248,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
             }
             this.props.updateHistoryDate(newHistoryDate).then(({data}) => {
               this.setState({items: newItems})
-            }).catch((e: any) => {
+            }).catch((e) => {
               console.log('Update history date failed', e)
             })
           } else {
@@ -257,7 +258,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
             }
             this.props.createHistoryDate(newHistoryDate).then(({data}) => {
               this.setState({items: newItems})
-            }).catch((e: any) => {
+            }).catch((e) => {
               console.log('Create history date failed', e)
             })
           }
@@ -366,11 +367,11 @@ class Calendar extends React.PureComponent<IProps, IState> {
     )
   }
 
-  rowHasChanged = (r1: any, r2: any) => {
+  rowHasChanged = (r1: Item, r2: Item) => {
     return r1 !== r2
   }
 
-  timeToString = (time: any) => {
+  timeToString = (time: string) => {
     const date = new Date(time)
     return date.toISOString().split('T')[0]
   }

@@ -16,10 +16,11 @@ import {easeLinear} from 'd3-ease'
 import LoadingScreen from './LoadingScreen'
 import {connect, Dispatch} from 'react-redux'
 import * as ProgramsActions from '../../core/modules/entities/programs'
-import {bindActionCreators} from "redux";
+import {bindActionCreators} from 'redux'
+import {NavigationAction, NavigationRoute, NavigationScreenProp} from 'react-navigation'
 
 type IProps = {
-  navigation: any
+  navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
   pgUser: { programsUser: ServerEntity.Program[] }
   setPrograms: typeof ProgramsActions.setPrograms
   user: { currentUser: ServerEntity.User }
@@ -134,9 +135,9 @@ class Home extends React.PureComponent<IProps, IState> {
           dob.length > 0 ? dob.trim() : null,
           height.length > 0 ? +height.trim() : null,
           trainingYears.length > 0 ? +trainingYears.trim() : null
-        ).then(({data}: any) => {
+        ).then(() => {
           this.setState({showLoadingScreen: false, editSaveStatus: EditSaveStatus.edit, editing: false})
-        }).catch((e: any) => {
+        }).catch((e) => {
           this.setState({showLoadingScreen: false})
           if (/email/i.test(e.message)) this.setState({emailError: true})
           if (/firstName/i.test(e.message)) this.setState({firstNameError: true})
@@ -192,7 +193,15 @@ class Home extends React.PureComponent<IProps, IState> {
               colorTrainingYears: trainingYearsError ? [colors.alert] : [colors.base],
               timing: {duration: 300, ease: easeLinear}
             }}>
-            {(state: any) => {
+            {(state: {
+              opacityView: number,
+              colorEmail: string,
+              colorFirstName: string,
+              colorLastName: string,
+              colorUserName: string,
+              colorDob: string,
+              colorHeight: string,
+              colorTrainingYears: string }) => {
               return (
                 <View style={{width: '100%', alignItems: 'center', opacity: state.opacityView}}>
                   <View style={[styles.viewElement, styles.shadow]}>

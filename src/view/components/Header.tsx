@@ -4,10 +4,11 @@ import Icon from 'react-native-vector-icons/MaterialIcons'
 import {grid} from '../../utils/grid'
 import {colors} from '../../utils/colors'
 import {HeaderStatus} from '../../core/enums'
+import {NavigationAction, NavigationRoute, NavigationScreenProp} from 'react-navigation'
 
 type IProps = {
   primaryIconDisabled?: boolean
-  navigation?: any
+  navigation?: NavigationScreenProp<NavigationRoute<>, NavigationAction>
   textColor: string
   colorHeader: string
   colorBorder: string

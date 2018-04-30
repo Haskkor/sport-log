@@ -73,7 +73,7 @@ class Toaster extends React.PureComponent<IProps, IState> {
             timing: {duration: 400, ease: easeQuadOut}
           }}
         >
-          {(state: any) => {
+          {(state: {opacityView: number, translate: number, opacityText: number}) => {
             return <View
               style={[styles.feedbackLog, status === ToasterInfo.info ? styles.feedbackInfo : styles.feedbackWarning,
                 {opacity: state.opacityView, left: state.translate}]}>

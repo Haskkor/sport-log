@@ -22,9 +22,10 @@ import {bindActionCreators} from 'redux'
 import {connect, Dispatch} from 'react-redux'
 import * as QuickLogActions from '../../core/modules/entities/quicklog'
 import * as HistoryActions from '../../core/modules/entities/history'
+import {NavigationAction, NavigationRoute, NavigationScreenProp} from 'react-navigation'
 
 type IProps = {
-  navigation: any
+  navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
   createHistoryDate: (historyDate: ServerEntity.HistoryDate) => Promise<ApolloQueryResult<{}>>
   quickLog: ServerEntity.ExerciseSet[]
   setQuickLog: typeof QuickLogActions.setQuickLog
