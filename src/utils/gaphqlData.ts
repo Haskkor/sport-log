@@ -32,3 +32,28 @@ export type dataHistoryDateUser = {
   updateQuery: () => void
   variables: {}
 }
+
+export type dataCreateHistoryDate = {
+  createHistoryDate: {
+    __typename: string
+    _id: string
+    _userid: string
+    exercises: {
+      __typename: string
+      done: boolean
+      exercise: {
+        __typename: string
+        equipment: string
+        name: string
+      }
+      muscleGroup: string
+      recoveryTime: string
+      sets: {
+        __typename: string
+        reps: number
+        weight: number
+      }[]
+    }[]
+    timestamp: string
+  }
+}

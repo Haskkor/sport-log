@@ -29,7 +29,8 @@
 - ~~BUG: Cached data in the calendar if problematic if you edit or remove something, change page and go back. (caused by toaster still being here when opening the modal)~~
 - ~~WARNING: Toaster on QuickLog page~~
 - Remove all the any types
-    - ~~HeaderStackNavigator~~, ~~ProgramsStackNav~~, ~~ModalListLog~~, ~~Logout~~, ~~LoginRegister~~, ~~Home~~, ~~Header~~, ~~Toaster~~, ~~Calendar~~, Quicklog, Programs, ProgramNameDays, ProgramExercises, ModalSearch, StopWatch, Timer, RowSortableList
+    - ~~HeaderStackNavigator~~, ~~ProgramsStackNav~~, ~~ModalListLog~~, ~~Logout~~, ~~LoginRegister~~, ~~Home~~, 
+    ~~Header~~, ~~Toaster~~, ~~Calendar~~, ~~Quicklog~~, Programs, ProgramNameDays, ProgramExercises, ModalSearch, StopWatch, Timer, RowSortableList
 - Edit historyDate
 - Simplify/Clean ~~action sheet all~~ and action sheet one
 - Add exercises to the day

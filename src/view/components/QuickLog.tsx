@@ -23,6 +23,7 @@ import {connect, Dispatch} from 'react-redux'
 import * as QuickLogActions from '../../core/modules/entities/quicklog'
 import * as HistoryActions from '../../core/modules/entities/history'
 import {NavigationAction, NavigationRoute, NavigationScreenProp} from 'react-navigation'
+import {dataCreateHistoryDate} from '../../utils/gaphqlData'
 
 type IProps = {
   navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
@@ -245,17 +246,17 @@ class QuickLog extends React.PureComponent<IProps, IState> {
       showToasterInfo: false,
       showToasterWarning: false
     })
-    this.props.createHistoryDate(historyDate).then(({data}: any) => {
+    this.props.createHistoryDate(historyDate).then((d: {data: dataCreateHistoryDate}) => {
       this.props.resetQuickLog({})
       this.props.saveQuickLogHistory({
         quickLogHistory: {
           exercises: historyDate.exercises.slice(),
           timestamp: historyDate.timestamp,
-          _id: data.createHistoryDate._id
+          _id: d.data.createHistoryDate._id
         }
       })
       this.setState({showToasterInfo: true, showLoadingScreen: false})
-    }).catch((e: any) => {
+    }).catch((e) => {
       console.log('Create history date failed', e)
       this.setState({showToasterError: true, showLoadingScreen: false})
     })

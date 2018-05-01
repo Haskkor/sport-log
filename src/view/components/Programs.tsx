@@ -20,9 +20,10 @@ import {compose, graphql} from 'react-apollo'
 import gql from 'graphql-tag'
 import LoadingScreen from './LoadingScreen'
 import {createOmitTypenameLink} from '../../utils/graphQlHelper'
+import {NavigationAction, NavigationRoute, NavigationScreenProp} from 'react-navigation'
 
 type IProps = {
-  navigation: any
+  navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
   programs: ServerEntity.Program[]
   setPrograms: typeof ProgramsActions.setPrograms
   editProgram: typeof ProgramsActions.editProgram
@@ -84,7 +85,7 @@ class Programs extends React.PureComponent<IProps, IState> {
     this.setState({showLoadingScreen: true})
     await this.props.createProgram(newProgram).then(({data}: any) => {
       newProgram._id = data.createProgram._id
-    }).catch((e: any) => {
+    }).catch((e) => {
       console.log('Create program failed', e)
     })
     this.props.setPrograms({programs: [newProgram]})
