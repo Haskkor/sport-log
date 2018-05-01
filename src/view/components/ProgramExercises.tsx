@@ -9,11 +9,11 @@ import {colors} from '../../utils/colors'
 import {grid} from '../../utils/grid'
 import {HeaderStatus} from '../../core/enums'
 import Header from './Header'
-import {NavigationActions} from 'react-navigation'
+import {NavigationAction, NavigationActions, NavigationRoute, NavigationScreenProp} from 'react-navigation'
 import LoadingScreen from './LoadingScreen'
 
 type IProps = {
-  navigation: any
+  navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
 }
 
 type IState = {

@@ -13,6 +13,7 @@ import Animate from 'react-move/Animate'
 import {easeLinear} from 'd3-ease'
 import {ApolloQueryResult} from 'apollo-client'
 import config from '../../utils/config'
+import {dataSignUp} from '../../utils/gaphqlData'
 
 type IProps = {
   signUp: (email: string, password: string) => Promise<ApolloQueryResult<{}>>
@@ -72,7 +73,7 @@ class LoginRegister extends React.PureComponent<IProps, IState> {
     if (!emailError && !passwordError && !confirmError) {
       if (this.state.status === LoginRegisterStatus.register) {
         this.setState({showLoadingScreen: true})
-        this.props.signUp(email, password).then((d: { data: { signup: { __typename: string, _id: string, email: string, jwt: string } } }) => {
+        this.props.signUp(email, password).then((d: { data: dataSignUp }) => {
           this.props.changeLoginState(true, d.data.signup.jwt)
         }).catch((e) => {
           this.setState({showLoadingScreen: false})

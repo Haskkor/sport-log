@@ -6,9 +6,10 @@ import {grid} from '../../utils/grid'
 import {colors} from '../../utils/colors'
 import {HeaderStatus} from '../../core/enums'
 import Header from './Header'
+import {NavigationAction, NavigationRoute, NavigationScreenProp} from 'react-navigation'
 
 type IProps = {
-  navigation: any
+  navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
 }
 
 type IState = {
@@ -52,7 +53,9 @@ class ProgramNameDays extends React.PureComponent<IProps, IState> {
         const activeDays = params.editedProgram.days.map((day: ServerEntity.ExercisesDay) => day.day)
         let weekdaysCopy = this.state.weekdays.slice()
         activeDays.map((ad: string) => {
-          const index = _.findIndex(weekdaysCopy, (wd: any) => wd.name === ad)
+          const index = _.findIndex(weekdaysCopy, (wd: {name: string, training: false}) => {
+            return wd.name === ad
+          })
           weekdaysCopy[index] = {name: ad, training: true}
         })
         this.setState({weekdays: weekdaysCopy})

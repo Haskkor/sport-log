@@ -48,7 +48,7 @@ class ModalSearch extends React.PureComponent<IProps, IState> {
     )
   }
 
-  renderSectionHeader(sectionData: any, sectionID: string) {
+  renderSectionHeader(sectionData: string, sectionID: string) {
     if (!sectionID) {
       return (
         <View/>)

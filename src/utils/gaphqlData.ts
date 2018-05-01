@@ -1,3 +1,5 @@
+import {stringify} from "querystring";
+
 export type dataHistoryDateUser = {
   error: any,
   fetchMore: () => void
@@ -56,4 +58,48 @@ export type dataCreateHistoryDate = {
     }[]
     timestamp: string
   }
+}
+
+export type dataCreateProgram = {
+  createProgram: {
+    __typename: string
+    _id: string
+  }
+}
+
+export type dataSignUp = {
+  signup: {
+    __typename: string,
+    _id: string,
+    email: string,
+    jwt: string
+  }
+}
+
+export type dataProgram = {
+  __typename: string
+  _id: string
+  _userId: string
+  active: boolean
+  days: {
+    __typename: string
+    day: string
+    exercises: {
+      __typename: string
+      exercise: {
+        __typename: string
+        equipment: string
+        name: string
+      }
+      muscleGroup: string
+      recoveryTime: string
+      sets: {
+        reps: number
+        weight: number
+      }[]
+    }[]
+    isCollapsed: boolean
+    isDayOff: boolean
+  }[]
+  name: string
 }

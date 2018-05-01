@@ -30,7 +30,8 @@
 - ~~WARNING: Toaster on QuickLog page~~
 - Remove all the any types
     - ~~HeaderStackNavigator~~, ~~ProgramsStackNav~~, ~~ModalListLog~~, ~~Logout~~, ~~LoginRegister~~, ~~Home~~, 
-    ~~Header~~, ~~Toaster~~, ~~Calendar~~, ~~Quicklog~~, Programs, ProgramNameDays, ProgramExercises, ModalSearch, StopWatch, Timer, RowSortableList
+    ~~Header~~, ~~Toaster~~, ~~Calendar~~, ~~Quicklog~~, ~~Programs~~, ~~ProgramNameDays~~, ~~ProgramExercises~~,
+    ~~ModalSearch~~, StopWatch, Timer, RowSortableList
 - Edit historyDate
 - Simplify/Clean ~~action sheet all~~ and action sheet one
 - Add exercises to the day

@@ -21,6 +21,7 @@ import gql from 'graphql-tag'
 import LoadingScreen from './LoadingScreen'
 import {createOmitTypenameLink} from '../../utils/graphQlHelper'
 import {NavigationAction, NavigationRoute, NavigationScreenProp} from 'react-navigation'
+import {dataCreateProgram, dataProgram} from '../../utils/gaphqlData'
 
 type IProps = {
   navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
@@ -83,8 +84,8 @@ class Programs extends React.PureComponent<IProps, IState> {
       name: name
     }
     this.setState({showLoadingScreen: true})
-    await this.props.createProgram(newProgram).then(({data}: any) => {
-      newProgram._id = data.createProgram._id
+    await this.props.createProgram(newProgram).then((d: {data: dataCreateProgram}) => {
+      newProgram._id = d.data.createProgram._id
     }).catch((e) => {
       console.log('Create program failed', e)
     })
@@ -101,8 +102,8 @@ class Programs extends React.PureComponent<IProps, IState> {
       name: program.name
     }
     this.props.updateProgram(editedProgram)
-      .then(({data}: any) => {
-      }).catch((e: any) => {
+      .then(() => {
+      }).catch((e) => {
       console.log('Update program failed', e)
     })
   }
@@ -127,15 +128,15 @@ class Programs extends React.PureComponent<IProps, IState> {
           if (pgAct) {
             editProgram({index: indexRowAct, program: {active: false, days: pgAct.days, name: pgAct.name, _id: pgAct._id}})
             updateProgram({active: false, days: createOmitTypenameLink(pgAct.days), name: pgAct.name, _id: pgAct._id})
-              .then(({data}: any) => {
-              }).catch((e: any) => {
+              .then(() => {
+              }).catch((e) => {
               console.log('Update program failed', e)
             })
           }
           editProgram({index: indexRow, program: {active: !data.active, days: data.days, name: data.name, _id: data._id}})
           updateProgram({active: !data.active, days: createOmitTypenameLink(data.days), name: data.name, _id: data._id})
-            .then(({data}: any) => {
-            }).catch((e: any) => {
+            .then(() => {
+            }).catch((e) => {
             console.log('Update program failed', e)
           })
         } else if (buttonIndex === 1) {
@@ -145,8 +146,8 @@ class Programs extends React.PureComponent<IProps, IState> {
             editedIndex: indexRow
           })
         } else if (buttonIndex === 2) {
-          deleteProgram({_id: data._id}).then(({data}: any) => {
-          }).catch((e: any) => {
+          deleteProgram({_id: data._id}).then(() => {
+          }).catch((e) => {
             console.log('Delete program failed', e)
           })
           deleteProgramRdx({index: indexRow})
@@ -187,7 +188,7 @@ class Programs extends React.PureComponent<IProps, IState> {
             opacityView: [0],
             timing: {duration: 400, ease: easeQuadOut}
           }}>
-          {(state: any) => {
+          {(state: {opacityView: number, height: number}) => {
             return (
               <View style={{
                 flexDirection: 'row',
@@ -210,7 +211,7 @@ class Programs extends React.PureComponent<IProps, IState> {
           style={styles.sortableList}
           data={programs}
           order={this.order}
-          onRowMoved={(e: any) => {
+          onRowMoved={(e: {from: number, to: number, row: {data: dataProgram, index: string, section: string}}) => {
             this.order.splice(e.to, 0, this.order.splice(e.from, 1)[0])
             this.forceUpdate()
           }}
