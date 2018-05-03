@@ -59,6 +59,8 @@ type DayCalendar = {
 const daysName = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
 
 class Calendar extends React.PureComponent<IProps, IState> {
+  editedExerciseTimestamp: string
+  editedExerciseRow: number
 
   constructor(props: IProps) {
     super(props)
@@ -70,6 +72,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
       fabActive: false
     }
     this.showActionSheet = this.showActionSheet.bind(this)
+    this.saveEditedExercise = this.saveEditedExercise.bind(this)
   }
 
   async componentWillMount() {
@@ -153,6 +156,14 @@ class Calendar extends React.PureComponent<IProps, IState> {
             })
           }
         } else if (buttonIndex === 1) {
+          this.editedExerciseRow = indexRow
+          this.editedExerciseTimestamp = item.timestamp
+          this.props.navigation.navigate('CalendarEditExercise', {
+            status: HeaderStatus.stack,
+            title: 'Edit exercise ' + new Date(item.timestamp).toLocaleDateString(),
+            exercise: item.exerciseSet,
+            saveEdit: this.saveEditedExercise
+          })
         } else if (buttonIndex === 2) {
           const newItems = Object.assign({}, this.state.items)
           newItems[this.timeToString(item.timestamp)].splice(indexRow, 1)
@@ -267,10 +278,38 @@ class Calendar extends React.PureComponent<IProps, IState> {
     )
   }
 
+
+
+
+
+
+  // todo FINISH CREATING FUNCTIONS TO FORMAT STRINGS
+  // todo FINISH SAVING THE EDITED EXERCISE
+
+
+  createDetailsString = (equipment: string, recovery: string): string => {
+    return `${equipment} - Recovery time: ${recovery}`
+  }
+
+  saveEditedExercise = (exercise: ServerEntity.ExerciseSet) => {
+    console.log('exercise', exercise)
+
+    const editedItem: Item = this.state.items[this.timeToString(this.editedExerciseTimestamp)][this.editedExerciseRow].splice()
+    const newItem: Item = {
+      timestamp: this.editedExerciseTimestamp,
+      _idHistoryDate: editedItem._idHistoryDate,
+      name: `${exercise.exercise.name} - ${exercise.muscleGroup}`,
+      details: this.createDetailsString(exercise.exercise.equipment, exercise.recoveryTime),
+      content: ``
+    }
+
+    console.log('editedExercise', editedExercise)
+  }
+
   populateItems = async (day: DayCalendar) => {
     for (let i = -30; i < 30; i++) {
       const time = day.timestamp + i * 24 * 60 * 60 * 1000
-      const strTime = this.timeToString(time)
+      const strTime = this.timeToString(time.toString())
       this.state.items[strTime] = []
       const historyOnDate = this.props.data.historyDateUser.find((h: ServerEntity.HistoryDate) => {
         return +h.timestamp === time
@@ -280,7 +319,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
           this.state.items[strTime].push({
             _idHistoryDate: historyOnDate._id,
             name: `${e.exercise.name} - ${e.muscleGroup}`,
-            details: `${e.exercise.equipment} - Recovery time: ${e.recoveryTime}`,
+            details: this.createDetailsString(e.exercise.equipment, e.recoveryTime),
             content: `Sets:${e.sets.map((s: ServerEntity.Set) => {
               return ` ${s.reps} x ${s.weight}`
             })}`,

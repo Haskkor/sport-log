@@ -1,13 +1,13 @@
 import * as React from 'react'
-import {StatusBar, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {NavigationAction, NavigationRoute, StatusBar, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import Header from './Header'
 import {colors} from '../../utils/colors'
 import {grid} from '../../utils/grid'
 import {HeaderStatus} from '../../core/enums/index'
-import delay from "../../utils/delay";
+import {NavigationScreenProp} from 'react-navigation'
 
 type IProps = {
-  navigation: any
+  navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
 }
 
 type IState = {

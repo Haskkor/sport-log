@@ -1,13 +1,23 @@
 import * as React from 'react'
-import {Picker, StatusBar, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {
+    NavigationAction,
+    NavigationRoute,
+    Picker,
+    StatusBar,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View
+} from 'react-native'
 import * as _ from 'lodash'
 import Header from './Header'
 import {colors} from '../../utils/colors'
 import {grid} from '../../utils/grid'
 import {HeaderStatus} from '../../core/enums/'
+import {NavigationScreenProp} from 'react-navigation'
 
 type IProps = {
-  navigation: any
+  navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
 }
 
 type IState = {

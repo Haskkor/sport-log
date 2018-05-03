@@ -3,10 +3,10 @@ import {DrawerNavigator} from 'react-navigation'
 import TabNavRecovery from './TabNavRecovery'
 import QuickLog from '../components/QuickLog'
 import ProgramsStackNav from './ProgramsStackNav'
-import Calendar from '../components/Calendar'
 import PinCode from '../components/PinCode'
 import Logout from '../components/Logout'
 import Home from '../components/Home'
+import CalendarStackNav from './CalendarStackNav'
 
 type IProps = {
   changeLoginState: (status: boolean) => void
@@ -22,7 +22,7 @@ class MainDrawerNav extends React.PureComponent<IProps, IState> {
         screen: Home
       },
       Calendar: {
-        screen: Calendar
+        screen: CalendarStackNav
       },
       QuickLog: {
         screen: QuickLog

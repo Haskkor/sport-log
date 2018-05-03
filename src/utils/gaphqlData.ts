@@ -1,5 +1,3 @@
-import {stringify} from "querystring";
-
 export type dataHistoryDateUser = {
   error: any,
   fetchMore: () => void

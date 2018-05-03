@@ -28,10 +28,10 @@
 - ~~BUG: QuickLog does not refresh calendar anymore. Ok but ResetQuickLog not working~~
 - ~~BUG: Cached data in the calendar if problematic if you edit or remove something, change page and go back. (caused by toaster still being here when opening the modal)~~
 - ~~WARNING: Toaster on QuickLog page~~
-- Remove all the any types
+- ~~Remove all the any types~~
     - ~~HeaderStackNavigator~~, ~~ProgramsStackNav~~, ~~ModalListLog~~, ~~Logout~~, ~~LoginRegister~~, ~~Home~~, 
     ~~Header~~, ~~Toaster~~, ~~Calendar~~, ~~Quicklog~~, ~~Programs~~, ~~ProgramNameDays~~, ~~ProgramExercises~~,
-    ~~ModalSearch~~, StopWatch, Timer, RowSortableList
+    ~~ModalSearch~~, ~~StopWatch~~, ~~Timer~~, ~~RowSortableList~~
 - Edit historyDate
 - Simplify/Clean ~~action sheet all~~ and action sheet one
 - Add exercises to the day
@@ -44,6 +44,7 @@
 - User details (add charts, drawer with weight etc)
 - Healthcheck function for db and graphql
 - Store exercises list in db
+- When selecting an exercise use the last stored values for the sets and recovery instead of default ones
 
 https://launchpad.graphql.com/r948m3339n
 
