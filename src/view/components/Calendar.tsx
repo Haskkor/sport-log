@@ -278,33 +278,86 @@ class Calendar extends React.PureComponent<IProps, IState> {
     )
   }
 
-
-
-
-
-
-  // todo FINISH CREATING FUNCTIONS TO FORMAT STRINGS
-  // todo FINISH SAVING THE EDITED EXERCISE
-
-
   createDetailsString = (equipment: string, recovery: string): string => {
     return `${equipment} - Recovery time: ${recovery}`
   }
 
+  createNameString = (name: string, group: string): string => {
+    return `${name} - ${group}`
+  }
+
+  createContentString = (sets: ServerEntity.Set[]): string => {
+    return `Sets:${sets.map((s: ServerEntity.Set) => {
+      return ` ${s.reps} x ${s.weight}`
+    })}`
+  }
+
+
+
+
+
+
+
+
+
   saveEditedExercise = (exercise: ServerEntity.ExerciseSet) => {
     console.log('exercise', exercise)
 
-    const editedItem: Item = this.state.items[this.timeToString(this.editedExerciseTimestamp)][this.editedExerciseRow].splice()
+
+
+    const editedItem: Item = this.state.items[this.timeToString(this.editedExerciseTimestamp)][this.editedExerciseRow]
+    const newExerciseSet: ServerEntity.ExerciseSet = {
+      done: exercise.done,
+      exercise: exercise.exercise,
+      recoveryTime: exercise.recoveryTime,
+      sets: exercise.sets,
+      muscleGroup: exercise.muscleGroup
+    }
     const newItem: Item = {
       timestamp: this.editedExerciseTimestamp,
       _idHistoryDate: editedItem._idHistoryDate,
-      name: `${exercise.exercise.name} - ${exercise.muscleGroup}`,
+      name: this.createNameString(exercise.exercise.name, exercise.muscleGroup),
       details: this.createDetailsString(exercise.exercise.equipment, exercise.recoveryTime),
-      content: ``
+      content: this.createContentString(exercise.sets),
+      exerciseSet: newExerciseSet
     }
 
-    console.log('editedExercise', editedExercise)
+
+    // const newItems = Object.assign({}, this.state.items)
+    // newItems[this.timeToString(item.timestamp)].splice(indexRow, 1, newItem)
+    // const newExercises = newItems[this.timeToString(item.timestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
+    // const newHistoryDate: ServerEntity.HistoryDate = {
+    //   _id: item._idHistoryDate,
+    //   timestamp: +item.timestamp,
+    //   exercises: newExercises
+    // }
+    // this.props.updateHistoryDate(newHistoryDate).then(({data}) => {
+    //   this.setState({items: newItems})
+    // }).catch((e) => {
+    //   console.log('Update history date failed', e)
+    // })
+
+
+
+
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   populateItems = async (day: DayCalendar) => {
     for (let i = -30; i < 30; i++) {
@@ -318,11 +371,9 @@ class Calendar extends React.PureComponent<IProps, IState> {
         historyOnDate.exercises.map((e: ServerEntity.ExerciseSet) => {
           this.state.items[strTime].push({
             _idHistoryDate: historyOnDate._id,
-            name: `${e.exercise.name} - ${e.muscleGroup}`,
+            name: this.createNameString(e.exercise.name, e.muscleGroup),
             details: this.createDetailsString(e.exercise.equipment, e.recoveryTime),
-            content: `Sets:${e.sets.map((s: ServerEntity.Set) => {
-              return ` ${s.reps} x ${s.weight}`
-            })}`,
+            content: this.createContentString(e.sets),
             exerciseSet: e,
             timestamp: time
           })
@@ -336,12 +387,9 @@ class Calendar extends React.PureComponent<IProps, IState> {
             if (day) {
               day.exercises.map((e: ServerEntity.ExerciseSet) => {
                 this.state.items[strTime].push({
-                  name: `${e.exercise.name} - ${e.muscleGroup}`,
-                  details: `${e.exercise.equipment} - Recovery time: ${e.recoveryTime}`,
-                  content: `Sets:${e.sets.map((s: ServerEntity.Set) => {
-                    return ` ${s.reps} x ${s.weight}`
-                  })}`,
-                  exerciseSet: e,
+                  name: this.createNameString(e.exercise.name, e.muscleGroup),
+                  details: this.createDetailsString(e.exercise.equipment, e.recoveryTime),
+                  content: this.createContentString(e.sets),                  exerciseSet: e,
                   timestamp: time
                 })
               })
@@ -351,11 +399,9 @@ class Calendar extends React.PureComponent<IProps, IState> {
             if (!currentDayProgram.isDayOff) {
               currentDayProgram.exercises.map((e: ServerEntity.ExerciseSet) => {
                 this.state.items[strTime].push({
-                  name: `${e.exercise.name} - ${e.muscleGroup}`,
-                  details: `${e.exercise.equipment} - Recovery time: ${e.recoveryTime}`,
-                  content: `Sets:${e.sets.map((s: ServerEntity.Set) => {
-                    return ` ${s.reps} x ${s.weight}`
-                  })}`,
+                  name: this.createNameString(e.exercise.name, e.muscleGroup),
+                  details: this.createDetailsString(e.exercise.equipment, e.recoveryTime),
+                  content: this.createContentString(e.sets),
                   exerciseSet: e,
                   timestamp: time
                 })
