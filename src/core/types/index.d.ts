@@ -29,3 +29,24 @@ export type Program = {
   active: boolean,
   days: ExercisesDay[]
 }
+
+export type Items = {
+  [key: string]: Item
+}
+
+export type Item = {
+  name: string,
+  details: string,
+  content: string,
+  timestamp: string
+  exerciseSet: ServerEntity.ExerciseSet
+  _idHistoryDate?: string
+}
+
+export type DayCalendar = {
+  dateString: string
+  day: number
+  month: number
+  timestamp: number
+  year: number
+}
