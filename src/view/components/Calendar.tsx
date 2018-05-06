@@ -292,22 +292,10 @@ class Calendar extends React.PureComponent<IProps, IState> {
     })}`
   }
 
-
-
-
-
-
-
-
-
   saveEditedExercise = (exercise: ServerEntity.ExerciseSet) => {
-    console.log('exercise', exercise)
-
-
-
     const editedItem: Item = this.state.items[this.timeToString(this.editedExerciseTimestamp)][this.editedExerciseRow]
     const newExerciseSet: ServerEntity.ExerciseSet = {
-      done: exercise.done,
+      done: editedItem.exerciseSet.done,
       exercise: exercise.exercise,
       recoveryTime: exercise.recoveryTime,
       sets: exercise.sets,
@@ -321,43 +309,20 @@ class Calendar extends React.PureComponent<IProps, IState> {
       content: this.createContentString(exercise.sets),
       exerciseSet: newExerciseSet
     }
-
-
-    // const newItems = Object.assign({}, this.state.items)
-    // newItems[this.timeToString(item.timestamp)].splice(indexRow, 1, newItem)
-    // const newExercises = newItems[this.timeToString(item.timestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
-    // const newHistoryDate: ServerEntity.HistoryDate = {
-    //   _id: item._idHistoryDate,
-    //   timestamp: +item.timestamp,
-    //   exercises: newExercises
-    // }
-    // this.props.updateHistoryDate(newHistoryDate).then(({data}) => {
-    //   this.setState({items: newItems})
-    // }).catch((e) => {
-    //   console.log('Update history date failed', e)
-    // })
-
-
-
-
+    const newItems = Object.assign({}, this.state.items)
+    newItems[this.timeToString(this.editedExerciseTimestamp)].splice(this.editedExerciseRow, 1, newItem)
+    const newExercises = newItems[this.timeToString(this.editedExerciseTimestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
+    const newHistoryDate: ServerEntity.HistoryDate = {
+      _id: editedItem._idHistoryDate,
+      timestamp: +this.editedExerciseTimestamp,
+      exercises: newExercises
+    }
+    this.props.updateHistoryDate(newHistoryDate).then(() => {
+      this.setState({items: newItems})
+    }).catch((e) => {
+      console.log('Update history date failed', e)
+    })
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   populateItems = async (day: DayCalendar) => {
     for (let i = -30; i < 30; i++) {
@@ -457,7 +422,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
   }
 
   timeToString = (time: string) => {
-    const date = new Date(time)
+    const date = new Date(+time)
     return date.toISOString().split('T')[0]
   }
 

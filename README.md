@@ -32,10 +32,10 @@
     - ~~HeaderStackNavigator~~, ~~ProgramsStackNav~~, ~~ModalListLog~~, ~~Logout~~, ~~LoginRegister~~, ~~Home~~, 
     ~~Header~~, ~~Toaster~~, ~~Calendar~~, ~~Quicklog~~, ~~Programs~~, ~~ProgramNameDays~~, ~~ProgramExercises~~,
     ~~ModalSearch~~, ~~StopWatch~~, ~~Timer~~, ~~RowSortableList~~
-- Edit historyDate
+- ~~Edit historyDate~~
 - Simplify/Clean ~~action sheet all~~ and action sheet one
 - Add exercises to the day
-- Put a loader on item? Day?
+- Put a loader on item? Day?: Change the state before the return of the graphql call. Debounce the calls.
 - Debounce/Throttle graphql methods
 - Reorganize exercise list in a day
 
