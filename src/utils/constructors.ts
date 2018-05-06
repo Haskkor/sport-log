@@ -23,7 +23,7 @@ export const createItem = (name: string, details: string, content: string, times
   }
 }
 
-export const createHistoryDate = (id: string, timestamp: string, exercises: ServerEntity.ExerciseSet[]): ServerEntity.HistoryDate => {
+export const createHistoryDate = (timestamp: string, exercises: ServerEntity.ExerciseSet[], id?: string): ServerEntity.HistoryDate => {
   return {
     _id: id,
     timestamp: +timestamp,

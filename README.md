@@ -34,6 +34,8 @@
     ~~ModalSearch~~, ~~StopWatch~~, ~~Timer~~, ~~RowSortableList~~
 - ~~Edit historyDate~~
 - Simplify/Clean ~~action sheet all~~ and action sheet one
+- Use the constructors in all the files
+- Put graphql queries in a separate file
 - Add exercises to the day
 - Put a loader on item? Day?: Change the state before the return of the graphql call. Debounce the calls.
 - Debounce/Throttle graphql methods

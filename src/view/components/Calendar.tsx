@@ -18,9 +18,10 @@ import {createOmitTypenameLink} from '../../utils/graphQlHelper'
 import * as _ from 'lodash'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import {NavigationAction, NavigationRoute, NavigationScreenProp} from 'react-navigation'
-import {dataHistoryDateUser} from '../../utils/gaphqlData'
+import {dataCreateHistoryDate, dataHistoryDateUser} from '../../utils/gaphqlData'
 import {DayCalendar, Item, Items} from '../../core/types'
 import {createExerciseSet, createHistoryDate, createItem} from '../../utils/constructors'
+import {createContentString, createDetailsString, createNameString} from '../../utils/calendar'
 
 type IProps = {
   navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
@@ -83,11 +84,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
             const newItems = Object.assign({}, this.state.items)
             newItems[this.timeToString(item.timestamp)].splice(indexRow, 1, newItem)
             const newExercises = newItems[this.timeToString(item.timestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
-            const newHistoryDate: ServerEntity.HistoryDate = {
-              _id: item._idHistoryDate,
-              timestamp: +item.timestamp,
-              exercises: newExercises
-            }
+            const newHistoryDate = createHistoryDate(item.timestamp, newExercises, item._idHistoryDate)
             this.props.updateHistoryDate(newHistoryDate).then(({data}) => {
               this.setState({items: newItems})
             }).catch((e) => {
@@ -96,15 +93,12 @@ class Calendar extends React.PureComponent<IProps, IState> {
           } else {
             const exerciseSet = createOmitTypenameLink(item.exerciseSet)
             exerciseSet.done = !currentItem.exerciseSet.done
-            const newHistoryDate: ServerEntity.HistoryDate = {
-              timestamp: +item.timestamp,
-              exercises: [exerciseSet]
-            }
-            this.props.createHistoryDate(newHistoryDate).then(({data}) => {
+            const newHistoryDate = createHistoryDate(item.timestamp, [exerciseSet])
+            this.props.createHistoryDate(newHistoryDate).then((d: {data: dataCreateHistoryDate}) => {
               const newExerciseSet = createExerciseSet(!currentItem.exerciseSet.done, currentItem.exerciseSet.exercise,
                 currentItem.exerciseSet.recoveryTime, currentItem.exerciseSet.sets, currentItem.exerciseSet.muscleGroup)
               const newItem = createItem(currentItem.name, currentItem.details, currentItem.content,
-                currentItem.timestamp, newExerciseSet, data.createHistoryDate._id)
+                currentItem.timestamp, newExerciseSet, d.data.createHistoryDate._id)
               const newItems = Object.assign({}, this.state.items)
               newItems[this.timeToString(item.timestamp)].splice(indexRow, 1, newItem)
               this.setState({items: newItems})
@@ -126,17 +120,14 @@ class Calendar extends React.PureComponent<IProps, IState> {
           newItems[this.timeToString(item.timestamp)].splice(indexRow, 1)
           const newExercises = newItems[this.timeToString(item.timestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
           if (item._idHistoryDate) {
-            const newHistoryDate = createHistoryDate(item._idHistoryDate, item.timestamp, newExercises)
-            this.props.updateHistoryDate(newHistoryDate).then(({data}) => {
+            const newHistoryDate = createHistoryDate(item.timestamp, newExercises, item._idHistoryDate)
+            this.props.updateHistoryDate(newHistoryDate).then(() => {
               this.setState({items: newItems})
             }).catch((e) => {
               console.log('Update history date failed', e)
             })
           } else {
-            const newHistoryDate: ServerEntity.HistoryDate = {
-              timestamp: +item.timestamp,
-              exercises: newExercises
-            }
+            const newHistoryDate = createHistoryDate(item.timestamp, newExercises)
             this.props.createHistoryDate(newHistoryDate).then(() => {
               this.setState({items: newItems})
             }).catch((e) => {
@@ -164,42 +155,22 @@ class Calendar extends React.PureComponent<IProps, IState> {
         const newItemsDay: Item[] = []
         if (buttonIndex === 0) {
           newItems[this.timeToString(item.timestamp)].map((i: Item) => {
-            // todo USE FUNCTION
-            newItemsDay.push({
-              exerciseSet: {
-                done: notDone,
-                exercise: i.exerciseSet.exercise,
-                muscleGroup: i.exerciseSet.muscleGroup,
-                recoveryTime: i.exerciseSet.recoveryTime,
-                sets: i.exerciseSet.sets
-              },
-              timestamp: i.timestamp,
-              _idHistoryDate: i._idHistoryDate,
-              content: i.content,
-              details: i.details,
-              name: i.name
-            })
+            newItemsDay.push(createItem(i.name, i.details, i.content, i.timestamp, createExerciseSet(notDone,
+              i.exerciseSet.exercise, i.exerciseSet.recoveryTime, i.exerciseSet.sets, i.exerciseSet.muscleGroup),
+              i._idHistoryDate))
           })
           newItems[this.timeToString(item.timestamp)] = newItemsDay
           const newExercises = newItems[this.timeToString(item.timestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
           if (item._idHistoryDate) {
-            // todo USE FUNCTION
-            const newHistoryDate: ServerEntity.HistoryDate = {
-              _id: item._idHistoryDate,
-              timestamp: +item.timestamp,
-              exercises: newExercises
-            }
-            this.props.updateHistoryDate(newHistoryDate).then(({data}) => {
+            const newHistoryDate = createHistoryDate(item.timestamp, newExercises, item._idHistoryDate)
+            this.props.updateHistoryDate(newHistoryDate).then(() => {
               this.setState({items: newItems})
             }).catch((e) => {
               console.log('Update history date failed', e)
             })
           } else {
-            const newHistoryDate: ServerEntity.HistoryDate = {
-              timestamp: +item.timestamp,
-              exercises: newExercises
-            }
-            this.props.createHistoryDate(newHistoryDate).then(({data}) => {
+            const newHistoryDate = createHistoryDate(item.timestamp, newExercises)
+            this.props.createHistoryDate(newHistoryDate).then(() => {
               this.setState({items: newItems})
             }).catch((e) => {
               console.log('Create history date failed', e)
@@ -208,13 +179,8 @@ class Calendar extends React.PureComponent<IProps, IState> {
         } else if (buttonIndex === 1) {
           newItems[this.timeToString(item.timestamp)] = {}
           if (item._idHistoryDate) {
-            // todo USE FUNCTION
-            const newHistoryDate: ServerEntity.HistoryDate = {
-              _id: item._idHistoryDate,
-              timestamp: +item.timestamp,
-              exercises: []
-            }
-            this.props.updateHistoryDate(newHistoryDate).then(({data}) => {
+            const newHistoryDate = createHistoryDate(item.timestamp, [], item._idHistoryDate)
+            this.props.updateHistoryDate(newHistoryDate).then(() => {
               this.setState({items: newItems})
             }).catch((e) => {
               console.log('Update history date failed', e)
@@ -235,48 +201,17 @@ class Calendar extends React.PureComponent<IProps, IState> {
     )
   }
 
-  createDetailsString = (equipment: string, recovery: string): string => {
-    return `${equipment} - Recovery time: ${recovery}`
-  }
-
-  createNameString = (name: string, group: string): string => {
-    return `${name} - ${group}`
-  }
-
-  createContentString = (sets: ServerEntity.Set[]): string => {
-    return `Sets:${sets.map((s: ServerEntity.Set) => {
-      return ` ${s.reps} x ${s.weight}`
-    })}`
-  }
-
   saveEditedExercise = (exercise: ServerEntity.ExerciseSet) => {
     const editedItem: Item = this.state.items[this.timeToString(this.editedExerciseTimestamp)][this.editedExerciseRow]
-    // todo USE FUNCTION
-    const newExerciseSet: ServerEntity.ExerciseSet = {
-      done: editedItem.exerciseSet.done,
-      exercise: exercise.exercise,
-      recoveryTime: exercise.recoveryTime,
-      sets: exercise.sets,
-      muscleGroup: exercise.muscleGroup
-    }
-    // todo USE FUNCTION
-    const newItem: Item = {
-      timestamp: this.editedExerciseTimestamp,
-      _idHistoryDate: editedItem._idHistoryDate,
-      name: this.createNameString(exercise.exercise.name, exercise.muscleGroup),
-      details: this.createDetailsString(exercise.exercise.equipment, exercise.recoveryTime),
-      content: this.createContentString(exercise.sets),
-      exerciseSet: newExerciseSet
-    }
+    const newExerciseSet = createExerciseSet(editedItem.exerciseSet.done, exercise.exercise, exercise.recoveryTime,
+      exercise.sets, exercise.muscleGroup)
+    const newItem = createItem(createNameString(exercise.exercise.name, exercise.muscleGroup),
+      createDetailsString(exercise.exercise.equipment, exercise.recoveryTime),
+      createContentString(exercise.sets), this.editedExerciseTimestamp, newExerciseSet, editedItem._idHistoryDate)
     const newItems = Object.assign({}, this.state.items)
     newItems[this.timeToString(this.editedExerciseTimestamp)].splice(this.editedExerciseRow, 1, newItem)
     const newExercises = newItems[this.timeToString(this.editedExerciseTimestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
-    // todo USE FUNCTION
-    const newHistoryDate: ServerEntity.HistoryDate = {
-      _id: editedItem._idHistoryDate,
-      timestamp: +this.editedExerciseTimestamp,
-      exercises: newExercises
-    }
+    const newHistoryDate = createHistoryDate(this.editedExerciseTimestamp, newExercises, editedItem._idHistoryDate)
     this.props.updateHistoryDate(newHistoryDate).then(() => {
       this.setState({items: newItems})
     }).catch((e) => {
@@ -294,15 +229,10 @@ class Calendar extends React.PureComponent<IProps, IState> {
       })
       if (historyOnDate) {
         historyOnDate.exercises.map((e: ServerEntity.ExerciseSet) => {
-          // todo USE FUNCTION
-          this.state.items[strTime].push({
-            _idHistoryDate: historyOnDate._id,
-            name: this.createNameString(e.exercise.name, e.muscleGroup),
-            details: this.createDetailsString(e.exercise.equipment, e.recoveryTime),
-            content: this.createContentString(e.sets),
-            exerciseSet: e,
-            timestamp: time
-          })
+          this.state.items[strTime].push(createItem(createNameString(e.exercise.name, e.muscleGroup),
+            createDetailsString(e.exercise.equipment, e.recoveryTime), createContentString(e.sets),
+            time.toString(), e, historyOnDate._id,
+          ))
         })
       } else {
         if (strTime >= this.timeToString(new Date().getTime().toString())) {
@@ -312,22 +242,17 @@ class Calendar extends React.PureComponent<IProps, IState> {
             const day = this.state.activeProgram.days.find((d: ServerEntity.ExercisesDay) => d.day === daysName[tempDate.getDay()])
             if (day) {
               day.exercises.map((e: ServerEntity.ExerciseSet) => {
-                // todo USE FUNCTION
-                this.state.items[strTime].push({
-                  name: this.createNameString(e.exercise.name, e.muscleGroup),
-                  details: this.createDetailsString(e.exercise.equipment, e.recoveryTime),
-                  content: this.createContentString(e.sets),
-                  exerciseSet: e,
-                  timestamp: time
-                })
+                this.state.items[strTime].push(createItem(createNameString(e.exercise.name, e.muscleGroup),
+                  createDetailsString(e.exercise.equipment, e.recoveryTime), createContentString(e.sets),
+                  time.toString(), e))
               })
             }
           } else if (this.state.activeProgram) {
             const currentDayProgram = this.state.activeProgram.days[i % this.state.activeProgram.days.length]
             if (!currentDayProgram.isDayOff) {
               currentDayProgram.exercises.map((e: ServerEntity.ExerciseSet) => {
-                const newItem: Item = createItem(this.createNameString(e.exercise.name, e.muscleGroup),
-                  this.createDetailsString(e.exercise.equipment, e.recoveryTime), this.createContentString(e.sets),
+                const newItem: Item = createItem(createNameString(e.exercise.name, e.muscleGroup),
+                  createDetailsString(e.exercise.equipment, e.recoveryTime), createContentString(e.sets),
                   time.toString(), e)
                 this.state.items[strTime].push(newItem)
               })
