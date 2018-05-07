@@ -4,7 +4,6 @@ import {colors} from '../../utils/colors'
 import {HeaderStatus} from '../../core/enums'
 import Header from './Header'
 import {compose, graphql} from 'react-apollo'
-import gql from 'graphql-tag'
 import {grid} from '../../utils/grid'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
@@ -18,6 +17,7 @@ import {connect, Dispatch} from 'react-redux'
 import * as ProgramsActions from '../../core/modules/entities/programs'
 import {bindActionCreators} from 'redux'
 import {NavigationAction, NavigationRoute, NavigationScreenProp} from 'react-navigation'
+import {CURRENT_USER, PROGRAMS_USER, UPDATE_USER} from '../../utils/gqls'
 
 type IProps = {
   navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
@@ -343,49 +343,11 @@ class Home extends React.PureComponent<IProps, IState> {
 }
 
 const HomeGraphQl = compose(graphql(
-  gql`
-    query ProgramsUser {
-      programsUser {
-        name
-        _id
-        _userId
-        active
-        days {
-          day
-          isCollapsed
-          isDayOff
-          exercises {
-            muscleGroup
-      recoveryTime
-      exercise {
-        name
-        equipment
-      }
-      sets {
-        reps
-        weight
-      }
-          }
-        }
-      }
-    }
-  `, {name: 'pgUser'}
+  PROGRAMS_USER, {name: 'pgUser'}
 ), graphql(
-  gql`
-    query User {
-      currentUser {
-        email, firstName, lastName, userName, dob, height, trainingYears
-      }
-    }
-  `, {name: 'user'}
+  CURRENT_USER, {name: 'user'}
 ), graphql(
-  gql`
-    mutation UpdateUser($email: String, $firstName: String, $lastName: String, $userName: String, $dob: String, $height: Int, $trainingYears: Int) {
-      updateUser(input: {email: $email, firstName: $firstName, lastName: $lastName, userName: $userName, dob: $dob, height: $height, trainingYears: $trainingYears}) {
-        email
-      }
-    }
-  `,
+  UPDATE_USER,
   {
     props: ({mutate}) => ({
       updateUser: (email?: string, firstName?: string, lastName?: string, userName?: string, dob?: string, height?: number, trainingYears?: number) => mutate({

@@ -17,11 +17,11 @@ import {ApolloQueryResult} from 'apollo-client'
 import Animate from 'react-move/Animate'
 import {easeQuadOut} from 'd3-ease'
 import {compose, graphql} from 'react-apollo'
-import gql from 'graphql-tag'
 import LoadingScreen from './LoadingScreen'
 import {createOmitTypenameLink} from '../../utils/graphQlHelper'
 import {NavigationAction, NavigationRoute, NavigationScreenProp} from 'react-navigation'
 import {dataCreateProgram, dataProgram} from '../../utils/gaphqlData'
+import {CREATE_PROGRAM, DELETE_PROGRAM, UPDATE_PROGRAM} from '../../utils/gqls'
 
 type IProps = {
   navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
@@ -246,13 +246,7 @@ class Programs extends React.PureComponent<IProps, IState> {
 }
 
 const ProgramsGraphQl = compose(graphql(
-  gql`
-    mutation CreateProgram($program: ProgramCreateType) {
-      createProgram(input: $program) {
-        _id
-      }
-    }
-  `,
+  CREATE_PROGRAM,
   {
     props: ({mutate}) => ({
       createProgram: (program: ServerEntity.Program) => mutate({
@@ -260,11 +254,7 @@ const ProgramsGraphQl = compose(graphql(
       })
     })}
 ), graphql(
-  gql`
-    mutation DeleteProgram($_id: ProgramDeleteType) {
-      deleteProgram(input: $_id)
-    }
-  `,
+  DELETE_PROGRAM,
   {
     props: ({mutate}) => ({
       deleteProgram: (_id: { _id: string }) => mutate({
@@ -273,13 +263,7 @@ const ProgramsGraphQl = compose(graphql(
     }),
   },
 ), graphql(
-  gql`
-    mutation UpdateProgram($program: ProgramUpdateType) {
-      updateProgram(input: $program) {
-        _id
-      }
-    }
-  `,
+  UPDATE_PROGRAM,
   {
     props: ({mutate}) => ({
       updateProgram: (program: ServerEntity.Program) => mutate({

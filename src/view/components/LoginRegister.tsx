@@ -8,12 +8,12 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import {grid} from '../../utils/grid'
 import {graphql, compose} from 'react-apollo'
-import gql from 'graphql-tag'
 import Animate from 'react-move/Animate'
 import {easeLinear} from 'd3-ease'
 import {ApolloQueryResult} from 'apollo-client'
 import config from '../../utils/config'
 import {dataSignUp} from '../../utils/gaphqlData'
+import {LOGIN, SIGN_UP} from '../../utils/gqls'
 
 type IProps = {
   signUp: (email: string, password: string) => Promise<ApolloQueryResult<{}>>
@@ -211,28 +211,14 @@ class LoginRegister extends React.PureComponent<IProps, IState> {
 }
 
 export default compose(graphql(
-  gql`
-    mutation SignUp($email: String!, $password: String!) {
-      signup(input: {email: $email, password: $password}) {
-        _id
-        email
-        jwt
-      }
-    }
-  `,
+  SIGN_UP,
   {
     props: ({mutate}) => ({
       signUp: (email: string, password: string) => mutate({variables: {email, password}}),
     })
   }
 ), graphql(
-  gql`
-    mutation Login($email: String!, $password: String!) {
-      login(input: {email: $email, password: $password}) {
-        jwt
-      }
-    }
-  `,
+  LOGIN,
   {
     props: ({mutate}) => ({
       login: (email: string, password: string) => mutate({variables: {email, password}})

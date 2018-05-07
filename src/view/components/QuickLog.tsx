@@ -15,7 +15,6 @@ import ModalSearch from './ModalSearch'
 import {grid} from '../../utils/grid'
 import {colors} from '../../utils/colors'
 import {graphql} from 'react-apollo'
-import gql from 'graphql-tag'
 import {ApolloQueryResult} from 'apollo-client'
 import LoadingScreen from './LoadingScreen'
 import {bindActionCreators} from 'redux'
@@ -24,6 +23,7 @@ import * as QuickLogActions from '../../core/modules/entities/quicklog'
 import * as HistoryActions from '../../core/modules/entities/history'
 import {NavigationAction, NavigationRoute, NavigationScreenProp} from 'react-navigation'
 import {dataCreateHistoryDate} from '../../utils/gaphqlData'
+import {CREATE_HISTORY_DATE} from '../../utils/gqls'
 
 type IProps = {
   navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
@@ -426,28 +426,7 @@ class QuickLog extends React.PureComponent<IProps, IState> {
 }
 
 const QuickLogGraphQl = graphql(
-  gql`
-    mutation CreateHistoryDate($historyDate: HistoryDateCreateType) {
-      createHistoryDate(input: $historyDate) {
-        _id
-        _userId
-        timestamp
-        exercises {
-          muscleGroup
-          recoveryTime
-          exercise {
-            name
-            equipment
-          }
-          done
-          sets {
-            reps
-            weight
-          }
-        }
-      }
-    }
-  `,
+  CREATE_HISTORY_DATE,
   {
     props: ({mutate}) => ({
       createHistoryDate: (historyDate: ServerEntity.HistoryDate) =>

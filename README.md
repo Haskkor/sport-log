@@ -33,9 +33,8 @@
     ~~Header~~, ~~Toaster~~, ~~Calendar~~, ~~Quicklog~~, ~~Programs~~, ~~ProgramNameDays~~, ~~ProgramExercises~~,
     ~~ModalSearch~~, ~~StopWatch~~, ~~Timer~~, ~~RowSortableList~~
 - ~~Edit historyDate~~
-- Simplify/Clean ~~action sheet all~~ and action sheet one
-- Use the constructors in all the files
-- Put graphql queries in a separate file
+- ~~Simplify/Clean action sheet all and action sheet one~~
+- ~~Put graphql queries in a separate file~~
 - Add exercises to the day
 - Put a loader on item? Day?: Change the state before the return of the graphql call. Debounce the calls.
 - Debounce/Throttle graphql methods
@@ -47,6 +46,7 @@
 - Healthcheck function for db and graphql
 - Store exercises list in db
 - When selecting an exercise use the last stored values for the sets and recovery instead of default ones
+- Use the constructors in all the files
 
 https://launchpad.graphql.com/r948m3339n
 

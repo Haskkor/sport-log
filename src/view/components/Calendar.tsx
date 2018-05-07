@@ -10,7 +10,6 @@ import config from '../../utils/config'
 import {fakeActiveProgram} from '../../utils/constants'
 import {bindActionCreators} from 'redux'
 import {compose, graphql} from 'react-apollo'
-import gql from 'graphql-tag'
 import LoadingScreen from './LoadingScreen'
 import delay from '../../utils/delay'
 import {ApolloQueryResult} from 'apollo-client'
@@ -22,6 +21,7 @@ import {dataCreateHistoryDate, dataHistoryDateUser} from '../../utils/gaphqlData
 import {DayCalendar, Item, Items} from '../../core/types'
 import {createExerciseSet, createHistoryDate, createItem} from '../../utils/constructors'
 import {createContentString, createDetailsString, createNameString} from '../../utils/calendar'
+import {CREATE_HISTORY_DATE, HISTORY_DATE_USER, UPDATE_HISTORY_DATE} from '../../utils/gqls'
 
 type IProps = {
   navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
@@ -358,36 +358,9 @@ class Calendar extends React.PureComponent<IProps, IState> {
 }
 
 const CalendarGraphQl = compose(graphql(
-  gql`
-    query ProgramsUser {
-      historyDateUser {
-        _id
-        _userId
-        timestamp
-        exercises {
-          muscleGroup
-          done
-          recoveryTime
-          exercise {
-            name
-            equipment
-          }
-          sets {
-            reps
-            weight
-          }
-        }
-      }
-    }
-  `),
+  HISTORY_DATE_USER),
   graphql(
-    gql`
-    mutation CreateHistoryDate($historyDate: HistoryDateCreateType) {
-      createHistoryDate(input: $historyDate) {
-        _id
-      }
-    }
-  `,
+    CREATE_HISTORY_DATE,
     {
       props: ({mutate}) => ({
         createHistoryDate: (historyDate: ServerEntity.HistoryDate) =>
@@ -397,13 +370,7 @@ const CalendarGraphQl = compose(graphql(
       })
     }),
   graphql(
-    gql`
-    mutation UpdateHistoryDate($historyDate: HistoryDateUpdateType) {
-      updateHistoryDate(input: $historyDate) {
-        _id
-      }
-    }
-  `,
+    UPDATE_HISTORY_DATE,
     {
       props: ({mutate}) => ({
         updateHistoryDate: (historyDate: ServerEntity.HistoryDate) =>
