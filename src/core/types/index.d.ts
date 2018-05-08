@@ -31,7 +31,7 @@ export type Program = {
 }
 
 export type Items = {
-  [key: string]: Item
+  [key: string]: Item[]
 }
 
 export type Item = {

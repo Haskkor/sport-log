@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39597ee5-2bd9-42b2-a212-3554592f4c8d" name="Default" comment="kljkjklj">
-      <change afterPath="$PROJECT_DIR$/src/utils/gqls.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/graphql.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/launchpadGraphql.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/graphqlRequests" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/launchpadGraphqlRequests" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/core/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/types/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/gaphqlData.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/gaphqlData.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/components/Calendar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/Calendar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/Home.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/LoginRegister.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/LoginRegister.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/Programs.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/Programs.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/QuickLog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/QuickLog.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -30,9 +24,30 @@
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
               <first_editor relative-caret-position="540">
-                <caret line="36" selection-start-line="36" selection-end-line="36" />
+                <caret line="36" column="43" selection-start-line="36" selection-start-column="43" selection-end-line="36" selection-end-column="43" />
               </first_editor>
               <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Calendar.tsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="661">
+              <caret line="226" column="12" selection-start-line="226" selection-start-column="12" selection-end-line="226" selection-end-column="12" />
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="gaphqlData.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/utils/gaphqlData.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="2" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -46,7 +61,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QuickLog.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.d.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/core/types/index.d.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="495">
+              <caret line="33" column="21" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="21" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="QuickLog.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/components/QuickLog.tsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="375">
@@ -59,8 +83,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>showModal</find>
-      <find>stopToaster</find>
       <find>showToasterInfo</find>
       <find>an</find>
       <find>this.props.signUp(email, password).then(({data}: any) =&gt; {any</find>
@@ -89,6 +111,8 @@
       <find>ServerE</find>
       <find>Item</find>
       <find>dataCreateHistoryDate</find>
+      <find>populateItems</find>
+      <find>createHistoryDate</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -133,19 +157,19 @@
         <option value="$PROJECT_DIR$/src/view/components/StopWatch.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/Timer.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/RowSortableList.tsx" />
-        <option value="$PROJECT_DIR$/src/utils/gaphqlData.ts" />
         <option value="$PROJECT_DIR$/src/view/navigators/MainDrawerNav.tsx" />
         <option value="$PROJECT_DIR$/src/view/navigators/CalendarStackNav.tsx" />
-        <option value="$PROJECT_DIR$/src/core/types/index.d.ts" />
         <option value="$PROJECT_DIR$/src/utils/constructors.ts" />
         <option value="$PROJECT_DIR$/src/utils/calendar.ts" />
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/view/components/Calendar.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/Home.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/LoginRegister.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/Programs.tsx" />
         <option value="$PROJECT_DIR$/src/utils/gqls.ts" />
         <option value="$PROJECT_DIR$/src/view/components/QuickLog.tsx" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/core/types/index.d.ts" />
+        <option value="$PROJECT_DIR$/src/utils/gaphqlData.ts" />
+        <option value="$PROJECT_DIR$/src/view/components/Calendar.tsx" />
       </list>
     </option>
   </component>
@@ -177,7 +201,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -283,11 +306,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="SearchEverywhereHistoryKey" value="quickl&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/QuickLog.tsx&#10;Toas&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/Toaster.tsx&#10;packa&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/package.json&#10;quicklo&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/QuickLog.tsx&#10;qui&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/QuickLog.tsx&#10;enti&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/interfaces/entities.d.ts&#10;Calen&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/Calendar.tsx&#10;Cald&#9;null&#9;null&#10;modalse&#9;null&#9;null&#10;readme&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/README.md&#10;config&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/utils/config.ts&#10;lo&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/view/components/LoginRegister.tsx&#10;rea&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/README.md&#10;read&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/node_modules/@haskkor/react-native-pincode/README.md&#10;const&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/utils/constants.ts&#10;confi&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/utils/config.ts&#10;draw&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/navigators/MainDrawerNav.tsx&#10;index&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/index.tsx&#10;create.ts&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/core/create.ts" />
+    <property name="SearchEverywhereHistoryKey" value="calen&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/Calendar.tsx&#10;quickl&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/QuickLog.tsx&#10;Toas&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/Toaster.tsx&#10;packa&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/package.json&#10;quicklo&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/QuickLog.tsx&#10;qui&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/QuickLog.tsx&#10;enti&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/interfaces/entities.d.ts&#10;Calen&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/Calendar.tsx&#10;Cald&#9;null&#9;null&#10;modalse&#9;null&#9;null&#10;readme&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/README.md&#10;config&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/utils/config.ts&#10;lo&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/view/components/LoginRegister.tsx&#10;rea&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/README.md&#10;read&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/node_modules/@haskkor/react-native-pincode/README.md&#10;const&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/utils/constants.ts&#10;confi&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/utils/config.ts&#10;draw&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/navigators/MainDrawerNav.tsx&#10;index&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/index.tsx&#10;create.ts&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/core/create.ts" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="node" />
@@ -366,12 +390,13 @@
       <workItem from="1525514983142" duration="1697000" />
       <workItem from="1525562326240" duration="2450000" />
       <workItem from="1525578996976" duration="3416000" />
-      <workItem from="1525638684793" duration="3689000" />
+      <workItem from="1525638684793" duration="3746000" />
+      <workItem from="1525755587312" duration="2932000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="255234000" />
+    <option name="totallyTimeSpent" value="258223000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1280" height="1417" extended-state="0" />
@@ -382,17 +407,17 @@
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32960325" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32960895" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.26771066" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="12" />
@@ -555,13 +580,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/core/types/index.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/launchpadGraphqlRequests">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3975">
@@ -583,20 +601,6 @@
           <folding>
             <element signature="e#0#47#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/gaphqlData.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="52" column="19" selection-start-line="52" selection-start-column="19" selection-end-line="52" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="74" selection-start-line="23" selection-start-column="74" selection-end-line="23" selection-end-column="74" />
         </state>
       </provider>
     </entry>
@@ -771,21 +775,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="540">
-            <caret line="36" selection-start-line="36" selection-end-line="36" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/Programs.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -804,6 +793,45 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="25" column="51" selection-start-line="25" selection-start-column="51" selection-end-line="25" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="540">
+            <caret line="36" column="43" selection-start-line="36" selection-start-column="43" selection-end-line="36" selection-end-column="43" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/core/types/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="21" selection-start-line="33" selection-start-column="21" selection-end-line="33" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/gaphqlData.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="2" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="661">
+          <caret line="226" column="12" selection-start-line="226" selection-start-column="12" selection-end-line="226" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -17,7 +17,7 @@ import {createOmitTypenameLink} from '../../utils/graphQlHelper'
 import * as _ from 'lodash'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import {NavigationAction, NavigationRoute, NavigationScreenProp} from 'react-navigation'
-import {dataCreateHistoryDate, dataHistoryDateUser} from '../../utils/gaphqlData'
+import {dataCreateHistoryDate, dataHistoryDateUser, historyDateUserGql} from '../../utils/gaphqlData'
 import {DayCalendar, Item, Items} from '../../core/types'
 import {createExerciseSet, createHistoryDate, createItem} from '../../utils/constructors'
 import {createContentString, createDetailsString, createNameString} from '../../utils/calendar'
@@ -27,7 +27,7 @@ type IProps = {
   navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
   programs: ServerEntity.Program[]
   data: dataHistoryDateUser
-  createHistoryDate: (historyDate: ServerEntity.HistoryDate) => Promise<ApolloQueryResult<{}>>
+  createHistoryDate: (historyDate: ServerEntity.HistoryDate) => Promise<ApolloQueryResult<dataCreateHistoryDate>>
   updateHistoryDate: (historyDate: ServerEntity.HistoryDate) => Promise<ApolloQueryResult<{}>>
 }
 
@@ -85,7 +85,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
             newItems[this.timeToString(item.timestamp)].splice(indexRow, 1, newItem)
             const newExercises = newItems[this.timeToString(item.timestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
             const newHistoryDate = createHistoryDate(item.timestamp, newExercises, item._idHistoryDate)
-            this.props.updateHistoryDate(newHistoryDate).then(({data}) => {
+            this.props.updateHistoryDate(newHistoryDate).then(() => {
               this.setState({items: newItems})
             }).catch((e) => {
               console.log('Update history date failed', e)
@@ -177,7 +177,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
             })
           }
         } else if (buttonIndex === 1) {
-          newItems[this.timeToString(item.timestamp)] = {}
+          newItems[this.timeToString(item.timestamp)] = []
           if (item._idHistoryDate) {
             const newHistoryDate = createHistoryDate(item.timestamp, [], item._idHistoryDate)
             this.props.updateHistoryDate(newHistoryDate).then(() => {
@@ -224,7 +224,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
       const time = day.timestamp + i * 24 * 60 * 60 * 1000
       const strTime = this.timeToString(time.toString())
       this.state.items[strTime] = []
-      const historyOnDate = this.props.data.historyDateUser.find((h: ServerEntity.HistoryDate) => {
+      const historyOnDate = this.props.data.historyDateUser.find((h: historyDateUserGql) => {
         return +h.timestamp === time
       })
       if (historyOnDate) {
@@ -259,7 +259,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
             }
           }
         } else {
-          this.state.items[strTime] = {}
+          this.state.items[strTime] = []
         }
       }
     }

@@ -1,28 +1,7 @@
 export type dataHistoryDateUser = {
   error: any,
   fetchMore: () => void
-  historyDateUser: {
-    __typename: string
-    _id: string
-    _userId: string
-    exercises: {
-      __typename: string
-      done: boolean
-      exercise: {
-        __typename: string
-        equipment: string
-        name: string
-      }
-      muscleGroup: string
-      recoveryTime: string
-      sets: {
-        __typename: string
-        reps: number
-        weight: number
-      }[]
-    }[]
-    timestamp: string
-  }
+  historyDateUser: historyDateUserGql[]
   loading: boolean
   networkStatus: number
   refetch: () => void
@@ -33,11 +12,34 @@ export type dataHistoryDateUser = {
   variables: {}
 }
 
+export type historyDateUserGql = {
+  __typename: string
+  _id: string
+  _userId: string
+  exercises: {
+    __typename: string
+    done: boolean
+    exercise: {
+      __typename: string
+      equipment: string
+      name: string
+    }
+    muscleGroup: string
+    recoveryTime: string
+    sets: {
+      __typename: string
+      reps: number
+      weight: number
+    }[]
+  }[]
+  timestamp: string
+}
+
 export type dataCreateHistoryDate = {
   createHistoryDate: {
     __typename: string
     _id: string
-    _userid: string
+    _userId: string
     exercises: {
       __typename: string
       done: boolean
