@@ -94,7 +94,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
             const exerciseSet = createOmitTypenameLink(item.exerciseSet)
             exerciseSet.done = !currentItem.exerciseSet.done
             const newHistoryDate = createHistoryDate(item.timestamp, [exerciseSet])
-            this.props.createHistoryDate(newHistoryDate).then((d: {data: dataCreateHistoryDate}) => {
+            this.props.createHistoryDate(newHistoryDate).then((d: { data: dataCreateHistoryDate }) => {
               const newExerciseSet = createExerciseSet(!currentItem.exerciseSet.done, currentItem.exerciseSet.exercise,
                 currentItem.exerciseSet.recoveryTime, currentItem.exerciseSet.sets, currentItem.exerciseSet.muscleGroup)
               const newItem = createItem(currentItem.name, currentItem.details, currentItem.content,
@@ -146,7 +146,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
     )
     ActionSheetIOS.showActionSheetWithOptions({
         title: new Date(day.timestamp).toLocaleDateString(),
-        options: [notDone ? 'Set all day done' : 'Set all day not done', 'Delete all day', 'Cancel'],
+        options: [notDone ? 'Set all day done' : 'Set all day not done', 'Add an exercise', 'Delete all day', 'Cancel'],
         destructiveButtonIndex: 2,
         cancelButtonIndex: 3
       },
@@ -177,6 +177,8 @@ class Calendar extends React.PureComponent<IProps, IState> {
             })
           }
         } else if (buttonIndex === 1) {
+          this.addExerciseToDay(day.timestamp)
+        } else if (buttonIndex === 2) {
           newItems[this.timeToString(item.timestamp)] = []
           if (item._idHistoryDate) {
             const newHistoryDate = createHistoryDate(item.timestamp, [], item._idHistoryDate)
@@ -199,6 +201,25 @@ class Calendar extends React.PureComponent<IProps, IState> {
         }
       }
     )
+  }
+
+  showActionSheetEmptyDay = (day: DayCalendar) => {
+    ActionSheetIOS.showActionSheetWithOptions({
+        title: new Date(day.timestamp).toLocaleDateString(),
+        options: ['Add an exercise', 'Cancel'],
+        cancelButtonIndex: 1
+      },
+      (buttonIndex) => {
+        if (buttonIndex === 0) {
+          this.addExerciseToDay(day.timestamp)
+        }
+      }
+    )
+  }
+
+  // todo create the function
+  addExerciseToDay = (timestamp: number) => {
+
   }
 
   saveEditedExercise = (exercise: ServerEntity.ExerciseSet) => {
@@ -342,10 +363,11 @@ class Calendar extends React.PureComponent<IProps, IState> {
           }}
           renderDay={(day: DayCalendar, item: Item) => (
             <View style={styles.day}>
-              <Text style={styles.dayText}>{day ? day.day : ''}</Text>
-              {day && item &&
-              <TouchableOpacity onPress={() => this.showActionSheetFullDay(item, day)}>
-                <Icon name="select-all" style={styles.selectAllIcon}/>
+              {item && <TouchableOpacity onPress={() => this.showActionSheetFullDay(item, day)}>
+                <Text style={styles.dayText}>{day ? day.day : ''}</Text>
+              </TouchableOpacity> ||
+              <TouchableOpacity onPress={() => this.showActionSheetEmptyDay(day)}>
+                <Text style={styles.dayText}>{day ? day.day : ''}</Text>
               </TouchableOpacity>}
             </View>
           )}
