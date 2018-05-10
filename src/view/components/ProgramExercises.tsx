@@ -102,7 +102,8 @@ class ProgramExercises extends React.PureComponent<IProps, IState> {
               status: HeaderStatus.stack,
               title: 'Edit exercise',
               exercise: exercise,
-              saveEdit: this.editExerciseFinished
+              saveEdit: this.editExerciseFinished,
+              editing: true
             })
         } else if (buttonIndex === 1) {
           const exercisesDayCopy = this.state.exercisesDay.slice()

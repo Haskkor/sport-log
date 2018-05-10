@@ -99,7 +99,7 @@ class QuickLog extends React.PureComponent<IProps, IState> {
 
   componentWillMount() {
     const {params} = this.props.navigation.state
-    if (params) {
+    if (params && params.editing) {
       this.setState({currentMuscle: params.exercise.muscleGroup})
       this.exercises = _.sortBy(exercises.find((data: ServerEntity.MuscleGroups) => data.muscle === params.exercise.muscleGroup).exercises,
         [(exercise: ServerEntity.ExerciseMuscle) => {

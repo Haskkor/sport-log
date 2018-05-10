@@ -15,7 +15,6 @@ import delay from '../../utils/delay'
 import {ApolloQueryResult} from 'apollo-client'
 import {createOmitTypenameLink} from '../../utils/graphQlHelper'
 import * as _ from 'lodash'
-import Icon from 'react-native-vector-icons/MaterialIcons'
 import {NavigationAction, NavigationRoute, NavigationScreenProp} from 'react-navigation'
 import {dataCreateHistoryDate, dataHistoryDateUser, historyDateUserGql} from '../../utils/gaphqlData'
 import {DayCalendar, Item, Items} from '../../core/types'
@@ -113,7 +112,8 @@ class Calendar extends React.PureComponent<IProps, IState> {
             status: HeaderStatus.stack,
             title: 'Edit exercise ' + new Date(item.timestamp).toLocaleDateString(),
             exercise: item.exerciseSet,
-            saveEdit: this.saveEditedExercise
+            saveEdit: this.saveEditedExercise,
+            editing: true
           })
         } else if (buttonIndex === 2) {
           const newItems = Object.assign({}, this.state.items)
@@ -217,9 +217,11 @@ class Calendar extends React.PureComponent<IProps, IState> {
     )
   }
 
-  // todo create the function
   addExerciseToDay = (timestamp: number) => {
-
+    this.props.navigation.navigate('CalendarEditExercise', {
+      status: HeaderStatus.stack,
+      title: 'New exercise ' + new Date(timestamp).toLocaleDateString()
+    })
   }
 
   saveEditedExercise = (exercise: ServerEntity.ExerciseSet) => {

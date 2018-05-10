@@ -12,6 +12,10 @@ const CalendarStackNav = StackNavigator({
   CalendarEditExercise: {
     screen: QuickLog,
     navigationOptions: ({navigation}: NavigationScreenProp<NavigationRoute<>, NavigationAction>) => ({header: null})
+  },
+  CalendarNewExercise: {
+    screen: QuickLog,
+    navigationOptions: ({navigation}: NavigationScreenProp<NavigationRoute<>, NavigationAction>) => ({header: null})
   }
 }, {
   cardStyle: {

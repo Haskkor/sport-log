@@ -82,7 +82,8 @@ class ProgramNameDays extends React.PureComponent<IProps, IState> {
             saveProgram: params.saveProgram,
             editedExercises: params.editedProgram ? this.modifyEditedProgram(true) : null,
             editedProgram: params.editedProgram ? params.editedProgram : null,
-            editedIndex: params.editedIndex ? params.editedIndex : null
+            editedIndex: params.editedIndex ? params.editedIndex : null,
+            editing: true
           })
         } else if (buttonIndex === 1) {
           this.props.navigation.navigate('ProgramExercises', {
@@ -91,7 +92,8 @@ class ProgramNameDays extends React.PureComponent<IProps, IState> {
             saveProgram: params.saveProgram,
             editedExercises: params.editedProgram ? this.modifyEditedProgram(false) : null,
             editedProgram: params.editedProgram ? params.editedProgram : null,
-            editedIndex: params.editedIndex ? params.editedIndex : null
+            editedIndex: params.editedIndex ? params.editedIndex : null,
+            editing: true
           })
         }
       })
@@ -170,7 +172,8 @@ class ProgramNameDays extends React.PureComponent<IProps, IState> {
       editedExercises: params.editedProgram ? (this.state.numberOfDays === '' ? this.modifyEditedProgram(true) :
         this.modifyEditedProgram(false)) : null,
       editedProgram: params.editedProgram ? params.editedProgram : null,
-      editedIndex: params.editedIndex
+      editedIndex: params.editedIndex,
+      editing: true
     })
   }
 
