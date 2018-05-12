@@ -21,6 +21,7 @@ import {DayCalendar, Item, Items} from '../../core/types'
 import {createExerciseSet, createHistoryDate, createItem} from '../../utils/constructors'
 import {createContentString, createDetailsString, createNameString} from '../../utils/calendar'
 import {CREATE_HISTORY_DATE, HISTORY_DATE_USER, UPDATE_HISTORY_DATE} from '../../utils/gqls'
+import set = Reflect.set;
 
 type IProps = {
   navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
@@ -42,6 +43,7 @@ const daysName = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frida
 class Calendar extends React.PureComponent<IProps, IState> {
   editedExerciseTimestamp: string
   editedExerciseRow: number
+  currentDay: DayCalendar
 
   constructor(props: IProps) {
     super(props)
@@ -54,11 +56,15 @@ class Calendar extends React.PureComponent<IProps, IState> {
     }
     this.showActionSheet = this.showActionSheet.bind(this)
     this.saveEditedExercise = this.saveEditedExercise.bind(this)
+    this.refetchData = this.refetchData.bind(this)
   }
 
-  async componentWillMount() {
+  async componentWillMount() {this.refetchData()}
+
+  refetchData = async() => {
     this.setState({showLoadingScreen: true})
     await this.props.data.refetch()
+    if (this.currentDay) this.loadItems(this.currentDay)
     this.setState({showLoadingScreen: false})
   }
 
@@ -221,7 +227,8 @@ class Calendar extends React.PureComponent<IProps, IState> {
     this.props.navigation.navigate('CalendarEditExercise', {
       status: HeaderStatus.stack,
       title: 'New exercise ' + new Date(timestamp).toLocaleDateString(),
-      timestamp: timestamp
+      timestamp: timestamp,
+      refetchData: this.refetchData
     })
   }
 
@@ -295,6 +302,8 @@ class Calendar extends React.PureComponent<IProps, IState> {
   }
 
   loadItems = async (day: DayCalendar) => {
+    console.log("dtest2")
+    this.currentDay = day
     while (this.state.showLoadingScreen) {
       await delay(100)
     }

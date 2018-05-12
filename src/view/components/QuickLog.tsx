@@ -255,6 +255,8 @@ class QuickLog extends React.PureComponent<IProps, IState> {
           _id: d.data.createHistoryDate._id
         }
       })
+      if (this.props.navigation.state.params && this.props.navigation.state.params.refetchData)
+        this.props.navigation.state.params.refetchData()
       this.setState({showToasterInfo: true, showLoadingScreen: false})
     }).catch((e) => {
       console.log('Create history date failed', e)
@@ -410,7 +412,7 @@ class QuickLog extends React.PureComponent<IProps, IState> {
           saveHistoryDate={this.saveHistoryDate}
           order={this.order}
           closeModal={this.closeModalListLog}
-          timestamp={this.props.navigation.state.params.timestamp}
+          timestamp={navigationParams && navigationParams.timestamp ? navigationParams.timestamp : null}
         />}
         {showModalRecovery && <ModalRecovery
           updateRecovery={this.updateRecovery}

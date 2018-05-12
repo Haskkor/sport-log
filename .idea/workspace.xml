@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39597ee5-2bd9-42b2-a212-3554592f4c8d" name="Default" comment="kljkjklj">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change beforePath="$PROJECT_DIR$/src/view/components/Calendar.tsx" afterPath="$PROJECT_DIR$/src/view/components/Calendar.tsx" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/ModalListLog.tsx" afterPath="$PROJECT_DIR$/src/view/components/ModalListLog.tsx" />
       <change beforePath="$PROJECT_DIR$/src/view/components/QuickLog.tsx" afterPath="$PROJECT_DIR$/src/view/components/QuickLog.tsx" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -19,12 +18,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
               <first_editor relative-caret-position="459">
-                <caret line="37" column="26" lean-forward="false" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
+                <caret line="37" column="30" lean-forward="false" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -32,24 +31,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Calendar.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Calendar.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="115" column="25" lean-forward="true" selection-start-line="115" selection-start-column="25" selection-end-line="115" selection-end-column="25" />
+            <state relative-caret-position="615">
+              <caret line="63" column="28" lean-forward="false" selection-start-line="63" selection-start-column="28" selection-end-line="63" selection-end-column="28" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="QuickLog.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/components/QuickLog.tsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2116">
-              <caret line="359" column="60" lean-forward="true" selection-start-line="359" selection-start-column="60" selection-end-line="359" selection-end-column="60" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -58,9 +47,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>scrollToEndHorizontally</find>
-      <find>animation</find>
-      <find>from</find>
       <find>e.from</find>
       <find>_userId</find>
       <find>console.log</find>
@@ -88,6 +74,9 @@
       <find>navigationParams</find>
       <find>navigationParams.saveE</find>
       <find>this.props.navigation.navigate</find>
+      <find>navigation.sta</find>
+      <find>navigation.state.params.</find>
+      <find>loadItems</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -138,13 +127,13 @@
         <option value="$PROJECT_DIR$/src/view/components/LoginRegister.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/Programs.tsx" />
         <option value="$PROJECT_DIR$/src/utils/gqls.ts" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/core/types/index.d.ts" />
         <option value="$PROJECT_DIR$/src/utils/gaphqlData.ts" />
         <option value="$PROJECT_DIR$/src/view/navigators/CalendarStackNav.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/ModalListLog.tsx" />
-        <option value="$PROJECT_DIR$/src/view/components/Calendar.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/QuickLog.tsx" />
+        <option value="$PROJECT_DIR$/src/view/components/Calendar.tsx" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -381,12 +370,12 @@
       <workItem from="1525638684793" duration="3746000" />
       <workItem from="1525755587312" duration="4939000" />
       <workItem from="1525984340157" duration="794000" />
-      <workItem from="1526092835083" duration="2812000" />
+      <workItem from="1526092835083" duration="4376000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="263836000" />
+    <option name="totallyTimeSpent" value="265400000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="54" y="-8" width="1874" height="1096" extended-state="6" />
@@ -776,9 +765,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/QuickLog.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2116">
-          <caret line="359" column="60" lean-forward="true" selection-start-line="359" selection-start-column="60" selection-end-line="359" selection-end-column="60" />
+        <state relative-caret-position="421">
+          <caret line="258" column="8" lean-forward="false" selection-start-line="258" selection-start-column="8" selection-end-line="258" selection-end-column="8" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="615">
+          <caret line="63" column="28" lean-forward="false" selection-start-line="63" selection-start-column="28" selection-end-line="63" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -786,7 +785,7 @@
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
           <first_editor relative-caret-position="459">
-            <caret line="37" column="26" lean-forward="false" selection-start-line="37" selection-start-column="26" selection-end-line="37" selection-end-column="26" />
+            <caret line="37" column="30" lean-forward="false" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
             <folding />
           </first_editor>
           <second_editor />
@@ -795,16 +794,6 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="495">
           <caret line="33" column="22" lean-forward="false" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="115" column="25" lean-forward="true" selection-start-line="115" selection-start-column="25" selection-end-line="115" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
