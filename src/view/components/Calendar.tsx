@@ -220,7 +220,8 @@ class Calendar extends React.PureComponent<IProps, IState> {
   addExerciseToDay = (timestamp: number) => {
     this.props.navigation.navigate('CalendarEditExercise', {
       status: HeaderStatus.stack,
-      title: 'New exercise ' + new Date(timestamp).toLocaleDateString()
+      title: 'New exercise ' + new Date(timestamp).toLocaleDateString(),
+      timestamp: timestamp
     })
   }
 

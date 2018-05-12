@@ -251,7 +251,7 @@ class QuickLog extends React.PureComponent<IProps, IState> {
       this.props.saveQuickLogHistory({
         quickLogHistory: {
           exercises: historyDate.exercises.slice(),
-          timestamp: historyDate.timestamp,
+          timestamp: +d.data.createHistoryDate.timestamp,
           _id: d.data.createHistoryDate._id
         }
       })
@@ -377,7 +377,7 @@ class QuickLog extends React.PureComponent<IProps, IState> {
             <Col style={styles.columnsButtons}>
               <TouchableOpacity
                 onPress={() => {
-                  if (navigationParams) {
+                  if (navigationParams && navigationParams.editing) {
                     navigationParams.saveEdit(this.buildNewSet())
                     this.props.navigation.goBack()
                   } else {
@@ -410,6 +410,7 @@ class QuickLog extends React.PureComponent<IProps, IState> {
           saveHistoryDate={this.saveHistoryDate}
           order={this.order}
           closeModal={this.closeModalListLog}
+          timestamp={this.props.navigation.state.params.timestamp}
         />}
         {showModalRecovery && <ModalRecovery
           updateRecovery={this.updateRecovery}
