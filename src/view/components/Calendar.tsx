@@ -56,9 +56,15 @@ class Calendar extends React.PureComponent<IProps, IState> {
     this.showActionSheet = this.showActionSheet.bind(this)
     this.saveEditedExercise = this.saveEditedExercise.bind(this)
     this.refetchData = this.refetchData.bind(this)
+    this.debouncedRequests = _.debounce(this.debouncedRequests.bind(this), 2000)
   }
 
   async componentWillMount() {this.refetchData()}
+
+  // todo debounce update and create
+  debouncedRequests = () => {
+
+  }
 
   refetchData = async() => {
     this.setState({showLoadingScreen: true})
