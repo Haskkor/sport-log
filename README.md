@@ -36,7 +36,7 @@
 - ~~Simplify/Clean action sheet all and action sheet one~~
 - ~~Put graphql queries in a separate file~~
 - ~~Add exercises to the day~~
-- Put a loader on item? Day?: Change the state before the return of the graphql call. Debounce the calls.
+- ~~Change the state before the return of the graphql call~~
 - Debounce/Throttle graphql methods
 - Reorganize exercise list in a day
 

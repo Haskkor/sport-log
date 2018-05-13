@@ -21,7 +21,6 @@ import {DayCalendar, Item, Items} from '../../core/types'
 import {createExerciseSet, createHistoryDate, createItem} from '../../utils/constructors'
 import {createContentString, createDetailsString, createNameString} from '../../utils/calendar'
 import {CREATE_HISTORY_DATE, HISTORY_DATE_USER, UPDATE_HISTORY_DATE} from '../../utils/gqls'
-import set = Reflect.set;
 
 type IProps = {
   navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
@@ -90,15 +89,15 @@ class Calendar extends React.PureComponent<IProps, IState> {
             newItems[this.timeToString(item.timestamp)].splice(indexRow, 1, newItem)
             const newExercises = newItems[this.timeToString(item.timestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
             const newHistoryDate = createHistoryDate(item.timestamp, newExercises, item._idHistoryDate)
-            this.props.updateHistoryDate(newHistoryDate).then(() => {
-              this.setState({items: newItems})
-            }).catch((e) => {
+            this.setState({items: newItems})
+            this.props.updateHistoryDate(newHistoryDate).catch((e) => {
               console.log('Update history date failed', e)
             })
           } else {
             const exerciseSet = createOmitTypenameLink(item.exerciseSet)
             exerciseSet.done = !currentItem.exerciseSet.done
             const newHistoryDate = createHistoryDate(item.timestamp, [exerciseSet])
+            this.setState({showLoadingScreen: true})
             this.props.createHistoryDate(newHistoryDate).then((d: { data: dataCreateHistoryDate }) => {
               const newExerciseSet = createExerciseSet(!currentItem.exerciseSet.done, currentItem.exerciseSet.exercise,
                 currentItem.exerciseSet.recoveryTime, currentItem.exerciseSet.sets, currentItem.exerciseSet.muscleGroup)
@@ -106,9 +105,10 @@ class Calendar extends React.PureComponent<IProps, IState> {
                 currentItem.timestamp, newExerciseSet, d.data.createHistoryDate._id)
               const newItems = Object.assign({}, this.state.items)
               newItems[this.timeToString(item.timestamp)].splice(indexRow, 1, newItem)
-              this.setState({items: newItems})
+              this.setState({items: newItems, showLoadingScreen: false})
             }).catch((e) => {
               console.log('Create history date failed', e)
+              this.setState({showLoadingScreen: false})
             })
           }
         } else if (buttonIndex === 1) {
@@ -127,16 +127,14 @@ class Calendar extends React.PureComponent<IProps, IState> {
           const newExercises = newItems[this.timeToString(item.timestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
           if (item._idHistoryDate) {
             const newHistoryDate = createHistoryDate(item.timestamp, newExercises, item._idHistoryDate)
-            this.props.updateHistoryDate(newHistoryDate).then(() => {
-              this.setState({items: newItems})
-            }).catch((e) => {
+            this.setState({items: newItems})
+            this.props.updateHistoryDate(newHistoryDate).catch((e) => {
               console.log('Update history date failed', e)
             })
           } else {
             const newHistoryDate = createHistoryDate(item.timestamp, newExercises)
-            this.props.createHistoryDate(newHistoryDate).then(() => {
-              this.setState({items: newItems})
-            }).catch((e) => {
+            this.setState({items: newItems})
+            this.props.createHistoryDate(newHistoryDate).catch((e) => {
               console.log('Create history date failed', e)
             })
           }
@@ -169,16 +167,14 @@ class Calendar extends React.PureComponent<IProps, IState> {
           const newExercises = newItems[this.timeToString(item.timestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
           if (item._idHistoryDate) {
             const newHistoryDate = createHistoryDate(item.timestamp, newExercises, item._idHistoryDate)
-            this.props.updateHistoryDate(newHistoryDate).then(() => {
-              this.setState({items: newItems})
-            }).catch((e) => {
+            this.setState({items: newItems})
+            this.props.updateHistoryDate(newHistoryDate).catch((e) => {
               console.log('Update history date failed', e)
             })
           } else {
             const newHistoryDate = createHistoryDate(item.timestamp, newExercises)
-            this.props.createHistoryDate(newHistoryDate).then(() => {
-              this.setState({items: newItems})
-            }).catch((e) => {
+            this.setState({items: newItems})
+            this.props.createHistoryDate(newHistoryDate).catch((e) => {
               console.log('Create history date failed', e)
             })
           }
@@ -188,9 +184,8 @@ class Calendar extends React.PureComponent<IProps, IState> {
           newItems[this.timeToString(item.timestamp)] = []
           if (item._idHistoryDate) {
             const newHistoryDate = createHistoryDate(item.timestamp, [], item._idHistoryDate)
-            this.props.updateHistoryDate(newHistoryDate).then(() => {
-              this.setState({items: newItems})
-            }).catch((e) => {
+            this.setState({items: newItems})
+            this.props.updateHistoryDate(newHistoryDate)..catch((e) => {
               console.log('Update history date failed', e)
             })
           } else {
@@ -198,9 +193,8 @@ class Calendar extends React.PureComponent<IProps, IState> {
               timestamp: +item.timestamp,
               exercises: []
             }
-            this.props.createHistoryDate(newHistoryDate).then(({data}) => {
-              this.setState({items: newItems})
-            }).catch((e) => {
+            this.setState({items: newItems})
+            this.props.createHistoryDate(newHistoryDate).catch((e) => {
               console.log('Create history date failed', e)
             })
           }
@@ -243,9 +237,8 @@ class Calendar extends React.PureComponent<IProps, IState> {
     newItems[this.timeToString(this.editedExerciseTimestamp)].splice(this.editedExerciseRow, 1, newItem)
     const newExercises = newItems[this.timeToString(this.editedExerciseTimestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
     const newHistoryDate = createHistoryDate(this.editedExerciseTimestamp, newExercises, editedItem._idHistoryDate)
-    this.props.updateHistoryDate(newHistoryDate).then(() => {
-      this.setState({items: newItems})
-    }).catch((e) => {
+    this.setState({items: newItems})
+    this.props.updateHistoryDate(newHistoryDate).catch((e) => {
       console.log('Update history date failed', e)
     })
   }
