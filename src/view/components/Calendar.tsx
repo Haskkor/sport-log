@@ -21,6 +21,7 @@ import {DayCalendar, Item, Items} from '../../core/types'
 import {createExerciseSet, createHistoryDate, createItem} from '../../utils/constructors'
 import {createContentString, createDetailsString, createNameString} from '../../utils/calendar'
 import {CREATE_HISTORY_DATE, HISTORY_DATE_USER, UPDATE_HISTORY_DATE} from '../../utils/gqls'
+import ModalSortExercises from './ModalSortExercises'
 
 type IProps = {
   navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
@@ -35,6 +36,7 @@ type IState = {
   activeProgram: ServerEntity.Program
   showLoadingScreen: boolean
   fabActive: boolean
+  showModalSortExercises: boolean
 }
 
 const daysName = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -43,6 +45,8 @@ class Calendar extends React.PureComponent<IProps, IState> {
   editedExerciseTimestamp: string
   editedExerciseRow: number
   currentDay: DayCalendar
+  orderSortableList: string[]
+  dataSortableList: Items
 
   constructor(props: IProps) {
     super(props)
@@ -51,20 +55,15 @@ class Calendar extends React.PureComponent<IProps, IState> {
       activeProgram: config.shouldUseFakeActiveProgram ? fakeActiveProgram :
         this.props.programs.find((p: ServerEntity.Program) => p.active),
       showLoadingScreen: true,
-      fabActive: false
+      fabActive: false,
+      showModalSortExercises: false
     }
     this.showActionSheet = this.showActionSheet.bind(this)
     this.saveEditedExercise = this.saveEditedExercise.bind(this)
     this.refetchData = this.refetchData.bind(this)
-    this.debouncedRequests = _.debounce(this.debouncedRequests.bind(this), 2000)
   }
 
   async componentWillMount() {this.refetchData()}
-
-  // todo debounce update and create
-  debouncedRequests = () => {
-
-  }
 
   refetchData = async() => {
     this.setState({showLoadingScreen: true})
@@ -156,9 +155,10 @@ class Calendar extends React.PureComponent<IProps, IState> {
     )
     ActionSheetIOS.showActionSheetWithOptions({
         title: new Date(day.timestamp).toLocaleDateString(),
-        options: [notDone ? 'Set all day done' : 'Set all day not done', 'Add an exercise', 'Delete all day', 'Cancel'],
-        destructiveButtonIndex: 2,
-        cancelButtonIndex: 3
+        options: [notDone ? 'Set all day done' : 'Set all day not done', 'Add an exercise', 'Sort exercises',
+          'Delete all day', 'Cancel'],
+        destructiveButtonIndex: 3,
+        cancelButtonIndex: 4
       },
       (buttonIndex) => {
         const newItems = Object.assign({}, this.state.items)
@@ -187,11 +187,20 @@ class Calendar extends React.PureComponent<IProps, IState> {
         } else if (buttonIndex === 1) {
           this.addExerciseToDay(day.timestamp)
         } else if (buttonIndex === 2) {
+
+
+          this.dataSortableList =
+          this.orderSortableList =
+          this.setState({showModalSortExercises: true})
+
+
+
+        } else if (buttonIndex === 3) {
           newItems[this.timeToString(item.timestamp)] = []
           if (item._idHistoryDate) {
             const newHistoryDate = createHistoryDate(item.timestamp, [], item._idHistoryDate)
             this.setState({items: newItems})
-            this.props.updateHistoryDate(newHistoryDate)..catch((e) => {
+            this.props.updateHistoryDate(newHistoryDate).catch((e) => {
               console.log('Update history date failed', e)
             })
           } else {
@@ -385,6 +394,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
         />
         {this.state.showLoadingScreen &&
         <LoadingScreen/>}
+        {this.state.showModalSortExercises && <ModalSortExercises/>}
       </View>
     )
   }

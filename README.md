@@ -37,8 +37,10 @@
 - ~~Put graphql queries in a separate file~~
 - ~~Add exercises to the day~~
 - ~~Change the state before the return of the graphql call~~
-- Debounce/Throttle graphql methods
+- ~~Debounce/Throttle graphql methods~~ -> to check in the future
 - Reorganize exercise list in a day
+    - Add a modal with a sortable list view
+    - Open the modal with a button in the day action sheet
 
 ##Long term
 
