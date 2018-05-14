@@ -46,7 +46,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
   editedExerciseRow: number
   currentDay: DayCalendar
   orderSortableList: string[]
-  dataSortableList: Items
+  dataSortableList: Item[]
 
   constructor(props: IProps) {
     super(props)
@@ -61,15 +61,23 @@ class Calendar extends React.PureComponent<IProps, IState> {
     this.showActionSheet = this.showActionSheet.bind(this)
     this.saveEditedExercise = this.saveEditedExercise.bind(this)
     this.refetchData = this.refetchData.bind(this)
+    this.closeModal = this.closeModal.bind(this)
+    this.saveSortedExercises = this.saveSortedExercises.bind(this)
   }
 
-  async componentWillMount() {this.refetchData()}
+  async componentWillMount() {
+    this.refetchData()
+  }
 
-  refetchData = async() => {
+  refetchData = async () => {
     this.setState({showLoadingScreen: true})
     await this.props.data.refetch()
     if (this.currentDay) this.loadItems(this.currentDay)
     this.setState({showLoadingScreen: false})
+  }
+
+  closeModal = () => {
+    this.setState({showModalSortExercises: false})
   }
 
   showActionSheet = (item: Item) => {
@@ -187,14 +195,9 @@ class Calendar extends React.PureComponent<IProps, IState> {
         } else if (buttonIndex === 1) {
           this.addExerciseToDay(day.timestamp)
         } else if (buttonIndex === 2) {
-
-
-          this.dataSortableList =
-          this.orderSortableList =
+          this.dataSortableList = this.state.items[this.timeToString(day.timestamp.toString())].slice()
+          this.orderSortableList = Object.keys(this.dataSortableList)
           this.setState({showModalSortExercises: true})
-
-
-
         } else if (buttonIndex === 3) {
           newItems[this.timeToString(item.timestamp)] = []
           if (item._idHistoryDate) {
@@ -230,6 +233,10 @@ class Calendar extends React.PureComponent<IProps, IState> {
         }
       }
     )
+  }
+
+  saveSortedExercises = (sortedItems: Item[]) => {
+    console.log(sortedItems)
   }
 
   addExerciseToDay = (timestamp: number) => {
@@ -310,7 +317,6 @@ class Calendar extends React.PureComponent<IProps, IState> {
   }
 
   loadItems = async (day: DayCalendar) => {
-    console.log("dtest2")
     this.currentDay = day
     while (this.state.showLoadingScreen) {
       await delay(100)
@@ -394,7 +400,9 @@ class Calendar extends React.PureComponent<IProps, IState> {
         />
         {this.state.showLoadingScreen &&
         <LoadingScreen/>}
-        {this.state.showModalSortExercises && <ModalSortExercises/>}
+        {this.state.showModalSortExercises &&
+        <ModalSortExercises order={this.orderSortableList} dataLog={this.dataSortableList}
+                            closeModal={this.closeModal} save={this.saveSortedExercises}/>}
       </View>
     )
   }

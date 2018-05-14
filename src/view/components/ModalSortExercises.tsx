@@ -5,14 +5,21 @@ import RowListLog from './RowListLog'
 import {colors} from '../../utils/colors'
 import {grid} from '../../utils/grid'
 import RowSortableList from './RowSortableList'
+import {Item} from '../../core/types'
 
-type IProps = {}
+type IProps = {
+  order: string[]
+  dataLog: Item[]
+  closeModal: () => void
+  save: (sortedItems: Item[]) => void
+}
 
 type IState = {}
 
 class ModalSortExercises extends React.PureComponent<IProps, IState> {
 
   render() {
+    const {order, dataLog, closeModal, save} = this.props
     return (
       <View style={styles.container}>
         <Modal
@@ -22,12 +29,12 @@ class ModalSortExercises extends React.PureComponent<IProps, IState> {
           <View style={styles.viewButtons}>
             <TouchableOpacity
               style={styles.buttonSave}
-              onPress={() => console.log('save')}>
+              onPress={() => save(dataLog)}>
               <Text style={styles.textButton}>Save</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.buttonDismiss}
-              onPress={() => console.log('dismiss')}>
+              onPress={() => closeModal()}>
               <Text style={styles.textButton}>Dismiss</Text>
             </TouchableOpacity>
           </View>
@@ -35,13 +42,17 @@ class ModalSortExercises extends React.PureComponent<IProps, IState> {
             style={styles.sortableList}
             data={dataLog}
             order={order}
-            onRowMoved={(e: {from: number, to: number, row: {data: ServerEntity.ExerciseSet, index: string, section: string}}) => {
+            onRowMoved={(e: { from: number, to: number, row: { data: ServerEntity.ExerciseSet, index: string, section: string } }) => {
               order.splice(e.to, 0, order.splice(e.from, 1)[0])
               this.forceUpdate()
             }}
-            renderRow={(row: any) => row && // fixme any
-              <RowSortableList data={row} action={() => console.log('clicked')} component={<RowListLog data={row}/>}/> ||
-              <View/>}
+            renderRow={(row: Item) => {
+              const exerciseSet: ServerEntity.ExerciseSet = row.exerciseSet
+              return (row &&
+                <RowSortableList data={row} action={() => console.log('clicked')}
+                                 component={<RowListLog data={exerciseSet}/>}/> ||
+                <View/>)
+            }}
           />
         </Modal>
       </View>
