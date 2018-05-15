@@ -235,8 +235,23 @@ class Calendar extends React.PureComponent<IProps, IState> {
     )
   }
 
-  saveSortedExercises = (sortedItems: Item[]) => {
-    console.log(sortedItems)
+  saveSortedExercises = (items: Item[], order: string[]) => {
+    const sortedItems: Item[] = order.map((o: string) => {
+      return items[+o]
+    })
+    const newItems = Object.assign({}, this.state.items)
+    newItems[this.timeToString(items[0].timestamp)] = sortedItems
+    this.setState({items: newItems})
+    this.closeModal()
+
+
+
+    const newExercises = newItems[this.timeToString(this.editedExerciseTimestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
+    const newHistoryDate = createHistoryDate(this.editedExerciseTimestamp, newExercises, editedItem._idHistoryDate)
+    this.setState({items: newItems})
+    this.props.updateHistoryDate(newHistoryDate).catch((e) => {
+      console.log('Update history date failed', e)
+    })
   }
 
   addExerciseToDay = (timestamp: number) => {

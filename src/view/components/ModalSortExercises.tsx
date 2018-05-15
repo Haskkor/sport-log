@@ -11,7 +11,7 @@ type IProps = {
   order: string[]
   dataLog: Item[]
   closeModal: () => void
-  save: (sortedItems: Item[]) => void
+  save: (items: Item[], order: string[]) => void
 }
 
 type IState = {}
@@ -29,7 +29,7 @@ class ModalSortExercises extends React.PureComponent<IProps, IState> {
           <View style={styles.viewButtons}>
             <TouchableOpacity
               style={styles.buttonSave}
-              onPress={() => save(dataLog)}>
+              onPress={() => save(dataLog, order)}>
               <Text style={styles.textButton}>Save</Text>
             </TouchableOpacity>
             <TouchableOpacity
