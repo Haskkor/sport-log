@@ -239,19 +239,31 @@ class Calendar extends React.PureComponent<IProps, IState> {
     const sortedItems: Item[] = order.map((o: string) => {
       return items[+o]
     })
-    const newItems = Object.assign({}, this.state.items)
-    newItems[this.timeToString(items[0].timestamp)] = sortedItems
-    this.setState({items: newItems})
+    let newItems = Object.assign({}, this.state.items)
     this.closeModal()
-
-
-
-    const newExercises = newItems[this.timeToString(this.editedExerciseTimestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
-    const newHistoryDate = createHistoryDate(this.editedExerciseTimestamp, newExercises, editedItem._idHistoryDate)
-    this.setState({items: newItems})
-    this.props.updateHistoryDate(newHistoryDate).catch((e) => {
-      console.log('Update history date failed', e)
-    })
+    if (items[0]._idHistoryDate) {
+      newItems[this.timeToString(items[0].timestamp)] = sortedItems
+      this.setState({items: newItems})
+      const newExercises = newItems[this.timeToString(items[0].timestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
+      const newHistoryDate = createHistoryDate(items[0].timestamp, newExercises, items[0]._idHistoryDate ? items[0]._idHistoryDate : null)
+      this.setState({items: newItems})
+      this.props.updateHistoryDate(newHistoryDate).catch((e) => {
+        console.log('Update history date failed', e)
+      })
+    } else {
+      this.setState({showLoadingScreen: true})
+      const newExercisesSet = sortedItems.map((i: Item) => i.exerciseSet)
+      const newHistoryDate = createHistoryDate(items[0].timestamp, newExercisesSet)
+      this.props.createHistoryDate(newHistoryDate).then((d: { data: dataCreateHistoryDate }) => {
+        const newItemsDay = sortedItems.map((i: Item) => createItem(i.name, i.details, i.content,
+          i.timestamp, i.exerciseSet, d.data.createHistoryDate._id))
+        newItems[this.timeToString(items[0].timestamp)] = newItemsDay
+        this.setState({items: newItems, showLoadingScreen: false})
+      }).catch((e) => {
+        console.log('Create history date failed', e)
+        this.setState({showLoadingScreen: false})
+      })
+    }
   }
 
   addExerciseToDay = (timestamp: number) => {

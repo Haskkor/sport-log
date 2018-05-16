@@ -41,7 +41,9 @@
 - Reorganize exercise list in a day
     - ~~Add a modal with a sortable list view~~
     - ~~Open the modal with a button in the day action sheet~~
-    - Save the reorganized list
+    - ~~Save the reorganized list~~
+        - ~~If the history date already existed~~
+        - ~~If it's a new history date~~
 - BUG: the calendar is not always updating e.g when using the action sheet to add exercises
 
 ##Long term
