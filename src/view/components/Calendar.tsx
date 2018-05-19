@@ -267,12 +267,17 @@ class Calendar extends React.PureComponent<IProps, IState> {
   }
 
   addExerciseToDay = (timestamp: number) => {
-    this.props.navigation.navigate('CalendarEditExercise', {
-      status: HeaderStatus.stack,
-      title: 'New exercise ' + new Date(timestamp).toLocaleDateString(),
-      timestamp: timestamp,
-      refetchData: this.refetchData
-    })
+    if (this.state.items[timestamp].length > 0 && this.state.items[timestamp][0]._idHistoryDate) {
+      this.props.navigation.navigate('CalendarEditExercise', {
+        status: HeaderStatus.stack,
+        title: 'New exercise ' + new Date(timestamp).toLocaleDateString(),
+        timestamp: timestamp,
+        refetchData: this.refetchData
+      })
+    } else {
+      // MAKE A FLAG FOR THE QUICKLOG PAGE AND CREATE A FUNCTION TO SAVE THE NEW EXERCISES AND THE ONES FROM THE PROGRAM
+      
+    }
   }
 
   saveEditedExercise = (exercise: ServerEntity.ExerciseSet) => {
@@ -282,10 +287,9 @@ class Calendar extends React.PureComponent<IProps, IState> {
     const newItem = createItem(createNameString(exercise.exercise.name, exercise.muscleGroup),
       createDetailsString(exercise.exercise.equipment, exercise.recoveryTime),
       createContentString(exercise.sets), this.editedExerciseTimestamp, newExerciseSet, editedItem._idHistoryDate)
-
+    const newItems = Object.assign({}, this.state.items)
+    newItems[this.timeToString(this.editedExerciseTimestamp)].splice(this.editedExerciseRow, 1, newItem)
     if (editedItem._idHistoryDate) {
-      const newItems = Object.assign({}, this.state.items)
-      newItems[this.timeToString(this.editedExerciseTimestamp)].splice(this.editedExerciseRow, 1, newItem)
       const newExercises = newItems[this.timeToString(this.editedExerciseTimestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
       const newHistoryDate = createHistoryDate(this.editedExerciseTimestamp, newExercises, editedItem._idHistoryDate)
       this.setState({items: newItems})
@@ -293,34 +297,20 @@ class Calendar extends React.PureComponent<IProps, IState> {
         console.log('Update history date failed', e)
       })
     } else {
-
-      /// Create the exercises set for all the exerices of the day
-      /// Create a special one for the edited one
-      /// Replace the edited one in the new list of exercises
-      // Put the exercises in the right day
-      // Save the full day as history date
       this.setState({showLoadingScreen: true})
       const newExercisesSet = this.state.items[this.timeToString(this.editedExerciseTimestamp)].map((i: Item) => i.exerciseSet)
       newExercisesSet.splice(this.editedExerciseRow, 1, newExerciseSet)
       const newHistoryDate = createHistoryDate(this.editedExerciseTimestamp, newExercisesSet)
-
       this.props.createHistoryDate(newHistoryDate).then((d: { data: dataCreateHistoryDate }) => {
-        const newItemsDay = sortedItems.map((i: Item) => createItem(i.name, i.details, i.content,
+        const newItemsDay = newItems[this.timeToString(this.editedExerciseTimestamp)].map((i: Item) => createItem(i.name, i.details, i.content,
           i.timestamp, i.exerciseSet, d.data.createHistoryDate._id))
-        newItems[this.timeToString(items[0].timestamp)] = newItemsDay
+        newItems[this.timeToString(this.editedExerciseTimestamp)] = newItemsDay
         this.setState({items: newItems, showLoadingScreen: false})
       }).catch((e) => {
         console.log('Create history date failed', e)
         this.setState({showLoadingScreen: false})
       })
-
-
     }
-
-
-
-
-
   }
 
   populateItems = async (day: DayCalendar) => {

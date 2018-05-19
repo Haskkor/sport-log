@@ -45,7 +45,7 @@
         - ~~If the history date already existed~~
         - ~~If it's a new history date~~
 - BUG: Adding an exercise to a day with exercises not done remove the other exercises
-- BUG: Editing an exercise not done cause a 400 on updateHistoryDate
+- BUG: Editing an exercise not done cause a 400 on updateHistoryDate : TO TEST
 - BUG: the calendar is not always updating e.g when using the action sheet to add exercises
 - WARNING: Rework calendar file again to put all the creates and updates together
 
