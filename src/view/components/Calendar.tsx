@@ -44,7 +44,9 @@ const daysName = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frida
 
 enum RequestType {
   edit = 'edit',
-  delete = 'delete'
+  delete = 'delete',
+  allDone = 'allDone',
+  allDelete = 'allDelete'
 }
 
 class Calendar extends React.PureComponent<IProps, IState> {
@@ -88,27 +90,37 @@ class Calendar extends React.PureComponent<IProps, IState> {
     this.setState({showModalSortExercises: false})
   }
 
-  updateHistoryDateRequest = (item: Item, action: RequestType) => {
-    const indexRow = _.findIndex(this.state.items[this.timeToString(item.timestamp)], (i: Item) => i === item)
+  updateHistoryDateRequest = (item: Item, action: RequestType, indexRow?: number, notDone?: boolean) => {
     const newItems = Object.assign({}, this.state.items)
-    if (action === 'edit') {
+    if (action === RequestType.edit) {
       const currentItem = this.state.items[this.timeToString(item.timestamp)][indexRow]
       const newExerciseSet = createExerciseSet(!currentItem.exerciseSet.done, currentItem.exerciseSet.exercise,
         currentItem.exerciseSet.recoveryTime, currentItem.exerciseSet.sets, currentItem.exerciseSet.muscleGroup)
       const newItem = createItem(currentItem.name, currentItem.details, currentItem.content,
         currentItem.timestamp, newExerciseSet, item._idHistoryDate)
       newItems[this.timeToString(item.timestamp)].splice(indexRow, 1, newItem)
-    } else {
+    } else if (action === RequestType.delete) {
       newItems[this.timeToString(item.timestamp)].splice(indexRow, 1)
+    } else if (action === RequestType.allDone) {
+      const newItemsDay: Item[] = []
+      newItems[this.timeToString(item.timestamp)].map((i: Item) => {
+        newItemsDay.push(createItem(i.name, i.details, i.content, i.timestamp, createExerciseSet(notDone,
+          i.exerciseSet.exercise, i.exerciseSet.recoveryTime, i.exerciseSet.sets, i.exerciseSet.muscleGroup),
+          i._idHistoryDate))
+      })
+      newItems[this.timeToString(item.timestamp)] = newItemsDay
+    } else if (action === RequestType.allDelete) {
+      newItems[this.timeToString(item.timestamp)] = []
     }
     const newExercises = newItems[this.timeToString(item.timestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
     const newHistoryDate = createHistoryDate(item.timestamp, newExercises, item._idHistoryDate)
     this.setState({items: newItems})
-    this.props.updateHistoryDate(newHistoryDate).catch((e) => {console.log('Update history date failed', e)})
+    this.props.updateHistoryDate(newHistoryDate).catch((e) => {
+      console.log('Update history date failed', e)
+    })
   }
 
-  createHistoryDateRequest = (item: Item, action: RequestType) => {
-    const indexRow = _.findIndex(this.state.items[this.timeToString(item.timestamp)], (i: Item) => i === item)
+  createHistoryDateRequest = (item: Item, action: RequestType, indexRow?: number, notDone?: boolean) => {
     const currentItem = this.state.items[this.timeToString(item.timestamp)][indexRow]
     const exerciseSet = createOmitTypenameLink(item.exerciseSet)
     exerciseSet.done = !currentItem.exerciseSet.done
@@ -128,10 +140,22 @@ class Calendar extends React.PureComponent<IProps, IState> {
         this.setState({showLoadingScreen: false})
       })
     } else {
+      if (action === RequestType.delete) {
+        newItems[this.timeToString(item.timestamp)].splice(indexRow, 1)
+        this.setState({items: newItems})
+      } else if (action === RequestType.allDone) {
+        const newItemsDay: Item[] = []
+        newItems[this.timeToString(item.timestamp)].map((i: Item) => {
+          newItemsDay.push(createItem(i.name, i.details, i.content, i.timestamp, createExerciseSet(notDone,
+            i.exerciseSet.exercise, i.exerciseSet.recoveryTime, i.exerciseSet.sets, i.exerciseSet.muscleGroup),
+            i._idHistoryDate))
+        })
+        newItems[this.timeToString(item.timestamp)] = newItemsDay
+        this.setState({items: newItems})
+      }
       const newExercises = newItems[this.timeToString(item.timestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
       const newHistoryDate = createHistoryDate(item.timestamp, newExercises)
-      this.setState({items: newItems})
-      this.props.createHistoryDate(newHistoryDate).catch((e) => {console.log('Create history date failed', e)})
+      this.props.createHistoryDate(newHistoryDate).catch((e) => console.log('Create history date failed', e))
     }
   }
 
@@ -145,8 +169,8 @@ class Calendar extends React.PureComponent<IProps, IState> {
       (buttonIndex) => {
         const indexRow = _.findIndex(this.state.items[this.timeToString(item.timestamp)], (i: Item) => i === item)
         if (buttonIndex === 0) {
-          if (item._idHistoryDate) this.updateHistoryDateRequest(item, RequestType.edit)
-          else this.createHistoryDateRequest(item, RequestType.edit)
+          if (item._idHistoryDate) this.updateHistoryDateRequest(item, RequestType.edit, indexRow)
+          else this.createHistoryDateRequest(item, RequestType.edit, indexRow)
         } else if (buttonIndex === 1) {
           this.editedExerciseRow = indexRow
           this.editedExerciseTimestamp = item.timestamp
@@ -158,18 +182,15 @@ class Calendar extends React.PureComponent<IProps, IState> {
             editing: true
           })
         } else if (buttonIndex === 2) {
-          if (item._idHistoryDate) this.updateHistoryDateRequest(item, RequestType.delete)
-          else this.createHistoryDateRequest(item, RequestType.delete)
+          if (item._idHistoryDate) this.updateHistoryDateRequest(item, RequestType.delete, indexRow)
+          else this.createHistoryDateRequest(item, RequestType.delete, indexRow)
         }
       }
     )
   }
 
   showActionSheetFullDay = (item: Item, day: DayCalendar) => {
-    const notDone = _.some(this.state.items[this.timeToString(item.timestamp)].map((i: Item) => {
-        return !i.exerciseSet.done
-      })
-    )
+    const notDone = _.some(this.state.items[this.timeToString(item.timestamp)].map((i: Item) => !i.exerciseSet.done))
     ActionSheetIOS.showActionSheetWithOptions({
         title: new Date(day.timestamp).toLocaleDateString(),
         options: [notDone ? 'Set all day done' : 'Set all day not done', 'Add an exercise', 'Sort exercises',
@@ -179,30 +200,9 @@ class Calendar extends React.PureComponent<IProps, IState> {
       },
       (buttonIndex) => {
         const newItems = Object.assign({}, this.state.items)
-        const newItemsDay: Item[] = []
         if (buttonIndex === 0) {
-          newItems[this.timeToString(item.timestamp)].map((i: Item) => {
-            newItemsDay.push(createItem(i.name, i.details, i.content, i.timestamp, createExerciseSet(notDone,
-              i.exerciseSet.exercise, i.exerciseSet.recoveryTime, i.exerciseSet.sets, i.exerciseSet.muscleGroup),
-              i._idHistoryDate))
-          })
-          newItems[this.timeToString(item.timestamp)] = newItemsDay
-          const newExercises = newItems[this.timeToString(item.timestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
-          if (item._idHistoryDate) {
-            const newHistoryDate = createHistoryDate(item.timestamp, newExercises, item._idHistoryDate)
-            this.setState({items: newItems})
-            // fixme UPDATE
-            this.props.updateHistoryDate(newHistoryDate).catch((e) => {
-              console.log('Update history date failed', e)
-            })
-          } else {
-            // fixme CREATE
-            const newHistoryDate = createHistoryDate(item.timestamp, newExercises)
-            this.setState({items: newItems})
-            this.props.createHistoryDate(newHistoryDate).catch((e) => {
-              console.log('Create history date failed', e)
-            })
-          }
+          if (item._idHistoryDate) this.updateHistoryDateRequest(item, RequestType.allDone, null, notDone)
+          else this.createHistoryDateRequest(item, RequestType.allDone, null, notDone)
         } else if (buttonIndex === 1) {
           this.addExerciseToDay(day.timestamp)
         } else if (buttonIndex === 2) {
@@ -211,14 +211,8 @@ class Calendar extends React.PureComponent<IProps, IState> {
           this.setState({showModalSortExercises: true})
         } else if (buttonIndex === 3) {
           newItems[this.timeToString(item.timestamp)] = []
-          if (item._idHistoryDate) {
-            const newHistoryDate = createHistoryDate(item.timestamp, [], item._idHistoryDate)
-            this.setState({items: newItems})
-            // fixme UPDATE
-            this.props.updateHistoryDate(newHistoryDate).catch((e) => {
-              console.log('Update history date failed', e)
-            })
-          } else {
+          if (item._idHistoryDate) this.updateHistoryDateRequest(item, RequestType.allDelete)
+          else {
             const newHistoryDate: ServerEntity.HistoryDate = {
               timestamp: +item.timestamp,
               exercises: []

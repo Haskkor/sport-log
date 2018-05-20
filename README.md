@@ -49,7 +49,7 @@
     - Todo:
         - Give all the exercises of the day to the quickLog page
         - Returns the list to the calendar that will save it
-- BUG: Editing an exercise not done cause a 400 on updateHistoryDate : TO TEST
+- BUG: Editing an exercise not done cause a 400 on updateHistoryDate
 - BUG: the calendar is not always updating e.g when using the action sheet to add exercises
 - WARNING: Rework calendar file again to put all the creates and updates together
 
