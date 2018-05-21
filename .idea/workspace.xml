@@ -16,15 +16,15 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.48995668">
+    <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/README.md">
               <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
                 <state split_layout="FIRST">
-                  <first_editor relative-caret-position="720">
-                    <caret line="48" column="10" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
+                  <first_editor relative-caret-position="555">
+                    <caret line="37" column="29" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
                   </first_editor>
                   <second_editor />
                 </state>
@@ -34,8 +34,8 @@
           <file leaf-file-name="Calendar.tsx" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="560">
-                  <caret line="213" column="91" selection-start-line="213" selection-start-column="91" selection-end-line="213" selection-end-column="91" />
+                <state relative-caret-position="405">
+                  <caret line="125" column="63" selection-start-line="125" selection-start-column="63" selection-end-line="125" selection-end-column="63" />
                 </state>
               </provider>
             </entry>
@@ -70,7 +70,7 @@
           <file leaf-file-name="ModalSortExercises.tsx" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/view/components/ModalSortExercises.tsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="495">
+                <state relative-caret-position="600">
                   <caret line="40" column="26" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
                   <folding>
                     <element signature="e#0#30#0" expanded="true" />
@@ -82,7 +82,7 @@
           <file leaf-file-name="ModalListLog.tsx" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/view/components/ModalListLog.tsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="855">
+                <state relative-caret-position="960">
                   <caret line="64" column="16" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="16" />
                   <folding>
                     <element signature="e#0#30#0" expanded="true" />
@@ -98,8 +98,8 @@
           <file leaf-file-name="Calendar.tsx" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="645">
-                  <caret line="95" column="55" selection-start-line="95" selection-start-column="55" selection-end-line="95" selection-end-column="55" />
+                <state relative-caret-position="480">
+                  <caret line="278" selection-start-line="278" selection-end-line="278" />
                 </state>
               </provider>
             </entry>
@@ -218,7 +218,7 @@
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="1417" />
+    <option name="height" value="1169" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -431,11 +431,12 @@
       <workItem from="1526703485069" duration="2100000" />
       <workItem from="1526768731456" duration="5597000" />
       <workItem from="1526847863228" duration="2381000" />
+      <workItem from="1526934023147" duration="1825000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="286739000" />
+    <option name="totallyTimeSpent" value="288564000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="2560" height="1417" extended-state="6" />
@@ -808,7 +809,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/ModalSortExercises.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
+        <state relative-caret-position="600">
           <caret line="40" column="26" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
@@ -832,7 +833,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/ModalListLog.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
+        <state relative-caret-position="960">
           <caret line="64" column="16" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="16" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
@@ -850,8 +851,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="720">
-            <caret line="48" column="10" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="10" />
+          <first_editor relative-caret-position="555">
+            <caret line="37" column="29" selection-start-line="37" selection-start-column="29" selection-end-line="37" selection-end-column="29" />
           </first_editor>
           <second_editor />
         </state>
@@ -864,8 +865,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="560">
-          <caret line="213" column="91" selection-start-line="213" selection-start-column="91" selection-end-line="213" selection-end-column="91" />
+        <state relative-caret-position="405">
+          <caret line="125" column="63" selection-start-line="125" selection-start-column="63" selection-end-line="125" selection-end-column="63" />
         </state>
       </provider>
     </entry>
