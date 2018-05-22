@@ -52,7 +52,7 @@
         - Returns the list to the calendar that will save it
 - BUG: Editing an exercise not done cause a 400 on updateHistoryDate
 - BUG: the calendar is not always updating e.g when using the action sheet to add exercises
-- WARNING: Rework calendar file again to put all the creates and updates together
+- ~~WARNING: Rework calendar file again to put all the creates and updates together~~
 
 ##Long term
 
