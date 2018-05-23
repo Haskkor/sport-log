@@ -134,11 +134,14 @@ class Calendar extends React.PureComponent<IProps, IState> {
                               sortedItems?: Item[], editedExercise?: ServerEntity.ExerciseSet) => {
     const currentItem = this.state.items[this.timeToString(item.timestamp)][indexRow]
     const exerciseSet = createOmitTypenameLink(item.exerciseSet)
+    // Exercisesets to be used in all the functions
+    const exerciseSets = this.state.items[this.timeToString(item.timestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
     this.setState({showLoadingScreen: true})
     const newItems = Object.assign({}, this.state.items)
     if (action === RequestType.editDone) {
       exerciseSet.done = !currentItem.exerciseSet.done
-      const newHistoryDate = createHistoryDate(item.timestamp, [exerciseSet])
+      exerciseSets.splice(indexRow, 1, exerciseSet)
+      const newHistoryDate = createHistoryDate(item.timestamp, exerciseSets)
       this.props.createHistoryDate(newHistoryDate).then((d: { data: dataCreateHistoryDate }) => {
         const newExerciseSet = createExerciseSet(!currentItem.exerciseSet.done, currentItem.exerciseSet.exercise,
           currentItem.exerciseSet.recoveryTime, currentItem.exerciseSet.sets, currentItem.exerciseSet.muscleGroup)
@@ -174,6 +177,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
       this.props.createHistoryDate(newHistoryDate).then((d: { data: dataCreateHistoryDate }) => {
         newItems[this.timeToString(this.editedExerciseTimestamp)] = newItems[this.timeToString(this.editedExerciseTimestamp)]
           .map((i: Item) => createItem(i.name, i.details, i.content, i.timestamp, i.exerciseSet, d.data.createHistoryDate._id))
+        newItems[this.timeToString(item.timestamp)].splice(indexRow, 1, newItem)
         this.setState({items: newItems, showLoadingScreen: false})
       }).catch((e) => {
         console.log('Create history date failed', e)
@@ -194,9 +198,16 @@ class Calendar extends React.PureComponent<IProps, IState> {
       } else if (action === RequestType.allDelete) {
         newItems[this.timeToString(item.timestamp)] = []
       }
+
+
+
+      // Use this for all the create functions
       const newExercises = newItems[this.timeToString(item.timestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
       const newHistoryDate = createHistoryDate(item.timestamp, newExercises)
       this.setState({items: newItems, showLoadingScreen: false})
+
+
+
       this.props.createHistoryDate(newHistoryDate).catch((e) => console.log('Create history date failed', e))
     }
   }
