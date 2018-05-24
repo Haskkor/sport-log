@@ -134,11 +134,10 @@ class Calendar extends React.PureComponent<IProps, IState> {
                               sortedItems?: Item[], editedExercise?: ServerEntity.ExerciseSet) => {
     const currentItem = this.state.items[this.timeToString(item.timestamp)][indexRow]
     const exerciseSet = createOmitTypenameLink(item.exerciseSet)
-    // Exercisesets to be used in all the functions
-    const exerciseSets = this.state.items[this.timeToString(item.timestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
     this.setState({showLoadingScreen: true})
     const newItems = Object.assign({}, this.state.items)
     if (action === RequestType.editDone) {
+      const exerciseSets = this.state.items[this.timeToString(item.timestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
       exerciseSet.done = !currentItem.exerciseSet.done
       exerciseSets.splice(indexRow, 1, exerciseSet)
       const newHistoryDate = createHistoryDate(item.timestamp, exerciseSets)
@@ -198,16 +197,9 @@ class Calendar extends React.PureComponent<IProps, IState> {
       } else if (action === RequestType.allDelete) {
         newItems[this.timeToString(item.timestamp)] = []
       }
-
-
-
-      // Use this for all the create functions
       const newExercises = newItems[this.timeToString(item.timestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
       const newHistoryDate = createHistoryDate(item.timestamp, newExercises)
       this.setState({items: newItems, showLoadingScreen: false})
-
-
-
       this.props.createHistoryDate(newHistoryDate).catch((e) => console.log('Create history date failed', e))
     }
   }
@@ -292,6 +284,8 @@ class Calendar extends React.PureComponent<IProps, IState> {
   }
 
   addExerciseToDay = (timestamp: number) => {
+    // todo Send all items for the day
+    // todo Change the refetchdata function
     this.props.navigation.navigate('CalendarEditExercise', {
       status: HeaderStatus.stack,
       title: 'New exercise ' + new Date(timestamp).toLocaleDateString(),

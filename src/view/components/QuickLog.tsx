@@ -111,6 +111,10 @@ class QuickLog extends React.PureComponent<IProps, IState> {
         currentRecoveryTime: params.exercise.recoveryTime,
         editing: true
       })
+    } else if (params && params.exercisesList) {
+      // todo MAKE A NEW CONDITION FOR THE ADDING EXERCISE (SENDING A LIST OF EXERCISES)
+      // exercise list should be in redux?
+
     }
   }
 
@@ -246,6 +250,7 @@ class QuickLog extends React.PureComponent<IProps, IState> {
       showToasterInfo: false,
       showToasterWarning: false
     })
+    // todo ADD SOMETHING WITH THE NEW STATUS OF ADDING EXERCISE TO THE DAY
     this.props.createHistoryDate(historyDate).then((d: {data: dataCreateHistoryDate}) => {
       this.props.resetQuickLog({})
       this.props.saveQuickLogHistory({
