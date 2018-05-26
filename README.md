@@ -48,6 +48,7 @@
     - Test with exercises already in the db
     - ~~On create save all the exercises not just the ones edited, done etc~~
     - Todo:
+        - Test if the new set quicklog is working
         - Give all the exercises of the day to the quickLog page
         - Returns the list to the calendar that will save it
 - BUG: Editing an exercise not done cause a 400 on updateHistoryDate

@@ -6,7 +6,7 @@ export const EDIT = 'PL/QUICK_LOG/EDIT'
 export const RESET = 'PL/QUICK_LOG/RESET'
 
 export type SetQuickLogPayload = {
-  set: ServerEntity.ExerciseSet
+  sets: ServerEntity.ExerciseSet[]
 }
 
 export type DeleteQuickLogPayload = {
@@ -28,14 +28,14 @@ export default handleActions({
     quickLogCopy.splice(action.payload.index, 1)
     return quickLogCopy
   },
+  [SET]: (state: ReduxState.QuickLog, action: Action<SetQuickLogPayload>) => {
+    let quickLogCopy = state.slice()
+    action.payload.sets.map((s: ServerEntity.ExerciseSet) => quickLogCopy.push(s))
+    return quickLogCopy
+  },
   [EDIT]: (state: ReduxState.QuickLog, action: Action<EditQuickLogPayload>) => {
     let quickLogCopy = state.slice()
     quickLogCopy[action.payload.index] = action.payload.set
-    return quickLogCopy
-  },
-  [SET]: (state: ReduxState.QuickLog, action: Action<SetQuickLogPayload>) => {
-    let quickLogCopy = state.slice()
-    quickLogCopy.push(action.payload.set)
     return quickLogCopy
   },
   [RESET]: (state: ReduxState.QuickLog, action: Action<ResetQuickLogPayload>) => {

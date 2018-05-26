@@ -113,7 +113,13 @@ class QuickLog extends React.PureComponent<IProps, IState> {
       })
     } else if (params && params.exercisesList) {
       // todo MAKE A NEW CONDITION FOR THE ADDING EXERCISE (SENDING A LIST OF EXERCISES)
-      // exercise list should be in redux?
+      // todo exercise list should be in redux?
+
+
+      //const newSet = this.buildNewSet()
+      //this.order = Object.keys(dataLogCopy)
+      //this.props.setQuickLog({set: newSet})
+
 
     }
   }
@@ -161,7 +167,7 @@ class QuickLog extends React.PureComponent<IProps, IState> {
 
   addExerciseSet = () => {
     const newSet = this.buildNewSet()
-    this.props.setQuickLog({set: newSet})
+    this.props.setQuickLog({sets: [newSet]})
     let dataLogCopy = this.props.quickLog.slice()
     dataLogCopy.push(newSet)
     this.backToOriginalState(dataLogCopy, false)
