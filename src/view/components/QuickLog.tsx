@@ -252,23 +252,24 @@ class QuickLog extends React.PureComponent<IProps, IState> {
       showToasterInfo: false,
       showToasterWarning: false
     })
-    // todo ADD SOMETHING WITH THE NEW STATUS OF ADDING EXERCISE TO THE DAY
-    this.props.createHistoryDate(historyDate).then((d: {data: dataCreateHistoryDate}) => {
-      this.props.resetQuickLog({})
-      this.props.saveQuickLogHistory({
-        quickLogHistory: {
-          exercises: historyDate.exercises.slice(),
-          timestamp: +d.data.createHistoryDate.timestamp,
-          _id: d.data.createHistoryDate._id
-        }
+    if (this.props.navigation.state.params && this.props.navigation.state.params.saveNewExercise) {
+      this.props.navigation.state.params.saveNewExercise(this.props.quickLog, this.props.navigation.state.params.timestamp)
+    } else {
+      this.props.createHistoryDate(historyDate).then((d: {data: dataCreateHistoryDate}) => {
+        this.props.resetQuickLog({})
+        this.props.saveQuickLogHistory({
+          quickLogHistory: {
+            exercises: historyDate.exercises.slice(),
+            timestamp: +d.data.createHistoryDate.timestamp,
+            _id: d.data.createHistoryDate._id
+          }
+        })
+        this.setState({showToasterInfo: true, showLoadingScreen: false})
+      }).catch((e) => {
+        console.log('Create history date failed', e)
+        this.setState({showToasterError: true, showLoadingScreen: false})
       })
-      if (this.props.navigation.state.params && this.props.navigation.state.params.refetchData)
-        this.props.navigation.state.params.refetchData()
-      this.setState({showToasterInfo: true, showLoadingScreen: false})
-    }).catch((e) => {
-      console.log('Create history date failed', e)
-      this.setState({showToasterError: true, showLoadingScreen: false})
-    })
+    }
   }
 
   render() {

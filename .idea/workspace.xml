@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39597ee5-2bd9-42b2-a212-3554592f4c8d" name="Default" comment="kljkjklj">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change beforePath="$PROJECT_DIR$/src/view/components/Calendar.tsx" afterPath="$PROJECT_DIR$/src/view/components/Calendar.tsx" />
       <change beforePath="$PROJECT_DIR$/src/view/components/QuickLog.tsx" afterPath="$PROJECT_DIR$/src/view/components/QuickLog.tsx" />
     </list>
@@ -32,11 +30,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Calendar.tsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Calendar.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="286" column="44" lean-forward="false" selection-start-line="286" selection-start-column="44" selection-end-line="286" selection-end-column="44" />
+            <state relative-caret-position="338">
+              <caret line="93" column="0" lean-forward="true" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -44,11 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QuickLog.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="QuickLog.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/components/QuickLog.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="49" column="29" lean-forward="false" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="29" />
+            <state relative-caret-position="258">
+              <caret line="255" column="92" lean-forward="false" selection-start-line="255" selection-start-column="92" selection-end-line="255" selection-end-column="92" />
               <folding />
             </state>
           </provider>
@@ -100,7 +98,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>createItem</find>
       <find>create</find>
       <find>ServerE</find>
       <find>Item</find>
@@ -130,6 +127,7 @@
       <find>createExer</find>
       <find>setQuickLog</find>
       <find>dataLogCopy</find>
+      <find>refet</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -186,8 +184,8 @@
         <option value="$PROJECT_DIR$/src/view/components/ModalSortExercises.tsx" />
         <option value="$PROJECT_DIR$/src/core/modules/entities/quicklog.ts" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/view/components/Calendar.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/QuickLog.tsx" />
+        <option value="$PROJECT_DIR$/src/view/components/Calendar.tsx" />
       </list>
     </option>
   </component>
@@ -439,12 +437,12 @@
       <workItem from="1527108087602" duration="1680000" />
       <workItem from="1527193326427" duration="995000" />
       <workItem from="1527312151991" duration="1398000" />
-      <workItem from="1527385828011" duration="1977000" />
+      <workItem from="1527385828011" duration="3264000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="295872000" />
+    <option name="totallyTimeSpent" value="297159000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -866,16 +864,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="286" column="44" lean-forward="false" selection-start-line="286" selection-start-column="44" selection-end-line="286" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
@@ -894,9 +882,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/QuickLog.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="49" column="29" lean-forward="false" selection-start-line="49" selection-start-column="29" selection-end-line="49" selection-end-column="29" />
+        <state relative-caret-position="258">
+          <caret line="255" column="92" lean-forward="false" selection-start-line="255" selection-start-column="92" selection-end-line="255" selection-end-column="92" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="93" column="0" lean-forward="true" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -74,6 +74,7 @@ class Calendar extends React.PureComponent<IProps, IState> {
     this.saveSortedExercises = this.saveSortedExercises.bind(this)
     this.updateHistoryDateRequest = this.updateHistoryDateRequest.bind(this)
     this.createHistoryDateRequest = this.createHistoryDateRequest.bind(this)
+    this.saveNewExercise = this.saveNewExercise.bind(this)
   }
 
   async componentWillMount() {
@@ -85,6 +86,10 @@ class Calendar extends React.PureComponent<IProps, IState> {
     await this.props.data.refetch()
     if (this.currentDay) this.loadItems(this.currentDay)
     this.setState({showLoadingScreen: false})
+  }
+
+  saveNewExercise = async (data: ServerEntity.ExerciseSet[], timestamp: number) => {
+    // todo CREATE OR UPDATE NEW EXERCISES
   }
 
   closeModal = () => {
@@ -256,7 +261,6 @@ class Calendar extends React.PureComponent<IProps, IState> {
         } else if (buttonIndex === 3) {
           if (item._idHistoryDate) this.updateHistoryDateRequest(item, RequestType.allDelete)
           else this.createHistoryDateRequest(item, RequestType.allDelete)
-
         }
       }
     )
@@ -284,12 +288,11 @@ class Calendar extends React.PureComponent<IProps, IState> {
   }
 
   addExerciseToDay = (timestamp: number) => {
-    // todo CHANGE THE REFETCH DATA FUNCTION
     this.props.navigation.navigate('CalendarEditExercise', {
       status: HeaderStatus.stack,
       title: 'New exercise ' + new Date(timestamp).toLocaleDateString(),
       timestamp: timestamp,
-      refetchData: this.refetchData,
+      saveNewExercise: this.saveNewExercise,
       exercisesList: this.state.items[this.timeToString(timestamp.toString())].slice()
     })
   }
