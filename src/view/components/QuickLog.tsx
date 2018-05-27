@@ -24,6 +24,8 @@ import * as HistoryActions from '../../core/modules/entities/history'
 import {NavigationAction, NavigationRoute, NavigationScreenProp} from 'react-navigation'
 import {dataCreateHistoryDate} from '../../utils/gaphqlData'
 import {CREATE_HISTORY_DATE} from '../../utils/gqls'
+import {Item} from "../../core/types";
+import {createExerciseSet} from "../../utils/constructors";
 
 type IProps = {
   navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
@@ -112,15 +114,9 @@ class QuickLog extends React.PureComponent<IProps, IState> {
         editing: true
       })
     } else if (params && params.exercisesList) {
-      // todo MAKE A NEW CONDITION FOR THE ADDING EXERCISE (SENDING A LIST OF EXERCISES)
-      // todo exercise list should be in redux?
-
-
-      //const newSet = this.buildNewSet()
-      //this.order = Object.keys(dataLogCopy)
-      //this.props.setQuickLog({set: newSet})
-
-
+      const newSets: ServerEntity.ExerciseSet[] = params.exercisesList.map((e: Item) => e.exerciseSet)
+      this.order = Object.keys(newSets)
+      this.props.setQuickLog({sets: newSets})
     }
   }
 

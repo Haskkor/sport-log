@@ -284,13 +284,13 @@ class Calendar extends React.PureComponent<IProps, IState> {
   }
 
   addExerciseToDay = (timestamp: number) => {
-    // todo Send all items for the day
-    // todo Change the refetchdata function
+    // todo CHANGE THE REFETCH DATA FUNCTION
     this.props.navigation.navigate('CalendarEditExercise', {
       status: HeaderStatus.stack,
       title: 'New exercise ' + new Date(timestamp).toLocaleDateString(),
       timestamp: timestamp,
-      refetchData: this.refetchData
+      refetchData: this.refetchData,
+      exercisesList: this.state.items[this.timeToString(timestamp.toString())].slice()
     })
   }
 

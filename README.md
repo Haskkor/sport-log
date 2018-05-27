@@ -45,11 +45,10 @@
         - ~~If the history date already existed~~
         - ~~If it's a new history date~~
 - BUG: Adding an exercise to a day with exercises not done remove the other exercises
-    - Test with exercises already in the db
     - ~~On create save all the exercises not just the ones edited, done etc~~
     - Todo:
         - Test if the new set quicklog is working
-        - Give all the exercises of the day to the quickLog page
+        - ~~Give all the exercises of the day to the quickLog page~~
         - Returns the list to the calendar that will save it
 - BUG: Editing an exercise not done cause a 400 on updateHistoryDate
 - BUG: the calendar is not always updating e.g when using the action sheet to add exercises
