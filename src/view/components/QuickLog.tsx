@@ -26,6 +26,7 @@ import {dataCreateHistoryDate} from '../../utils/gaphqlData'
 import {CREATE_HISTORY_DATE} from '../../utils/gqls'
 import {Item} from "../../core/types";
 import {createExerciseSet} from "../../utils/constructors";
+import quicklog from "../../core/modules/entities/quicklog";
 
 type IProps = {
   navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
@@ -113,14 +114,16 @@ class QuickLog extends React.PureComponent<IProps, IState> {
         currentRecoveryTime: params.exercise.recoveryTime,
         editing: true
       })
-    } else if (params && params.exercisesList) {
-      const newSets: ServerEntity.ExerciseSet[] = params.exercisesList.map((e: Item) => e.exerciseSet)
-      this.order = Object.keys(newSets)
-      this.props.setQuickLog({sets: newSets})
     }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    const {params} = this.props.navigation.state
+    if (params && params.exercisesList) {
+      const newSets: ServerEntity.ExerciseSet[] = params.exercisesList.map((e: Item) => e.exerciseSet)
+      this.order = Object.keys(newSets)
+      await this.props.setQuickLog({sets: newSets})
+    }
     this.order = Object.keys(this.props.quickLog)
   }
 
@@ -186,6 +189,7 @@ class QuickLog extends React.PureComponent<IProps, IState> {
       exercise: this.exercises.find((exercise) => {
         return exercise.name === this.state.currentExercise
       }),
+      done: true,
       muscleGroup: this.state.currentMuscle,
       sets: this.state.sets,
       recoveryTime: this.state.currentRecoveryTime
@@ -247,14 +251,15 @@ class QuickLog extends React.PureComponent<IProps, IState> {
   saveHistoryDate = (historyDate: ServerEntity.HistoryDate) => {
     this.setState({
       showModal: false,
-      showLoadingScreen: true,
       showToasterError: false,
       showToasterInfo: false,
       showToasterWarning: false
     })
     if (this.props.navigation.state.params && this.props.navigation.state.params.saveNewExercise) {
       this.props.navigation.state.params.saveNewExercise(this.props.quickLog, this.props.navigation.state.params.timestamp)
+      this.props.navigation.goBack()
     } else {
+      this.setState({showLoadingScreen: true})
       this.props.createHistoryDate(historyDate).then((d: {data: dataCreateHistoryDate}) => {
         this.props.resetQuickLog({})
         this.props.saveQuickLogHistory({

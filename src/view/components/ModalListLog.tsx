@@ -48,7 +48,7 @@ class ModalListLog extends React.PureComponent<IProps, IState> {
   }
 
   render() {
-    const {order, closeModal, dataLog, saveHistoryDate} = this.props
+    const {closeModal, saveHistoryDate} = this.props
     return (
       <View style={styles.container}>
         <Modal
@@ -57,16 +57,15 @@ class ModalListLog extends React.PureComponent<IProps, IState> {
           animationType="slide">
           <View style={styles.viewButtons}>
             <TouchableOpacity
-              disabled={dataLog.length < 1}
+              disabled={this.props.dataLog.length < 1}
               style={styles.buttonSave}
               onPress={() => {
                 const date = new Date()
-                dataLog.map((d: ServerEntity.ExerciseSet) => d.done = true)
-                saveHistoryDate({exercises: dataLog,
+                saveHistoryDate({exercises: this.props.dataLog,
                   timestamp: this.props.timestamp ? this.props.timestamp :
                     Date.UTC(date.getFullYear(), date.getMonth(), date.getDate())})
               }}>
-              <Text style={dataLog.length < 1 ? styles.textButtonDisabled : styles.textButton}>Save the training</Text>
+              <Text style={this.props.dataLog.length < 1 ? styles.textButtonDisabled : styles.textButton}>Save the training</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.buttonDismiss}
@@ -76,10 +75,10 @@ class ModalListLog extends React.PureComponent<IProps, IState> {
           </View>
           <SortableListView
             style={styles.sortableList}
-            data={dataLog}
-            order={order}
+            data={this.props.dataLog}
+            order={this.props.order}
             onRowMoved={(e: {from: number, to: number, row: {data: ServerEntity.ExerciseSet, index: string, section: string}}) => {
-              order.splice(e.to, 0, order.splice(e.from, 1)[0])
+              this.props.order.splice(e.to, 0, this.props.order.splice(e.from, 1)[0])
               this.forceUpdate()
             }}
             renderRow={(row: ServerEntity.ExerciseSet) => row &&

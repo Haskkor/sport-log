@@ -90,6 +90,8 @@ class Calendar extends React.PureComponent<IProps, IState> {
 
   saveNewExercise = async (data: ServerEntity.ExerciseSet[], timestamp: number) => {
     // todo CREATE OR UPDATE NEW EXERCISES
+    console.log('data', data)
+    console.log(timestamp)
   }
 
   closeModal = () => {
@@ -147,6 +149,8 @@ class Calendar extends React.PureComponent<IProps, IState> {
       exerciseSets.splice(indexRow, 1, exerciseSet)
       const newHistoryDate = createHistoryDate(item.timestamp, exerciseSets)
       this.props.createHistoryDate(newHistoryDate).then((d: { data: dataCreateHistoryDate }) => {
+        newItems[this.timeToString(item.timestamp)] = newItems[this.timeToString(item.timestamp)]
+          .map((i: Item) => createItem(i.name, i.details, i.content, i.timestamp, i.exerciseSet, d.data.createHistoryDate._id))
         const newExerciseSet = createExerciseSet(!currentItem.exerciseSet.done, currentItem.exerciseSet.exercise,
           currentItem.exerciseSet.recoveryTime, currentItem.exerciseSet.sets, currentItem.exerciseSet.muscleGroup)
         const newItem = createItem(currentItem.name, currentItem.details, currentItem.content,
