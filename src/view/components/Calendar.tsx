@@ -47,7 +47,8 @@ enum RequestType {
   allDone = 'allDone',
   allDelete = 'allDelete',
   sort = 'sort',
-  edit = 'edit'
+  edit = 'edit',
+  addExercise = 'addExercise'
 }
 
 class Calendar extends React.PureComponent<IProps, IState> {
@@ -89,9 +90,16 @@ class Calendar extends React.PureComponent<IProps, IState> {
   }
 
   saveNewExercise = async (data: ServerEntity.ExerciseSet[], timestamp: number) => {
-    // todo CREATE OR UPDATE NEW EXERCISES
-    console.log('data', data)
-    console.log(timestamp)
+    // todo CREATE NEW EXERCISES
+    // todo RESET THE QUICKLOG OR IT STILL CONTAINS PREVIOUS ITEMS
+    if (this.state.items[this.timeToString(timestamp.toString())][0]._idHistoryDate)
+      this.updateHistoryDateRequest(this.state.items[this.timeToString(timestamp.toString())][0],
+        RequestType.addExercise, null, null, null, null, data)
+    else {
+
+
+
+    }
   }
 
   closeModal = () => {
@@ -99,37 +107,53 @@ class Calendar extends React.PureComponent<IProps, IState> {
   }
 
   updateHistoryDateRequest = (item: Item, action: RequestType, indexRow?: number, notDone?: boolean,
-                              sortedItems?: Item[], editedExercise?: ServerEntity.ExerciseSet) => {
+                              sortedItems?: Item[], editedExercise?: ServerEntity.ExerciseSet,
+                              addedExercises?: ServerEntity.ExerciseSet[]) => {
     const newItems = Object.assign({}, this.state.items)
-    if (action === RequestType.editDone) {
-      const currentItem = this.state.items[this.timeToString(item.timestamp)][indexRow]
-      const newExerciseSet = createExerciseSet(!currentItem.exerciseSet.done, currentItem.exerciseSet.exercise,
-        currentItem.exerciseSet.recoveryTime, currentItem.exerciseSet.sets, currentItem.exerciseSet.muscleGroup)
-      const newItem = createItem(currentItem.name, currentItem.details, currentItem.content,
-        currentItem.timestamp, newExerciseSet, item._idHistoryDate)
-      newItems[this.timeToString(item.timestamp)].splice(indexRow, 1, newItem)
-    } else if (action === RequestType.delete) {
-      newItems[this.timeToString(item.timestamp)].splice(indexRow, 1)
-    } else if (action === RequestType.allDone) {
-      const newItemsDay: Item[] = []
-      newItems[this.timeToString(item.timestamp)].map((i: Item) => {
-        newItemsDay.push(createItem(i.name, i.details, i.content, i.timestamp, createExerciseSet(notDone,
-          i.exerciseSet.exercise, i.exerciseSet.recoveryTime, i.exerciseSet.sets, i.exerciseSet.muscleGroup),
-          i._idHistoryDate))
-      })
-      newItems[this.timeToString(item.timestamp)] = newItemsDay
-    } else if (action === RequestType.allDelete) {
-      newItems[this.timeToString(item.timestamp)] = []
-    } else if (action === RequestType.sort) {
-      newItems[this.timeToString(item.timestamp)] = sortedItems
-    } else if (action === RequestType.edit) {
-      const editedItem: Item = this.state.items[this.timeToString(this.editedExerciseTimestamp)][this.editedExerciseRow]
-      const newExerciseSet = createExerciseSet(editedItem.exerciseSet.done, editedExercise.exercise, editedExercise.recoveryTime,
-        editedExercise.sets, editedExercise.muscleGroup)
-      const newItem = createItem(createNameString(editedExercise.exercise.name, editedExercise.muscleGroup),
-        createDetailsString(editedExercise.exercise.equipment, editedExercise.recoveryTime),
-        createContentString(editedExercise.sets), this.editedExerciseTimestamp, newExerciseSet, editedItem._idHistoryDate)
-      newItems[this.timeToString(this.editedExerciseTimestamp)].splice(this.editedExerciseRow, 1, newItem)
+    switch (action) {
+      case RequestType.editDone:
+        const currentItem = this.state.items[this.timeToString(item.timestamp)][indexRow]
+        const exerciseSetEditDone = createExerciseSet(!currentItem.exerciseSet.done, currentItem.exerciseSet.exercise,
+          currentItem.exerciseSet.recoveryTime, currentItem.exerciseSet.sets, currentItem.exerciseSet.muscleGroup)
+        const itemEditDone = createItem(currentItem.name, currentItem.details, currentItem.content,
+          currentItem.timestamp, exerciseSetEditDone, item._idHistoryDate)
+        newItems[this.timeToString(item.timestamp)].splice(indexRow, 1, itemEditDone)
+        break
+      case RequestType.delete:
+        newItems[this.timeToString(item.timestamp)].splice(indexRow, 1)
+        break
+      case RequestType.allDone:
+        const newItemsDay: Item[] = []
+        newItems[this.timeToString(item.timestamp)].map((i: Item) => {
+          newItemsDay.push(createItem(i.name, i.details, i.content, i.timestamp, createExerciseSet(notDone,
+            i.exerciseSet.exercise, i.exerciseSet.recoveryTime, i.exerciseSet.sets, i.exerciseSet.muscleGroup),
+            i._idHistoryDate))
+        })
+        newItems[this.timeToString(item.timestamp)] = newItemsDay
+        break
+      case RequestType.allDelete:
+        newItems[this.timeToString(item.timestamp)] = []
+        break
+      case RequestType.sort:
+        newItems[this.timeToString(item.timestamp)] = sortedItems
+        break
+      case RequestType.edit:
+        const editedItem: Item = this.state.items[this.timeToString(this.editedExerciseTimestamp)][this.editedExerciseRow]
+        const newExerciseSet = createExerciseSet(editedItem.exerciseSet.done, editedExercise.exercise, editedExercise.recoveryTime,
+          editedExercise.sets, editedExercise.muscleGroup)
+        const newItem = createItem(createNameString(editedExercise.exercise.name, editedExercise.muscleGroup),
+          createDetailsString(editedExercise.exercise.equipment, editedExercise.recoveryTime),
+          createContentString(editedExercise.sets), this.editedExerciseTimestamp, newExerciseSet, editedItem._idHistoryDate)
+        newItems[this.timeToString(this.editedExerciseTimestamp)].splice(this.editedExerciseRow, 1, newItem)
+        break
+      case RequestType.addExercise:
+        const itemsDayAddExercise: Item[] = []
+        addedExercises.map((e: ServerEntity.ExerciseSet) => {
+          itemsDayAddExercise.push(createItem(createNameString(e.exercise.name, e.muscleGroup),
+            createDetailsString(e.exercise.equipment, e.recoveryTime), createContentString(e.sets), item.timestamp, e,
+            item._idHistoryDate))
+        })
+        newItems[this.timeToString(item.timestamp)] = itemsDayAddExercise
     }
     const newExercises = newItems[this.timeToString(item.timestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
     const newHistoryDate = createHistoryDate(item.timestamp, newExercises, item._idHistoryDate)

@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="39597ee5-2bd9-42b2-a212-3554592f4c8d" name="Default" comment="kljkjklj">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/components/Calendar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/Calendar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/ModalListLog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/ModalListLog.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/components/QuickLog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/QuickLog.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -35,8 +32,8 @@
       <file leaf-file-name="Calendar.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1323">
-              <caret line="141" lean-forward="true" selection-start-line="141" selection-end-line="141" />
+            <state relative-caret-position="434">
+              <caret line="101" column="4" selection-start-line="101" selection-start-column="4" selection-end-line="101" selection-end-column="4" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -44,10 +41,19 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="calendar.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/utils/calendar.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="QuickLog.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/components/QuickLog.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="819">
+            <state relative-caret-position="3465">
               <caret line="259" selection-start-line="259" selection-end-line="259" />
             </state>
           </provider>
@@ -57,7 +63,7 @@
         <entry file="file://$PROJECT_DIR$/src/view/components/ModalListLog.tsx">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="945">
-              <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
+              <caret line="63" selection-start-line="63" selection-end-line="63" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -425,12 +431,13 @@
       <workItem from="1527193326427" duration="995000" />
       <workItem from="1527312151991" duration="1398000" />
       <workItem from="1527385828011" duration="3264000" />
-      <workItem from="1527452541818" duration="2439000" />
+      <workItem from="1527452541818" duration="2464000" />
+      <workItem from="1527539280816" duration="1712000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="299598000" />
+    <option name="totallyTimeSpent" value="301335000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -450,7 +457,6 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32885906" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32960325" />
-      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32960477" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -464,6 +470,7 @@
       <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -600,7 +607,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/calendar.ts" />
     <entry file="file://$PROJECT_DIR$/src/utils/launchpadGraphqlRequests" />
     <entry file="file://$PROJECT_DIR$/src/utils/graphQlHelper.ts">
       <provider selected="true" editor-type-id="text-editor">
@@ -837,7 +843,7 @@
     <entry file="file://$PROJECT_DIR$/src/view/components/ModalListLog.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="945">
-          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
+          <caret line="63" selection-start-line="63" selection-end-line="63" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
@@ -846,15 +852,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/QuickLog.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="819">
+        <state relative-caret-position="3465">
           <caret line="259" selection-start-line="259" selection-end-line="259" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/calendar.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1323">
-          <caret line="141" lean-forward="true" selection-start-line="141" selection-end-line="141" />
+        <state relative-caret-position="434">
+          <caret line="101" column="4" selection-start-line="101" selection-start-column="4" selection-end-line="101" selection-end-column="4" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>
