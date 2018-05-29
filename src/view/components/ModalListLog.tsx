@@ -60,6 +60,7 @@ class ModalListLog extends React.PureComponent<IProps, IState> {
               disabled={this.props.dataLog.length < 1}
               style={styles.buttonSave}
               onPress={() => {
+                console.log('test')
                 const date = new Date()
                 saveHistoryDate({exercises: this.props.dataLog,
                   timestamp: this.props.timestamp ? this.props.timestamp :

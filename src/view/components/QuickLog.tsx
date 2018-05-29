@@ -257,6 +257,7 @@ class QuickLog extends React.PureComponent<IProps, IState> {
     })
     if (this.props.navigation.state.params && this.props.navigation.state.params.saveNewExercise) {
       this.props.navigation.state.params.saveNewExercise(this.props.quickLog, this.props.navigation.state.params.timestamp)
+      this.props.resetQuickLog({})
       this.props.navigation.goBack()
     } else {
       this.setState({showLoadingScreen: true})

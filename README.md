@@ -17,7 +17,7 @@
 - ~~When QuickLog creates a item, refresh the calendar => see work on calendar edit~~
     - ~~Save new history date ID in redux~~
         - ~~Subscribe to it in calendar~~
-        - ~~Componentwillreceiveprops, refetch data from GraphQL~~a
+        - ~~Componentwillreceiveprops, refetch data from GraphQL~~
     - ~~OR Save all new history date in redux~~
         - ~~Subscribe in calendar~~
         - ~~Change internal state with new elem based on timestamp~~
@@ -44,13 +44,14 @@
     - ~~Save the reorganized list~~
         - ~~If the history date already existed~~
         - ~~If it's a new history date~~
-- BUG: Adding an exercise to a day with exercises not done remove the other exercises
+- ~~BUG: Adding an exercise to a day with exercises not done remove the other exercises~~
     - ~~On create save all the exercises not just the ones edited, done etc~~
-    - Todo:
+    - ~~Todo:~~
         - ~~Test if the new set quicklog is working~~
         - ~~Give all the exercises of the day to the quickLog page~~
-        - Returns the list to the calendar that will save it
+        - ~~Returns the list to the calendar that will save it~~
 - BUG: Editing an exercise not done cause a 400 on updateHistoryDate
+    - Bug ok but view not refreshing
 - BUG: the calendar is not always updating e.g when using the action sheet to add exercises
 - ~~WARNING: Rework calendar file again to put all the creates and updates together~~
 
