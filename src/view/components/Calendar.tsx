@@ -22,7 +22,6 @@ import {createExerciseSet, createHistoryDate, createItem} from '../../utils/cons
 import {createContentString, createDetailsString, createNameString} from '../../utils/calendar'
 import {CREATE_HISTORY_DATE, HISTORY_DATE_USER, UPDATE_HISTORY_DATE} from '../../utils/gqls'
 import ModalSortExercises from './ModalSortExercises'
-import add = Animated.add;
 
 type IProps = {
   navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
@@ -197,21 +196,14 @@ class Calendar extends React.PureComponent<IProps, IState> {
       const editedItem: Item = this.state.items[this.timeToString(this.editedExerciseTimestamp)][this.editedExerciseRow]
       const newExerciseSet = createOmitTypenameLink(createExerciseSet(editedItem.exerciseSet.done, editedExercise.exercise, editedExercise.recoveryTime,
         editedExercise.sets, editedExercise.muscleGroup))
-      const newItem = createItem(createNameString(editedExercise.exercise.name, editedExercise.muscleGroup),
-        createDetailsString(editedExercise.exercise.equipment, editedExercise.recoveryTime),
-        createContentString(editedExercise.sets), this.editedExerciseTimestamp, newExerciseSet, editedItem._idHistoryDate)
       const newExercisesSet = this.state.items[this.timeToString(this.editedExerciseTimestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
       newExercisesSet.splice(this.editedExerciseRow, 1, newExerciseSet)
       const newHistoryDate = createHistoryDate(this.editedExerciseTimestamp, newExercisesSet)
       this.props.createHistoryDate(newHistoryDate).then((d: { data: dataCreateHistoryDate }) => {
-
-
-        // todo FINISH TO FIX THIS SO IT REFRESHES
-        newItems[this.timeToString(this.editedExerciseTimestamp)] = newExercisesSet.map((i: ServerEntity.ExerciseSet) => createItem(i.name, i.details, i.content, i.timestamp, i.exerciseSet, d.data.createHistoryDate._id))
-
-
-
-        newItems[this.timeToString(item.timestamp)].splice(indexRow, 1, newItem)
+        newItems[this.timeToString(this.editedExerciseTimestamp)] = newExercisesSet
+          .map((i: ServerEntity.ExerciseSet) => createItem(createNameString(i.exercise.name, i.muscleGroup),
+            createDetailsString(i.exercise.equipment, i.recoveryTime), createContentString(i.sets),
+            d.data.createHistoryDate.timestamp, i, d.data.createHistoryDate._id))
         this.setState({items: newItems, showLoadingScreen: false})
       }).catch((e) => {
         console.log('Create history date failed', e)
@@ -237,7 +229,6 @@ class Calendar extends React.PureComponent<IProps, IState> {
       if (action === RequestType.delete) {
         newItems[this.timeToString(item.timestamp)].splice(indexRow, 1)
       } else if (action === RequestType.allDone) {
-        exerciseSet.done = !currentItem.exerciseSet.done
         const newItemsDay: Item[] = []
         newItems[this.timeToString(item.timestamp)].map((i: Item) => {
           newItemsDay.push(createItem(i.name, i.details, i.content, i.timestamp, createExerciseSet(notDone,
@@ -250,8 +241,15 @@ class Calendar extends React.PureComponent<IProps, IState> {
       }
       const newExercises = newItems[this.timeToString(item.timestamp)].map((i: Item) => createOmitTypenameLink(i.exerciseSet))
       const newHistoryDate = createHistoryDate(item.timestamp, newExercises)
-      this.setState({items: newItems, showLoadingScreen: false})
-      this.props.createHistoryDate(newHistoryDate).catch((e) => console.log('Create history date failed', e))
+      this.props.createHistoryDate(newHistoryDate).then((d: { data: dataCreateHistoryDate}) => {
+        newItems[this.timeToString(item.timestamp)] = newItems[this.timeToString(item.timestamp)].map((i: Item) => {
+          return createItem(i.name, i.details, i.content, i.timestamp, i.exerciseSet, d.data.createHistoryDate._id)
+        })
+        this.setState({items: newItems, showLoadingScreen: false})
+      }).catch((e) => {
+        console.log('Create history date failed', e)
+        this.setState({showLoadingScreen: false})
+      })
     }
   }
 

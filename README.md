@@ -50,14 +50,16 @@
         - ~~Test if the new set quicklog is working~~
         - ~~Give all the exercises of the day to the quickLog page~~
         - ~~Returns the list to the calendar that will save it~~
-- BUG: Editing an exercise not done cause a 400 on updateHistoryDate
-    - Bug ok but view not refreshing
-- BUG: the calendar is not always updating e.g when using the action sheet to add exercises
+- ~~BUG: Editing an exercise not done cause a 400 on updateHistoryDate~~
+    - ~~Bug ok but view not refreshing~~
+- ~~BUG: the calendar is not always updating e.g when using the action sheet to add exercises~~
+    - ~~Set all done crash~~
 - ~~WARNING: Rework calendar file again to put all the creates and updates together~~
+- User details (add charts, drawer with weight etc)
+    - Design this new functionality
 
 ##Long term
 
-- User details (add charts, drawer with weight etc)
 - Healthcheck function for db and graphql
 - Store exercises list in db
 - When selecting an exercise use the last stored values for the sets and recovery instead of default ones
