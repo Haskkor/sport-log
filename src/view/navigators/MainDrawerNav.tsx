@@ -7,6 +7,7 @@ import PinCode from '../components/PinCode'
 import Logout from '../components/Logout'
 import Home from '../components/Home'
 import CalendarStackNav from './CalendarStackNav'
+import Statistics from '../components/Statistics'
 
 type IProps = {
   changeLoginState: (status: boolean) => void
@@ -32,6 +33,9 @@ class MainDrawerNav extends React.PureComponent<IProps, IState> {
       },
       Recovery: {
         screen: TabNavRecovery
+      },
+      Statistics: {
+        screen: Statistics
       },
       Pin: {
         screen: PinCode

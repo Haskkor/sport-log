@@ -56,10 +56,18 @@
     - ~~Set all done crash~~
 - ~~WARNING: Rework calendar file again to put all the creates and updates together~~
 - User details (add charts, drawer with weight etc)
+    - Display as cards?
     - Design this new functionality
+        - Display the best set for all the exercises done by the user
+            - Either best overall weight (reps * weigth) or just best weight
+        - Expend on tap to display a graph of the progression
+            - Same filters than above
+        - Display the total of weight lifted for every exercise
 
 ##Long term
 
+- Measurements tracker
+- User can add custom exercises
 - Healthcheck function for db and graphql
 - Store exercises list in db
 - When selecting an exercise use the last stored values for the sets and recovery instead of default ones
