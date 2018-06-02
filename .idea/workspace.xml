@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39597ee5-2bd9-42b2-a212-3554592f4c8d" name="Default" comment="kljkjklj">
-      <change afterPath="$PROJECT_DIR$/src/view/components/Statistics.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/view/components/Panel.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/view/navigators/MainDrawerNav.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/navigators/MainDrawerNav.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/Statistics.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/Statistics.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,7 +22,7 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="1035">
+              <first_editor>
                 <caret line="69" column="31" selection-start-line="69" selection-start-column="31" selection-end-line="69" selection-end-column="31" />
               </first_editor>
               <second_editor />
@@ -31,13 +30,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Statistics.tsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Statistics.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/components/Statistics.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+            <state relative-caret-position="120">
+              <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Panel.tsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/view/components/Panel.tsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="777">
+              <caret line="59" column="191" selection-start-line="59" selection-start-column="191" selection-end-line="59" selection-end-column="191" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
+                <element signature="e#37#61#0" expanded="true" />
+                <element signature="e#450#465#0" expanded="true" />
+                <element signature="e#504#533#0" expanded="true" />
+                <element signature="e#705#725#0" expanded="true" />
+                <element signature="e#1066#1085#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -47,9 +60,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>navigationParams</find>
-      <find>navigationParams.saveE</find>
-      <find>this.props.navigation.navigate</find>
       <find>navigation.sta</find>
       <find>navigation.state.params.</find>
       <find>loadItems</find>
@@ -77,6 +87,9 @@
       <find>add</find>
       <find>goBack</find>
       <find>createItem</find>
+      <find>icson</find>
+      <find>icon</find>
+      <find>Animate</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -135,8 +148,9 @@
         <option value="$PROJECT_DIR$/src/view/components/QuickLog.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/Calendar.tsx" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/view/components/Statistics.tsx" />
         <option value="$PROJECT_DIR$/src/view/navigators/MainDrawerNav.tsx" />
+        <option value="$PROJECT_DIR$/src/view/components/Statistics.tsx" />
+        <option value="$PROJECT_DIR$/src/view/components/Panel.tsx" />
       </list>
     </option>
   </component>
@@ -381,11 +395,12 @@
       <workItem from="1527625573458" duration="2151000" />
       <workItem from="1527711850364" duration="1716000" />
       <workItem from="1527798658142" duration="791000" />
+      <workItem from="1527907885568" duration="2768000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="305993000" />
+    <option name="totallyTimeSpent" value="308761000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -405,6 +420,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32885906" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32960325" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32960477" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -418,7 +434,6 @@
       <window_info anchor="bottom" id="Messages" order="12" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -469,15 +484,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/view/components/ModalListLog.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/utils/config.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -654,13 +660,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/components/Home.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4360">
-          <caret line="24" column="19" selection-start-line="24" selection-start-column="19" selection-end-line="24" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/LoginRegister.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -801,7 +800,7 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="1035">
+          <first_editor>
             <caret line="69" column="31" selection-start-line="69" selection-start-column="31" selection-end-line="69" selection-end-column="31" />
           </first_editor>
           <second_editor />
@@ -830,12 +829,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/components/Statistics.tsx">
+    <entry file="file://$PROJECT_DIR$/src/view/components/Home.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="4" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+        <state relative-caret-position="960">
+          <caret line="193" column="11" selection-start-line="193" selection-start-column="11" selection-end-line="193" selection-end-column="11" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/components/Statistics.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/components/Panel.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="777">
+          <caret line="59" column="191" selection-start-line="59" selection-start-column="191" selection-end-line="59" selection-end-column="191" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+            <element signature="e#37#61#0" expanded="true" />
+            <element signature="e#450#465#0" expanded="true" />
+            <element signature="e#504#533#0" expanded="true" />
+            <element signature="e#705#725#0" expanded="true" />
+            <element signature="e#1066#1085#0" expanded="true" />
           </folding>
         </state>
       </provider>
