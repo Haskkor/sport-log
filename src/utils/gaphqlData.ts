@@ -12,26 +12,28 @@ export type dataHistoryDateUser = {
   variables: {}
 }
 
+export type exerciseUserGql = {
+  __typename: string
+  done: boolean
+  exercise: {
+    __typename: string
+    equipment: string
+    name: string
+  }
+  muscleGroup: string
+  recoveryTime: string
+  sets: {
+    __typename: string
+    reps: number
+    weight: number
+  }[]
+}
+
 export type historyDateUserGql = {
   __typename: string
   _id: string
   _userId: string
-  exercises: {
-    __typename: string
-    done: boolean
-    exercise: {
-      __typename: string
-      equipment: string
-      name: string
-    }
-    muscleGroup: string
-    recoveryTime: string
-    sets: {
-      __typename: string
-      reps: number
-      weight: number
-    }[]
-  }[]
+  exercises: exerciseUserGql[]
   timestamp: string
 }
 

@@ -59,14 +59,15 @@
     - Display as cards?
     - Design this new functionality
         - Display the best set for all the exercises done by the user
-            - Either best overall weight (reps * weigth) or just best weight
         - Expend on tap to display a graph of the progression
-            - Same filters than above
         - Display the total of weight lifted for every exercise
+- Measurements tracker
+    - Add a new value
+    - See and edit history
+    - See graphs
 
 ##Long term
 
-- Measurements tracker
 - User can add custom exercises
 - Healthcheck function for db and graphql
 - Store exercises list in db
@@ -77,8 +78,8 @@ https://launchpad.graphql.com/r948m3339n
 
 https://mlab.com/databases/sport-log-db#collections
 
-http://expressjs.com/fr
 https://wger.de/en/software/api
 https://medium.com/handlebar-labs/how-to-add-a-splash-screen-to-a-react-native-app-ios-and-android-30a3cec835ae
 https://www.youtube.com/watch?v=2fpKJ3dV8RE
 https://medium.com/react-native-training/react-native-authentication-in-depth-8d8c2e4ad81b / https://www.react-reveal.com/ https://www.youtube.com/watch?v=ELXvcyiTTHM https://hackernoon.com/react-authentication-in-depth-4deebda9aa45 / https://medium.com/building-with-react-native/coding-with-facebook-login-in-react-native-like-a-pro-1x06-9064fc2f5bfc
+https://github.com/JesperLekland/react-native-svg-charts
