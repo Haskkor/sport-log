@@ -11,6 +11,7 @@ import {NavigationAction, NavigationRoute, NavigationScreenProp} from 'react-nav
 import LoadingScreen from './LoadingScreen'
 import {HeaderStatus} from '../../core/enums'
 import Header from './Header'
+import * as _ from 'lodash'
 
 type IProps = {
   navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
@@ -72,12 +73,12 @@ class Statistics extends React.PureComponent<IProps, IState> {
     this.props.data.historyDateUser.map((h: historyDateUserGql) => {
       return h.exercises.map((e: exerciseUserGql) => {
         if (e.done) {
-          const index = exercisesRaw.findIndex((er) => er.name === `e.exercise.name + ' - ' + e.muscleGroup`)
+          const index = exercisesRaw.findIndex((er) => er.name === `${e.exercise.name} - ${e.muscleGroup}`)
           if (index !== -1) {
             exercisesRaw[index].dateSets.push({sets: e.sets, date: h.timestamp})
           } else {
             exercisesRaw.push({
-              name: `e.exercise.name + ' - ' + e.muscleGroup`,
+              name: `${e.exercise.name} - ${e.muscleGroup}`,
               dateSets: [{date: h.timestamp, sets: e.sets}]
             })
           }
@@ -85,15 +86,15 @@ class Statistics extends React.PureComponent<IProps, IState> {
       })
     })
 
-    console.log(exercisesRaw)
-
+    // todo best Wtv not ok
     const statsData = exercisesRaw.map((i: RawData) => {
+      console.log(i.dateSets.map((s: {date: string, sets: RawSet[]}) => {return {date: s.date, value: s.sets.map((rs: RawSet) => rs.weight * rs.reps).reduce((acc, curr) => acc + curr)}}))
       return {
         name: i.name,
         bestWeight: i.dateSets.map((s: {date: string, sets: RawSet[]}) => {return {date: s.date, value: Math.max(...s.sets.map((rs: RawSet) => rs.weight))}}),
         bestSet: i.dateSets.map((s: {date: string, sets: RawSet[]}) => {return {date: s.date, value: Math.max(...s.sets.map((rs: RawSet) => rs.weight * rs.reps))}}),
         bestWtv: i.dateSets.map((s: {date: string, sets: RawSet[]}) => {return {date: s.date, value: (s.sets.map((rs: RawSet) => rs.weight * rs.reps).reduce((acc, curr) => acc + curr), 0)}}),
-        totalWeight: (i.dateSets.map((s: {date: string, sets: RawSet[]}) => s.sets.map((rs: RawSet) => rs.weight * rs.reps).reduce((acc, curr) => acc + curr), 0).reduce((acc, curr) => acc + curr), 0)
+        totalWeight: _.flatten(i.dateSets.map((s: {date: string, sets: RawSet[]}) => s.sets.map((rs: RawSet) => rs.reps * rs.weight))).reduce((acc, curr) => acc + curr)
       }
     })
 
