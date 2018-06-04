@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39597ee5-2bd9-42b2-a212-3554592f4c8d" name="Default" comment="kljkjklj">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/view/components/Statistics.tsx" afterPath="$PROJECT_DIR$/src/view/components/Statistics.tsx" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -21,7 +20,7 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="1037">
+              <first_editor relative-caret-position="402">
                 <caret line="61" column="61" lean-forward="false" selection-start-line="61" selection-start-column="61" selection-end-line="61" selection-end-column="61" />
                 <folding />
               </first_editor>
@@ -43,19 +42,19 @@
       <file leaf-file-name="Statistics.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view/components/Statistics.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="72" column="5" lean-forward="false" selection-start-line="72" selection-start-column="5" selection-end-line="72" selection-end-column="5" />
+            <state relative-caret-position="-102">
+              <caret line="78" column="27" lean-forward="false" selection-start-line="78" selection-start-column="27" selection-end-line="78" selection-end-column="27" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
-                <marker date="1528084376881" expanded="false" signature="2581:2599" ph="..." />
-                <marker date="1528084376881" expanded="true" signature="2599:3417" ph="..." />
-                <marker date="1528084376881" expanded="true" signature="2661:2908" ph="..." />
-                <marker date="1528084376881" expanded="true" signature="2967:3336" ph="..." />
-                <marker date="1528084376881" expanded="true" signature="3005:3050" ph="..." />
-                <marker date="1528084376881" expanded="true" signature="3085:3130" ph="..." />
-                <marker date="1528084376881" expanded="true" signature="3185:3230" ph="..." />
-                <marker date="1528084376881" expanded="true" signature="3269:3314" ph="..." />
-                <marker date="1528084376881" expanded="true" signature="3638:3921" ph="..." />
+                <marker date="1528092611810" expanded="true" signature="3416:3434" ph="..." />
+                <marker date="1528092611810" expanded="true" signature="3434:4252" ph="..." />
+                <marker date="1528092611810" expanded="true" signature="3496:3743" ph="..." />
+                <marker date="1528092611810" expanded="true" signature="3802:4171" ph="..." />
+                <marker date="1528092611810" expanded="true" signature="3840:3885" ph="..." />
+                <marker date="1528092611810" expanded="true" signature="3920:3965" ph="..." />
+                <marker date="1528092611810" expanded="true" signature="4020:4065" ph="..." />
+                <marker date="1528092611810" expanded="true" signature="4104:4149" ph="..." />
+                <marker date="1528092611810" expanded="true" signature="4473:4756" ph="..." />
               </folding>
             </state>
           </provider>
@@ -218,6 +217,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -323,8 +324,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -438,11 +437,12 @@
       <workItem from="1527907885568" duration="2768000" />
       <workItem from="1528006902850" duration="4771000" />
       <workItem from="1528082573625" duration="2283000" />
+      <workItem from="1528087212818" duration="6380000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="315815000" />
+    <option name="totallyTimeSpent" value="322195000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -843,22 +843,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="1037">
-            <caret line="61" column="61" lean-forward="false" selection-start-line="61" selection-start-column="61" selection-end-line="61" selection-end-column="61" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="22" lean-forward="false" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="731">
@@ -885,21 +869,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="22" lean-forward="false" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="402">
+            <caret line="61" column="61" lean-forward="false" selection-start-line="61" selection-start-column="61" selection-end-line="61" selection-end-column="61" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/Statistics.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="72" column="5" lean-forward="false" selection-start-line="72" selection-start-column="5" selection-end-line="72" selection-end-column="5" />
+        <state relative-caret-position="-102">
+          <caret line="78" column="27" lean-forward="false" selection-start-line="78" selection-start-column="27" selection-end-line="78" selection-end-column="27" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
-            <marker date="1528084376881" expanded="false" signature="2581:2599" ph="..." />
-            <marker date="1528084376881" expanded="true" signature="2599:3417" ph="..." />
-            <marker date="1528084376881" expanded="true" signature="2661:2908" ph="..." />
-            <marker date="1528084376881" expanded="true" signature="2967:3336" ph="..." />
-            <marker date="1528084376881" expanded="true" signature="3005:3050" ph="..." />
-            <marker date="1528084376881" expanded="true" signature="3085:3130" ph="..." />
-            <marker date="1528084376881" expanded="true" signature="3185:3230" ph="..." />
-            <marker date="1528084376881" expanded="true" signature="3269:3314" ph="..." />
-            <marker date="1528084376881" expanded="true" signature="3638:3921" ph="..." />
+            <marker date="1528092611810" expanded="true" signature="3416:3434" ph="..." />
+            <marker date="1528092611810" expanded="true" signature="3434:4252" ph="..." />
+            <marker date="1528092611810" expanded="true" signature="3496:3743" ph="..." />
+            <marker date="1528092611810" expanded="true" signature="3802:4171" ph="..." />
+            <marker date="1528092611810" expanded="true" signature="3840:3885" ph="..." />
+            <marker date="1528092611810" expanded="true" signature="3920:3965" ph="..." />
+            <marker date="1528092611810" expanded="true" signature="4020:4065" ph="..." />
+            <marker date="1528092611810" expanded="true" signature="4104:4149" ph="..." />
+            <marker date="1528092611810" expanded="true" signature="4473:4756" ph="..." />
           </folding>
         </state>
       </provider>

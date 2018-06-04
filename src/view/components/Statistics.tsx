@@ -11,7 +11,6 @@ import {NavigationAction, NavigationRoute, NavigationScreenProp} from 'react-nav
 import LoadingScreen from './LoadingScreen'
 import {HeaderStatus} from '../../core/enums'
 import Header from './Header'
-import {ExerciseSet} from '../../core/types'
 
 type IProps = {
   navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
@@ -20,6 +19,29 @@ type IProps = {
 
 type IState = {
   showLoadingScreen: boolean
+  statsData: StatsData[]
+}
+
+type StatsData = {
+  name: string
+  bestWeight: {date: string, value: number}[]
+  bestSet: {date: string, value: number}[]
+  bestWtv: {date: string, value: number}[]
+  totalWeight: number
+}
+
+type RawData = {
+  name: string,
+  dateSets: {
+    sets: RawSet[],
+    date: string
+  }[]
+}
+
+type RawSet = {
+  __typename: string,
+  reps: number,
+  weight: number
 }
 
 class Statistics extends React.PureComponent<IProps, IState> {
@@ -27,7 +49,8 @@ class Statistics extends React.PureComponent<IProps, IState> {
   constructor(props: IProps) {
     super(props)
     this.state = {
-      showLoadingScreen: true
+      showLoadingScreen: true,
+      statsData: []
     }
     this.refetchData = this.refetchData.bind(this)
     this.createStatistics = this.createStatistics.bind(this)
@@ -45,17 +68,7 @@ class Statistics extends React.PureComponent<IProps, IState> {
   }
 
   createStatistics = () => {
-    // data shape:
-    // create a list of objects with:
-    // name of the exercise and the muscle group
-    // best weight and date
-    // array containing date and best weight of the day
-    // best set and date
-    // array containing date and best set of the day
-    // best WTV
-    // array containing date and best WTV of the day
-    // total weight
-    const exercisesRaw: {name: string, dateSets: {sets: {__typename: string, reps: number, weight: number }[], date: string}[]}[] = []
+    const exercisesRaw: RawData[] = []
     this.props.data.historyDateUser.map((h: historyDateUserGql) => {
       return h.exercises.map((e: exerciseUserGql) => {
         if (e.done) {
@@ -71,6 +84,22 @@ class Statistics extends React.PureComponent<IProps, IState> {
         }
       })
     })
+
+    console.log(exercisesRaw)
+
+    const statsData = exercisesRaw.map((i: RawData) => {
+      return {
+        name: i.name,
+        bestWeight: i.dateSets.map((s: {date: string, sets: RawSet[]}) => {return {date: s.date, value: Math.max(...s.sets.map((rs: RawSet) => rs.weight))}}),
+        bestSet: i.dateSets.map((s: {date: string, sets: RawSet[]}) => {return {date: s.date, value: Math.max(...s.sets.map((rs: RawSet) => rs.weight * rs.reps))}}),
+        bestWtv: i.dateSets.map((s: {date: string, sets: RawSet[]}) => {return {date: s.date, value: (s.sets.map((rs: RawSet) => rs.weight * rs.reps).reduce((acc, curr) => acc + curr), 0)}}),
+        totalWeight: (i.dateSets.map((s: {date: string, sets: RawSet[]}) => s.sets.map((rs: RawSet) => rs.weight * rs.reps).reduce((acc, curr) => acc + curr), 0).reduce((acc, curr) => acc + curr), 0)
+      }
+    })
+
+    console.log(statsData)
+
+    this.setState({statsData: statsData})
   }
 
   render() {
