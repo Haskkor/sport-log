@@ -11,6 +11,7 @@ import {NavigationAction, NavigationRoute, NavigationScreenProp} from 'react-nav
 import LoadingScreen from './LoadingScreen'
 import {HeaderStatus} from '../../core/enums'
 import Header from './Header'
+import {ExerciseSet} from '../../core/types'
 
 type IProps = {
   navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
@@ -54,9 +55,20 @@ class Statistics extends React.PureComponent<IProps, IState> {
     // best WTV
     // array containing date and best WTV of the day
     // total weight
-    const exercisesRaw = this.props.data.historyDateUser.map((h: historyDateUserGql) => {
+    const exercisesRaw: {name: string, dateSets: {sets: {__typename: string, reps: number, weight: number }[], date: string}[]}[] = []
+    this.props.data.historyDateUser.map((h: historyDateUserGql) => {
       return h.exercises.map((e: exerciseUserGql) => {
-        if (e.done) return e.exercise.name + ' - ' + e.muscleGroup
+        if (e.done) {
+          const index = exercisesRaw.findIndex((er) => er.name === `e.exercise.name + ' - ' + e.muscleGroup`)
+          if (index !== -1) {
+            exercisesRaw[index].dateSets.push({sets: e.sets, date: h.timestamp})
+          } else {
+            exercisesRaw.push({
+              name: `e.exercise.name + ' - ' + e.muscleGroup`,
+              dateSets: [{date: h.timestamp, sets: e.sets}]
+            })
+          }
+        }
       })
     })
   }
