@@ -20,8 +20,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="915">
-                <caret line="61" column="61" selection-start-line="61" selection-start-column="61" selection-end-line="61" selection-end-column="61" />
+              <first_editor relative-caret-position="1080">
+                <caret line="76" column="39" selection-start-line="76" selection-start-column="39" selection-end-line="76" selection-end-column="39" />
               </first_editor>
               <second_editor />
             </state>
@@ -40,11 +40,10 @@
       <file leaf-file-name="Statistics.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view/components/Statistics.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="817">
-              <caret line="107" column="18" lean-forward="true" selection-start-line="107" selection-start-column="18" selection-end-line="107" selection-end-column="18" />
+            <state relative-caret-position="626">
+              <caret line="117" column="17" selection-start-line="117" selection-start-column="17" selection-end-line="117" selection-end-column="17" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
-                <element signature="e#1087#1111#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -415,11 +414,12 @@
       <workItem from="1528082573625" duration="2283000" />
       <workItem from="1528087212818" duration="6380000" />
       <workItem from="1528144202222" duration="2213000" />
+      <workItem from="1528230729043" duration="1996000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="324408000" />
+    <option name="totallyTimeSpent" value="326404000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -845,8 +845,8 @@
       </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="915">
-            <caret line="61" column="61" selection-start-line="61" selection-start-column="61" selection-end-line="61" selection-end-column="61" />
+          <first_editor relative-caret-position="1080">
+            <caret line="76" column="39" selection-start-line="76" selection-start-column="39" selection-end-line="76" selection-end-column="39" />
           </first_editor>
           <second_editor />
         </state>
@@ -854,11 +854,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/Statistics.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="817">
-          <caret line="107" column="18" lean-forward="true" selection-start-line="107" selection-start-column="18" selection-end-line="107" selection-end-column="18" />
+        <state relative-caret-position="626">
+          <caret line="117" column="17" selection-start-line="117" selection-start-column="17" selection-end-line="117" selection-end-column="17" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
-            <element signature="e#1087#1111#0" expanded="true" />
           </folding>
         </state>
       </provider>

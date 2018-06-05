@@ -23,11 +23,25 @@ type IState = {
   statsData: StatsData[]
 }
 
+type Stats = {
+  date: string,
+  value: number
+}
+
 type StatsData = {
   name: string
-  bestWeight: {date: string, value: number}[]
-  bestSet: {date: string, value: number}[]
-  bestWtv: {date: string, value: number}[]
+  bestWeight: {
+    best: Stats,
+    hist: Stats[]
+  }
+  bestSet: {
+    best: Stats,
+    hist: Stats[]
+  }
+  bestWtv: {
+    best: Stats,
+    hist: Stats[]
+  }
   totalWeight: number
 }
 
@@ -85,21 +99,33 @@ class Statistics extends React.PureComponent<IProps, IState> {
         }
       })
     })
-
-    // todo best Wtv not ok
-    const statsData = exercisesRaw.map((i: RawData) => {
-      console.log(i.dateSets.map((s: {date: string, sets: RawSet[]}) => {return {date: s.date, value: s.sets.map((rs: RawSet) => rs.weight * rs.reps).reduce((acc, curr) => acc + curr)}}))
+    const exercisesRawSortedReverseTimestamp = exercisesRaw.map((r: RawData) => {
+      return {
+        name: r.name,
+        dateSets: r.dateSets.sort((a, b) => +b.date - +a.date)
+      }
+    })
+    const statsData = exercisesRawSortedReverseTimestamp.map((i: RawData) => {
+      const weight = i.dateSets.map((s: {date: string, sets: RawSet[]}) => {return {date: s.date, value: Math.max(...s.sets.map((rs: RawSet) => rs.weight))}})
+      const set = i.dateSets.map((s: {date: string, sets: RawSet[]}) => {return {date: s.date, value: Math.max(...s.sets.map((rs: RawSet) => rs.weight * rs.reps))}})
+      const wtv = i.dateSets.map((s: {date: string, sets: RawSet[]}) => {return {date: s.date, value: s.sets.map((rs: RawSet) => rs.weight * rs.reps).reduce((acc, curr) => acc + curr)}})
       return {
         name: i.name,
-        bestWeight: i.dateSets.map((s: {date: string, sets: RawSet[]}) => {return {date: s.date, value: Math.max(...s.sets.map((rs: RawSet) => rs.weight))}}),
-        bestSet: i.dateSets.map((s: {date: string, sets: RawSet[]}) => {return {date: s.date, value: Math.max(...s.sets.map((rs: RawSet) => rs.weight * rs.reps))}}),
-        bestWtv: i.dateSets.map((s: {date: string, sets: RawSet[]}) => {return {date: s.date, value: (s.sets.map((rs: RawSet) => rs.weight * rs.reps).reduce((acc, curr) => acc + curr), 0)}}),
+        bestWeight: {
+          best: weight.reduce((prev, curr) => (prev.value > curr.value) ? prev : curr),
+          hist: weight,
+        },
+        bestSet: {
+          best: set.reduce((prev, curr) => (prev.value > curr.value) ? prev : curr),
+          hist: set
+        },
+        bestWtv: {
+          best: wtv.reduce((prev, curr) => (prev.value > curr.value) ? prev : curr),
+          hist: wtv
+        },
         totalWeight: _.flatten(i.dateSets.map((s: {date: string, sets: RawSet[]}) => s.sets.map((rs: RawSet) => rs.reps * rs.weight))).reduce((acc, curr) => acc + curr)
       }
     })
-
-    console.log(statsData)
-
     this.setState({statsData: statsData})
   }
 
