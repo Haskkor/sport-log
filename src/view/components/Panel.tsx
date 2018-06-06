@@ -44,11 +44,11 @@ class Panel extends React.PureComponent<IProps, IState> {
           }}>
           {(state: any) => {
             return (
-              <View style={{height: state.height}}>
+              <View style={{height: state.height, overflow: 'hidden'}}>
                 <View style={styles.titleContainer} onLayout={(e) => {if (e.nativeEvent.layout.height && e.nativeEvent.layout.height > minHeight) this.setState({minHeight: e.nativeEvent.layout.height})}}>
                   <Text style={styles.title}>{this.state.title}</Text>
                   <TouchableOpacity onPress={() => this.setState({expanded: !expanded})}>
-                    <Icon name={expanded ? 'expand-less' : 'expand-more'} size={grid.subHeader} color={colors.base}/>
+                    <Icon name={expanded ? 'expand-less' : 'expand-more'} size={grid.title} color={colors.base}/>
                   </TouchableOpacity>
                 </View>
                 <View style={styles.body} onLayout={(e) => {if (e.nativeEvent.layout.height && e.nativeEvent.layout.height > maxHeight) this.setState({maxHeight: e.nativeEvent.layout.height})}}>
@@ -66,11 +66,6 @@ class Panel extends React.PureComponent<IProps, IState> {
 export default Panel
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#fff',
-    margin: 10,
-    overflow: 'hidden'
-  },
   titleContainer: {
     flexDirection: 'row',
     padding: grid.unit
@@ -83,5 +78,19 @@ const styles = StyleSheet.create({
   body: {
     padding: 10,
     paddingTop: 0
+  },
+  container: {
+    backgroundColor: colors.white,
+    borderRadius: grid.unit / 4,
+    padding: grid.unit / 2,
+    borderWidth: grid.regularBorder,
+    borderColor: colors.lightAlternative,
+    borderBottomWidth: 0,
+    shadowColor: colors.black,
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: grid.highOpacity,
+    shadowRadius: grid.unit / 8,
+    elevation: 1,
+    margin: 10
   }
 })
