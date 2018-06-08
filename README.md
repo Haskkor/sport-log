@@ -83,3 +83,8 @@ https://medium.com/handlebar-labs/how-to-add-a-splash-screen-to-a-react-native-a
 https://www.youtube.com/watch?v=2fpKJ3dV8RE
 https://medium.com/react-native-training/react-native-authentication-in-depth-8d8c2e4ad81b / https://www.react-reveal.com/ https://www.youtube.com/watch?v=ELXvcyiTTHM https://hackernoon.com/react-authentication-in-depth-4deebda9aa45 / https://medium.com/building-with-react-native/coding-with-facebook-login-in-react-native-like-a-pro-1x06-9064fc2f5bfc
 https://github.com/JesperLekland/react-native-svg-charts
+
+
+git rebase -i <number>
+git commit --amend --date=2018-06-07T09:51:07
+git rebase --continue

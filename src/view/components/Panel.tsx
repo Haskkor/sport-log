@@ -8,6 +8,7 @@ import {easeLinear} from 'd3-ease'
 
 type IProps = {
   title: string
+  refresh: () => void
 }
 
 type IState = {
@@ -47,7 +48,10 @@ class Panel extends React.PureComponent<IProps, IState> {
               <View style={{height: state.height, overflow: 'hidden'}}>
                 <View style={styles.titleContainer} onLayout={(e) => {if (e.nativeEvent.layout.height && e.nativeEvent.layout.height > minHeight) this.setState({minHeight: e.nativeEvent.layout.height})}}>
                   <Text style={styles.title}>{this.state.title}</Text>
-                  <TouchableOpacity onPress={() => this.setState({expanded: !expanded})}>
+                  <TouchableOpacity onPress={() => {
+                    this.setState({expanded: !expanded})
+                    this.props.refresh()
+                  }}>
                     <Icon name={expanded ? 'expand-less' : 'expand-more'} size={grid.title} color={colors.base}/>
                   </TouchableOpacity>
                 </View>

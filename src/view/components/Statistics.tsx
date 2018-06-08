@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {StyleSheet, ScrollView, Text, View, StatusBar, TouchableOpacity} from 'react-native'
+import {StyleSheet, ScrollView, Text, View, StatusBar, TouchableOpacity, Dimensions} from 'react-native'
 import {connect, Dispatch} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {compose, graphql} from 'react-apollo'
@@ -137,7 +137,12 @@ class Statistics extends React.PureComponent<IProps, IState> {
     this.setState({statsData: statsData})
   }
 
+  refreshScrollViewHeight = () => {
+    this.forceUpdate()
+  }
+
   render() {
+    console.log('ret')
     return (
       <View style={styles.container}>
         <StatusBar barStyle="dark-content"/>
@@ -150,21 +155,27 @@ class Statistics extends React.PureComponent<IProps, IState> {
           title="Calendar"
         />
         <ScrollView contentContainerStyle={styles.scroll}>
-          <Panel title="Best weight">
+          <Panel title="Best weight" refresh={this.refreshScrollViewHeight}>
             <Text></Text>
           </Panel>
-          <Panel title="Best set">
+          <Panel title="Best set" refresh={this.refreshScrollViewHeight}>
             <Text></Text>
           </Panel>
-          <Panel title="Best weights training volume">
+          <Panel title="Best weights training volume" refresh={this.refreshScrollViewHeight}>
             <Text></Text>
           </Panel>
-          <Panel title="Total weight">
+          <Panel title="Total weight" refresh={this.refreshScrollViewHeight}>
             {this.state.statsData.map((s: StatsData) =>
-              <View style={{margin: 10, flexDirection: 'row', justifyContent: 'space-between'}} key={s.name}>
-                <Text style={styles.text}>{`${s.name}: ${s.bestWeight.best.value}kg - ${new Date(+s.bestWeight.best.date).toLocaleDateString()}`}</Text>
+              <View style={styles.viewContentPanel} key={s.name}>
+                <View>
+                  <Text style={styles.text}>{`${s.name}`}</Text>
+                  <Text>
+                    <Text style={styles.textValue}>{`${s.bestWeight.best.value}kg`}</Text>
+                    <Text style={styles.text}>{` - ${new Date(+s.bestWeight.best.date).toLocaleDateString()}`}</Text>
+                  </Text>
+                </View>
                 <TouchableOpacity>
-                  <Icon name={'history'} size={grid.subHeader} color={colors.base}/>
+                  <Icon name={'history'} size={grid.title} color={colors.base}/>
                 </TouchableOpacity>
               </View>
             )}
@@ -190,15 +201,25 @@ export default connect(mapStateToProps, mapDispatchToProps)(StatisticsGraphQl)
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: colors.lightAlternative,
     flex: 1
   },
   scroll: {
-    flex: 1,
     backgroundColor: colors.lightAlternative,
     paddingTop: 30
   },
   text: {
     fontFamily: grid.font,
-    color: colors.base
+    color: colors.base,
+    maxWidth: Dimensions.get('window').width * 0.75
+  },
+  textValue: {
+    fontFamily: grid.font,
+    color: colors.valid,
+  },
+  viewContentPanel: {
+    margin: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   }
 })
