@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="39597ee5-2bd9-42b2-a212-3554592f4c8d" name="Default" comment="kljkjklj">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/view/components/Panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/Panel.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/view/components/Statistics.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/view/components/Statistics.tsx" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -20,7 +22,7 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="1080">
+              <first_editor relative-caret-position="1140">
                 <caret line="76" column="39" selection-start-line="76" selection-start-column="39" selection-end-line="76" selection-end-column="39" />
               </first_editor>
               <second_editor />
@@ -31,8 +33,11 @@
       <file leaf-file-name="Calendar.tsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="645">
-              <caret line="66" column="23" selection-start-line="66" selection-start-column="6" selection-end-line="66" selection-end-column="23" />
+            <state relative-caret-position="496">
+              <caret line="462" column="29" selection-start-line="462" selection-start-column="29" selection-end-line="462" selection-end-column="29" />
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -40,8 +45,8 @@
       <file leaf-file-name="Statistics.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view/components/Statistics.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="626">
-              <caret line="117" column="17" selection-start-line="117" selection-start-column="17" selection-end-line="117" selection-end-column="17" />
+            <state relative-caret-position="634">
+              <caret line="166" column="37" selection-start-line="166" selection-start-column="37" selection-end-line="166" selection-end-column="37" />
               <folding>
                 <element signature="e#0#30#0" expanded="true" />
               </folding>
@@ -49,23 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gaphqlData.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/utils/gaphqlData.ts">
+      <file leaf-file-name="grid.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/utils/grid.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="24" column="2" selection-start-line="24" selection-start-column="2" selection-end-line="24" selection-end-column="2" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Panel.tsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/view/components/Panel.tsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
-              <folding>
-                <element signature="e#0#30#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="60">
+              <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -161,10 +154,10 @@
         <option value="$PROJECT_DIR$/src/view/components/QuickLog.tsx" />
         <option value="$PROJECT_DIR$/src/view/components/Calendar.tsx" />
         <option value="$PROJECT_DIR$/src/view/navigators/MainDrawerNav.tsx" />
-        <option value="$PROJECT_DIR$/src/view/components/Panel.tsx" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/utils/gaphqlData.ts" />
         <option value="$PROJECT_DIR$/src/view/components/Statistics.tsx" />
+        <option value="$PROJECT_DIR$/src/view/components/Panel.tsx" />
       </list>
     </option>
   </component>
@@ -196,7 +189,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -302,11 +294,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="HbShouldOpenHtmlAsHb" value="" />
-    <property name="SearchEverywhereHistoryKey" value="calendar&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/navigators/CalendarStackNav.tsx&#10;ServerEn&#9;null&#9;null&#10;ModalL&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/ModalListLog.tsx&#10;quicl&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/QuickLog.tsx&#10;calenda&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/navigators/CalendarStackNav.tsx&#10;calen&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/Calendar.tsx&#10;quickl&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/QuickLog.tsx&#10;Toas&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/Toaster.tsx&#10;packa&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/package.json&#10;quicklo&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/QuickLog.tsx&#10;qui&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/QuickLog.tsx&#10;enti&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/interfaces/entities.d.ts&#10;Calen&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/Calendar.tsx&#10;Cald&#9;null&#9;null&#10;modalse&#9;null&#9;null&#10;readme&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/README.md&#10;config&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/utils/config.ts&#10;lo&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/view/components/LoginRegister.tsx&#10;rea&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/README.md&#10;read&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/node_modules/@haskkor/react-native-pincode/README.md&#10;const&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/utils/constants.ts&#10;confi&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/utils/config.ts&#10;draw&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/navigators/MainDrawerNav.tsx&#10;index&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/index.tsx&#10;create.ts&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/core/create.ts" />
+    <property name="SearchEverywhereHistoryKey" value="ca&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/Calendar.tsx&#10;sta&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/Statistics.tsx&#10;quickl&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/QuickLog.tsx&#10;quicklo&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/QuickLog.tsx&#10;calendar&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/navigators/CalendarStackNav.tsx&#10;ServerEn&#9;null&#9;null&#10;ModalL&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/ModalListLog.tsx&#10;quicl&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/QuickLog.tsx&#10;calenda&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/navigators/CalendarStackNav.tsx&#10;calen&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/Calendar.tsx&#10;Toas&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/Toaster.tsx&#10;packa&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/package.json&#10;qui&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/QuickLog.tsx&#10;enti&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/interfaces/entities.d.ts&#10;Calen&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/components/Calendar.tsx&#10;Cald&#9;null&#9;null&#10;modalse&#9;null&#9;null&#10;readme&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/README.md&#10;config&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/utils/config.ts&#10;lo&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/view/components/LoginRegister.tsx&#10;rea&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/README.md&#10;read&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/node_modules/@haskkor/react-native-pincode/README.md&#10;const&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/utils/constants.ts&#10;confi&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/utils/config.ts&#10;draw&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/view/navigators/MainDrawerNav.tsx&#10;index&#9;FILE&#9;file:///Users/jfarnaul/Projects/sport-log/src/index.tsx&#10;create.ts&#9;FILE&#9;file://D:/Code/GitRepos/sport-log/src/core/create.ts" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path" value="node" />
@@ -415,11 +408,12 @@
       <workItem from="1528087212818" duration="6380000" />
       <workItem from="1528144202222" duration="2213000" />
       <workItem from="1528230729043" duration="1996000" />
+      <workItem from="1528316915789" duration="1513000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="326404000" />
+    <option name="totallyTimeSpent" value="327917000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -521,13 +515,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="349">
           <caret line="130" column="17" selection-start-line="130" selection-start-column="17" selection-end-line="130" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/utils/grid.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -789,13 +776,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/components/QuickLog.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2058">
-          <caret line="285" selection-start-line="285" selection-end-line="285" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/navigators/MainDrawerNav.tsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -813,20 +793,18 @@
     <entry file="file://$PROJECT_DIR$/src/db/exercises.ts">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="645">
-          <caret line="66" column="23" selection-start-line="66" selection-start-column="6" selection-end-line="66" selection-end-column="23" />
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/view/components/Panel.tsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#30#0" expanded="true" />
-          </folding>
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="1140">
+            <caret line="76" column="39" selection-start-line="76" selection-start-column="39" selection-end-line="76" selection-end-column="39" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
@@ -837,25 +815,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+    <entry file="file://$PROJECT_DIR$/src/view/components/QuickLog.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="844">
+          <caret line="544" column="2" selection-start-line="544" selection-start-column="2" selection-end-line="544" selection-end-column="2" />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="FIRST">
-          <first_editor relative-caret-position="1080">
-            <caret line="76" column="39" selection-start-line="76" selection-start-column="39" selection-end-line="76" selection-end-column="39" />
-          </first_editor>
-          <second_editor />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/components/Calendar.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="462" column="29" selection-start-line="462" selection-start-column="29" selection-end-line="462" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/utils/grid.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/view/components/Panel.tsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="515">
+          <caret line="50" column="95" lean-forward="true" selection-start-line="50" selection-start-column="95" selection-end-line="50" selection-end-column="95" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/view/components/Statistics.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="626">
-          <caret line="117" column="17" selection-start-line="117" selection-start-column="17" selection-end-line="117" selection-end-column="17" />
+        <state relative-caret-position="634">
+          <caret line="166" column="37" selection-start-line="166" selection-start-column="37" selection-end-line="166" selection-end-column="37" />
           <folding>
             <element signature="e#0#30#0" expanded="true" />
           </folding>

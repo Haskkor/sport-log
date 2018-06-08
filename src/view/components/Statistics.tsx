@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {StyleSheet, ScrollView, Text, View, StatusBar} from 'react-native'
+import {StyleSheet, ScrollView, Text, View, StatusBar, TouchableOpacity} from 'react-native'
 import {connect, Dispatch} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {compose, graphql} from 'react-apollo'
@@ -12,6 +12,8 @@ import LoadingScreen from './LoadingScreen'
 import {HeaderStatus} from '../../core/enums'
 import Header from './Header'
 import * as _ from 'lodash'
+import {grid} from '../../utils/grid'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
 type IProps = {
   navigation: NavigationScreenProp<NavigationRoute<>, NavigationAction>
@@ -106,9 +108,15 @@ class Statistics extends React.PureComponent<IProps, IState> {
       }
     })
     const statsData = exercisesRawSortedReverseTimestamp.map((i: RawData) => {
-      const weight = i.dateSets.map((s: {date: string, sets: RawSet[]}) => {return {date: s.date, value: Math.max(...s.sets.map((rs: RawSet) => rs.weight))}})
-      const set = i.dateSets.map((s: {date: string, sets: RawSet[]}) => {return {date: s.date, value: Math.max(...s.sets.map((rs: RawSet) => rs.weight * rs.reps))}})
-      const wtv = i.dateSets.map((s: {date: string, sets: RawSet[]}) => {return {date: s.date, value: s.sets.map((rs: RawSet) => rs.weight * rs.reps).reduce((acc, curr) => acc + curr)}})
+      const weight = i.dateSets.map((s: { date: string, sets: RawSet[] }) => {
+        return {date: s.date, value: Math.max(...s.sets.map((rs: RawSet) => rs.weight))}
+      })
+      const set = i.dateSets.map((s: { date: string, sets: RawSet[] }) => {
+        return {date: s.date, value: Math.max(...s.sets.map((rs: RawSet) => rs.weight * rs.reps))}
+      })
+      const wtv = i.dateSets.map((s: { date: string, sets: RawSet[] }) => {
+        return {date: s.date, value: s.sets.map((rs: RawSet) => rs.weight * rs.reps).reduce((acc, curr) => acc + curr)}
+      })
       return {
         name: i.name,
         bestWeight: {
@@ -123,7 +131,7 @@ class Statistics extends React.PureComponent<IProps, IState> {
           best: wtv.reduce((prev, curr) => (prev.value > curr.value) ? prev : curr),
           hist: wtv
         },
-        totalWeight: _.flatten(i.dateSets.map((s: {date: string, sets: RawSet[]}) => s.sets.map((rs: RawSet) => rs.reps * rs.weight))).reduce((acc, curr) => acc + curr)
+        totalWeight: _.flatten(i.dateSets.map((s: { date: string, sets: RawSet[] }) => s.sets.map((rs: RawSet) => rs.reps * rs.weight))).reduce((acc, curr) => acc + curr)
       }
     })
     this.setState({statsData: statsData})
@@ -152,7 +160,14 @@ class Statistics extends React.PureComponent<IProps, IState> {
             <Text></Text>
           </Panel>
           <Panel title="Total weight">
-            <Text></Text>
+            {this.state.statsData.map((s: StatsData) =>
+              <View style={{margin: 10, flexDirection: 'row', justifyContent: 'space-between'}} key={s.name}>
+                <Text style={styles.text}>{`${s.name}: ${s.bestWeight.best.value}kg - ${new Date(+s.bestWeight.best.date).toLocaleDateString()}`}</Text>
+                <TouchableOpacity>
+                  <Icon name={'history'} size={grid.subHeader} color={colors.base}/>
+                </TouchableOpacity>
+              </View>
+            )}
           </Panel>
         </ScrollView>
         {this.state.showLoadingScreen &&
@@ -181,5 +196,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.lightAlternative,
     paddingTop: 30
+  },
+  text: {
+    fontFamily: grid.font,
+    color: colors.base
   }
 })
