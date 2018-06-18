@@ -73,6 +73,7 @@
 - Store exercises list in db
 - When selecting an exercise use the last stored values for the sets and recovery instead of default ones
 - Use the constructors in all the files
+- Add the ability to set a set to 'done' and start the timer automatically
 
 https://launchpad.graphql.com/r948m3339n
 
